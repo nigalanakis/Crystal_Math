@@ -114,7 +114,7 @@ Upon successful processing, crystal_math_reference_fragments.py generates the a 
 
 This configuration file essentially serves as the instruction manual for the algorithm, guiding its operation by specifying what, where, and how to analyze, thereby customizing the functionality to the user's specific research needs and objectives.
 
-Begin by setting your criteria within the \texttt{crystal\_math\_csd\_data\_extraction.py} script, specifying the desired atomic species, space group, $Z^{\prime}$ value, and molecular weight restrictions for the components in the asymmetric unit.
+Begin by setting your criteria within the crystal_math_csd_data_extraction.py script, specifying the desired atomic species, space group, $Z^{\prime}$ value, and molecular weight restrictions for the components in the asymmetric unit.
 	
 Execute the script. It will initiate communication with the CSD, apply the set filters, and begin data extraction on the structures that fit the defined criteria.
 
