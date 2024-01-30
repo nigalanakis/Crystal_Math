@@ -19,3 +19,8 @@ The software requires the following Python packages:
 * os
 * datetime
 * time
+
+The current version also requires the installation of the CSD Python API.
+Due to its specific installation instructions and licensing, refer to the official [https://downloads.ccdc.cam.ac.uk/documentation/API/installation_notes.html](URL) page for detailed guidance. 
+Please, adhere strictly to their guidelines to ensure full functionality within the CSP algorithm environment. 
+The API is crucial for the statistical analysis phase and for retrieving molecular structure data.
