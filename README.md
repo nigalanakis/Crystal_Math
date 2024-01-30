@@ -1,6 +1,6 @@
 # CrystalMath 
 
-## Tools for systematic exploration of the molecular structures in the CSD database and for a tpological based CSP
+## Tools for systematic exploration of the molecular structures in the CSD databasetowards a topological based CSP
 
 ### 1. Installation
 
