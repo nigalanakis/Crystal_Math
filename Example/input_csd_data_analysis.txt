@@ -1,0 +1,14 @@
+{"structure_data_file": "C:/Users/nikol/Documents/NYU/Research/Crystal_Math/CSD_DB_Analysis/DB_Data/ACSALA_structure_data.txt",
+ "contacts_data_file": "C:/Users/nikol/Documents/NYU/Research/Crystal_Math/CSD_DB_Analysis/DB_Data/ACSALA_contacts_data.txt",
+ "h_bonds_data_file": "C:/Users/nikol/Documents/NYU/Research/Crystal_Math/CSD_DB_Analysis/DB_Data/ACSALA_h-bonds_data.txt",
+ "contacts_plots_dir": "C:/Users/nikol/Documents/NYU/Research/Crystal_Math/CSD_DB_Analysis/Plots/ACSALA_Contacts/",
+ "h_bonds_plots_dir": "C:/Users/nikol/Documents/NYU/Research/Crystal_Math/CSD_DB_Analysis/Plots/ACSALA_H-Bonds/",
+ "contacts_bin_width": 0.025,
+ "contacts_max_length": 5.0,
+ "h_bonds_bin_width": 0.025,
+ "h_bonds_angle_bin_width": 1.0,
+ "h_bonds_max_length": 4.0,
+ "h_bonds_da_max_length": 4.0,
+ "h_bonds_min_angle": 120.0,
+ "h_bonds_max_angle": 180.0
+}
