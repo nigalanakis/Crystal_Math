@@ -8,7 +8,7 @@
  "structures_list": ["CSD",["ACSALA02","ACSALA13","ACSALA24"]],
  "target_species": ["C","H","N","O","S","F","Cl","Br"],
  "target_space_groups": ["P1","P-1","P21","C2","Pc","Cc","P21/m","C2/m","P2/c","P21/c","P21/n","C2/c","P21212","P212121","Pca21","Pna21","Pbcn","Pbca","Pnma"],
- "target_z_prime_values": [1,2],
+ "target_z_prime_values": [1,2,3,4,5],
  "molecule_weight_limit": 500.0,
  "add_full_component": False,
  "center_molecule": False,
