@@ -1,0 +1,4 @@
+ACSALA02 O1   H8   O2   O    H    O    HBond           True     1.6266   2.6355   177.6964
+ACSALA13 O1   H1   O2   O    H    O    HBond           True     1.7971   2.6328   173.0916
+ACSALA24 O1   H8   O2   O    H    O    HBond           True     1.5029   2.5418   175.5935
+ACSALA24 O5   H16  O6   O    H    O    HBond           True     1.5558   2.5850   176.5735
