@@ -3,7 +3,7 @@ import json
 import maths
 import numpy as np
 
-with open("fragment_list.txt") as f:
+with open("../Source_Data/fragment_list.txt") as f:
     data = f.read()
     
 fragment_list = ast.literal_eval(data)
@@ -32,7 +32,7 @@ for fragment in fragment_list:
                                          "pos": fragment_atoms_sfc.tolist(),
                                          "atoms_to_align": fragment_list[fragment]["atoms_to_align"]}
 
-file_path = "reference_fragment_list.txt"
+file_path = "../Source_Data/reference_fragment_list.txt"
 
 # Open the file for writing
 with open(file_path, 'w') as file:
