@@ -10,7 +10,7 @@ import crystal_math_maths
 
 
 # File paths to data directory and plots directory
-mwd = 'C:/Users/nikol/Documents/NYU/Research/Crystal_Math/CSD_DB_Analysis/'
+mwd = '../CSD_DB_Analysis/'
 data_dir = mwd + 'DB_Data/'
 plots_dir = mwd + 'Plots/'
 contacts_plots_dir = plots_dir + 'Contacts/'
@@ -73,7 +73,7 @@ def main(input_file):
     
     
 if __name__ == "__main__":
-    input_file = "input_csd_data_analysis.txt"
+    input_file = "input_files/input_csd_data_analysis.txt"
     
     now = datetime.now()
     print("Process started at ", now.strftime("%Y-%m-%d %H:%M:%S"))
