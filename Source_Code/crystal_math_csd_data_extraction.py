@@ -238,7 +238,7 @@ def main(input_file):
     return(n_structures)
                 
 if __name__ == "__main__":
-    input_file = "input_csd_data_extraction.txt"
+    input_file = "input_files/input_csd_data_extraction.txt"
     
     now = datetime.now()
     print("Process started at ", now.strftime("%Y-%m-%d %H:%M:%S"))
