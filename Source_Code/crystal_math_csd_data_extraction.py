@@ -40,7 +40,7 @@ def main(input_file):
         structures_list = input_parameters["structures_list"][2]
         
     # Get the framgents list
-    fragments_list = fragment_properties.fragment_list(input_parameters["fragments_input_file"])
+    fragments_list = fragment_properties.fragment_list("../Source_Data/" + input_parameters["fragments_input_file"])
 
     # Loop over all structures
     n_structures = 0
