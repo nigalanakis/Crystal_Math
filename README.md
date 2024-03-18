@@ -78,92 +78,92 @@ crystal_math
 	│ └── input_files
 	└── source_data
 
-All the *.py code files provided should be placed in the source_code directory. The input files `"input_data_extraction.txt"`, "input_data_analysis.txt" are placed in the input files directory and the user generated "fragment_list.json" is placed in the source_data directory.
+All the *.py code files provided should be placed in the source_code directory. The input files `input_data_extraction.txt`, `input_data_analysis.txt` are placed in the input files directory and the user generated `fragment_list.json` is placed in the source_data directory.
 
 #### 3.2 Files description
 
-* "csd_data_extraction.py": Main file for the execution of the data extraction.
-* "csd_operations.py": Module to perform the operations to identify and cluster CSD structure families and identify unique structures based on user-defined criteria.
-* "get_structures_list.py": Function to get the structures list for the analysis.
-* "create_reference_fragments.py": Function to convert the user generated fragments in the "fragments_list.json" file to the reference fragments in the space-fixed coordinate system stored in the "reference_fragments_list.json"
-* "get_structure_data.py": Function to perform the data extraction from the selected structures.
-* "structure_operations.py": Module to perform the necessary operations to each structure. 
-* "maths.py": Module with the required mathematical functions. 
-* "utilities.py": Module with several utility functions.
-* "io_operations.py" Module for the i/o operations. 
+* `csd_data_extraction.py`: Main file for the execution of the data extraction.
+* `csd_operations.py`: Module to perform the operations to identify and cluster CSD structure families and identify unique structures based on user-defined criteria.
+* `get_structures_list.py`: Function to get the structures list for the analysis.
+* `create_reference_fragments.py`: Function to convert the user generated fragments in the `fragments_list.json` file to the reference fragments in the space-fixed coordinate system stored in the `reference_fragments_list.json`
+* `get_structure_data.py`: Function to perform the data extraction from the selected structures.
+* `structure_operations.py`: Module to perform the necessary operations to each structure. 
+* `maths.py`: Module with the required mathematical functions. 
+* `utilities.py`: Module with several utility functions.
+* `io_operations.py` Module for the i/o operations. 
 
 #### 3.3 Creating the data extraction input file
 
 The first step is to modify the input_data_extraction.txt file based on the required criteria. The general format of the file is as follows:
 
-	{"save_directory": "../csd_db_analysis/db_data/",
-	 "get_refcode_families": True,
-	 "cluster_refcode_families": True,
-	 "get_unique_structures": True,
-	 "get_structure_data": True,
-	 "structure_list": ["csd-unique","all"],
-	 "data_prefix": "homomolecular_crystals",
-	 "unique_structures_clustering_method": "energy",
-	 "target_species": ["C","H","N","O","F","Cl","Br","I","P","S"],
-	 "target_space_groups": ["P1","P-1","P21","C2","Pc","Cc","P21/m","C2/m","P2/c","P21/c","P21/n","C2/c","P21212","P212121","Pca21","Pna21","Pbcn","Pbca","Pnma","R-3","I41/a"],
-	 "target_z_prime_values": [1,2,3,4,5],
-	 "molecule_weight_limit": 500.0,
-	 "crystal_type": "homomolecular_crystal",
-	 "molecule_formal_charges": [0],
-	 "structures_to_exclude": ["ZEPDAZ04","BALDUP"],
-	 "center_molecule": True,
-	 "add_full_component": True,
-	 "fragments_to_check_alignment": [],
-	 "proposed_vectors_n_max": 5
+	{`save_directory`: `../csd_db_analysis/db_data/`,
+	 `get_refcode_families`: True,
+	 `cluster_refcode_families`: True,
+	 `get_unique_structures`: True,
+	 `get_structure_data`: True,
+	 `structure_list`: [`csd-unique`,`all`],
+	 `data_prefix`: `homomolecular_crystals`,
+	 `unique_structures_clustering_method`: `energy`,
+	 `target_species`: [`C`,`H`,`N`,`O`,`F`,`Cl`,`Br`,`I`,`P`,`S`],
+	 `target_space_groups`: [`P1`,`P-1`,`P21`,`C2`,`Pc`,`Cc`,`P21/m`,`C2/m`,`P2/c`,`P21/c`,`P21/n`,`C2/c`,`P21212`,`P212121`,`Pca21`,`Pna21`,`Pbcn`,`Pbca`,`Pnma`,`R-3`,`I41/a`],
+	 `target_z_prime_values`: [1,2,3,4,5],
+	 `molecule_weight_limit`: 500.0,
+	 `crystal_type`: `homomolecular_crystal`,
+	 `molecule_formal_charges`: [0],
+	 `structures_to_exclude`: [`ZEPDAZ04`,`BALDUP`],
+	 `center_molecule`: True,
+	 `add_full_component`: True,
+	 `fragments_to_check_alignment`: [],
+	 `proposed_vectors_n_max`: 5
 	 }
 
-* "save_directory": The directory to save data. It is recommended to use the default option
-* "get_refcode_families": Set to True to extract all the refcode families from the csd. This option will create a file "csd_refcode_families.json" within the directory "../csd_db_analysis/db_data/".
-* "cluster_refcode_families": Set to True to cluster the structures for each refcode family from the csd. This option will create a file "csd_refcode_families_clustered.json" within the directory "../csd_db_analysis/db_data/".
-* "get_unique_structures": Set to True if to get the unique structures for each cluster of structures for each refcode family from the csd. This option will create a file "csd_refcode_families_unique_structures.json" within the directory "../csd_db_analysis/db_data/".
-* "structure_list": [option_1,option_2].
+* `save_directory`: The directory to save data. It is recommended to use the default option
+* `get_refcode_families`: Set to True to extract all the refcode families from the csd. This option will create a file `csd_refcode_families.json` within the directory `../csd_db_analysis/db_data/`.
+* `cluster_refcode_families`: Set to True to cluster the structures for each refcode family from the csd. This option will create a file `csd_refcode_families_clustered.json` within the directory `../csd_db_analysis/db_data/`.
+* `get_unique_structures`: Set to True if to get the unique structures for each cluster of structures for each refcode family from the csd. This option will create a file `csd_refcode_families_unique_structures.json` within the directory `../csd_db_analysis/db_data/`.
+* `structure_list`: [option_1,option_2].
 	* option_1: Available values:
- 		* "csd-all": Analyze all structures in the csd matching the criteria (this will analyze all the structures in the "csd_refcode_families.json").
- 		* "csd-unique": Analyze all the unique structures in the csd matching the criteria (this will analyze all the structures in the "csd_refcode_families_unique_structures.json"). 
- 		* "cif": Analyze user provided *.cif files.
+ 		* `csd-all`: Analyze all structures in the csd matching the criteria (this will analyze all the structures in the `csd_refcode_families.json`).
+ 		* `csd-unique`: Analyze all the unique structures in the csd matching the criteria (this will analyze all the structures in the `csd_refcode_families_unique_structures.json`). 
+ 		* `cif`: Analyze user provided *.cif files.
    	* option_2: Available values:
-   		* "all" or a list of structures if option_1 = "csd-all", "csd-unique". A list of structures may have the following formats: [[refcode_family, [refcode_index_1, refcode_index_2, ...]], [refcode_family, "all"]]. The refcode_family is a family of structures in the CSD database (for example "ACSALA" for the aspirin structures).  The list [refcode_index_1, refcode_index_2, ...] contains the indices of the structures in family to be analyzed (e.g. 0 for "ACSALA", 1 for "ACSALA01" etc). To analyze all structures in the family use  the list [refcode_family, "all"].
-   	 	* A list of *.cif structures (complete path) to be analyzed if option_2 = "cif".
-* "data_prefix": A user defined prefix that is placed in the front of the output files.
-* "unique_structures_clustering_method": The method used to select the unique structures when clustering similar structures in the CSD. Currently the only available method is "energy", which selects the structure with the least intermolecular lattice energy calculated using the Gavezzotti-Filippini potentials implemented in the CSD Python API.
-* "target_species": A list of the allowed atomic species. Any structure with atomic species not in this list will be discarded.
-* "target_space_groups": A list of the allowed space groups. Any structure with a space group not in this list will be discarded. The default option contains the 2 most common space groups.
-* "target_z_prime_values":  A list of the allowed Z' values. Any structure with Z' value not in this list will be discarded.
-* "molecule_weight_limit": The maximum allowed molecular weight for each component in the asymmetric unit.
-* "crystal_type": List of structure types (eg. ["homomlecular"]). Available values:
-	* "homomolecular"
- 	* "co-crystal"
-  	* "hydrate"
-* "molecule_formal_charges": A list of the allowed molecular charges. Set to [0] to analyze neutral structures.
-* "structures_to_exclude": For an unknown reason, there are a few structures in the CSD that can not be analyzed, as they produce a kernel error which causes the program to crash. Once such a structure is identified, it should be added to this list to avoid the crash. Unless a solution is found, it is strongly recommended to not modify this field.
-* "center_molecule": Set to True if it is required to move the reference molecule in the referece unit cell (recommended).
-* "add_full_component": Set to True to analyze the complete components in the asymmetric unit cell along with the fragments (This will account for the hydrogen atoms too).
-* "proposed_vectors_n_max": A positive integer number represpenting the maximum value for each component of a crystallographic vector from the set n_max (recommended value: 5). 
+   		* `all` or a list of structures if option_1 = `csd-all`, `csd-unique`. A list of structures may have the following formats: [[refcode_family, [refcode_index_1, refcode_index_2, ...]], [refcode_family, `all`]]. The refcode_family is a family of structures in the CSD database (for example `ACSALA` for the aspirin structures).  The list [refcode_index_1, refcode_index_2, ...] contains the indices of the structures in family to be analyzed (e.g. 0 for `ACSALA`, 1 for `ACSALA01` etc). To analyze all structures in the family use  the list [refcode_family, `all`].
+   	 	* A list of *.cif structures (complete path) to be analyzed if option_2 = `cif`.
+* `data_prefix`: A user defined prefix that is placed in the front of the output files.
+* `unique_structures_clustering_method`: The method used to select the unique structures when clustering similar structures in the CSD. Currently the only available method is `energy`, which selects the structure with the least intermolecular lattice energy calculated using the Gavezzotti-Filippini potentials implemented in the CSD Python API.
+* `target_species`: A list of the allowed atomic species. Any structure with atomic species not in this list will be discarded.
+* `target_space_groups`: A list of the allowed space groups. Any structure with a space group not in this list will be discarded. The default option contains the 2 most common space groups.
+* `target_z_prime_values`:  A list of the allowed Z' values. Any structure with Z' value not in this list will be discarded.
+* `molecule_weight_limit`: The maximum allowed molecular weight for each component in the asymmetric unit.
+* `crystal_type`: List of structure types (eg. [`homomlecular`]). Available values:
+	* `homomolecular`
+ 	* `co-crystal`
+  	* `hydrate`
+* `molecule_formal_charges`: A list of the allowed molecular charges. Set to [0] to analyze neutral structures.
+* `structures_to_exclude`: For an unknown reason, there are a few structures in the CSD that can not be analyzed, as they produce a kernel error which causes the program to crash. Once such a structure is identified, it should be added to this list to avoid the crash. Unless a solution is found, it is strongly recommended to not modify this field.
+* `center_molecule`: Set to True if it is required to move the reference molecule in the referece unit cell (recommended).
+* `add_full_component`: Set to True to analyze the complete components in the asymmetric unit cell along with the fragments (This will account for the hydrogen atoms too).
+* `proposed_vectors_n_max`: A positive integer number represpenting the maximum value for each component of a crystallographic vector from the set n_max (recommended value: 5). 
 
 #### 3.4 Creating the fragment list
 
-The code comes with a "fragment_list.json" file including information on several fragments encountered in molecular crystal structures. This file can be modified based on the needs of the user. Each entry in the dictionary has the following format:
+The code comes with a `fragment_list.json` file including information on several fragments encountered in molecular crystal structures. This file can be modified based on the needs of the user. Each entry in the dictionary has the following format:
 
-	"benzene": {
-		"smarts": "c1ccccc1", 
-		"species": ["C","C","C","C","C","C"],
-		"coordinates": [
+	`benzene`: {
+		`smarts`: `c1ccccc1`, 
+		`species`: [`C`,`C`,`C`,`C`,`C`,`C`],
+		`coordinates`: [
 			[ 1.3750, 0.0000, 0.0000],
 			[ 0.6875, 1.1908, 0.0000],
 			[-0.6875, 1.1908, 0.0000],
 			[-1.3750, 0.0000, 0.0000],
 			[-0.6875,-1.1908, 0.0000],
 			[ 0.6875,-1.1908, 0.0000]],
-		"mass": [12.0107, 12.0107, 12.0107, 12.0107, 12.0107, 12.0107],
-		"atoms_to_align": "all"}
+		`mass`: [12.0107, 12.0107, 12.0107, 12.0107, 12.0107, 12.0107],
+		`atoms_to_align`: `all`}
 
-The "coordinates" key contains the positions of the atoms in the fragment in any coordinate system. These coordinates with be automaticaly converted to space-fixed reference coordinates by the "create_reference_fragments.py" script. A crucial aspect of these entries is the "atoms_to_align" key. This instruction designates specific atoms within the fragment, employed to synchronize the orientation of the reference fragment with a congruent fragment identified within a crystal structure. It accepts an "all" value, directing the algorithm to utilize all available atoms for alignment procedures. Alternatively, it accommodates a list of integers, signifying atom indexes, essential for instances where fragments exhibit mirror symmetries. This nuanced approach addresses scenarios where traditional SMARTS representation falls short, particularly for fragments bearing indistinguishable, mirror-image formations, such as the ambiguity in oxygens in a structure like "[\#6]S(=O)(=O)[NH2]".
+The `coordinates` key contains the positions of the atoms in the fragment in any coordinate system. These coordinates with be automaticaly converted to space-fixed reference coordinates by the `create_reference_fragments.py` script. A crucial aspect of these entries is the `atoms_to_align` key. This instruction designates specific atoms within the fragment, employed to synchronize the orientation of the reference fragment with a congruent fragment identified within a crystal structure. It accepts an `all` value, directing the algorithm to utilize all available atoms for alignment procedures. Alternatively, it accommodates a list of integers, signifying atom indexes, essential for instances where fragments exhibit mirror symmetries. This nuanced approach addresses scenarios where traditional SMARTS representation falls short, particularly for fragments bearing indistinguishable, mirror-image formations, such as the ambiguity in oxygens in a structure like `[\#6]S(=O)(=O)[NH2]`.
 
 #### 3.5 Performing the data extraction
 
-The data extraction is performed by exectuting the "csd_data_extraction.py" script. If any of the parameters "get_refcode_families", "cluster_refcode_families", "get_unique_structures" is set to True, the code will first generate the respective *.json files mentioned in the previous section. The respective functions are found in the module "csd_operations". Once these tasks are completed, the code moves to extract data from the CSD using the "get_structure_data.py" function.
+The data extraction is performed by exectuting the `csd_data_extraction.py` script. If any of the parameters `get_refcode_families`, `cluster_refcode_families`, `get_unique_structures` is set to True, the code will first generate the respective *.json files mentioned in the previous section. The respective functions are found in the module `csd_operations`. Once these tasks are completed, the code moves to extract data from the CSD using the `get_structure_data.py` function.
