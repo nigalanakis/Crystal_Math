@@ -68,6 +68,7 @@ In essence, the orientation analysis relative to the inertia frame is not a mere
 
 ### 3. Procedure
 
+#### 3.1 Directories structure
 The source code can be executed by simply copying the source code in a parent directory (for example crystal_math). The first step is to create the necessary directories within the main working directory (crystal_math):
 crystal_math
 
@@ -78,6 +79,20 @@ crystal_math
 	└── source_data
 
 All the *.py code files provided should be placed in the source_code directory. The input files "input_data_extraction.txt", "input_data_analysis.txt" are placed in the input files directory and the user generated "fragment_list.json" is placed in the source_data directory.
+
+#### 3.2 Files description
+
+* "csd_data_extraction": Main file for the execution of the data extraction.
+* "csd_operations": Module to perform the operations to identify and cluster CSD structure families and identify unique structures based on user-defined criteria.
+* "get_structures_list": Function to get the structures list for the analysis.
+* "create_reference_fragments": Function to convert the user generated fragments in the "fragments_list.json" file to the reference fragments in the space-fixed coordinate system stored in the "reference_fragments_list.json"
+* "get_structure_data": Function to perform the data extraction from the selected structures.
+* "structure_operations": Module to perform the necessary operations to each structure. 
+* "maths": Module with the required mathematical functions. 
+* "utilities": Module with several utility functions.
+* "io_operations" Module for the i/o operations. 
+
+#### 3.3 Creating the data extraction input file
 
 The first step is to modify the input_data_extraction.txt file based on the required criteria. The general format of the file is as follows:
 
@@ -116,7 +131,7 @@ The first step is to modify the input_data_extraction.txt file based on the requ
    	 	* A list of *.cif structures (complete path) to be analyzed if option_2 = "cif".
 * "data_prefix": A user defined prefix that is placed in the front of the output files.
 * "unique_structures_clustering_method": The method used to select the unique structures when clustering similar structures in the CSD. Currently the only available method is "energy", which selects the structure with the least intermolecular lattice energy calculated using the Gavezzotti-Filippini potentials implemented in the CSD Python API.
-* target_species": A list of the allowed atomic species. Any structure with atomic species not in this list will be discarded.
+* "target_species": A list of the allowed atomic species. Any structure with atomic species not in this list will be discarded.
 * "target_space_groups": A list of the allowed space groups. Any structure with a space group not in this list will be discarded. The default option contains the 2 most common space groups.
 * "target_z_prime_values":  A list of the allowed Z' values. Any structure with Z' value not in this list will be discarded.
 * "molecule_weight_limit": The maximum allowed molecular weight for each component in the asymmetric unit.
@@ -129,3 +144,7 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 * "center_molecule": Set to True if it is required to move the reference molecule in the referece unit cell (recommended).
 * "add_full_component": Set to True to analyze the complete components in the asymmetric unit cell along with the fragments (This will account for the hydrogen atoms too).
 * "proposed_vectors_n_max": A positive integer number represpenting the maximum value for each component of a crystallographic vector from the set n_max (recommended value: 5). 
+
+#### 3.4 Performing the data extracion
+
+The data extraction is performed by exectuting the "csd_data_extraction.py" script. If any of the parameters "get_refcode_families", "cluster_refcode_families", "get_unique_structures" is set to True, the code will first generate the respective *.json files mentioned in the previous section. The respective functions are found in the module "csd_operations". Once these tasks are completed, the code moves to extract data from the CSD using the "get_structure_data.py" function.
