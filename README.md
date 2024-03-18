@@ -78,7 +78,7 @@ crystal_math
 	│ └── input_files
 	└── source_data
 
-All the *.py code files provided should be placed in the source_code directory. The input files "input_data_extraction.txt", "input_data_analysis.txt" are placed in the input files directory and the user generated "fragment_list.json" is placed in the source_data directory.
+All the *.py code files provided should be placed in the source_code directory. The input files '"input_data_extraction.txt"', "input_data_analysis.txt" are placed in the input files directory and the user generated "fragment_list.json" is placed in the source_data directory.
 
 #### 3.2 Files description
 
