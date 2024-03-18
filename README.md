@@ -77,7 +77,7 @@ crystal_math
 	│ └── input_files
 	└── source_data
 
-All the *.py code files provided should be placed in the Source Code directory. The input files input_data_extraction.txt, input_data_analysis.txt are placed in the input files directory and the user generated fragment_list.json is placed in the Source Data directory.
+All the *.py code files provided should be placed in the Source Code directory. The input files "input_data_extraction.txt", "input_data_analysis.txt" are placed in the input files directory and the user generated "fragment_list.json" is placed in the source_data directory.
 
 The first step is to modify the input_data_extraction.txt file based on the required criteria. The general format of the file is as follows:
 
@@ -110,4 +110,5 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 	* option_1: Available values: "csd-all", "csd-unique", "cif"
  		* "csd-all": Analyze all structures in the csd matching the criteria (this will analyze all the structures in the "csd_refcode_families.json").
  		* "csd-unique": Analyze all the unique structures in the csd matching the criteria (this will analyze all the structures in the "csd_refcode_families_unique_structures.json"). 
- 		* "cif": Analyze user provided *.cif files. 		
+ 		* "cif": Analyze user provided *.cif files.
+   	* option_2: Available values: "all" or a list of structures if option_1 = "csd-all", "csd-unique". A list of structures may have the following formats: [[refcode_family, [refcode_index_1, refcode_index_2, ...]], [refcode_family, "all"]]. The refcode_family is a family of structures in the CSD database (for example "ACSALA" for the aspirin structures).  The list [refcode_index_1, refcode_index_2, ...] contains the indices of the structures in family to be analyzed (e.g. 0 for "ACSALA", 1 for "ACSALA01" etc). To analyze all structures in the family use  the list [refcode_family, "all"]. 	
