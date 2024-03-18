@@ -96,7 +96,7 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 	 "crystal_type": "homomolecular_crystal",
 	 "molecule_formal_charges": [0],
 	 "structures_to_exclude": ["ZEPDAZ04","BALDUP"],
-	 "center_molecule": False,
+	 "center_molecule": True,
 	 "add_full_component": True,
 	 "fragments_to_check_alignment": [],
 	 "proposed_vectors_n_max": 5
@@ -107,8 +107,25 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 * "cluster_refcode_families": Set to True to cluster the structures for each refcode family from the csd. This option will create a file "csd_refcode_families_clustered.json" within the directory "../csd_db_analysis/db_data/".
 * "get_unique_structures": Set to True if to get the unique structures for each cluster of structures for each refcode family from the csd. This option will create a file "csd_refcode_families_unique_structures.json" within the directory "../csd_db_analysis/db_data/".
 * "structure_list": [option_1,option_2].
-	* option_1: Available values: "csd-all", "csd-unique", "cif"
+	* option_1: Available values:
  		* "csd-all": Analyze all structures in the csd matching the criteria (this will analyze all the structures in the "csd_refcode_families.json").
  		* "csd-unique": Analyze all the unique structures in the csd matching the criteria (this will analyze all the structures in the "csd_refcode_families_unique_structures.json"). 
  		* "cif": Analyze user provided *.cif files.
-   	* option_2: Available values: "all" or a list of structures if option_1 = "csd-all", "csd-unique". A list of structures may have the following formats: [[refcode_family, [refcode_index_1, refcode_index_2, ...]], [refcode_family, "all"]]. The refcode_family is a family of structures in the CSD database (for example "ACSALA" for the aspirin structures).  The list [refcode_index_1, refcode_index_2, ...] contains the indices of the structures in family to be analyzed (e.g. 0 for "ACSALA", 1 for "ACSALA01" etc). To analyze all structures in the family use  the list [refcode_family, "all"]. 	
+   	* option_2: Available values:
+   		* "all" or a list of structures if option_1 = "csd-all", "csd-unique". A list of structures may have the following formats: [[refcode_family, [refcode_index_1, refcode_index_2, ...]], [refcode_family, "all"]]. The refcode_family is a family of structures in the CSD database (for example "ACSALA" for the aspirin structures).  The list [refcode_index_1, refcode_index_2, ...] contains the indices of the structures in family to be analyzed (e.g. 0 for "ACSALA", 1 for "ACSALA01" etc). To analyze all structures in the family use  the list [refcode_family, "all"].
+   	 	* A list of *.cif structures (complete path) to be analyzed if option_2 = "cif".
+* "data_prefix": A user defined prefix that is placed in the front of the output files.
+* "unique_structures_clustering_method": The method used to select the unique structures when clustering similar structures in the CSD. Currently the only available method is "energy", which selects the structure with the least intermolecular lattice energy calculated using the Gavezzotti-Filippini potentials implemented in the CSD Python API.
+* target_species": A list of the allowed atomic species. Any structure with atomic species not in this list will be discarded.
+* "target_space_groups": A list of the allowed space groups. Any structure with a space group not in this list will be discarded. The default option contains the 2 most common space groups.
+* "target_z_prime_values":  A list of the allowed Z' values. Any structure with Z' value not in this list will be discarded.
+* "molecule_weight_limit": The maximum allowed molecular weight for each component in the asymmetric unit.
+* "crystal_type": List of structure types (eg. ["homomlecular"]). Available values:
+	* "homomolecular"
+ 	* "co-crystal"
+  	* "hydrate"
+* "molecule_formal_charges": A list of the allowed molecular charges. Set to [0] to analyze neutral structures.
+* "structures_to_exclude": For an unknown reason, there are a few structures in the CSD that can not be analyzed, as they produce a kernel error which causes the program to crash. Once such a structure is identified, it should be added to this list to avoid the crash. Unless a solution is found, it is strongly recommended to not modify this field.
+* "center_molecule": Set to True if it is required to move the reference molecule in the referece unit cell (recommended).
+* "add_full_component": Set to True to analyze the complete components in the asymmetric unit cell along with the fragments (This will account for the hydrogen atoms too).
+* "proposed_vectors_n_max": A positive integer number represpenting the maximum value for each component of a crystallographic vector from the set n_max (recommended value: 5). 
