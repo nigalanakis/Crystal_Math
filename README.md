@@ -82,9 +82,9 @@ All the *.py code files provided should be placed in the Source Code directory. 
 The first step is to modify the input_data_extraction.txt file based on the required criteria. The general format of the file is as follows:
 
 	{"save_directory": "../csd_db_analysis/db_data/",
-	 "get_refcode_families": False,
-	 "cluster_refcode_families": False,
-	 "get_unique_structures": False,
+	 "get_refcode_families": True,
+	 "cluster_refcode_families": True,
+	 "get_unique_structures": True,
 	 "get_structure_data": True,
 	 "structure_list": ["csd-unique","all"],
 	 "data_prefix": "homomolecular_crystals",
@@ -102,4 +102,12 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 	 "proposed_vectors_n_max": 5
 	 }
 
-
+* "save_directory": The directory to save data. It is recommended to use the default option
+* "get_refcode_families": Set to True to extract all the refcode families from the csd. This option will create a file "csd_refcode_families.json" within the directory "../csd_db_analysis/db_data/".
+* "cluster_refcode_families": Set to True to cluster the structures for each refcode family from the csd. This option will create a file "csd_refcode_families_clustered.json" within the directory "../csd_db_analysis/db_data/".
+* "get_unique_structures": Set to True if to get the unique structures for each cluster of structures for each refcode family from the csd. This option will create a file "csd_refcode_families_unique_structures.json" within the directory "../csd_db_analysis/db_data/".
+* "structure_list": [option_1,option_2].
+	* option_1: Available values: "csd-all", "csd-unique", "cif"
+ 		* "csd-all": Analyze all structures in the csd matching the criteria (this will analyze all the structures in the "csd_refcode_families.json").
+ 		* "csd-unique": Analyze all the unique structures in the csd matching the criteria (this will analyze all the structures in the "csd_refcode_families_unique_structures.json"). 
+ 		* "cif": Analyze user provided *.cif files. 		
