@@ -150,17 +150,17 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 The code comes with a "fragment_list.json" file including information on several fragments encountered in molecular crystal structures. This file can be modified based on the needs of the user. Each entry in the dictionary has the following format:
 
 	"benzene": {
-    		"smarts": "c1ccccc1", 
+		"smarts": "c1ccccc1", 
 		"species": ["C","C","C","C","C","C"],
-    		"coordinates": [
-    			[ 1.3750, 0.0000, 0.0000],
-	    		[ 0.6875, 1.1908, 0.0000],
-	    		[-0.6875, 1.1908, 0.0000],
-	    		[-1.3750, 0.0000, 0.0000],
-	    		[-0.6875,-1.1908, 0.0000],
-	    		[ 0.6875,-1.1908, 0.0000]],
-	    	"mass": [12.0107, 12.0107, 12.0107, 12.0107, 12.0107, 12.0107],
-	    	"atoms_to_align": "all"}
+		"coordinates": [
+			[ 1.3750, 0.0000, 0.0000],
+			[ 0.6875, 1.1908, 0.0000],
+			[-0.6875, 1.1908, 0.0000],
+			[-1.3750, 0.0000, 0.0000],
+			[-0.6875,-1.1908, 0.0000],
+			[ 0.6875,-1.1908, 0.0000]],
+		"mass": [12.0107, 12.0107, 12.0107, 12.0107, 12.0107, 12.0107],
+		"atoms_to_align": "all"}
 
 The "coordinates" key contains the positions of the atoms in the fragment in any coordinate system. These coordinates with be automaticaly converted to space-fixed reference coordinates by the "create_reference_fragments.py" script. A crucial aspect of these entries is the "atoms_to_align" key. This instruction designates specific atoms within the fragment, employed to synchronize the orientation of the reference fragment with a congruent fragment identified within a crystal structure. It accepts an "all" value, directing the algorithm to utilize all available atoms for alignment procedures. Alternatively, it accommodates a list of integers, signifying atom indexes, essential for instances where fragments exhibit mirror symmetries. This nuanced approach addresses scenarios where traditional SMARTS representation falls short, particularly for fragments bearing indistinguishable, mirror-image formations, such as the ambiguity in oxygens in a structure like "[\#6]S(=O)(=O)[NH2]".
 
