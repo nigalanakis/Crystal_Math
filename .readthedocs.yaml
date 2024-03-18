@@ -1,8 +1,9 @@
 version: 2
 
 build:
+  os: "ubuntu-22.04"
   tools:
-    python: "anaconda-22.10"
+    python: "mambaforge-22.9"
 
 conda:
   environment: environment.yml
