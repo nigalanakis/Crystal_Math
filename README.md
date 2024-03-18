@@ -82,15 +82,15 @@ All the *.py code files provided should be placed in the source_code directory. 
 
 #### 3.2 Files description
 
-* "csd_data_extraction": Main file for the execution of the data extraction.
-* "csd_operations": Module to perform the operations to identify and cluster CSD structure families and identify unique structures based on user-defined criteria.
-* "get_structures_list": Function to get the structures list for the analysis.
-* "create_reference_fragments": Function to convert the user generated fragments in the "fragments_list.json" file to the reference fragments in the space-fixed coordinate system stored in the "reference_fragments_list.json"
-* "get_structure_data": Function to perform the data extraction from the selected structures.
-* "structure_operations": Module to perform the necessary operations to each structure. 
-* "maths": Module with the required mathematical functions. 
-* "utilities": Module with several utility functions.
-* "io_operations" Module for the i/o operations. 
+* "csd_data_extraction.py": Main file for the execution of the data extraction.
+* "csd_operations.py": Module to perform the operations to identify and cluster CSD structure families and identify unique structures based on user-defined criteria.
+* "get_structures_list.py": Function to get the structures list for the analysis.
+* "create_reference_fragments.py": Function to convert the user generated fragments in the "fragments_list.json" file to the reference fragments in the space-fixed coordinate system stored in the "reference_fragments_list.json"
+* "get_structure_data.py": Function to perform the data extraction from the selected structures.
+* "structure_operations.py": Module to perform the necessary operations to each structure. 
+* "maths.py": Module with the required mathematical functions. 
+* "utilities.py": Module with several utility functions.
+* "io_operations.py" Module for the i/o operations. 
 
 #### 3.3 Creating the data extraction input file
 
@@ -145,6 +145,25 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 * "add_full_component": Set to True to analyze the complete components in the asymmetric unit cell along with the fragments (This will account for the hydrogen atoms too).
 * "proposed_vectors_n_max": A positive integer number represpenting the maximum value for each component of a crystallographic vector from the set n_max (recommended value: 5). 
 
-#### 3.4 Performing the data extracion
+#### 3.4 Creating the fragment list
+
+The code comes with a "fragment_list.json" file including information on several fragments encountered in molecular crystal structures. This file can be modified based on the needs of the user. Each entry in the dictionary has the following format:
+
+	"benzene": {
+    	"smarts": "c1ccccc1", 
+	"species": ["C","C","C","C","C","C"],
+    	"coordinates": [
+    		[ 1.3750, 0.0000, 0.0000],
+    		[ 0.6875, 1.1908, 0.0000],
+    		[-0.6875, 1.1908, 0.0000],
+    		[-1.3750, 0.0000, 0.0000],
+    		[-0.6875,-1.1908, 0.0000],
+    		[ 0.6875,-1.1908, 0.0000]],
+    	"mass": [12.0107, 12.0107, 12.0107, 12.0107, 12.0107, 12.0107],
+    	"atoms_to_align": "all"}
+
+The "coordinates" key contains the positions of the atoms in the fragment in any coordinate system. These coordinates with be automaticaly converted to space-fixed reference coordinates by the "create_reference_fragments.py" script. A crucial aspect of these entries is the "atoms_to_align" key. This instruction designates specific atoms within the fragment, employed to synchronize the orientation of the reference fragment with a congruent fragment identified within a crystal structure. It accepts an "all" value, directing the algorithm to utilize all available atoms for alignment procedures. Alternatively, it accommodates a list of integers, signifying atom indexes, essential for instances where fragments exhibit mirror symmetries. This nuanced approach addresses scenarios where traditional SMARTS representation falls short, particularly for fragments bearing indistinguishable, mirror-image formations, such as the ambiguity in oxygens in a structure like "[\#6]S(=O)(=O)[NH2]".
+
+#### 3.5 Performing the data extraction
 
 The data extraction is performed by exectuting the "csd_data_extraction.py" script. If any of the parameters "get_refcode_families", "cluster_refcode_families", "get_unique_structures" is set to True, the code will first generate the respective *.json files mentioned in the previous section. The respective functions are found in the module "csd_operations". Once these tasks are completed, the code moves to extract data from the CSD using the "get_structure_data.py" function.
