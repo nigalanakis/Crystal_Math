@@ -203,5 +203,10 @@ The data extraction process generates 4 different data files (the `*` stands for
 * `*_contact_data.txt`: The file contains all the information for the close contacts.
 * `*_fragment_data.txt`: The file contains all the information for the close contacts.
 * `*_hbond_data.txt`: The file contains all the information for the close contacts.
-* `*_structure_data.txt`: The file contains all the information for the close contacts.
+* `*_structure_data.txt`: The file contains all the information for the close contacts. The data file contains:
+	* The structure ID (`str_id`), the space group (`sg`), the Z and Z' values (`Z`, `Z_pr`), the formula (`formula`) and the atomic species found in the crystal (`species`).  
+ 	* The scaled cell length (`a_sc`, `b_sc`, `c_sc`), the cell lengths (`a`, `b`, `c`) and the cell angles (`alpha`, `beta`, `gamma`).  
+  	* The unit cell volume (`volume`) and calculated density (`density`).
+  	* The vdW free volume (`vdWFV`) and the solvent accessible surface (`SAS`).
+  	* The total lattice energy (`E_tot`), the electrostatic energy (`E_el`), the vdW energy (`E_vdW`), the attractive vdW energy (`E_vdW_at`), the repulsive vdW energy (`E_vdW_rep`), the hydrogen bond energy (`E_hb`), the attractive hydrogen bond energy (`E_hb_at`) and the repulsive hydrogen bond energy (`E_hb_rep`). 
 
