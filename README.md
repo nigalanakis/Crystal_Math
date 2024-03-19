@@ -200,8 +200,17 @@ The data extraction is performed by exectuting the `csd_data_extraction.py` scri
 #### 3.6 The data extraction output files
 
 The data extraction process generates 4 different data files (the `*` stands for the `"data_prefix"` as defined in the input file):
-* `*_contact_data.txt`: The file contains all the information for the close contacts.
-* `*_fragment_data.txt`: The file contains all the information for the close contacts.
+* `*_contact_data.txt`: The file contains all the information for the close contacts. The data file contains:
+	* The structure ID (`str_id`).
+ 	* The lanbels (`label1`, `label2`) and species  (`spec1`, `spec2`) for the atoms forming the contact.
+  	* If the contact is part of a hydrogen bond (`hbond`).
+  	* The fragment for the cetral atom and toe contact atom (`central_fragment`), (`contact_fragment`)
+  	* The length of the contact (`length`) and if the contact is in list of sight (`in_los`)
+  	* The coordinates for the atoms forming the contact (`x1`, `y1`, `z1`) and (`x2`, `y2`, `z2`).
+  	* The cartesian bond vectors of the atoms forming the contact to the center of mass of the central group (`bvx1`, `bvy1`, `bvz1`) and (`bvx2`, `bvy2`, `bvz2`)
+  	* The cartesian bond vectors of the atoms forming the contact to the center of mass of the central group in the reference coordinate system (`bvx1_ref`, `bvy1_ref`, `bvz1_ref`) and (`bvx2_ref`, `bvy2_ref`, `bvz2_ref`).
+  	* The bond vectors of the contact atom to the center of mass of the central group in the reference coordinate system in spherical coordinates (`r2`, `theta2`, `phi2`).
+* `*_fragment_data.txt`: The file contains all the information for the fragments in the structure.
 * `*_hbond_data.txt`: The file contains all the information for the hydrogen bonds. The data file contains:
 	* The structure ID (`str_id`)
   	* The labels for the donor, hydrogen and acceptor atoms (`labelD`, `labelH`, `labelA`), the atomic species for the donor, hydrogen and acceptor atoms (`specD`, `specH`, `specA`).
