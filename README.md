@@ -78,9 +78,10 @@ crystal_math
     ├── source_code
     │    └── input_files
     └── source_data
+	 └── cif_files
 ```
 
-All the `*.py` code files provided should be placed in the source_code directory. The input files `input_data_extraction.txt`, `input_data_analysis.txt` are placed in the input files directory and the user generated `fragment_list.json` is placed in the source_data directory.
+All the `*.py` code files provided should be placed in the source_code directory. The input files `input_data_extraction.txt`, `input_data_analysis.txt` are placed in the input files directory and the user generated `fragment_list.json` is placed in the source_data directory. Ay custom `*.cif` files should be placed within the `cif_files` folder.
 
 #### 3.2 Files description
 
@@ -127,7 +128,7 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 	* `option_1`: Available values:
  		* `"csd-all"`: Analyze all structures in the csd matching the criteria (this will analyze all the structures in the `csd_refcode_families.json`).
  		* `"csd-unique"`: Analyze all the unique structures in the CSD matching the criteria (this will analyze all the structures in the `csd_refcode_families_unique_structures.json`). 
- 		* `"cif"`: Analyze user provided `*.cif` files.
+ 		* `"cif"`: Analyze user provided `*.cif` files stored in the `../source_data/cif_files/` directory.
    	* option_2: Available values:
    		* `"all"` or a list of structures if `option_1` = `csd-all`, `csd-unique`. A list of structures may have the following formats: `[[refcode_family, [refcode_index_1, refcode_index_2, ...]]`, `[refcode_family, "all"]]`. The refcode_family is a family of structures in the CSD database (for example `ACSALA` for the aspirin structures).  The list `[refcode_index_1, refcode_index_2, ...]` contains the indices of the structures in family to be analyzed (e.g. `0` for `ACSALA`, `1` for `ACSALA01` etc). To analyze all structures in the family use  the list `[refcode_family, "all"]`.
    	 	* A list of `*.cif` structures (complete path) to be analyzed if `option_2` = `cif`.
@@ -168,4 +169,7 @@ The `"coordinates"` key contains the positions of the atoms in the fragment in a
 
 #### 3.5 Performing the data extraction
 
-The data extraction is performed by exectuting the `csd_data_extraction.py` script. If any of the parameters `get_refcode_families`, `cluster_refcode_families`, `get_unique_structures` is set to `True`, the code will first generate the respective `*.json` files mentioned in the previous section. The respective functions are found in the module `csd_operations`. Once these tasks are completed, the code moves to extract data from the CSD using the `get_structure_data.py` function.
+The data extraction is performed by exectuting the `csd_data_extraction.py` script. If any of the parameters `get_refcode_families`, `cluster_refcode_families`, `get_unique_structures` is set to `True`, the code will first generate the respective `*.json` files mentioned in the previous section. The respective functions are found in the module `csd_operations`. Once these tasks are completed, the code moves to extract data from the selected structures (CSD structures or `*.cif` files) using the `get_structure_data.py` function. The process is initialized by creating a structures list for the structures that will be analyzed. Subsequently, the algorithm loops over all structures, performing the following actions:
+* Creates the CSD `crystal` and `molecule` objects.
+* Assign missing bond types, missing hydrogen atoms and partial charges using the `molecule.assign_bond_types()`, `molecule.add_hydrogens()` and `molecule.assign_partial_charges()` methods available in the CSD Python API.
+* Extract crystal properties using the `get_csd_crytal_properties(crystal)` within the `csd_operations.py` module.
