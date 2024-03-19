@@ -171,5 +171,6 @@ The `"coordinates"` key contains the positions of the atoms in the fragment in a
 
 The data extraction is performed by exectuting the `csd_data_extraction.py` script. If any of the parameters `get_refcode_families`, `cluster_refcode_families`, `get_unique_structures` is set to `True`, the code will first generate the respective `*.json` files mentioned in the previous section. The respective functions are found in the module `csd_operations`. Once these tasks are completed, the code moves to extract data from the selected structures (CSD structures or `*.cif` files) using the `get_structure_data.py` function. The process is initialized by creating a structures list for the structures that will be analyzed. Subsequently, the algorithm loops over all structures, performing the following actions:
 * Creates the CSD `crystal` and `molecule` objects.
-* Assign missing bond types, missing hydrogen atoms and partial charges using the `molecule.assign_bond_types()`, `molecule.add_hydrogens()` and `molecule.assign_partial_charges()` methods available in the CSD Python API.
+* Assign bond types, missing hydrogen atoms and partial charges using the `molecule.assign_bond_types()`, `molecule.add_hydrogens()` and `molecule.assign_partial_charges()` methods available in the CSD Python API.
 * Extract crystal properties using the `get_csd_crytal_properties(crystal)` within the `csd_operations.py` module.
+* 
