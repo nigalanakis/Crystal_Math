@@ -79,9 +79,6 @@ def get_structure_data(input_parameters):
     
     # Loop over the structures in the list
     for structure_name in structures_list:
-        if structure_name == 'BALDUP' :
-            continue
-        
         # Set the csd_crystal and csd_molecule objects
         if input_parameters["structure_list"][0] in ["csd-all","csd-unique"]:
             entry = csd_entries.entry(structure_name)
@@ -106,12 +103,12 @@ def get_structure_data(input_parameters):
             continue
         
         # Add missing hydrogen atoms
-        molecule.assign_bond_types()
-        molecule.add_hydrogens()
-        molecule.assign_partial_charges()
-        
-        # Update crystal
-        crystal.molecule = molecule
+        try:
+            molecule.assign_bond_types()
+            molecule.add_hydrogens(mode='missing')
+            molecule.assign_partial_charges()
+        except Exception:
+            continue 
         
         # Set the atoms for the reference molecule 
         atoms = molecule.atoms
@@ -277,18 +274,18 @@ def get_structure_data(input_parameters):
                         hbond_acceptor = 0
                         
             structure_hbonds.append([hbond.atoms[hbond_donor].label,
-                                      hbond.atoms[1].label,
-                                      hbond.atoms[hbond_acceptor].label,
-                                      hbond.atoms[hbond_donor].atomic_symbol,
-                                      hbond.atoms[1].atomic_symbol,
-                                      hbond.atoms[hbond_acceptor].atomic_symbol,
-                                      np.round(hbond.length,4),
-                                      np.round(hbond.da_distance,4),
-                                      np.round(hbond.angle,4),
-                                      hbond.is_in_line_of_sight,
-                                      *np.round(hbond.atoms[hbond_donor].coordinates,4),
-                                      *np.round(hbond.atoms[1].coordinates,4),
-                                      *np.round(hbond.atoms[hbond_acceptor].coordinates,4)])
+                                     hbond.atoms[1].label,
+                                     hbond.atoms[hbond_acceptor].label,
+                                     hbond.atoms[hbond_donor].atomic_symbol,
+                                     hbond.atoms[1].atomic_symbol,
+                                     hbond.atoms[hbond_acceptor].atomic_symbol,
+                                     np.round(hbond.length,4),
+                                     np.round(hbond.da_distance,4),
+                                     np.round(hbond.angle,4),
+                                     hbond.is_in_line_of_sight,
+                                     *np.round(hbond.atoms[hbond_donor].coordinates,4),
+                                     *np.round(hbond.atoms[1].coordinates,4),
+                                     *np.round(hbond.atoms[hbond_acceptor].coordinates,4)])
         structure["crystal"]["hbonds"] = structure_hbonds
             
         # Write data to files
