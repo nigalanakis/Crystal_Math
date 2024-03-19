@@ -98,10 +98,6 @@ def get_structure_data(input_parameters):
             molecule = io.MoleculeReader(cif_files_f + structure_name)
             molecule = molecule[0]  
         
-        
-        if structure_check(input_parameters, crystal, molecule) == None:
-            continue
-        
         # Add missing hydrogen atoms
         try:
             molecule.assign_bond_types()
@@ -109,9 +105,22 @@ def get_structure_data(input_parameters):
             molecule.assign_partial_charges()
         except Exception:
             continue 
-        
+    
         # Set the atoms for the reference molecule 
-        atoms = molecule.atoms
+        try:
+            atoms = molecule.atoms
+        except Exception:
+            continue 
+        
+        # Check for unnatural atoms with no coordinates
+        discard = False
+        for at in atoms:
+            if at.coordinates == None:
+                discard = True 
+                break 
+            
+        if discard:
+            continue
         
         # Initialize structure
         structure = {} 
