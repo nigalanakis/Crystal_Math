@@ -71,12 +71,14 @@ In essence, the orientation analysis relative to the inertia frame is not a mere
 #### 3.1 Directories structure
 The source code can be executed by simply copying the source code in a parent directory (for example `crystal_math`). The first step is to create the necessary directories within the main working directory (`crystal_math`):
 
+```
 crystal_math
 ├── csd_db_analysis
 │ └── db_data
 ├── source_code
 │ └── input_files
 └── source_data
+```
 
 All the `*.py` code files provided should be placed in the source_code directory. The input files `input_data_extraction.txt`, `input_data_analysis.txt` are placed in the input files directory and the user generated `fragment_list.json` is placed in the source_data directory.
 
