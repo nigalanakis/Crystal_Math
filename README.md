@@ -195,4 +195,13 @@ The data extraction is performed by exectuting the `csd_data_extraction.py` scri
   	* The donor-acceptor distance.
   	* The angle of the hydrogen bond.
   	* If the hydrogen bond is in line of sight.
+* Write data to files.
+
+#### 3.6 The data extraction output files
+
+The data extraction process generates 4 different data files (the `*` stands for the `"data_prefix"` as defined in the input file):
+* `*_contact_data.txt`: The file contains all the information for the close contacts.
+* `*_fragment_data.txt`: The file contains all the information for the close contacts.
+* `*_hbond_data.txt`: The file contains all the information for the close contacts.
+* `*_structure_data.txt`: The file contains all the information for the close contacts.
 
