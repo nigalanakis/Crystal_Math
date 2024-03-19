@@ -143,7 +143,7 @@ The first step is to modify the input_data_extraction.txt file based on the requ
  	* `"co-crystal"`
   	* `"hydrate"`
 * `molecule_formal_charges`: A list of the allowed molecular charges. Set to `[0]` to analyze neutral structures.
-* `structures_to_exclude`: For an unknown reason, there are a few structures in the CSD that can not be analyzed, as they produce a kernel error which causes the program to crash. Once such a structure is identified, it should be added to this list to avoid the crash. Unless a solution is found, it is strongly recommended to not modify this field.
+* `structures_to_exclude`: For an unknown reason, there are a few structures in the CSD that can not be analyzed, as they produce a kernel error which causes the program to crash. Once such a structure is identified, it should be added to this list to avoid the crash. Unless a solution is found, it is strongly recommended to not remove any structures from this field.
 * `center_molecule`: Set to `True` if it is required to move the reference molecule in the referece unit cell (recommended).
 * `add_full_component`: Set to `True` to analyze the complete components in the asymmetric unit cell along with the fragments (This will account for the hydrogen atoms too).
 * `proposed_vectors_n_max`: A positive integer number represpenting the maximum value for each component of a crystallographic vector from the set `n_max` (recommended value: `5`). 
