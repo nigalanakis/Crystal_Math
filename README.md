@@ -210,7 +210,15 @@ The data extraction process generates 4 different data files (the `*` stands for
   	* The cartesian bond vectors of the atoms forming the contact to the center of mass of the central group (`bvx1`, `bvy1`, `bvz1`) and (`bvx2`, `bvy2`, `bvz2`)
   	* The cartesian bond vectors of the atoms forming the contact to the center of mass of the central group in the reference coordinate system (`bvx1_ref`, `bvy1_ref`, `bvz1_ref`) and (`bvx2_ref`, `bvy2_ref`, `bvz2_ref`).
   	* The bond vectors of the contact atom to the center of mass of the central group in the reference coordinate system in spherical coordinates (`r2`, `theta2`, `phi2`).
-* `*_fragment_data.txt`: The file contains all the information for the fragments in the structure.
+* `*_fragment_data.txt`: The file contains all the information for the fragments in the structure. The data file contains:
+	* The structure ID (`str_id`).
+ 	* The fragment name (`fragment`), its cartesian coordinates (`x`, `y`, `z`) and fractional coordinates (`u`, `v`, `w`).
+  	* The components for the principal axes of inertia (`e1_x`, `e1_y`, `e1_z`), (`e2_x`, `e2_y`, `e2_z`) and (`e3_x`, `e3_y`, `e3_z`).
+  	* The minimum distances of the principal planes of inertia to the reference cell points (`d1`, `d2`, `d3`)
+  	* The normal vectors to the principal axes of inertia in the crystallographic coordinates (`e1_u`, `e1_v`, `e1_w`), (`e2_u`, `e2_v`, `e2_w`) and (`e3_u`, `e3_v`, `e3_w`).
+        * The components for the two vectors that are closest to be perpendiculat to each principal axis of inertia and the respective angles (`W11_u`, `W11_v`, `W11_w`, `ang_11`),  (`W12_u`, `W12_v`, `W12_w`, `ang_12`), (`W21_u`, `W21_v`, `W21_w`, `ang_21`),  (`W22_u`, `W22_v`, `W22_w`, `ang_22`), (`W31_u`, `W31_v`, `W31_w`, `ang_31`),  (`W32_u`, `W32_v`, `W32_w`, `ang_32`).
+  	* The number of atoms in the fragment (`n_at`).
+  	* The cartesian coordinates, fractional coordinates and minimum distance to the ZZP plane family for each atom  (`at_x`, `at_y`, `at_z`), (`at_u`, `at_v`, `at_w`), `dzzp_min` (`n_at` entries).
 * `*_hbond_data.txt`: The file contains all the information for the hydrogen bonds. The data file contains:
 	* The structure ID (`str_id`)
   	* The labels for the donor, hydrogen and acceptor atoms (`labelD`, `labelH`, `labelA`), the atomic species for the donor, hydrogen and acceptor atoms (`specD`, `specH`, `specA`).
