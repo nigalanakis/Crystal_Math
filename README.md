@@ -185,10 +185,10 @@ The data extraction is performed by exectuting the `csd_data_extraction.py` scri
 * Get detailed contact data. For each contact, the algorithm calculates:
   	* The type of the contact (vdW or H-bond).
    	* The length of the contact.
-    	* If the contact is in line of sight (if the line connecting the two atoms passes through the vdW sphere of a third atom). 
+   	* If the contact is in line of sight (if the line connecting the two atoms passes through the vdW sphere of a third atom).
    	* The central and contact fragments.
-    	* The bond vector of the contact to the central fragment in cartesian coordinates.
-    	* The bond vector of the contact to the in the reference coordinate system of central fragment in cartesian and spherical coordinates.
+   	* The bond vector of the contact to the central fragment in cartesian coordinates.
+   	* The bond vector of the contact to the in the reference coordinate system of central fragment in cartesian and spherical coordinates.
 * Get detailed H-bond data. For each hydrogen bond, the algorithm calculates:
 	* The donor and acceptor atoms.
  	* The hydrogen bond length.
