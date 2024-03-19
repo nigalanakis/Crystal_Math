@@ -69,9 +69,9 @@ In essence, the orientation analysis relative to the inertia frame is not a mere
 ### 3. Procedure
 
 #### 3.1 Directories structure
-The source code can be executed by simply copying the source code in a parent directory (for example crystal_math). The first step is to create the necessary directories within the main working directory (crystal_math):
-crystal_math
+The source code can be executed by simply copying the source code in a parent directory (for example `crystal_math`). The first step is to create the necessary directories within the main working directory (`crystal_math`):
 
+crystal_math
 	├── csd_db_analysis
 	│ └── db_data
 	├── source_code
