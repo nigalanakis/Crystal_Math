@@ -73,11 +73,11 @@ The source code can be executed by simply copying the source code in a parent di
 
 ```
 crystal_math
-├── csd_db_analysis
-│ └── db_data
-├── source_code
-│ └── input_files
-└── source_data
+    ├── csd_db_analysis
+    │    └── db_data
+    ├── source_code
+    │    └── input_files
+    └── source_data
 ```
 
 All the `*.py` code files provided should be placed in the source_code directory. The input files `input_data_extraction.txt`, `input_data_analysis.txt` are placed in the input files directory and the user generated `fragment_list.json` is placed in the source_data directory.
