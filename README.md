@@ -146,7 +146,7 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 * `structures_to_exclude`: For an unknown reason, there are a few structures in the CSD that can not be analyzed, as they produce a kernel error which causes the program to crash. Once such a structure is identified, it should be added to this list to avoid the crash. Unless a solution is found, it is strongly recommended to not remove any structures from this field.
 * `center_molecule`: Set to `True` if it is required to move the reference molecule in the referece unit cell (recommended).
 * `add_full_component`: Set to `True` to analyze the complete components in the asymmetric unit cell along with the fragments (This will account for the hydrogen atoms too).
-* `proposed_vectors_n_max`: A positive integer number represpenting the maximum value for each component of a crystallographic vector from the set `n_max` (recommended value: `5`). 
+* `proposed_vectors_n_max`: A positive integer number represpenting the maximum value for each component of a crystallographic vector from the set `n_c` (recommended value: `5`). 
 
 #### 3.4 Creating the fragment list
 
@@ -172,5 +172,27 @@ The `"coordinates"` key contains the positions of the atoms in the fragment in a
 The data extraction is performed by exectuting the `csd_data_extraction.py` script. If any of the parameters `get_refcode_families`, `cluster_refcode_families`, `get_unique_structures` is set to `True`, the code will first generate the respective `*.json` files mentioned in the previous section. The respective functions are found in the module `csd_operations`. Once these tasks are completed, the code moves to extract data from the selected structures (CSD structures or `*.cif` files) using the `get_structure_data.py` function. The process is initialized by creating a structures list for the structures that will be analyzed. Subsequently, the algorithm loops over all structures, performing the following actions:
 * Creates the CSD `crystal` and `molecule` objects.
 * Assign bond types, missing hydrogen atoms and partial charges using the `molecule.assign_bond_types()`, `molecule.add_hydrogens()` and `molecule.assign_partial_charges()` methods available in the CSD Python API.
-* Extract crystal properties using the `get_csd_crytal_properties(crystal)` within the `csd_operations.py` module.
-* 
+* Generate the atoms using the `molecule.atoms` method available in the CSD Python API.
+* Extract crystal properties using the `get_csd_crytal_properties(crystal)` within the `csd_operations.py` module. For the calculation of the solvent accesible surface a probe of radius 1.2 Angstrom is used. The upper limit for close contacts is set to `r_vdW_i + r_vdW_j + 0.6`.
+* Extract atom and molecule properties using the `get_csd_atom_and_molecule_properties(crystal,molecule,atoms)` within the `csd_operations.py` module.
+* Set the fragments in the structure using the `get_csd_structure_fragments(input_parameters,structure,molecule)` within the `csd_operations.py` module. If `"add_full_component"` is set to `False` and the structure does not include any of the fragments in the `fragments_list.json` file, the code proceeds to the next structure.
+* Loops over all the fragments in the structure to get the topological and geometrical properties:
+	* Rotate the reference fragment in the `reference_fragment_list.json` to align with the current fragment and get the rotation matrix for the fragment using the `kabsch_rotation_matrix(A, B)` function in the `maths` module. The columns of the matrix represent the principal axes of inertia for the fragment.
+ 	* Get the normal vectors for the principal planes of inertia in the crystallographic coordinate system.
+  	* For each normal vector `e_i`, identify the 2 vectors from the set `n_c` that are closest to be perpendiular to `e_i`, using the function `vectors_closest_to_perpendicular(I, n_max)` in the `maths` module.
+  	* Get the minimum distance of each pripcipal inertia plane to the selected reference points in the unit cell. Each distance is calculated using the `istance_to_plane(point,plane_normal,plane_point,normal=False)` function in the `maths` module. By default, the cell reference points are the corners of all the cubes of dimension 0.5 in crystallographic coordinates in a 3x3 supercell centered in the reference unit cell.
+  	* Calculate the minimum distance of each non-hydrogen atom to the complete set of ZZP planes using the `distance_to_zzp_planes_family(point,plane_normal,plane_norm)` function in the `maths` module.
+* Get detailed contact data. For each contact, the algorithm calculates:
+  	* The type of the contact (vdW or H-bond).
+   	* The length of the contact.
+    	* If the contact is in line of sight (if the line connecting the two atoms passes through the vdW sphere of a third atom). 
+   	* The central and contact fragments.
+    	* The bond vector of the contact to the central fragment in cartesian coordinates.
+    	* The bond vector of the contact to the in the reference coordinate system of central fragment in cartesian and spherical coordinates.
+* Get detailed H-bond data. For each hydrogen bond, the algorithm calculates:
+	* The donor and acceptor atoms.
+ 	* The hydrogen bond length.
+  	* The donor-acceptor distance.
+  	* The angle of the hydrogen bond.
+  	* If the hydrogen bond is in line of sight.
+
