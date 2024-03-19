@@ -125,11 +125,11 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 * `get_unique_structures`: Set to `True` to get the unique structures for each cluster of structures for each refcode family from the CSD. This option will create a file `csd_refcode_families_unique_structures.json` within the directory `../csd_db_analysis/db_data/`.
 * `structure_list`: `[option_1,option_2]`.
 	* `option_1`: Available values:
- 		* `csd-all`: Analyze all structures in the csd matching the criteria (this will analyze all the structures in the `csd_refcode_families.json`).
- 		* `csd-unique`: Analyze all the unique structures in the csd matching the criteria (this will analyze all the structures in the `csd_refcode_families_unique_structures.json`). 
- 		* `cif`: Analyze user provided `*.cif` files.
+ 		* `"csd-all"`: Analyze all structures in the csd matching the criteria (this will analyze all the structures in the `csd_refcode_families.json`).
+ 		* `"csd-unique"`: Analyze all the unique structures in the CSD matching the criteria (this will analyze all the structures in the `csd_refcode_families_unique_structures.json`). 
+ 		* `"cif"`: Analyze user provided `*.cif` files.
    	* option_2: Available values:
-   		* `all` or a list of structures if `option_1` = `csd-all`, `csd-unique`. A list of structures may have the following formats: `[[refcode_family, [refcode_index_1, refcode_index_2, ...]]`, `[refcode_family, "all"]]`. The refcode_family is a family of structures in the CSD database (for example `ACSALA` for the aspirin structures).  The list `[refcode_index_1, refcode_index_2, ...]` contains the indices of the structures in family to be analyzed (e.g. `0` for `ACSALA`, `1` for `ACSALA01` etc). To analyze all structures in the family use  the list `[refcode_family, "all"]`.
+   		* `"all"` or a list of structures if `option_1` = `csd-all`, `csd-unique`. A list of structures may have the following formats: `[[refcode_family, [refcode_index_1, refcode_index_2, ...]]`, `[refcode_family, "all"]]`. The refcode_family is a family of structures in the CSD database (for example `ACSALA` for the aspirin structures).  The list `[refcode_index_1, refcode_index_2, ...]` contains the indices of the structures in family to be analyzed (e.g. `0` for `ACSALA`, `1` for `ACSALA01` etc). To analyze all structures in the family use  the list `[refcode_family, "all"]`.
    	 	* A list of `*.cif` structures (complete path) to be analyzed if `option_2` = `cif`.
 * `data_prefix`: A user defined prefix that is placed in the front of the output files.
 * `unique_structures_clustering_method`: The method used to select the unique structures when clustering similar structures in the CSD. Currently the only available method is `"energy"`, which selects the structure with the least intermolecular lattice energy calculated using the Gavezzotti-Filippini potentials implemented in the CSD Python API.
