@@ -60,6 +60,11 @@ def structure_check(input_parameters,crystal,molecule):
     if len(atoms) == 0:
         return None
     
+    # Discard structures with missing coordinates:
+    for at in atoms:
+        if at.coordinates == None:
+            return None 
+    
     # Discard structures based on the their type (homomolecular, co-crystals, hydrates)
     components = [c.formula for c in molecule.components]
     if all(item == components[0] for item in components):
