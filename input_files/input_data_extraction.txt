@@ -12,7 +12,7 @@
  "molecule_weight_limit": 500.0,
  "crystal_type": "homomolecular_crystal",
  "molecule_formal_charges": [0],
- "structures_to_exclude": ["ZEPDAZ04","BALDUP"],
+ "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","ZEPDAZ04"],
  "center_molecule": True,
  "add_full_component": True,
  "fragments_to_check_alignment": [],
