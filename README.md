@@ -202,8 +202,13 @@ The data extraction is performed by exectuting the `csd_data_extraction.py` scri
 The data extraction process generates 4 different data files (the `*` stands for the `"data_prefix"` as defined in the input file):
 * `*_contact_data.txt`: The file contains all the information for the close contacts.
 * `*_fragment_data.txt`: The file contains all the information for the close contacts.
-* `*_hbond_data.txt`: The file contains all the information for the close contacts.
-* `*_structure_data.txt`: The file contains all the information for the close contacts. The data file contains:
+* `*_hbond_data.txt`: The file contains all the information for the hydrogen bonds. The data file contains:
+	* The structure ID (`str_id`)
+  	* The labels for the donor, hydrogen and acceptor atoms (`labelD`, `labelH`, `labelA`), the atomic species for the donor, hydrogen and acceptor atoms (`specD`, `specH`, `specA`).
+  	* The length of the hydrogen bond length (`length`), donor-acceptor distance (`DA_dis`) and hydrogen bond angle (`angle`).
+  	* If the hydrogen bond is in line of sight (`in_los`).
+  	* The coordinates for the donor (`xD`, `yD`, `zD`), hydrogen (`xH`, `yH`, `zH) and acceptor (`xA`, `yA`, `zA). 
+* `*_structure_data.txt`: The file contains all the information for the crystal of the structure. The data file contains:
 	* The structure ID (`str_id`), the space group (`sg`), the Z and Z' values (`Z`, `Z_pr`), the formula (`formula`) and the atomic species found in the crystal (`species`).  
  	* The scaled cell length (`a_sc`, `b_sc`, `c_sc`), the cell lengths (`a`, `b`, `c`) and the cell angles (`alpha`, `beta`, `gamma`).  
   	* The unit cell volume (`volume`) and calculated density (`density`).
