@@ -45,9 +45,8 @@ def structure_check(input_parameters,crystal,molecule):
     # partial charges to atoms
     try:
         molecule.assign_bond_types()
-        molecule.add_hydrogens()
+        molecule.add_hydrogens(mode="missing")
         molecule.assign_partial_charges()
-        crystal.molecule = molecule
     except Exception:
         return None
     
