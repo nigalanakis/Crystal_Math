@@ -36,11 +36,22 @@ def main(input_file):
         get_structure_data(input_parameters)
 
 if __name__ == "__main__":
-    input_file = "input_csd_data_extraction.txt"
-    
-    now = datetime.now()
-    print("Process started at ", now.strftime("%Y-%m-%d %H:%M:%S"))
+    input_file = "input_data_extraction.txt"
 
+    now = datetime.now()    
+    print('#' * 80)
+    print('Crystal Math')
+    print('A Mathematical and Geometrical Crystal Structure Analyis Protocol')
+    print('-' * 80)
+    print('Nikos Galanakis')
+    print('Research Scientist')
+    print('The Tuckerman Group')
+    print('New York University')
+    print('ng1807@nyu.edu')
+    print('=' * 80)
+    print("Process started at ", now.strftime("%Y-%m-%d %H:%M:%S"))
+    print('-' * 80)
+    
     start = timer()
     n_structures = main(input_file)
     
@@ -48,5 +59,4 @@ if __name__ == "__main__":
     hours, minutes, seconds = convert_seconds_to_hms(cpu_time)
     now = datetime.now()
     print("Process completed at ", now.strftime("%Y-%m-%d %H:%M:%S"))
-    print(f"Number of structures analyzed: {n_structures}")
     print(f"Total computation time: {hours}h {minutes}m {seconds:.2f}s")
