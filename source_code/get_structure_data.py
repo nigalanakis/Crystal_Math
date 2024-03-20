@@ -302,6 +302,7 @@ def get_structure_data(input_parameters):
         io_operations.write_fragments_data(fragments_data_file,structure["crystal"],structure["fragments"])
         io_operations.write_contacts_data(contacts_data_file,structure["crystal"])
         io_operations.write_hbonds_data(hbonds_data_file,structure["crystal"])
+    return
         
                         
                         
