@@ -53,7 +53,7 @@ if __name__ == "__main__":
     print('-' * 80)
     
     start = timer()
-    n_structures = main(input_file)
+    main(input_file)
     
     cpu_time = timer() - start
     hours, minutes, seconds = convert_seconds_to_hms(cpu_time)
