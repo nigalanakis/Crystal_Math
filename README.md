@@ -113,7 +113,7 @@ The first step is to modify the input_data_extraction.txt file based on the requ
 	 "molecule_weight_limit": 500.0,
 	 "crystal_type": "homomolecular_crystal",
 	 "molecule_formal_charges": [0],
-	 "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","ZEPDAZ04"],
+	 "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","FADGEW","JIKXOT","ZEPDAZ04"],
 	 "center_molecule": True,
 	 "add_full_component": True,
 	 "fragments_to_check_alignment": [],
