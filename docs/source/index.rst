@@ -14,3 +14,7 @@ Welcome to Crystal_Math's documentation!
    features
    procedure
    analysis
+
+
+Indices and tables
+==================
