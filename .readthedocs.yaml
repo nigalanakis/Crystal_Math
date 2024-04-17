@@ -22,5 +22,5 @@ formats:
 # Python requirements
 python:
   install:
-    - requirements: docs/requirements.txt
+    - requirements: docs/source/requirements.txt
 
