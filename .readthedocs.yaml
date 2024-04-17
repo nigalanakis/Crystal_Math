@@ -18,3 +18,10 @@ sphinx:
 formats:
   - pdf
   - epub
+
+# Python requirements
+python:
+  version: 3.9
+  install:
+    - requirements: docs/requirements.txt
+
