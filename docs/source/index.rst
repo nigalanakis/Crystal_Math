@@ -14,12 +14,3 @@ Welcome to Crystal_Math's documentation!
    features
    procedure
    analysis
-
-
-
-<!-- Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search` -->
