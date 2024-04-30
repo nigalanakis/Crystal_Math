@@ -1,6 +1,6 @@
 Procedure
 =========
-This section outlines the procedural setup required to run the Crystal Math software effectively.
+This section outlines the procedural setup required to run the Crystal Math software effectively. To extract the data it is necessary to prepare the input file ``input_data_extraction.txt`` with the user defined options to extract data. After that, the process is straightforward, as you can extract the data by simply executing the script ``csd_data_extraction.py``.
 
 Directories Structure
 ---------------------
@@ -17,24 +17,48 @@ The source code can be executed by placing it in a parent directory, for instanc
     └── source_data/
         └── cif_files/
 
-- ``source_code``: All ``*.py`` code files should be placed here.
-- ``input_files``: Place ``input_data_extraction.txt`` and ``input_data_analysis.txt`` here.
-- ``source_data``: Place the user-generated `fragment_list.json` here.
-- ``cif_files``: Any custom ``*.cif`` files should be placed here.
+- ``source_code``
+	All ``*.py`` code files should be placed here.
+	
+- ``input_files``
+	Place ``input_data_extraction.txt`` and ``input_data_analysis.txt`` here.
+	
+- ``source_data``
+	Place the user-generated `fragment_list.json` here.
+	
+- ``cif_files``
+	Any custom ``*.cif`` files should be placed here.
 
 Files Description
 -----------------
 Each file in the Crystal Math software serves a specific function as outlined below:
 
-- ``csd_data_extraction.py``: Main file for the execution of the data extraction.
-- ``csd_operations.py``: Module to perform operations to identify and cluster CSD structure families and identify unique structures based on user-defined criteria.
-- ``get_structures_list.py``: Function to get the structures list for the analysis.
-- ``create_reference_fragments.py``: Function to convert user-generated fragments in the ``fragments_list.json`` to reference fragments in the space-fixed coordinate system, stored in ``reference_fragments_list.json``.
-- ``get_structure_data.py``: Function to perform the data extraction from the selected structures.
-- ``structure_operations.py``: Module to perform the necessary operations to each structure.
-- ``maths.py``: Module with the required mathematical functions.
-- ``utilities.py``: Module with several utility functions.
-- ``io_operations.py``: Module for the input/output operations.
+- ``csd_data_extraction.py``
+	Main file for the execution of the data extraction.
+
+- ``csd_operations.py``
+	Module to perform operations to identify and cluster CSD structure families and identify unique structures based on user-defined criteria.
+
+- ``get_structures_list.py``
+	Function to get the structures list for the analysis.
+
+- ``create_reference_fragments.py``
+	Function to convert user-generated fragments in the ``fragments_list.json`` to reference fragments in the space-fixed coordinate system, stored in ``reference_fragments_list.json``.
+
+- ``get_structure_data.py``
+	Function to perform the data extraction from the selected structures.
+
+- ``structure_operations.py``
+	Module to perform the necessary operations to each structure.
+
+- ``maths.py``
+	Module with the required mathematical functions.
+
+- ``utilities.py``
+	Module with several utility functions.
+
+- ``io_operations.py``
+	Module for the input/output operations.
 
 The Data Extraction Input File
 ------------------------------
@@ -48,10 +72,10 @@ The configuration should be specified in JSON format as shown below:
 
     {
       "save_directory": "../csd_db_analysis/db_data/",
-      "get_refcode_families": "true",
-      "cluster_refcode_families": "true",
-      "get_unique_structures": "true",
-      "get_structure_data": "true",
+      "get_refcode_families": true,
+      "cluster_refcode_families": true,
+      "get_unique_structures": true,
+      "get_structure_data": true,
       "structure_list": ["csd-unique", "all"],
       "data_prefix": "homomolecular_crystals",
       "unique_structures_clustering_method": "energy",
@@ -62,31 +86,79 @@ The configuration should be specified in JSON format as shown below:
       "crystal_type": "homomolecular_crystal",
       "molecule_formal_charges": [0],
       "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","FADGEW","JIKXOT","LUQDAE","PEVLOR","TEVYAV","VIRLOY","ZEPDAZ04"],
-      "center_molecule": "true",
-      "add_full_component": "true",
+      "center_molecule": true,
+      "add_full_component": true,
       "proposed_vectors_n_max": 5
     }
 
 Key Descriptions
 ^^^^^^^^^^^^^^^^
-- ``"save_directory"``: Specifies the directory where data will be saved. Using the default option is recommended.
-- ``"get_refcode_families"``: When set to ``"true"``, extracts all refcode families from the CSD, saving the output as ``csd_refcode_families.json`` within the ``db_data`` directory.
-- ``"cluster_refcode_families"``: When set to ``"true"``, clusters the structures for each refcode family. Results are saved as ``csd_refcode_families_clustered.json``.
-- ``"get_unique_structures:``: Retrieves unique structures for each cluster from the CSD and saves them as ``csd_refcode_families_unique_structures.json``.
-- ``"get_structure_data:``: set to ``"true"``, performs data extraction on the selected structures.
-- ``"structure_list"``: Defines the types of structures to analyze. Can specify ``"csd-all"`` for all structures, ``"csd-unique"`` for unique structures, or ``"cif"`` for user-provided ``*.cif`` files.
-- ``"data_prefix:``: A prefix for the output files to help identify them.
-- ``"unique_structures_clustering_method:``: Currently only ``"energy"`` is supported, which selects structures with the lowest intermolecular lattice energy.
-- ``"target_species"``: List of allowed atomic species. Structures not containing these are discarded.
-- ``"target_space_groups"``: Specifies allowable space groups.
-- ``"target_z_prime_values"``: Filters structures by :math:`Z^{\prime}`.
-- ``"molecule_weight_limit"``: Maximum allowable molecular weight per component in the asymmetric unit.
-- ``"crystal_type"``: Type of crystal structures to analyze. Options include ``"homomolecular"``, ``"co-crystal"``, ``"hydrate"``.
-- ``"molecule_formal_charges"``: Allowed molecular charges; typically set to ``[0]`` for neutral structures.
-- ``"structures_to_exclude"``: List of structures that cause kernel errors and are thus excluded.
-- ``"center_molecule"``: Whether to center the molecule in the unit cell (recommended).
-- ``"add_full_component"``: Analyzes complete components in the unit cell along with fragments.
-- ``"proposed_vectors_n_max"``: Maximum value for each component of a crystallographic vector, suggested value is ``5``.
+
+- ``save_directory``
+	Specifies the directory where data will be saved. Using the default option is recommended.
+
+- ``get_refcode_families``
+	When set to ``true``, extracts all refcode families from the CSD, saving the output as ``csd_refcode_families.json`` within the ``db_data`` directory.
+
+- ``cluster_refcode_families``
+	When set to ``true``, clusters the structures for each refcode family. Results are saved as ``csd_refcode_families_clustered.json``.
+
+- ``get_unique_structures``
+	Retrieves unique structures for each cluster from the CSD and saves them as ``csd_refcode_families_unique_structures.json``.
+
+- ``get_structure_data``
+	Set to ``true``, performs data extraction on the selected structures.
+
+- ``structure_list``
+	Defines the types of structures to analyze. For the first key, the available options are 
+	
+	- ``"csd-all"`` for all structures
+	- ``"csd-unique"`` for unique structures
+	- ``"cif"`` for user-provided ``*.cif`` files. T
+	
+	The second key can get the value 
+	
+	- ``"all"`` to extract data for all structures matching the user defined criteria 
+	
+	or you can extract data from specific structures and/or specific compounds, by providing a list of the desired structures in the following format:
+	
+	- ``[["ACSALA", [0,1,11]], ["ACRDIN","all"],...]`` In each sublist, the first entry is the RefCode family name, and the second can be a list of specific entries such as ``[0,1,11]`` or it can be set to ``"all"`` to search for all the entries for the specific RefCode family. In the case we require to analyze specific entries, the indices must match what is available in the database. In the ``"ACSALA"`` example, the indices ``[0,1,11]`` are valid when combined with the ``"csd-all"`` key. When searching for unique structures however, the only valid keys are ``[24,32,35]`` corresponding to the lowest energy structures for each of the three known polymorphs.
+
+- ``data_prefix``
+	A prefix for the output files to help identify them.
+
+- ``unique_structures_clustering_method``
+	Currently only ``"energy"`` is supported, which selects structures with the lowest intermolecular lattice energy.
+
+- ``target_species``
+	List of allowed atomic species. Structures not containing these are discarded.
+
+- ``target_space_groups``
+	Specifies allowable space groups.
+
+- ``target_z_prime_values``
+	Filters structures by :math:`Z^{\prime}`.
+
+- ``molecule_weight_limit``
+	Maximum allowable molecular weight per component in the asymmetric unit.
+
+- ``crystal_type``
+	Type of crystal structures to analyze. Options include ``"homomolecular"``, ``"co-crystal"``, ``"hydrate"``.
+
+- ``molecule_formal_charges``
+	Allowed molecular charges; typically set to ``[0]`` for neutral structures.
+
+- ``structures_to_exclude``
+	List of structures that cause kernel errors and are thus excluded.
+
+- ``center_molecule``
+	Whether to center the molecule in the unit cell (recommended).
+
+- ``add_full_component``
+	Analyzes complete components in the unit cell along with fragments.
+
+- ``proposed_vectors_n_max``
+	Maximum value for each component of a crystallographic vector, suggested value is ``5``.
 
 Creating the Fragment List
 --------------------------
@@ -115,14 +187,24 @@ Below is an example of how a fragment, specifically ``"benzene"``, is described 
 
 Key Descriptions
 ^^^^^^^^^^^^^^^^
-- ``"smarts"``: SMARTS notation representing the chemical structure of the fragment.
-- ``"species"``: List of atomic species corresponding to the atoms in the fragment.
-- ``"coordinates"``: Positions of the atoms in the fragment in any coordinate system. These will be automatically converted to space-fixed reference coordinates by the ``create_reference_fragments.py`` script.
-- ``"mass"``: List of atomic masses for each atom in the fragment.
-- ``"atoms_to_align"``: Specifies which atoms in the fragment to use for alignment. It designates specific atoms within the fragment for orientation synchronization with a corresponding fragment identified in a crystal structure. This approach is particularly useful for fragments that exhibit indistinguishable, mirror-image formations, such as oxygens in a structure like [#6]S(=O)(=O)[NH2], where traditional SMARTS representation may fall short. Accepts:
-  
-  - ``"all"``: Use all atoms for alignment.
-  - List of integers: Specific atom indices to be used for alignment, essential in cases of mirror symmetries in the fragment structure.
+
+- ``smarts``
+	SMARTS notation representing the chemical structure of the fragment.
+
+- ``species``
+	List of atomic species corresponding to the atoms in the fragment.
+
+- ``coordinates``
+	Positions of the atoms in the fragment in any coordinate system. These will be automatically converted to space-fixed reference coordinates by the ``create_reference_fragments.py`` script.
+
+- ``mass``
+	List of atomic masses for each atom in the fragment.
+
+- ``atoms_to_align``
+	Specifies which atoms in the fragment to use for alignment. It designates specific atoms within the fragment for orientation synchronization with a corresponding fragment identified in a crystal structure. This approach is particularly useful for fragments that exhibit indistinguishable, mirror-image formations, such as oxygens in a structure like [#6]S(=O)(=O)[NH2], where traditional SMARTS representation may fall short. Accepts:
+
+	- ``"all"``: Use all atoms for alignment.
+	- List of integers: Specific atom indices to be used for alignment, essential in cases of mirror symmetries in the fragment structure.
 
 Extracting Data
 ---------------
@@ -164,25 +246,7 @@ For each fragment in the structure, the algorithm performs extensive geometrical
 
 - **Contact Data**:
 
-  - Detailed data for each contact includes the type (vdW or H-bond), length, line of sight verification, and vectors related to central and contact fragments in both Cartesian and spherical coordinates. 
-    Each contact can appear in the data file up to 8 times, corresponding to the 8 possible combinations generated by the `central atom` (2 options), the `central fragment` (2 options), and the `contact fragment` (2 options).
-    For example, in the ``ACSALA24`` structure from the CSD database, a close contact forms between atoms :math:`\ce{C1}` and :math:`\ce{C2}`. 
-    Atom :math:`\ce{C1}` is common to both the benzene and carboxylic acid fragments, while atom :math:`\ce{C2}` is common to the benzene ring and the ester fragment.
-    As a result, the contact between these two atoms appears 8 times in the contact data file as follows: ::
-
-        str_id   label1 label2  spec1  spec2  hbond               central_fragment               contact_fragment   ...
-        ...         ...    ...    ...    ...    ...                            ...                            ...
-        ACSALA24     C1     C2      C      C  False                        benzene                        benzene   ...
-        ACSALA24     C1     C2      C      C  False                        benzene       ester_aromatic-aliphatic   ...
-        ACSALA24     C1     C2      C      C  False                carboxylic_acid                        benzene   ...
-        ACSALA24     C1     C2      C      C  False                carboxylic_acid       ester_aromatic-aliphatic   ...
-        ACSALA24     C2     C1      C      C  False                        benzene                        benzene   ...
-        ACSALA24     C2     C1      C      C  False       ester_aromatic-aliphatic                        benzene   ...
-        ACSALA24     C2     C1      C      C  False                        benzene                carboxylic_acid   ...
-        ACSALA24     C2     C1      C      C  False       ester_aromatic-aliphatic                carboxylic_acid   ...
-
-    In the default post-extraction data analysis tool, special filters are applied to avoid using duplicate records in terms of the central and contact fragments. The contact :math:`\ce{C1}-\ce{C2}` however, is considered different compared to :math:`\ce{C2}-\ce{C1}` since relative position of the contact atom to the central fragment in the inertia frame is unique for each central-contact fragment pair.
-
+  - Detailed data for each contact includes the type (vdW or H-bond), length, line of sight verification, and vectors related to central and contact fragments in both Cartesian and spherical coordinates. Each contact can appear in the data file up to :math:`2\times N_A \times N_B` times, where the coefficient ``2`` accounts for the exchange between the central and the contact atom and :math:`N_A,\, N_B` is the number of fragments in which atoms :math:`A,\,B` appear. For example, in the ACSALA24 structure from the CSD database, a close contact forms between atoms :math:`\ce{C1}` and :math:`\ce{C2}`. Atom :math:`\ce{C1}` is common to both the benzene and carboxylic acid fragments, while atom :math:`\ce{C2}` is common to the benzene ring and the ester fragment. 
 
 - **Hydrogen Bond Data**:
 
@@ -192,100 +256,253 @@ Finally, all data gathered is written to output files, completing the data extra
 
 The Data Extraction Output Files
 --------------------------------
-The data extraction process generates four different types of data files. Each file type is prefixed with the ``data_prefix`` defined in the input file, and their contents are as follows:
+Each structure's data is contained in a separate JSON file. The following section provide an explanation of each key-value pair in the JSON structure, by using as an expample the output file for structure ``ACSALA35`` is the CSD.
 
-Contact Data Files
-^^^^^^^^^^^^^^^^^^
-File name: ``*_contact_data.txt``
+File Structure
+^^^^^^^^^^^^^^
 
-This file contains all the information regarding close contacts within the structures:
+The JSON file is structured as follows:
 
-- **Structure ID** (``str_id``).
-- **Atom labels and species** (``label1``, ``label2``, ``spec1``, ``spec2``) for the atoms forming the contact.
-- **Hydrogen bond participation** (``hbond``): Indicates if the contact is part of a hydrogen bond.
-- **Fragments involved**: The fragment for the central atom and the contact atom (``central_fragment``, ``contact_fragment``).
-- **Contact length** (``length``) and **verification of line of sight status** (``in_los``).
-- **Atom coordinates**: 
+.. code-block:: json
 
-  - (``x1``, ``y1``, ``z1``) for the central atom and.
-  - (``x2``, ``y2``, ``z2``) for the contact atom.
-- **Cartesian bond vectors** to the center of mass of the central group:
+    {
+        "crystal": {
+            "str_id": "ACSALA35",
+            "space_group": "P21/c",
+            "z_crystal": 4.0,
+            "z_prime": 1.0,
+            "formula": "C9 H8 O4",
+            "species": ["C", "H", "O"],
+            "cell_lengths": [11.185, 6.5719, 11.146],
+            "scaled_cell_lengths": [1.0, 0.5876, 0.9965],
+            "cell_angles": [90.0, 96.01, 90.0],
+            "cell_volume": 814.8025,
+            "cell_density": 1.4686,
+            "vdWFV": 0.253,
+            "SAS": 0.0,
+            "lattice_vectors": [
+                [11.185, 0.0, 0.0],
+                [0.0, 6.5719, 0.0],
+                [-1.167, 0.0, 11.0847]
+            ],
+            "lattice_energy": {
+                "total": -123.46,
+                "electrostatic": 0.0,
+                "vdW": -123.46,
+                "vdW_attraction": -214.68,
+                "vdW_repulsion": 91.223,
+                "h-bond": 0.0,
+                "h-bond_attraction": 0.0,
+                "h-bond_repulsion": 0.0
+            },
+            "close_contacts": {
+                "C4_F01.benzene_O1_F02.carboxylic_acid": {
+                    "cc_length": 3.5464,
+                    "cc_type": "vdW",
+                    "cc_is_in_los": true,
+                    "cc_central_atom": {
+                        "atom": "C",
+                        "fragment": "benzene",                        
+                        "coordinates": {
+                            "cartesian": [-1.6689,4.8803,-2.1349],
+                            "fractional": [-0.1693,0.7426,-0.1926]
+                        },
+                        "bond_vectors": [-3.8744,2.4323,-3.2435],
+                        "reference_bond_vectors": [0.1525,4.5461,3.28]                       
+                    },
+                    "cc_contact_atom": {
+                        "atom": "O",
+                        "fragment": "carboxylic_acid",
+                        "coordinates": {
+                            "cartesian": [1.4354,5.642,-0.5986],
+                            "fractional": [0.1227,0.8585,-0.054]
+                        },
+                        "bond_vectors": [-0.7701,3.194,-1.7072],
+                        "reference_bond_vectors": [-1.0013,3.5639,0.0735],
+                        "reference_bond_vectors_spherical": [3.7027,88.8629,105.6929]            
+                    }
+                },
+                // ...
+            }
+            "hbonds": {
+                "O1_H1_O2": {
+                    "hb_atoms": ["O","H","O"],
+                    "hb_length": 1.6839,
+                    "hb_da_distance": 2.6421,
+                    "hb_angle": 159.0931,
+                    "hb_is_in_los": true,
+                    "hb_donor_coordinates": [1.4354,5.642,-0.5986],
+                    "hb_h_coordinates": [1.0214,6.552,-0.6131],
+                    "hb_acceptor_coordinates": [-0.0122,7.8028,-1.063]
+                }
+            }
+        },
+        "fragments": {
+            "F01.benzene": {
+                "fragment": "benzene",
+                "coordinates": {
+                    "cartesian": [2.2055,2.448,1.1086],
+                    "fractional": [0.2076,0.3725,0.1]
+                },                
+                "inertia_planes": {
+                    "e_1": {
+                        "cartesian": [-0.6975,-0.1026,0.7092],
+                        "crystallographic": [-0.6676,-0.0577,0.7423],
+                        "perpendicular_vectors": {
+                            "vector_1": [1,0,1],
+                            "vector_2": [5,0,4],
+                            "angle_1": 93.03,
+                            "angle_2": 86.7
+                        },
+                        "min_distance_to reference_points": 0.0081
+                    },
+                    // ...
+                },
+                "atoms": {
+                    "C2": {
+                        "species": "C",
+                        "coordinates": {
+                            "cartesian": [1.6445,3.6934,0.7305],
+                            "fractional": [0.1539,0.562,0.0659]
+                        },
+                        "bond_vectors": {
+                            "cartesian": [-0.561,1.2454,-0.3781],
+                            "fractional": [-0.0537,0.1895,-0.0341]
+                        },
+                        "dzzp_min": 0.0028
+                    },
+                    // ...
+                }
+            }
+        }
+    }
 
-  - (``bvx1``, ``bvy1``, ``bvz1``) for the central atom and.
-  - (``bvx2``, ``bvy2``, ``bvz2``) for the contact atom.
-- **Reference system Cartesian bond vectors**:
+Key descriptions
+^^^^^^^^^^^^^^^^
 
-  - (``bvx1_ref``, ``bvy1_ref``, ``bvz1_ref``) for the central atom and.
-  - (``bvx2_ref``, ``bvy2_ref``, ``bvz2_ref``) for the contact atom.
-- **Spherical coordinates bond vectors** for the contact atom (``r2``, ``theta2``, ``phi2``).
+- ``crystal``
+	Contains all data specific to the crystal structure.
 
-Fragment Data Files
-^^^^^^^^^^^^^^^^^^^
-File name: ``*_fragment_data.txt``
+- ``str_id``
+	A unique identifier for the structure.
 
-This file gathers details about the fragments in the structure:
+- ``space_group``
+	The space group of the crystal structure.
 
-- **Structure ID** (``str_id``).
-- **Fragment name** (``fragment``) and **fragment coordinates** (``x``, ``y``, ``z``; ``u``, ``v``, ``w``).
-- **Principal axes of inertia components**:
+- ``z_crystal``
+	The number of formula units per unit cell.
 
-  - (``e1_x``, ``e1_y``, ``e1_z``).
-  - (``e2_x``, ``e2_y``, ``e2_z``).
-  - (``e3_x``, ``e3_y``, ``e3_z``).
-- **Minimum distances of principal planes of inertia** to reference cell points (``d1``, ``d2``, ``d3``)
-- **Normal vectors to principal axes** in crystallographic coordinates:
+- ``z_prime``
+	The number of asymmetric units in the crystal structure.
 
-  - (``e1_u``, ``e1_v``, ``e1_w``).
-  - (``e2_u``, ``e2_v``, ``e2_w``).
-  - (``e3_u``, ``e3_v``, ``e3_w``).
-- **Vectors closest to being perpendicular** to each principal axis and respective angles:
+- ``formula``
+	The chemical formula of the crystal.
 
-  - (``W11_u``, ``W11_v``, ``W11_w``, ``ang_11``) and (``W12_u``, ``W12_v``, ``W12_w``, ``ang_12``) for the first axis.
-  - (``W21_u``, ``W21_v``, ``W21_w``, ``ang_21``) and (``W22_u``, ``W22_v``, ``W22_w``, ``ang_22``) for the second axis.
-  - (``W31_u``, ``W31_v``, ``W31_w``, ``ang_31``) and (``W32_u``, ``W32_v``, ``W32_w``, ``ang_32``) for the third axis.
-- **Number of atoms** in the fragment (``n_at``) and detailed atomic data:
+- ``species``
+	A list of unique atomic species present in the crystal.
 
-  - **Cartesian coordinates, fractional coordinates, and minimum distances to the ZZP plane family for each atom** (``at_x``, ``at_y``, ``at_z``; ``at_u``, ``at_v``, ``at_w``; ``dzzp_min``)
+- ``cell_lengths``
+	The lengths of the cell edges :math:`(a, b, c)`.
 
-Hydrogen Bond Data Files
-^^^^^^^^^^^^^^^^^^^^^^^^
-File name: ``*_hbond_data.txt``
+- ``scaled_cell_lengths``
+	Cell lengths scaled relative to the longest cell edge.
 
-This file includes comprehensive information about hydrogen bonds:
+- ``cell_angles``
+	The angles between the cell edges :math:`(\alpha, \beta, \gamma)`.
 
-- **Structure ID** (``str_id``).
-- **Labels and species** for the donor, hydrogen, and acceptor atoms (``labelD``, ``labelH``, ``labelA``; ``specD``, ``specH``, ``specA``).
-- **Hydrogen bond metrics**:
+- ``cell_volume``
+	The volume of the crystal's unit cell.
 
-  - Length (``length``).
-  - Donor-acceptor distance (``DA_dis``).
-  - Angle (``angle``)
-  
-- **Line of sight status** (``in_los``).
-- **Atom coordinates**:
+- ``cell_density``
+	The density of the crystal calculated from the unit cell volume and formula weight.
 
-  - Donor (``xD``, ``yD``, ``zD``).
-  - Hydrogen (``xH``, ``yH``, ``zH``).
-  - Acceptor (``xA``, ``yA``, ``zA``).
+- ``vdWFV``
+	Van der Waals fraction volume.
 
-Structure Data Files
-^^^^^^^^^^^^^^^^^^^^
-File name: ``*_structure_data.txt``
+- ``SAS``
+	Surface area to volume ratio.
 
-This file records comprehensive metrics and properties of the crystal structure:
+- ``lattice_vectors``
+	A list of the three lattice vectors defining the unit cell.
 
-- **Structure ID** (``str_id``), **space group** (``sg``), and **Z** and **Z'** values (``Z``, ``Z_pr``).
-- **Chemical formula** (``formula``) and **species composition** (``species``).
-- **Cell dimensions**:
+- ``lattice_energy``
+	Contains various components of the calculated lattice energy.
+	
+	- ``total``: The total lattice energy.
+	- ``electrostatic``: The electrostatic contribution to the lattice energy.
+	- ``vdW``: The vdW contribution to the lattice energy.
+	- ``vdW_attraction``: The attractive vdW contribution to the lattice energy.
+	- ``vdW_repulsion``: The respulsive vdW contribution to the lattice energy.
+	- ``h-bond``: The hbond contribution to the lattice energy.
+	- ``h-bond_attraction``: The attractive hbond contribution to the  lattice energy.
+	- ``h-bond_repulsion``: The repulsive hbond contribution to the lattice energy.
+	
+- ``close_contacts``
+	Details of close atomic contacts within the crystal structure.
+	
+	- ``XA_FA_YB_FB``: The label for the contact (labels of the atoms and the respective fragments in the structure).
+	
+		- ``cc_length``: The length of the contact in Angstroms.
+		- ``cc_type``: The type of the contact (``vdW`` or ``hbond``).
+		- ``cc_is_in_los``: If the contact is in line of sight (``true`` of ``false``).
+		- ``cc_central_atom``: The details for the central atom of the contact pair.
+		
+			- ``atom``: The species of the central atom.
+			- ``fragment``: The fragment of the central atom.
+			- ``coordinates``: The coordinates of the central atom (``cartesian`` and ``fractional``).
+			- ``bond_vetors``: The cartesian bond vectors for the central atom relative to the center of mass of the fragment.
+			- ``reference_bond_vetors``: The cartesian bond vectors for the central atom relative to the center of mass of the fragment in the inertia frame of the fragment.
+			
+		- ``cc_contact_atom``: The details for the contact atom of the contact pair.
+		
+			- ``atom``: The species of the central atom.
+			- ``fragment``: The fragment of the central atom.
+			- ``coordinates``: The coordinates of the central atom (``cartesian`` and ``fractional``).
+			- ``bond_vetors``: The cartesian bond vectors for the central atom relative to the center of mass of the fragment.
+			- ``reference_bond_vetors``: The cartesian bond vectors for the central atom relative to the center of mass of the fragment in the inertia frame of the fragment.
+			- ``reference_bond_vetors_spherical``: The bond vectors in spherical coordinates for the central atom relative to the center of mass of the fragment in the inertia frame of the fragment.
 
-  - Scaled (``a_sc``, ``b_sc``, ``c_sc``).
-  - Actual (``a``, ``b``, ``c``).
-  - Angles (``alpha``, ``beta``, ``gamma``).
-- **Cell volume** (``volume``) and **density** (``density``).
-- **Van der Waals free volume** (``vdWFV``) and **solvent accessible surface** (``SAS``).
-- **Energy components**:
+- ``hbonds``
+	Details of hydrogen bonds within the crystal structure.
+	
+	- ``XA_HB_YC``: The hbond label.
+	
+		- ``hb_atoms``: A list of the atomic species forming the hydrogen bond. The first atom coorespond to the donor and the thord to the acceptor of the bond.
+		- ``hb_length``: The length of the hydrogen bond in Angstroms.
+		- ``hb_da_distance``: The donor-acceptor distance in Angstroms.
+		- ``hb_angle``: The angle of the hydrogen bond.
+		- ``hb_is_in_los``: : If the hydrogen bond is in line of sight (``true`` of ``false``).
+		- ``hb_donor_coordinates``: The cartesian coordinates of the donor atom.
+		- ``hb_h_coordinates``: The cartesian coordinates of the hydrogen atom.
+		- ``hb_acceptor_coordinates``: The cartesian coordinates of the acceptor atom.
 
-  - **Total lattice energy** (``E_tot``).
-  - **Electrostatic energy** (``E_el``).
-  - **Van der Waals energy** (``E_vdW``), including **attractive** (``E_vdW_at``) and **repulsive** (``E_vdW_rep``) components.
-  - **Hydrogen bond energy** (``E_hb``), including **attractive** (``E_hb_at``) and **repulsive** (``E_hb_rep``) components.
+- ``fragments``
+	Details of individual molecular or ionic fragments within the structure, including coordinates and properties.
+	
+	- ``FXX.fragment_name``: The label for the fragment.
+	
+		- ``fragment``: The fragment name.
+		- ``coordinates``: The coordinates for the center of mass of the fragment (``cartesian`` and ``fractional``).
+		- ``inertia_planes``: The details for the inertia planes of the fragments.
+		
+			- ``e_i``: The label of the inertia plane (:math:`i=1,2,3`).
+				
+				- ``cartesian``: The normal vector in the cartesian coordinate system.
+				- ``crystallographic``: The normal vector in the crystallographic coordinate system.
+				- ``perpendicular_vectors``: Details for the near-perpendicular vectors from the set :math:`\mathbf{n}_c`.
+					
+					- ``vector_1``, ``vector_2``: The components of the two near-perpendicular vectors from the set :math:`\mathbf{n}_c`.
+					- ``angle_1``, ``angle_2``: The angles between the vector ``e_i`` and ``vector_1``, ``vector_2`` respectively.
+					
+				- ``min_distance_to_reference_points``: The minimum distance of the inertia plane to the reference points of the unit cell.
+				
+		- ``atoms``: The details for the atoms comprising the fragment.
+			
+			- ``XA``: The label of the atom.
+			
+				- ``species``: The species of the atom.
+				- ``coordinates``: The coordinates for the atom (``cartesian`` and ``fractional``).
+				- ``bond_vectors``: The bond vectors of the atom to the center of mass of the fragment (``cartesian`` and ``fractional``).
+				- ``dzzp_min``: The minimum distance of the atom to the ZZP plane family.
+
+
