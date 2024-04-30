@@ -80,7 +80,7 @@ def get_structure_data(input_parameters):
            
     # Get the structures list for the analysis
     structures_list = get_structures_list(input_parameters,reference_structures)
-
+    
     # Get the csd entries if necessary
     if input_parameters["structure_list"][0] in ["csd-all","csd-unique"]:
         csd_entries = io.EntryReader("CSD")
@@ -271,7 +271,7 @@ def get_structure_data(input_parameters):
                         contact_type = "hbond" if is_hbond else "vdW"
                        
                         # Add contact data to list
-                        structure_contacts['_'.join([contact.atoms[at1].label,contact.atoms[at2].label])] = {
+                        structure_contacts['_'.join([contact.atoms[at1].label,fragment1,contact.atoms[at2].label,fragment2])] = {
                             "cc_length": np.round(contact.length,4),
                             "cc_type": contact_type,
                             "cc_is_in_los": contact.is_in_line_of_sight,
@@ -421,7 +421,7 @@ def get_structure_data(input_parameters):
         with open(structure_data_file,"w") as f:
             f.write(structure_data)
             
-        return
+    return
             
 def get_structure_filter_data(input_parameters):
     """
