@@ -1,4 +1,4 @@
-import ast 
+import json
 from datetime import datetime
 from time import process_time as timer   
 
@@ -6,14 +6,12 @@ from csd_operations import cluster_refcode_families
 from csd_operations import get_refcode_families
 from csd_operations import get_unique_structures
 from utilities import convert_seconds_to_hms
-from get_structure_data import get_structure_data
+from get_structure_data import get_structure_data, get_structure_filter_data
 
 def main(input_file):
     # Load execution parameters 
     with open('Input_files/' + input_file) as f:
-        data = f.read()
-
-    input_parameters = ast.literal_eval(data)
+        input_parameters = json.load(f)
     
     # Get the refcode families
     if input_parameters["get_refcode_families"]:
@@ -34,6 +32,12 @@ def main(input_file):
     if input_parameters["get_structure_data"]:
         print('Getting structure data.')
         get_structure_data(input_parameters)
+        
+    # Get structure filter data
+    if input_parameters["get_structure_filter_data"]:
+        print('Getting structure filter data.')
+        get_structure_filter_data(input_parameters)
+    
 
 if __name__ == "__main__":
     input_file = "input_data_extraction.txt"

@@ -142,7 +142,7 @@ def write_contacts_data(contacts_data_file,crystal_properties):
             contacts_data_file.write(formatted_data)
             
 def write_hbonds_data(hbonds_data_file,crystal_properties):
-    """ Write the contacts data """        
+    """ Write the hbond data """        
     if hbonds_data_file != None:
         for hbond in crystal_properties["hbonds"]:
             formatted_data = (f"{crystal_properties['ID']:<8s} "
@@ -151,8 +151,9 @@ def write_hbonds_data(hbonds_data_file,crystal_properties):
                               + f" {str(hbond[9]):>6s} "  
                               + ' '.join(f"{item:8.4f}" for item in hbond[10:19]) + '\n')
             hbonds_data_file.write(formatted_data)
-                
-        
+            
+
+            
     
     
     

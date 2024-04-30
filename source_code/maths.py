@@ -318,7 +318,7 @@ def vectors_closest_to_perpendicular(I, n_max):
             # Since we used cosine, we convert it back to the angle. The cosine of the angle between the vectors is the dot product
             # because we normalized the vectors.
             cos_similarity = sin_distances[i, index]
-            angle = np.arccos(cos_similarity) * 180.0 / np.pi  # converting to degrees from radians
+            angle = np.round(np.arccos(cos_similarity) * 180.0 / np.pi,2)  # converting to degrees from radians
 
             results_for_v.append((w_i, angle))
 

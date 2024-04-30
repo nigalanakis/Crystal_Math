@@ -45,7 +45,7 @@ def structure_check(input_parameters,crystal,molecule):
     # partial charges to atoms
     try:
         molecule.assign_bond_types()
-        molecule.add_hydrogens(mode="missing")
+        molecule.add_hydrogens(mode='missing')
         molecule.assign_partial_charges()
     except Exception:
         return None
@@ -64,7 +64,7 @@ def structure_check(input_parameters,crystal,molecule):
     for at in atoms:
         if at.coordinates == None:
             return None 
-    
+        
     # Discard structures based on the their type (homomolecular, co-crystals, hydrates)
     components = [c.formula for c in molecule.components]
     if all(item == components[0] for item in components):
@@ -126,7 +126,7 @@ def get_refcode_families():
         family_i = family_j
         
     # Specify the filename you want to write to
-    filename = '../CSD_DB_Analysis/DB_Data/CSD_refcode_families.json'
+    filename = '../csd_db_analysis/db_data/csd_refcode_families.json'
     
     # Writing the dictionary to a file in JSON format
     with open(filename, 'w') as f:
@@ -302,6 +302,24 @@ def get_unique_structures(input_parameters):
 
     return unique_structures
 
+def check_for_target_fragments(input_parameters,molecule):
+    fragment_list = create_reference_fragments()
+
+    # Check for target fragments
+    for fragment in fragment_list:
+        if fragment not in input_parameters["target_fragments"]:
+            continue
+
+        csd_fragment = ccdc.search.SMARTSSubstructure(fragment_list[fragment]["smarts"])
+        fragmentSearch = ccdc.search.SubstructureSearch()
+        fragmentID = fragmentSearch.add_substructure(csd_fragment)
+        hits = fragmentSearch.search(molecule)
+
+        if hits == []:
+            return None
+    
+    return True
+        
 def get_csd_atom_and_molecule_properties(crystal,molecule,atoms):
     """ 
     Extracts and returns the atomic and  molecular properties for a CSD entry. 
@@ -325,17 +343,17 @@ def get_csd_atom_and_molecule_properties(crystal,molecule,atoms):
     structure_molecule = {}
     structure_molecule["atoms_charge"] = np.array([at.partial_charge for at in atoms])
     structure_molecule["atoms_labels"] = [at.label for at in atoms]
-    structure_molecule["atoms_mass"] = np.array([at.atomic_weight for at in atoms])
+    structure_molecule["atoms_mass"] = np.round(np.array([at.atomic_weight for at in atoms]),4)
     structure_molecule["atoms_species"] = [at.atomic_symbol for at in atoms]
-    structure_molecule["atoms_vdW_radius"] = np.array([at.vdw_radius for at in atoms])
-    structure_molecule["atoms_coordinates_f"] = np.array([[at.fractional_coordinates[i] for i in [0,1,2]] for at in atoms])
-    structure_molecule["atoms_coordinates_c"] = np.array([[at.coordinates[i] for i in [0,1,2]] for at in atoms])
+    structure_molecule["atoms_vdW_radius"] = np.round(np.array([at.vdw_radius for at in atoms]),4)
+    structure_molecule["atoms_coordinates_f"] = np.round(np.array([[at.fractional_coordinates[i] for i in [0,1,2]] for at in atoms]),4)
+    structure_molecule["atoms_coordinates_c"] = np.round(np.array([[at.coordinates[i] for i in [0,1,2]] for at in atoms]),4)
     structure_molecule["n_atoms"] = len(atoms)
-    structure_molecule["coordinates_f"] = np.sum(structure_molecule["atoms_mass"].reshape(structure_molecule["n_atoms"],1) * structure_molecule["atoms_coordinates_f"],axis=0) / np.sum(structure_molecule["atoms_mass"])
-    structure_molecule["coordinates_c"] = np.sum(structure_molecule["atoms_mass"].reshape(structure_molecule["n_atoms"],1) * structure_molecule["atoms_coordinates_c"],axis=0) / np.sum(structure_molecule["atoms_mass"])
-    structure_molecule["volume"] = molecule.molecular_volume
-    structure_molecule["atoms_bond_vectors_f"] = structure_molecule["atoms_coordinates_f"] - structure_molecule["coordinates_f"]
-    structure_molecule["atoms_bond_vectors_c"] = structure_molecule["atoms_coordinates_c"] - structure_molecule["coordinates_c"]
+    structure_molecule["coordinates_f"] = np.round(np.sum(structure_molecule["atoms_mass"].reshape(structure_molecule["n_atoms"],1) * structure_molecule["atoms_coordinates_f"],axis=0) / np.sum(structure_molecule["atoms_mass"]),4)
+    structure_molecule["coordinates_c"] = np.round(np.sum(structure_molecule["atoms_mass"].reshape(structure_molecule["n_atoms"],1) * structure_molecule["atoms_coordinates_c"],axis=0) / np.sum(structure_molecule["atoms_mass"]),4)
+    structure_molecule["volume"] = np.round(molecule.molecular_volume,4)
+    structure_molecule["atoms_bond_vectors_f"] = np.round(structure_molecule["atoms_coordinates_f"] - structure_molecule["coordinates_f"],4)
+    structure_molecule["atoms_bond_vectors_c"] = np.round(structure_molecule["atoms_coordinates_c"] - structure_molecule["coordinates_c"],4)
     structure_molecule["bonds"] = [[bond.atoms[0].label, bond.atoms[1].label] for bond in molecule.bonds]
     
     return structure_molecule
@@ -363,7 +381,7 @@ def get_csd_crystal_properties(crystal):
         energy = None
     if energy != None:
         lattice_energy = energy.lattice_energy
-
+    
     crystal_properties = {}
     crystal_properties["ID"] = crystal.identifier
     crystal_properties["formula"] = crystal.formula
@@ -371,35 +389,38 @@ def get_csd_crystal_properties(crystal):
     crystal_properties["space_group"] = crystal.spacegroup_symbol
     crystal_properties["z_crystal"] = crystal.z_value
     crystal_properties["z_prime"] = crystal.z_prime 
-    crystal_properties["cell_lengths"] = np.array([l for l in crystal.cell_lengths])
-    crystal_properties["scaled_cell_lengths"] = np.array([l for l in crystal.cell_lengths])/crystal.cell_lengths[0]
-    crystal_properties["cell_angles"] = np.array([l for l in crystal.cell_angles])
-    crystal_properties["cell_volume"] = crystal.cell_volume 
-    crystal_properties["cell_density"] = crystal.calculated_density
-    crystal_properties["vdWFV"] = 1.0 - crystal.packing_coefficient
-    crystal_properties["SAS"] = crystal.void_volume(probe_radius=1.2,grid_spacing=0.2,mode='accessible') 
-    crystal_properties["lattice_vectors"] = get_lattice_vectors(crystal_properties["cell_lengths"],crystal_properties["cell_angles"],crystal_properties["cell_volume"])
-    crystal_properties["inverse_lattice_vectors"] = get_lattice_vectors(crystal_properties["cell_lengths"],crystal_properties["cell_angles"],crystal_properties["cell_volume"],inverse=True)
+    crystal_properties["cell_lengths"] = np.round(np.array([l for l in crystal.cell_lengths]),4)
+    crystal_properties["scaled_cell_lengths"] = np.round(np.array([l for l in crystal.cell_lengths])/crystal.cell_lengths[0],4)
+    crystal_properties["cell_angles"] = np.round(np.array([l for l in crystal.cell_angles]),2)
+    crystal_properties["cell_volume"] = np.round(crystal.cell_volume,4) 
+    crystal_properties["cell_density"] = np.round(crystal.calculated_density,4)
+    crystal_properties["vdWFV"] = np.round(1.0 - crystal.packing_coefficient,4)
+    crystal_properties["SAS"] = np.round(crystal.void_volume(probe_radius=1.2,grid_spacing=0.2,mode='accessible'),4)
+    crystal_properties["lattice_vectors"] = np.round(get_lattice_vectors(crystal_properties["cell_lengths"],crystal_properties["cell_angles"],crystal_properties["cell_volume"]),4)
+    crystal_properties["inverse_lattice_vectors"] = np.round(get_lattice_vectors(crystal_properties["cell_lengths"],crystal_properties["cell_angles"],crystal_properties["cell_volume"],inverse=True),4)
     crystal_properties["close_contacts"] = crystal.contacts(intermolecular='Intermolecular',distance_range=(-3.0, 0.60)) 
-    crystal_properties["h-bonds"] = crystal.hbonds(intermolecular='Intermolecular')
+    crystal_properties["hbonds"] = crystal.hbonds(intermolecular='Intermolecular')
     if energy != None:
-        crystal_properties["lattice_energy"] = {"total": lattice_energy.total, 
-                                                "electrostatic": lattice_energy.electrostatic,
-                                                "vdW": lattice_energy.vdw,
-                                                "vdW_attraction": lattice_energy.vdw_attraction,
-                                                "vdW_repulsion": lattice_energy.vdw_repulsion,
-                                                "h-bond": lattice_energy.h_bond,
-                                                "h-bond_attraction": lattice_energy.h_bond_attraction,
-                                                "h-bond_repulsion": lattice_energy.h_bond_repulsion}
+        crystal_properties["lattice_energy"] = {
+            "total": np.round(lattice_energy.total,4), 
+            "electrostatic": np.round(lattice_energy.electrostatic,4),
+            "vdW": np.round(lattice_energy.vdw,4),
+            "vdW_attraction": np.round(lattice_energy.vdw_attraction,4),
+            "vdW_repulsion": np.round(lattice_energy.vdw_repulsion,4),
+            "h-bond": np.round(lattice_energy.h_bond,4),
+            "h-bond_attraction": np.round(lattice_energy.h_bond_attraction,4),
+            "h-bond_repulsion": np.round(lattice_energy.h_bond_repulsion,4)
+            }
     else:
-        crystal_properties["lattice_energy"] = {"total": 0.0, 
-                                                "electrostatic": 0.0,
-                                                "vdW": 0.0,
-                                                "vdW_attraction": 0.0,
-                                                "vdW_repulsion": 0.0,
-                                                "h-bond": 0.0,
-                                                "h-bond_attraction": 0.0,
-                                                "h-bond_repulsion": 0.0}
+        crystal_properties["lattice_energy"] = {
+            "total": 0.0, 
+            "electrostatic": 0.0,
+            "vdW": 0.0,
+            "vdW_attraction": 0.0,
+            "vdW_repulsion": 0.0,
+            "h-bond": 0.0,
+            "h-bond_attraction": 0.0,
+            "h-bond_repulsion": 0.0}
     return crystal_properties
 
 def get_csd_structure_fragments(input_parameters,structure,molecule):
@@ -446,16 +467,16 @@ def get_csd_structure_fragments(input_parameters,structure,molecule):
             fragments[key]["atoms"] = hit_atoms
             fragments[key]["atoms_species"] = hit_atoms_species
             fragments[key]["atoms_labels"] = hit_atoms_labels
-            fragments[key]["atoms_mass"] = np.array(fragment_list[fragment]["mass"])
+            fragments[key]["atoms_mass"] = np.round(np.array(fragment_list[fragment]["mass"]),4)
             fragments[key]["n_atoms"] = len(fragments[key]["atoms"])
-            fragments[key]["atoms_coordinates_c"] = np.array(structure["molecule"]["atoms_coordinates_c"][hit_atoms])
-            fragments[key]["atoms_coordinates_f"] = np.array(structure["molecule"]["atoms_coordinates_f"][hit_atoms])
-            fragments[key]["atoms_coordinates_sf"] = np.array(fragment_list[fragment]["coordinates_sf"])
+            fragments[key]["atoms_coordinates_c"] = np.round(np.array(structure["molecule"]["atoms_coordinates_c"][hit_atoms]),4)
+            fragments[key]["atoms_coordinates_f"] = np.round(np.array(structure["molecule"]["atoms_coordinates_f"][hit_atoms]),4)
+            fragments[key]["atoms_coordinates_sf"] = np.round(np.array(fragment_list[fragment]["coordinates_sf"]),4)
             fragments[key]["atoms_to_align"] = fragment_list[fragment]["atoms_to_align"]
-            fragments[key]["coordinates_c"] = np.sum(fragments[key]["atoms_mass"].reshape(fragments[key]["n_atoms"],1) * fragments[key]["atoms_coordinates_c"],axis=0) / np.sum(fragments[key]["atoms_mass"])
-            fragments[key]["coordinates_f"] = np.sum(fragments[key]["atoms_mass"].reshape(fragments[key]["n_atoms"],1) * fragments[key]["atoms_coordinates_f"],axis=0) / np.sum(fragments[key]["atoms_mass"])
-            fragments[key]["atoms_bond_vectors_c"] = fragments[key]["atoms_coordinates_c"] - fragments[key]["coordinates_c"]
-            fragments[key]["atoms_bond_vectors_f"] = fragments[key]["atoms_coordinates_f"] - fragments[key]["coordinates_f"]
+            fragments[key]["coordinates_c"] = np.round(np.sum(fragments[key]["atoms_mass"].reshape(fragments[key]["n_atoms"],1) * fragments[key]["atoms_coordinates_c"],axis=0) / np.sum(fragments[key]["atoms_mass"]),4)
+            fragments[key]["coordinates_f"] = np.round(np.sum(fragments[key]["atoms_mass"].reshape(fragments[key]["n_atoms"],1) * fragments[key]["atoms_coordinates_f"],axis=0) / np.sum(fragments[key]["atoms_mass"]),4)
+            fragments[key]["atoms_bond_vectors_c"] = np.round(fragments[key]["atoms_coordinates_c"] - fragments[key]["coordinates_c"],4)
+            fragments[key]["atoms_bond_vectors_f"] = np.round(fragments[key]["atoms_coordinates_f"] - fragments[key]["coordinates_f"],4)
             
     # Remove subsets (sub-fragments)
     entries_to_remove = set()
@@ -494,21 +515,21 @@ def get_csd_structure_fragments(input_parameters,structure,molecule):
             str_fragments[key]["atoms_labels"] =  [at.label for at in component.atoms]
             str_fragments[key]["atoms"] = [structure["molecule"]["atoms_labels"].index(at.label) for at in component.atoms]
             str_fragments[key]["atoms_species"] = [at.atomic_symbol for at in component.atoms]
-            str_fragments[key]["atoms_mass"] = np.array([at.atomic_weight for at in component.atoms])
+            str_fragments[key]["atoms_mass"] = np.round(np.array([at.atomic_weight for at in component.atoms]),4)
             str_fragments[key]["n_atoms"] = len(component.atoms)
-            str_fragments[key]["atoms_coordinates_c"] = np.array([at.coordinates for at in component.atoms])
-            str_fragments[key]["atoms_coordinates_f"] = np.array([at.fractional_coordinates for at in component.atoms])
+            str_fragments[key]["atoms_coordinates_c"] = np.round(np.array([at.coordinates for at in component.atoms]),4)
+            str_fragments[key]["atoms_coordinates_f"] = np.round(np.array([at.fractional_coordinates for at in component.atoms]),4)
             str_fragments[key]["atoms_to_align"] = "all"
-            str_fragments[key]["coordinates_c"] = np.sum(str_fragments[key]["atoms_mass"].reshape(str_fragments[key]["n_atoms"],1) * str_fragments[key]["atoms_coordinates_c"],axis=0) / np.sum(str_fragments[key]["atoms_mass"])
-            str_fragments[key]["coordinates_f"] = np.sum(str_fragments[key]["atoms_mass"].reshape(str_fragments[key]["n_atoms"],1) * str_fragments[key]["atoms_coordinates_f"],axis=0) / np.sum(str_fragments[key]["atoms_mass"])
-            str_fragments[key]["atoms_bond_vectors_c"] = str_fragments[key]["atoms_coordinates_c"] - str_fragments[key]["coordinates_c"]
-            str_fragments[key]["atoms_bond_vectors_f"] = str_fragments[key]["atoms_coordinates_c"] - str_fragments[key]["coordinates_c"]
+            str_fragments[key]["coordinates_c"] = np.round(np.sum(str_fragments[key]["atoms_mass"].reshape(str_fragments[key]["n_atoms"],1) * str_fragments[key]["atoms_coordinates_c"],axis=0) / np.sum(str_fragments[key]["atoms_mass"]),4)
+            str_fragments[key]["coordinates_f"] = np.round(np.sum(str_fragments[key]["atoms_mass"].reshape(str_fragments[key]["n_atoms"],1) * str_fragments[key]["atoms_coordinates_f"],axis=0) / np.sum(str_fragments[key]["atoms_mass"]),4)
+            str_fragments[key]["atoms_bond_vectors_c"] = np.round(str_fragments[key]["atoms_coordinates_c"] - str_fragments[key]["coordinates_c"],4)
+            str_fragments[key]["atoms_bond_vectors_f"] = np.round(str_fragments[key]["atoms_coordinates_c"] - str_fragments[key]["coordinates_c"],4)
             
             # Set the rotation of the full component
             inertia_eigenvalues, inertia_eigenvectors = calculate_inertia(str_fragments[key]["atoms_mass"],str_fragments[key]["atoms_bond_vectors_c"])                
             inertia_eigenvalues, inertia_eigenvectors = sort_eigenvectors(inertia_eigenvalues,inertia_eigenvectors)
             inertia_eigenvectors = ensure_right_handed_coordinate_system(inertia_eigenvectors)
             
-            str_fragments[key]["atoms_coordinates_sf"]  = np.round(np.matmul(str_fragments[key]["atoms_bond_vectors_c"],inertia_eigenvectors), decimals=4)
+            str_fragments[key]["atoms_coordinates_sf"]  = np.round(np.round(np.matmul(str_fragments[key]["atoms_bond_vectors_c"],inertia_eigenvectors), decimals=4),4)
             
     return str_fragments
