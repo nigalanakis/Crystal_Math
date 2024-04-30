@@ -1,9 +1,9 @@
 {
       "save_directory": "../csd_db_analysis/db_data/",
-      "get_refcode_families": "true",
-      "cluster_refcode_families": "true",
-      "get_unique_structures": "true",
-      "get_structure_data": "true",
+      "get_refcode_families": true,
+      "cluster_refcode_families": true,
+      "get_unique_structures": true,
+      "get_structure_data": true,
       "structure_list": ["csd-unique", "all"],
       "data_prefix": "homomolecular_crystals",
       "unique_structures_clustering_method": "energy",
@@ -14,8 +14,8 @@
       "crystal_type": "homomolecular_crystal",
       "molecule_formal_charges": [0],
       "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","FADGEW","JIKXOT","LUQDAE","PEVLOR","TEVYAV","VIRLOY","ZEPDAZ04"],
-      "center_molecule": "true",
-      "add_full_component": "true",
+      "center_molecule": true,
+      "add_full_component": true,
       "fragments_to_check_alignment": [],
       "proposed_vectors_n_max": 5
 }
