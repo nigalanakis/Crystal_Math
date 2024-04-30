@@ -76,6 +76,7 @@ The configuration should be specified in JSON format as shown below:
       "cluster_refcode_families": true,
       "get_unique_structures": true,
       "get_structure_data": true,
+      "get_structure_filter_data": true,
       "structure_list": ["csd-unique", "all"],
       "data_prefix": "homomolecular_crystals",
       "unique_structures_clustering_method": "energy",
@@ -108,6 +109,9 @@ Key Descriptions
 
 - ``get_structure_data``
 	Set to ``true``, performs data extraction on the selected structures.
+
+- ``get_structure_filter_data``
+	Set to ``true``, creates a file with the summarized properties for the structures that can be used to filter structures for the analysis.
 
 - ``structure_list``
 	Defines the types of structures to analyze. For the first key, the available options are 
