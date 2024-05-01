@@ -606,7 +606,7 @@ In the following paragraphs we demostrate the workflow for extracting sample dat
 	
 - **Data extraction for structures of interest**
 
-	In the above input file, setting ``get_structure_data = true`` will extract data for all the unique structures identified in the previous step. In this example however, we want to extract data for a small subset of structures: the three known aspirin polymorphs and the two known :math:`Z^{\prime}=1` acridine polymorphs. By checking the file ``csd_refcode_families_unique_structures``, we can see three entries for aspirin (``ACSALA24``, ``ACSALA32`` and ``ACSALA35``) and 6 entries for acridine, with ``ACDRIN11`` and ``ACRDIN12`` being the :math:`Z^{\prime}=1` polymorphs. We modify the input file to extract data only for these structures.
+	In the above input file, setting ``get_structure_data = true`` will extract data for all the unique structures identified in the previous step. In this example however, we want to extract data for a small subset of structures: the three known aspirin polymorphs and the two known :math:`Z^{\prime}=1` acridine polymorphs. By checking the file ``csd_refcode_families_unique_structures``, we can see three entries for aspirin (``ACSALA24``, ``ACSALA32`` and ``ACSALA35``) and 6 entries for acridine, with ``ACDRIN11`` and ``ACRDIN12`` being the :math:`Z^{\prime}=1` polymorphs. We modify the input file to extract data for this small set of structures.
 	
 	.. code-block:: json
 
@@ -633,3 +633,5 @@ In the following paragraphs we demostrate the workflow for extracting sample dat
 		}
 		
 	Note that ``get_refcode_families``, ``cluster_refcode_families``, ``get_unique_structures`` are all set to ``false``. In the ``structure_list`` key, for the aspirin structures we select to extract data for all unique structures (``["ACSALA", "all"]``), while for the acridine we select to extract data only for entries 11 and 12 (``["ACRDIN", [11,12]]``).
+	
+	The algorithm will generate the output files for the 5 structures as well as the file ``example_structures_filter_data.json`` with the compact structure information. For your convenience, these structures are provided in the `project's GitHub page <https://github.com/nigalanakis/Crystal_Math/tree/master/docs/examples>`_.
