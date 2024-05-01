@@ -1,5 +1,5 @@
-Procedure
-=========
+Data Extraction Procedure
+=========================
 This section outlines the procedural setup required to run the Crystal Math software effectively. To extract the data it is necessary to prepare the input file ``input_data_extraction.txt`` with the user defined options to extract data. After that, the process is straightforward, as you can extract the data by simply executing the script ``csd_data_extraction.py``.
 
 Directories Structure
@@ -84,7 +84,7 @@ The configuration should be specified in JSON format as shown below:
       "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],
       "target_z_prime_values": [1, 2, 3, 4, 5],
       "molecule_weight_limit": 500.0,
-      "crystal_type": "homomolecular_crystal",
+      "crystal_type": ["homomolecular"],
       "molecule_formal_charges": [0],
       "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","FADGEW","JIKXOT","LUQDAE","PEVLOR","TEVYAV","VIRLOY","ZEPDAZ04"],
       "center_molecule": true,
@@ -147,7 +147,7 @@ Key Descriptions
 	Maximum allowable molecular weight per component in the asymmetric unit.
 
 - ``crystal_type``
-	Type of crystal structures to analyze. Options include ``"homomolecular"``, ``"co-crystal"``, ``"hydrate"``.
+	A list for the type of crystal structures to analyze. Options include ``"homomolecular"``, ``"co-crystal"``, ``"hydrate"``.
 
 - ``molecule_formal_charges``
 	Allowed molecular charges; typically set to ``[0]`` for neutral structures.
@@ -260,10 +260,10 @@ Finally, all data gathered is written to output files, completing the data extra
 
 The Data Extraction Output Files
 --------------------------------
-Each structure's data is contained in a separate JSON file. The following section provide an explanation of each key-value pair in the JSON structure, by using as an expample the output file for structure ``ACSALA35`` is the CSD.
+Each structure's data is contained in a separate JSON file, stored in the folder ``db_data/"prefix"_structures``, where the ``"prefix"`` is set by the user in the input file. The file name for each structure is in the form ``"RefCode".json``, where the ``"RefCode"`` is identical to the CSD RefCode of the structure. The following section provide an explanation of each key-value pair in the JSON structure, by using as an expample the output file for structure ``ACSALA35`` is the CSD.
 
-File Structure
-^^^^^^^^^^^^^^
+Structure File Description
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The JSON file is structured as follows:
 
@@ -509,4 +509,127 @@ Key descriptions
 				- ``bond_vectors``: The bond vectors of the atom to the center of mass of the fragment (``cartesian`` and ``fractional``).
 				- ``dzzp_min``: The minimum distance of the atom to the ZZP plane family.
 
+Data Filtering File Description
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The algorithm also generates a file ``"prefix"_structures_filter_data.json`` within the ``db_data`` folder, that contains compact information for each structures that can be used to rapidly filter structures in the post extraction analysis step. Each structure is represented as a dictionary entry, with the key being identical to the CSD RefCode of the structure. The format for each entry is as follows.
 
+.. code-block:: json 
+
+    "ACSALA35": {
+        "space_group": "P21/c",
+        "z_crystal": 4.0,
+        "z_prime": 1.0,
+        "species": ["C","H","O"],
+        "fragments": ["benzene","carboxylic_acid","ester_aromatic-aliphatic"],
+        "contact_pairs": [
+            ["C","O","vdW",false],
+            // ...
+        ],
+        "contact_central_fragments": [
+            ["benzene","vdW",false],
+            // ...
+        ],
+        "contact_fragment_pairs": [
+            ["benzene","carboxylic_acid","vdW",false],
+            // ...
+        ]
+    }
+
+Key descriptions
+^^^^^^^^^^^^^^^^
+
+- ``space_group``
+	The space group of the structure 
+	
+- ``z_crystal``
+	The total number of molecules :math:`Z` in the reference unit cell. For :math:`Z^{\prime}=1` this number is identical to the symmetry operations of the space group. 
+	
+- ``z_prime``
+	The numner :math:`Z^{\prime}` of molecules in the asymmetric unit
+	
+- ``species``
+	A list of the different atomic species found in the structure.
+	
+- ``fragments``
+	A list of the different fragments found in the structure.
+	
+- ``contact_pairs``
+	A list of the different close contact atomic pairs found in the structure. The first entry is the central atom, the second the contact atom, the third entry the type of the contact and the fourth declares if the contact is in line of sight.
+	
+	
+- ``contact_central_fragments``
+	A list of the different central fragments for the close contacts in the structure. The first entry is the central fragment, the second entry the type of the contact and the third declares if the contact is in line of sight.	
+	
+- ``contact_fragment_pairs``
+	A list of the different close contact fragment pairs found in the structure. The first entry is the central fragment, the second the contact fragment, the third entry the type of the contact and the fourth declares if the contact is in line of sight.
+	
+Example Usage
+-------------
+In the following paragraphs we demostrate the workflow for extracting sample data from the CSD. We show how to extract data for all the unique aspirin structures as well as for two known :math:`Z^{\prime}=1` acridine polymorphs. We will perform the extraction in two different steps: 
+
+- **General CSD structure identification**: This part of the extraction will generate the files ``csd_refcode_families.json``, ``csd_refcode_families_clustered.json``, ``csd_refcode_families_unique_structures.json`` for the user-defined settings in the input file. The input file for this operation will be
+
+	.. code-block:: json
+
+		{
+		  "save_directory": "../csd_db_analysis/db_data/",
+		  "get_refcode_families": true,
+		  "cluster_refcode_families": true,
+		  "get_unique_structures": true,
+		  "get_structure_data": false,
+		  "get_structure_filter_data": false,
+		  "structure_list": ["csd-unique", "all"],
+		  "data_prefix": "example",
+		  "unique_structures_clustering_method": "energy",
+		  "target_species": ["C", "H", "N", "O", "F", "Cl", "Br", "I", "P", "S"],
+		  "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],
+		  "target_z_prime_values": [1, 2, 3, 4, 5],
+		  "molecule_weight_limit": 500.0,
+		  "crystal_type": ["homomolecular"],
+		  "molecule_formal_charges": [0],
+		  "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","FADGEW","JIKXOT","LUQDAE","PEVLOR","TEVYAV","VIRLOY","ZEPDAZ04"],
+		  "center_molecule": true,
+		  "add_full_component": true,
+		  "proposed_vectors_n_max": 5
+		}
+		
+	Note that ``get_structure_data`` and ``get_structure_filter_data`` are set to ``false``. This process will create a list of structures that are consistent with the filters
+
+	- ``target_species``,
+	- ``target_space_groups``,
+	- ``target_z_prime_values``,
+	- ``molecular_weight_limit``,
+	- ``crystal_type``,
+	- ``molecule_formal_charges``.
+
+	This set of structures is recommended to be as general as possible, so that in can be used for data extraction without having to identify and cluster structures every time we perform a data extraction. Thus, while in the example we are dealing with :math:`Z^{\prime}=1,\,2` structures comprising of C, H, N, O atoms in the :math:`P2_1/c,\,P2_1/n` space groups, we keep the respective filters more general to include a high number of structures of interest for subsequent analysis. This step must be exectuted only in case we need to include more structures in the files ``csd_refcode_families.json``, ``csd_refcode_families_clustered.json``, ``csd_refcode_families_unique_structures.json``, for example when we need to expand the filters or when a CSD update is released. With the default options for the filters, this process generates a list of ~230,000 unique structures that are sufficient for subsequent statistical analysis. 
+	
+- **Data extraction for structures of interest**
+
+	In the above input file, setting ``get_structure_data = true`` will extract data for all the unique structures identified in the previous step. In this example however, we want to extract data for a small subset of structures: the three known aspirin polymorphs and the two known :math:`Z^{\prime}=1` acridine polymorphs. By checking the file ``csd_refcode_families_unique_structures``, we can see three entries for aspirin (``ACSALA24``, ``ACSALA32`` and ``ACSALA35``) and 6 entries for acridine, with ``ACDRIN11`` and ``ACRDIN12`` being the :math:`Z^{\prime}=1` polymorphs. We modify the input file to extract data only for these structures.
+	
+	.. code-block:: json
+
+		{
+		  "save_directory": "../csd_db_analysis/db_data/",
+		  "get_refcode_families": false,
+		  "cluster_refcode_families": false,
+		  "get_unique_structures": false ,
+		  "get_structure_data": true,
+		  "get_structure_filter_data": true,
+		  "structure_list": ["csd-unique", [["ACSALA", "all"], ["ACRDIN", [11,12]]]],
+		  "data_prefix": "example",
+		  "unique_structures_clustering_method": "energy",
+		  "target_species": ["C", "H", "N", "O", "F", "Cl", "Br", "I", "P", "S"],
+		  "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],
+		  "target_z_prime_values": [1, 2, 3, 4, 5],
+		  "molecule_weight_limit": 500.0,
+		  "crystal_type": ["homomolecular"],
+		  "molecule_formal_charges": [0],
+		  "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","FADGEW","JIKXOT","LUQDAE","PEVLOR","TEVYAV","VIRLOY","ZEPDAZ04"],
+		  "center_molecule": true,
+		  "add_full_component": true,
+		  "proposed_vectors_n_max": 5
+		}
+		
+	Note that ``get_refcode_families``, ``cluster_refcode_families``, ``get_unique_structures`` are all set to ``false``. In the ``structure_list`` key, for the aspirin structures we select to extract data for all unique structures (``["ACSALA", "all"]``), while for the acridine we select to extract data only for entries 11 and 12 (``["ACRDIN", [11,12]]``).
