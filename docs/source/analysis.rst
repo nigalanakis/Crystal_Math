@@ -19,20 +19,20 @@ The configuration should be specified in JSON format as shown below:
     {
      "plots_directory": "../csd_db_analysis/visualize/",
      "data_directory": "../csd_db_analysis/db_data/",
-     "data_prefix": "01_test",
+     "data_prefix": "example",
      "figure_size": [5,3.75],
      "data_filters": {
          "space_group": {
              "is_active": true,
              "type": "single",
-             "values": ["P21/c"],
+             "values": ["P21/c","P21/n"],
              "operator": "or",
              "refine_data": false
          }, 
          "z_crystal": {
-             "is_active": false,
+             "is_active": true,
              "type": "single",
-             "values": [4],
+             "values": [4,8],
              "operator": "or",
              "refine_data": false
          }, 
@@ -55,7 +55,9 @@ The configuration should be specified in JSON format as shown below:
              "type": "multiple",
              "values": [
                  "benzene",
-                 "carboxylic_acid"
+                 "carboxylic_acid",
+				 "ester_aromatic-aliphatic",
+				 "acridin"
                  ],
              "operator": "or",
              "refine_data": true
@@ -64,8 +66,9 @@ The configuration should be specified in JSON format as shown below:
              "is_active": true,
              "type": "multiple_lists",
              "values": [
-                 ["H","O","hbond",true]
-                 ],
+                 ["H","O","hbond",true],
+                 // ...
+				 ]
              "operator": "or",
              "refine_data": true
          },
@@ -73,8 +76,8 @@ The configuration should be specified in JSON format as shown below:
              "is_active": false,
              "type": "multiple_lists",
              "values": [
-                 ["carboxylic_acid","vdW",true],
-                 ["ester_aromatic-aliphatic","vdW",true]
+                 ["carboxylic_acid","hbond",true],
+                 // ...
                  ],
              "operator": "and",
              "refine_data": true
@@ -83,9 +86,9 @@ The configuration should be specified in JSON format as shown below:
              "is_active": true,
              "type": "multiple_lists",
              "values": [
-                ["carboxylic_acid","carboxylic_acid","hbond",false],
-                ["carboxylic_acid","carboxylic_acid","hbond",true]
-                 ],
+                ["carboxylic_acid","carboxylic_acid","hbond",true],
+                // ...
+                ],
              "operator": "and",
              "refine_data": true
              }
@@ -94,8 +97,7 @@ The configuration should be specified in JSON format as shown below:
         "individual_space_groups_plots": true,
         "scatter": [
             ["cell_length_a", "cell_length_b"], 
-            ["cell_length_b_sc", "cell_length_c_sc"], 
-            ["vdWFV", "E_tot"]
+            // ...
             ],
         "scatter_marker": "o",
         "scatter_facecolor": "whitesmoke",
@@ -106,7 +108,8 @@ The configuration should be specified in JSON format as shown below:
             ["custom", "custom"]
             ],
         "3D_scatter": [
-            ["cell_length_a", "cell_length_b", "cell_length_c"]
+            ["cell_length_a", "cell_length_b", "cell_length_c"],
+			// ...
             ],
         "3D_scatter_marker": "o",
         "3D_scatter_facecolor": "whitesmoke",
@@ -118,9 +121,8 @@ The configuration should be specified in JSON format as shown below:
             ["custom", "custom"]
             ],
         "histogram": [
-            ["fragment_x", false],
-            ["fragment_atom_x", false], 
-            ["cc_length", false]
+            ["cc_length", false],
+			// ...
             ],
         "histogram_lims": ["custom", "custom"],
         "titles": false
