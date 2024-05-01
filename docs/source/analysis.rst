@@ -56,8 +56,8 @@ The configuration should be specified in JSON format as shown below:
              "values": [
                  "benzene",
                  "carboxylic_acid",
-				 "ester_aromatic-aliphatic",
-				 "acridin"
+                 "ester_aromatic-aliphatic",
+                 "acridin"
                  ],
              "operator": "or",
              "refine_data": true
@@ -68,7 +68,7 @@ The configuration should be specified in JSON format as shown below:
              "values": [
                  ["H","O","hbond",true],
                  // ...
-				 ]
+                 ]
              "operator": "or",
              "refine_data": true
          },
@@ -109,7 +109,7 @@ The configuration should be specified in JSON format as shown below:
             ],
         "3D_scatter": [
             ["cell_length_a", "cell_length_b", "cell_length_c"],
-			// ...
+            // ...
             ],
         "3D_scatter_marker": "o",
         "3D_scatter_facecolor": "whitesmoke",
@@ -122,7 +122,7 @@ The configuration should be specified in JSON format as shown below:
             ],
         "histogram": [
             ["cc_length", false],
-			// ...
+            // ...
             ],
         "histogram_lims": ["custom", "custom"],
         "titles": false
@@ -139,29 +139,29 @@ Key Descriptions
 - ``figure_size``: Defines the dimensions of exported figures in inches, formatted as :math:`(W \times H)`. The default Matplotlib size is :math:`(6.4 \times 4.8)`. To place two figures side by side in a 12-inch wide document using an 11pt font, the optimal size is :math:`(5.0 \times 3.75)`. Adjust dimensions according to your document's specific requirements.
 - ``data_filters``: Details for filtering structures for the analysis. Structures can be filtered based on 
 
-	- **Space group**: The space group of the structure.
-	- :math:`Z` **value**. The total number of molecules in the unit cell (Number of symmetry operations) :math:`\times` (Number of molecules in the asymmetric unit).
-	- :math:`Z^{\prime}` **value**: The number of molecules in the asymmetric unit.
-	- **Atomic species**: The different atomic species found in the structure.
-	- **Fragments**: The different fragments found in the structure.
-	- **Contact atomic pairs**: The different atomic pairs found for the contacts in the structure.
-	- **Contact central fragments**: The different central fragments for the contacts in the structure.
-	- **Contact fragment pairs**: The different fragment pairs found for the contacts in the structure.
-	
-	Each filter has 5 options:
+    - **Space group**: The space group of the structure.
+    - :math:`Z` **value**. The total number of molecules in the unit cell (Number of symmetry operations) :math:`\times` (Number of molecules in the asymmetric unit).
+    - :math:`Z^{\prime}` **value**: The number of molecules in the asymmetric unit.
+    - **Atomic species**: The different atomic species found in the structure.
+    - **Fragments**: The different fragments found in the structure.
+    - **Contact atomic pairs**: The different atomic pairs found for the contacts in the structure.
+    - **Contact central fragments**: The different central fragments for the contacts in the structure.
+    - **Contact fragment pairs**: The different fragment pairs found for the contacts in the structure.
+    
+    Each filter has 5 options:
 
-	- ``is_active``: Set to ``true`` to activate the filter. Setting to ``false`` will deactivate the filter.
-	- ``type``: The type of the filter. The available options are 
-	
-		- ``single``: A structure is characterized by a single specific value for the variable (for example the space group).
-		- ``multiple``: A structure is characterized by a list of values for the specific variable (for example the atomic species in the structure).
-		- ``multiple_list``: A structure is characterized by a list of values for the specific variable, but each value is now a list (for example the contact pairs in the structure, where each contact pair is characterized by the species of the cetnral atom, the species of the contact atom, the type of the contact and a boolean that states if the contact is in line of sight).
-	
-	- ``values``: A list (or a list of lists) for the allowed values.
-	- ``operator``: The available options are
-	
-		- ``"or"``: The filter will check for structures that have **any** of the declared values,
-		- ``"and"``: The filter will check for structures that have **all** the declared values,
-		
+    - ``is_active``: Set to ``true`` to activate the filter. Setting to ``false`` will deactivate the filter.
+    - ``type``: The type of the filter. The available options are 
+    
+        - ``single``: A structure is characterized by a single specific value for the variable (for example the space group).
+        - ``multiple``: A structure is characterized by a list of values for the specific variable (for example the atomic species in the structure).
+        - ``multiple_list``: A structure is characterized by a list of values for the specific variable, but each value is now a list (for example the contact pairs in the structure, where each contact pair is characterized by the species of the cetnral atom, the species of the contact atom, the type of the contact and a boolean that states if the contact is in line of sight).
+    
+    - ``values``: A list (or a list of lists) for the allowed values.
+    - ``operator``: The available options are
+    
+        - ``"or"``: The filter will check for structures that have **any** of the declared values,
+        - ``"and"``: The filter will check for structures that have **all** the declared values,
+        
     - ``refine_data``: Set to ``true`` to refine the data for all the components in the structure based on the values of the filter. 
          
