@@ -180,8 +180,15 @@ Key Descriptions
     - ``refine_data``
         Set to ``true`` to refine the data for all the components in the structure based on the values of the filter. 
 
-- ``plot_data_options``: Details the plotting options:
+- ``plot_data_options`` 
+    Details the plotting options:
 
     - ``individual_space_groups_plots``
         Set to ``true`` to create plots across all space groups and for each pace group sepaately.
+
+    - ``interactive``
+        Set to ``true`` to create interactive `*.html`` plots with the plotly package. (Currently this is the only option supported. Currently developing a routine to generate publication-ready ``*.png`` plots).
+
+    - "percentiles"
+        The options to calculate the kde density for the 2D and 3D scatter plots. The format for the values includes a list of integerss (of floats) representing the desired percentiles followed by 3 booleans. Each boolean activates the creation of the lowest percentine (in the example the 10%), the middle percentines (25%, 50%, 75%), and the top percentile (90%). For the interactive ``*.html``` plots, it is recommended to set all options to ``true`` as the interactive plots allow to toggle on/off the different percentiles. For static ``*.png`` images, the booleans should be adjusted to include the desired percentiles in the plots. 
          
