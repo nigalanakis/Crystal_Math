@@ -224,7 +224,6 @@ The available variables are included in the file ``variables.json`` located in t
         "latex_name": string,
         "html_name": string,
         "family": string,
-    	"level": integer,
     	"path": [list of strings],
     	"position_symmetry": [boolean,boolean,boolean,integer]
       }
