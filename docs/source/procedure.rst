@@ -583,7 +583,7 @@ Example Usage
 -------------
 In the following paragraphs we demostrate the workflow for extracting sample data from the CSD. We show how to extract data for all the unique aspirin structures as well as for two known :math:`Z^{\prime}=1` acridine polymorphs. We will perform the extraction in two different steps: 
 
-- **General CSD structure identification**: This part of the extraction will generate the files ``csd_refcode_families.json``, ``csd_refcode_families_clustered.json``, ``csd_refcode_families_unique_structures.json`` for the user-defined settings in the input file. The input file for this operation will be
+- **General CSD structure identification**: This part of the extraction will generate the files ``homomolecular_csd_refcode_families.json``, ``homomolecular_csd_refcode_families_clustered.json``, ``homomolecular_csd_refcode_families_unique_structures.json`` for the user-defined settings in the input file. The input file for this operation will be
 
 	.. code-block:: json
 
@@ -595,7 +595,7 @@ In the following paragraphs we demostrate the workflow for extracting sample dat
 		  "get_structure_data": false,
 		  "get_structure_filter_data": false,
 		  "structure_list": ["csd-unique", "all"],
-		  "data_prefix": "example",
+		  "data_prefix": "homomolecular",
 		  "unique_structures_clustering_method": "energy",
 		  "target_species": ["C", "H", "N", "O", "F", "Cl", "Br", "I", "P", "S"],
 		  "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],
@@ -622,7 +622,7 @@ In the following paragraphs we demostrate the workflow for extracting sample dat
 	
 - **Data extraction for structures of interest**
 
-	In the above input file, setting ``get_structure_data = true`` will extract data for all the unique structures identified in the previous step. In this example however, we want to extract data for a small subset of structures: the three known aspirin polymorphs and the two known :math:`Z^{\prime}=1` acridine polymorphs. By checking the file ``csd_refcode_families_unique_structures``, we can see three entries for aspirin (``ACSALA24``, ``ACSALA32`` and ``ACSALA35``) and 6 entries for acridine, with ``ACDRIN11`` and ``ACRDIN12`` being the :math:`Z^{\prime}=1` polymorphs. We modify the input file to extract data for this small set of structures.
+	In the above input file, setting ``get_structure_data = true`` will extract data for all the unique structures identified in the previous step. In this example however, we want to extract data for a small subset of structures: the three known aspirin polymorphs and the two known :math:`Z^{\prime}=1` acridine polymorphs. By checking the file ``csd_refcode_families_unique_structures``, we can see three entries for aspirin (``ACSALA24``, ``ACSALA32`` and ``ACSALA35``) and 6 entries for acridine, with ``ACDRIN11`` and ``ACRDIN12`` being the :math:`Z^{\prime}=1` polymorphs. We modify the input file to extract data for this small set of structures. Please note that the ``data_prefix`` value must be the same as previously.
 	
 	.. code-block:: json
 
@@ -634,7 +634,7 @@ In the following paragraphs we demostrate the workflow for extracting sample dat
 		  "get_structure_data": true,
 		  "get_structure_filter_data": true,
 		  "structure_list": ["csd-unique", [["ACSALA", "all"], ["ACRDIN", [11,12]]]],
-		  "data_prefix": "example",
+		  "data_prefix": "homomolecular",
 		  "unique_structures_clustering_method": "energy",
 		  "target_species": ["C", "H", "N", "O", "F", "Cl", "Br", "I", "P", "S"],
 		  "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],
@@ -650,4 +650,4 @@ In the following paragraphs we demostrate the workflow for extracting sample dat
 		
 	Note that ``get_refcode_families``, ``cluster_refcode_families``, ``get_unique_structures`` are all set to ``false``. In the ``structure_list`` key, for the aspirin structures we select to extract data for all unique structures (``["ACSALA", "all"]``), while for the acridine we select to extract data only for entries 11 and 12 (``["ACRDIN", [11,12]]``).
 	
-	The algorithm will generate the output files for the 5 structures as well as the file ``example_structures_filter_data.json`` with the compact structure information. For your convenience, these structures are provided in the `project's GitHub page <https://github.com/nigalanakis/Crystal_Math/tree/master/docs/examples>`_.
+	The algorithm will generate the output files for the 5 structures located in the folder ``/csd_db_analysis/db_data/homomolecular_structures`` as well as the file ``homomolecular_structures_filter_data.json`` with the compact structure information. For your convenience, these structures are provided in the `project's GitHub page <https://github.com/nigalanakis/Crystal_Math/tree/master/docs/examples>`_. Please note that each time the data extraction process is performed, the extracted structures data will be added in the folder ``/csd_db_analysis/db_data/data_prefix`` (in the above example ``/csd_db_analysis/db_data/homomolecular_structures``). In case the folder already exists and you want to avoid merging the extracted data, it is recommended to rename the existing folders.
