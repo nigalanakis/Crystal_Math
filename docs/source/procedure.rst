@@ -71,28 +71,6 @@ The configuration should be specified in JSON format as shown below:
 .. code-block:: json
 
     {
-      "save_directory": "../csd_db_analysis/db_data/",
-      "get_refcode_families": true,
-      "cluster_refcode_families": true,
-      "get_unique_structures": true,
-      "get_structure_data": true,
-      "get_structure_filter_data": true,
-      "structure_list": ["csd-unique", "all"],
-      "data_prefix": "homomolecular_crystals",
-      "unique_structures_clustering_method": "energy",
-      "target_species": ["C", "H", "N", "O", "F", "Cl", "Br", "I", "P", "S"],
-      "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],
-      "target_z_prime_values": [1, 2, 3, 4, 5],
-      "molecule_weight_limit": 500.0,
-      "crystal_type": ["homomolecular"],
-      "molecule_formal_charges": [0],
-      "structures_to_exclude": ["BALDUP","CEMVAS","DAGRIN","FADGEW","JIKXOT","LUQDAE","PEVLOR","TEVYAV","VIRLOY","ZEPDAZ04"],
-      "center_molecule": true,
-      "add_full_component": true,
-      "proposed_vectors_n_max": 5
-    }
-
-    {
   	"save_directory": "../csd_db_analysis/db_data/",
 	"get_refcode_families": false,
 	"cluster_refcode_families": false,
@@ -169,6 +147,9 @@ Key Descriptions
 - ``target_z_prime_values``
 	Filters structures by :math:`Z^{\prime}`.
 
+- ``target_fragments``
+	Filters structures by specific target fragments.
+
 - ``molecule_weight_limit``
 	Maximum allowable molecular weight per component in the asymmetric unit.
 
@@ -186,6 +167,9 @@ Key Descriptions
 
 - ``add_full_component``
 	Analyzes complete components in the unit cell along with fragments.
+
+- ``"fragments_to_check_alignment"``
+	Filter unwanted fragments in case of identical smarts representation.
 
 - ``proposed_vectors_n_max``
 	Maximum value for each component of a crystallographic vector, suggested value is ``5``.
