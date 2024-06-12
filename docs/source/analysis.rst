@@ -108,19 +108,19 @@ The configuration should be specified in JSON format as shown below:
             "3D_scatter": [
                 ["cc_contact_atom_ref_bv_x","cc_contact_atom_ref_bv_y","cc_contact_atom_ref_bv_z",null],
                 // ...
-        ],
-    "3D_scatter_marker": "o",
-    "3D_scatter_facecolor": "whitesmoke",
-    "3D_scatter_edgecolor": "black",
-    "3D_scatter_opacity": 1.0,
-    "histogram": [
-        ["cc_length",null,false],
-        // ...
-        ],
-    "histogram_density": false,
-    "titles": false
- }
-}
+                ],
+            "3D_scatter_marker": "o",
+            "3D_scatter_facecolor": "whitesmoke",
+            "3D_scatter_edgecolor": "black",
+            "3D_scatter_opacity": 1.0,
+            "histogram": [
+                ["cc_length",null,false],
+                // ...
+                ],
+            "histogram_density": false,
+            "titles": false
+         }
+    }
 
 
 Key Descriptions
