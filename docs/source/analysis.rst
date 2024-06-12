@@ -192,18 +192,27 @@ Key Descriptions
     - ``percentiles``
         The options to calculate the kde density for the 2D and 3D scatter plots. The format for the values includes a list of integerss (of floats) representing the desired percentiles followed by 3 booleans. Each boolean activates the creation of the lowest percentine (in the example the 10%), the middle percentines (25%, 50%, 75%), and the top percentile (90%). For the interactive ``*.html``` plots, it is recommended to set all options to ``true`` as the interactive plots allow to toggle on/off the different percentiles. For static ``*.png`` images, the booleans should be adjusted to include the desired percentiles in the plots. 
 
-    - ``2D_scatter``
-        A list of the requested 2D scatter plots to be generated. Each entry has the format ``[variable_1, variable_2, group_variable]``. The ``variable_1`` and ``variable_2`` and the two variables on the scatter. The 3rd entry (``group_variable``) declares the variable to group data and plot them separately based on the values of the group variable. Setting ``group_variable`` to ``null`` generates a single plot for the full set of selected data. The group variable can take different values depending on the nature of  ``variable_1`` and ``variable_2``.
+    - ``2D_scatter``/``3D_scatter``
+        A list of the requested 2D/3D scatter plots to be generated. Each entry has the format ``[variable_1, variable_2, group_variable]``/``[variable_1, variable_2, variable_3, group_variable]``. The ``variable_1``, ``variable_2`` and ``variable_3`` are the variables used for the scatter plots. The entry ``group_variable`` declares the variable to group data and plot them separately based on the values of the group variable. Setting ``group_variable`` to ``null`` generates a single plot for the full set of selected data. The group variable can take different values depending on the nature of  ``variable_1``, ``variable_2``, ``variable_3``.
 
-    - ``2D_scatter_marker``
+    - ``2D_scatter_marker``/``3D_scatter_marker``
         The marker for the data points (static images only). For the available options please refer to the `official matplotlib documentation <https://matplotlib.org/stable/api/markers_api.html>`_. 
     
-    - ``2D_scatter_facecolor"``
+    - ``2D_scatter_facecolor``/``3D_scatter_facecolor``
         The marker face color for the data points (static images only). For the available options please refer to the `official matplotlib documentation <https://matplotlib.org/stable/gallery/color/named_colors.html>`_. 
     
-    - ``2D_scatter_edgecolor``
+    - ``2D_scatter_edgecolor``/``3D_scatter_edgecolor``
         The marker edge color for the data points (static images only). For the available options please refer to the `official matplotlib documentation <https://matplotlib.org/stable/gallery/color/named_colors.html>`_. 
     
-    - ``2D_scatter_opacity``
+    - ``2D_scatter_opacity``/``3D_scatter_opacity``
         The marker opacity for the data points (static images only). Can take a value in the range :math:`[0,1]`.
-         
+
+    - ``histogram``
+        A list of the requested histograms to be generated. Each entry has the format ``[variable, group_variable, fit_kde_curve]``. The ``group_variable`` works in a similar was as for the 2D/3D scatter plots. the     ``fit_kde_curve`` can be set to ``true`` when we require to fit a kde curve to the histogram data.  
+
+    - ``histogram_density``
+        Setting to ``false`` will plot on the ``y`` axis the occurences. Setting to ``true`` will plot the frequency. 
+
+List of available variables
+---------------------------
+        
