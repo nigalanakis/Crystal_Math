@@ -215,4 +215,17 @@ Key Descriptions
 
 List of available variables
 ---------------------------
+
+The available variables are included in the file ``variables.json`` located in the ``source_data`` folder. Each variable is described using a dictionary entry in the following format.
+
+.. code block :: json
+
+    "str_id": {
+        "latex_name": "ID",
+        "html_name": "ID",
+        "family": "structure",
+    	"level": 1,
+    	"path": ["crystal","str_ID"],
+    	"position_symmetry": [false,false,false,-1]
+      }
         
