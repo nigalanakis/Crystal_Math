@@ -57,7 +57,7 @@ The configuration should be specified in JSON format as shown below:
                  "type": "multiple",
                  "values": [
                      "carboxylic_acid",
-                     "benzene"
+                     // ...
                      ],
                  "operator": "and",
                  "refine_data": true
@@ -67,7 +67,7 @@ The configuration should be specified in JSON format as shown below:
                  "type": "multiple_lists",
                  "values": [
                      ["O","H","hbond",true],
-                     ["H","C","hbond",true]
+                     // ...
                      ],
                  "operator": "or",
                  "refine_data": true
@@ -77,6 +77,7 @@ The configuration should be specified in JSON format as shown below:
                  "type": "multiple_lists",
                  "values": [
                      ["carboxylic_acid","hbond",true]
+                     // ...
                      ],
                  "operator": "or",
                  "refine_data": true
@@ -85,7 +86,8 @@ The configuration should be specified in JSON format as shown below:
                  "is_active": true,
                  "type": "multiple_lists",
                  "values": [
-                     ["carboxylic_acid","carboxylic_acid","hbond",true]
+                     ["carboxylic_acid","carboxylic_acid","hbond",true],
+                     // ...
                      ],
                  "operator": "and",
                  "refine_data": true
@@ -96,14 +98,16 @@ The configuration should be specified in JSON format as shown below:
             "interactive": true,
             "percentiles": [[10,25,50,75,90],true,true,true],
             "2D_scatter": [
-                "cell_length_b_sc","cell_length_c_sc",null],
+                ["cell_length_b_sc","cell_length_c_sc",null],
+                // ...
         		],
             "2D_scatter_marker": "o",
             "2D_scatter_facecolor": "whitesmoke",
             "2D_scatter_edgecolor": "black",
             "2D_scatter_opacity": 1.0,
             "3D_scatter": [
-                ["cc_contact_atom_ref_bv_x","cc_contact_atom_ref_bv_y","cc_contact_atom_ref_bv_z",null]
+                ["cc_contact_atom_ref_bv_x","cc_contact_atom_ref_bv_y","cc_contact_atom_ref_bv_z",null],
+                // ...
         ],
     "3D_scatter_marker": "o",
     "3D_scatter_facecolor": "whitesmoke",
@@ -111,6 +115,7 @@ The configuration should be specified in JSON format as shown below:
     "3D_scatter_opacity": 1.0,
     "histogram": [
         ["cc_length",null,false],
+        // ...
         ],
     "histogram_density": false,
     "titles": false
