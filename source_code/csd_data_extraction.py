@@ -10,7 +10,7 @@ from get_structure_data import get_structure_data, get_structure_filter_data, ad
 
 def main(input_file):
     # Load execution parameters 
-    with open('Input_files/' + input_file) as f:
+    with open('input_files/' + input_file) as f:
         input_parameters = json.load(f)
     
     # Get the refcode families
