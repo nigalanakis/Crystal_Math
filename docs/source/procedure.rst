@@ -103,13 +103,13 @@ Key Descriptions
 	Specifies the directory where data will be saved. Using the default option is recommended.
 
 - ``get_refcode_families``
-	When set to ``true``, extracts all refcode families from the CSD, saving the output as ``csd_refcode_families.json`` within the ``db_data`` directory.
+	When set to ``true``, extracts all refcode families from the CSD, saving the output as ``"data_prefix"_csd_refcode_families.json`` within the ``db_data`` directory.
 
 - ``cluster_refcode_families``
-	When set to ``true``, clusters the structures for each refcode family. Results are saved as ``csd_refcode_families_clustered.json``.
+	When set to ``true``, clusters the structures for each refcode family. Results are saved as ``"data_prefix"_csd_refcode_families_clustered.json``.
 
 - ``get_unique_structures``
-	Retrieves unique structures for each cluster from the CSD and saves them as ``csd_refcode_families_unique_structures.json``.
+	Retrieves unique structures for each cluster from the CSD and saves them as ``"data_prefix"_csd_refcode_families_unique_structures.json``.
 
 - ``get_structure_data``
 	Set to ``true``, performs data extraction on the selected structures.
@@ -583,7 +583,7 @@ Example Usage
 -------------
 In the following paragraphs we demostrate the workflow for extracting sample data from the CSD. We show how to extract data for all the unique aspirin structures as well as for two known :math:`Z^{\prime}=1` acridine polymorphs. We will perform the extraction in two different steps: 
 
-- **General CSD structure identification**: This part of the extraction will generate the files ``homomolecular_csd_refcode_families.json``, ``homomolecular_csd_refcode_families_clustered.json``, ``homomolecular_csd_refcode_families_unique_structures.json`` for the user-defined settings in the input file. The input file for this operation will be
+- **General CSD structure identification**: This part of the extraction will generate the files ``"data_prefix"_csd_refcode_families.json``, ``"data_prefix"_csd_refcode_families_clustered.json``, ``"data_prefix"_csd_refcode_families_unique_structures.json`` (In this case ``homomolecular_csd_refcode_families.json``, ``homomolecular_csd_refcode_families_clustered.json``, ``homomolecular_csd_refcode_families_unique_structures.json``) for the user-defined settings in the input file. The input file for this operation will be
 
 	.. code-block:: json
 
@@ -618,11 +618,11 @@ In the following paragraphs we demostrate the workflow for extracting sample dat
 	- ``crystal_type``,
 	- ``molecule_formal_charges``.
 
-	This set of structures is recommended to be as general as possible, so that in can be used for data extraction without having to identify and cluster structures every time we perform a data extraction. Thus, while in the example we are dealing with :math:`Z^{\prime}=1,\,2` structures comprising of C, H, N, O atoms in the :math:`P2_1/c,\,P2_1/n` space groups, we keep the respective filters more general to include a high number of structures of interest for subsequent analysis. This step must be exectuted only in case we need to include more structures in the files ``csd_refcode_families.json``, ``csd_refcode_families_clustered.json``, ``csd_refcode_families_unique_structures.json``, for example when we need to expand the filters or when a CSD update is released. With the default options for the filters, this process generates a list of ~230,000 unique structures that are sufficient for subsequent statistical analysis. 
+	This set of structures is recommended to be as general as possible, so that in can be used for data extraction without having to identify and cluster structures every time we perform a data extraction. Thus, while in the example we are dealing with :math:`Z^{\prime}=1,\,2` structures comprising of C, H, N, O atoms in the :math:`P2_1/c,\,P2_1/n` space groups, we keep the respective filters more general to include a high number of structures of interest for subsequent analysis. This step must be exectuted only in case we need to include more structures in the files ``"data_prefix"_csd_refcode_families.json``, ``"data_prefix"_csd_refcode_families_clustered.json``, ``"data_prefix"_csd_refcode_families_unique_structures.json``, for example when we need to expand the filters or when a CSD update is released. With the default options for the filters, this process generates a list of ~230,000 unique structures that are sufficient for subsequent statistical analysis. 
 	
 - **Data extraction for structures of interest**
 
-	In the above input file, setting ``get_structure_data = true`` will extract data for all the unique structures identified in the previous step. In this example however, we want to extract data for a small subset of structures: the three known aspirin polymorphs and the two known :math:`Z^{\prime}=1` acridine polymorphs. By checking the file ``csd_refcode_families_unique_structures``, we can see three entries for aspirin (``ACSALA24``, ``ACSALA32`` and ``ACSALA35``) and 6 entries for acridine, with ``ACDRIN11`` and ``ACRDIN12`` being the :math:`Z^{\prime}=1` polymorphs. We modify the input file to extract data for this small set of structures. Please note that the ``data_prefix`` value must be the same as previously.
+	In the above input file, setting ``get_structure_data = true`` will extract data for all the unique structures identified in the previous step. In this example however, we want to extract data for a small subset of structures: the three known aspirin polymorphs and the two known :math:`Z^{\prime}=1` acridine polymorphs. By checking the file ``"data_prefix"_csd_refcode_families_unique_structures``, we can see three entries for aspirin (``ACSALA24``, ``ACSALA32`` and ``ACSALA35``) and 6 entries for acridine, with ``ACDRIN11`` and ``ACRDIN12`` being the :math:`Z^{\prime}=1` polymorphs. We modify the input file to extract data for this small set of structures. Please note that the ``data_prefix`` value must be the same as previously.
 	
 	.. code-block:: json
 
