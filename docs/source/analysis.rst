@@ -194,13 +194,16 @@ Key Descriptions
 
     - ``2D_scatter``
         A list of the requested 2D scatter plots to be generated. Each entry has the format ``[variable_1, variable_2, group_variable]``. The ``variable_1`` and ``variable_2`` and the two variables on the scatter. The 3rd entry (``group_variable``) declares the variable to group data and plot them separately based on the values of the group variable. Setting ``group_variable`` to ``null`` generates a single plot for the full set of selected data. The group variable can take different values depending on the nature of  ``variable_1`` and ``variable_2``.
-`Anaconda Distribution page <https://www.anaconda.com/products/distribution>`_
+
     - ``2D_scatter_marker``
         The marker for the data points (static images only). For the available options please refer to the `official matplotlib documentation <https://matplotlib.org/stable/api/markers_api.html>`_. 
-    - ``2D_scatter_facecolor"
+    
+    - ``2D_scatter_facecolor"``
         The marker face color for the data points (static images only). For the available options please refer to the `official matplotlib documentation <https://matplotlib.org/stable/gallery/color/named_colors.html>`_. 
-    - ``2D_scatter_edgecolor": "black"
+    
+    - ``2D_scatter_edgecolor``
         The marker edge color for the data points (static images only). For the available options please refer to the `official matplotlib documentation <https://matplotlib.org/stable/gallery/color/named_colors.html>`_. 
-    - ``2D_scatter_opacity": 
+    
+    - ``2D_scatter_opacity``
         The marker opacity for the data points (static images only). Can take a value in the range :math:`[0,1]`.
          
