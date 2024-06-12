@@ -212,7 +212,13 @@ Key Descriptions
 
 Extracting Data
 ---------------
-The data extraction process is initiated by executing the ``csd_data_extraction.py`` script. Depending on the parameters set (`get_refcode_families`, `cluster_refcode_families`, `get_unique_structures`), the script may first generate the respective JSON files. These operations are handled by functions within the ``csd_operations`` module. Once the initial tasks are completed, the script continues to extract data from the selected structures, which can be either CSD structures or ``*.cif`` files.
+The data extraction process is initiated by executing the python ``csd_data_extraction.py`` script as
+
+.. code-block:: text
+
+	python csd_data_extraction.py
+
+Depending on the parameters set (`get_refcode_families`, `cluster_refcode_families`, `get_unique_structures`), the script may first generate the respective JSON files. These operations are handled by functions within the ``csd_operations`` module. Once the initial tasks are completed, the script continues to extract data from the selected structures, which can be either CSD structures or ``*.cif`` files.
 
 Initialization
 ^^^^^^^^^^^^^^
