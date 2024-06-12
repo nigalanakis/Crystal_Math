@@ -218,7 +218,7 @@ The data extraction process is initiated by executing the python ``csd_data_extr
 
 	python csd_data_extraction.py
 
-Depending on the parameters set (`get_refcode_families`, `cluster_refcode_families`, `get_unique_structures`), the script may first generate the respective JSON files. These operations are handled by functions within the ``csd_operations`` module. Once the initial tasks are completed, the script continues to extract data from the selected structures, which can be either CSD structures or ``*.cif`` files. Depending on the selected functions, this process can take a few hours to complete. The first time the code is executed, it is necessary to set ``"get_refcode_families": true``, ``"cluster_refcode_families": true``, ``"get_unique_structures": true``, to generate the list of structures that will be available for subsequent analysis. Unless it is required to add more structures to the unique structures list, these steps can be performed only the first time running the code. 
+Depending on the parameters set (`get_refcode_families`, `cluster_refcode_families`, `get_unique_structures`), the script may first generate the respective JSON files. These operations are handled by functions within the ``csd_operations`` module. Once the initial tasks are completed, the script continues to extract data from the selected structures, which can be either CSD structures or ``*.cif`` files. Depending on the selected structure filters, this process can take a few hours to complete. Unless it is required to add more structures to the unique structures list, these steps can be performed only the first time running the code. 
 
 Initialization
 ^^^^^^^^^^^^^^
