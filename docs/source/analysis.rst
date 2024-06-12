@@ -395,3 +395,35 @@ Key Descriptions
         - ``cc_contact_atom_ref_bv_r``
         - ``cc_contact_atom_ref_bv_theta``
         - ``cc_contact_atom_ref_bv_phi``
+- ``path``
+    List of strings pointing to the location of the value for each variable within each structure dictionary.
+
+- ``position_symmetry``
+    The symmetry operations that are applied to get the complete set of values for a crystal. The first boolean declares if a rotation operation is applied to the variable and is ``true`` only for :math:`(x,y,z)` or :math:`(u,v,w)` related coordinates. The second boolean is ``true`` when translational symmetry is applied and the third is ``true`` for variables that are restricted within the limits of the unit cell (such as the fractional atomic coordinates). The fourth entry in the list, is an integer declaring the group ID for each variable. If set to ``-1`` the variable is not part of a group. If is set to ``0`` the variable is memebr of the structure geometry variables :math:`(a,b,c,\alpha,\beta,\gamma,\Omega)` that are required to apply coordinate transformations to any positional variable. If set to an integer :\math:`>0`, the variable is part of a specific group of connected positional variables, such as the coordinates of an atom. There are 24 groups of variables:
+
+    - ``1``. ``['cc_central_atom_x', 'cc_central_atom_y', 'cc_central_atom_z']``
+    - ``2``. ``['cc_central_atom_u', 'cc_central_atom_v', 'cc_central_atom_w']``
+    - ``3``. ``['cc_central_atom_bv_x', 'cc_central_atom_bv_y', 'cc_central_atom_bv_z']``
+    - ``4``. ``['cc_contact_atom_x', 'cc_contact_atom_y', 'cc_contact_atom_z']``
+    - ``5``. ``['cc_contact_atom_u', 'cc_contact_atom_v', 'cc_contact_atom_w']``
+    - ``6``. ``['cc_contact_atom_bv_x', 'cc_contact_atom_bv_y', 'cc_contact_atom_bv_z']``
+    - ``7``. ``['fragment_x', 'fragment_y', 'fragment_z']``
+    - ``8``. ``['fragment_u', 'fragment_v', 'fragment_w']``
+    - ``9``. ``['fragment_e1_x', 'fragment_e1_y', 'fragment_e1_z']``
+    - ``10``. ``['fragment_e1_u', 'fragment_e1_v', 'fragment_e1_w']``
+    - ``11``. ``['fragment_w11_u', 'fragment_w11_v', 'fragment_w11_w']``
+    - ``12``. ``['fragment_w12_u', 'fragment_w12_v', 'fragment_w12_w']``
+    - ``13``. ``['fragment_e2_x', 'fragment_e2_y', 'fragment_e2_z']``
+    - ``14``. ``['fragment_e2_u', 'fragment_e2_v', 'fragment_e2_w']``
+    - ``15``. ``['fragment_w21_u', 'fragment_w21_v', 'fragment_w21_w']``
+    - ``16``. ``['fragment_w22_u', 'fragment_w22_v', 'fragment_w22_w']``
+    - ``17``. ``['fragment_e3_x', 'fragment_e3_y', 'fragment_e3_z']``
+    - ``18``. ``['fragment_e3_u', 'fragment_e3_v', 'fragment_e3_w']``
+    - ``19``. ``['fragment_w31_u', 'fragment_w31_v', 'fragment_w31_w']``
+    - ``20``. ``['fragment_w32_u', 'fragment_w32_v', 'fragment_w32_w']``
+    - ``21``. ``['fragment_atom_x', 'fragment_atom_y', 'fragment_atom_z']``
+    - ``22``. ``['fragment_atom_u', 'fragment_atom_v', 'fragment_atom_w']``
+    - ``23``. ``['fragment_atom_bv_x', 'fragment_atom_bv_y', 'fragment_atom_bv_z']``
+    - ``24``. ``['fragment_atom_bv_u', 'fragment_atom_bv_v', 'fragment_atom_bv_w']``
+
+    In case a positional variable from the above lists is selected to be displayed in any 2D/3D scatter plot, the algorithm adds the values for all the variables in the same group as well as the variables in group ``0`` to the analysis data to be able to perform the necessary coordinate transformations. 
