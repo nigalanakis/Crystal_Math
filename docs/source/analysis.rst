@@ -189,6 +189,9 @@ Key Descriptions
     - ``interactive``
         Set to ``true`` to create interactive `*.html`` plots with the plotly package. (Currently this is the only option supported. Currently developing a routine to generate publication-ready ``*.png`` plots).
 
-    - "percentiles"
+    - ``percentiles``
         The options to calculate the kde density for the 2D and 3D scatter plots. The format for the values includes a list of integerss (of floats) representing the desired percentiles followed by 3 booleans. Each boolean activates the creation of the lowest percentine (in the example the 10%), the middle percentines (25%, 50%, 75%), and the top percentile (90%). For the interactive ``*.html``` plots, it is recommended to set all options to ``true`` as the interactive plots allow to toggle on/off the different percentiles. For static ``*.png`` images, the booleans should be adjusted to include the desired percentiles in the plots. 
+
+    - ``2D_scatter``
+        A list of the requested 2D scatter plots to be generated. Each entry has the format ``[variable_1, variable_2, group_variable]``. The ``variable_1`` and ``variable_2`` and the two variables on the scatter. The 3rd entry (``group_variable``) declares the variable to group data and plot them separately based on the values of the group variable. Setting ``group_variable`` to ``null`` generates a single plot for the full set of selected data. The group variable can take different values depending on the nature of  ``variable_1`` and ``variable_2``.
          
