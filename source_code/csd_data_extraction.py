@@ -6,7 +6,7 @@ from csd_operations import cluster_refcode_families
 from csd_operations import get_refcode_families
 from csd_operations import get_unique_structures
 from utilities import convert_seconds_to_hms
-from get_structure_data import get_structure_data, get_structure_filter_data
+from get_structure_data import get_structure_data, get_structure_filter_data, add_symmetric_positions
 
 def main(input_file):
     # Load execution parameters 
@@ -16,7 +16,7 @@ def main(input_file):
     # Get the refcode families
     if input_parameters["get_refcode_families"]:
         print('Getting the CSD refcode families and the structures in each family.')
-        get_refcode_families()
+        get_refcode_families(input_parameters)
         
     # Cluster refcode families based on structure similarity.
     if input_parameters["cluster_refcode_families"]:
@@ -37,7 +37,6 @@ def main(input_file):
     if input_parameters["get_structure_filter_data"]:
         print('Getting structure filter data.')
         get_structure_filter_data(input_parameters)
-    
 
 if __name__ == "__main__":
     input_file = "input_data_extraction.txt"

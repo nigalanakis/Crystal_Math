@@ -61,9 +61,9 @@ def get_structure_data(input_parameters):
     
     # Get the reference structures dictionary.
     if input_parameters["structure_list"][0] == "csd-all":
-        reference_structures_f  = '../csd_db_analysis/db_data/csd_refcode_families_clustered.json'
+        reference_structures_f  = '../csd_db_analysis/db_data/' + input_parameters["data_prefix"] + '_csd_refcode_families_clustered.json'
     elif input_parameters["structure_list"][0] == "csd-unique":
-        reference_structures_f  = '../csd_db_analysis/db_data/csd_refcode_families_unique_structures.json'
+        reference_structures_f  = '../csd_db_analysis/db_data/' + input_parameters["data_prefix"] + '_csd_refcode_families_unique_structures.json'
     elif input_parameters["structure_list"][0] == "cif":
         cif_files_f = '../source_data/cif_files/'
         reference_structures_f  = cif_files_f + 'cif_structures_list.json'
@@ -245,15 +245,11 @@ def get_structure_data(input_parameters):
             # Get the central and contact groups (fragments)
             central_group = [fragment for fragment in structure["fragments"] if contact.atoms[0].label in structure["fragments"][fragment]["atoms_labels"] if fragment[:3] != "FMC"]
             contact_group = [fragment for fragment in structure["fragments"] if contact.atoms[1].label in structure["fragments"][fragment]["atoms_labels"] if fragment[:3] != "FMC"]
-            for i in [0,1]: 
+            for i in [0, 1]: 
                 for fragment1 in central_group:
                     for fragment2 in contact_group:
-                        if i == 0:
-                            at1, at2 = 0, 1
-                            central_fragment, contact_fragment = fragment1, fragment2 
-                        else: 
-                            at1, at2 = 1, 0
-                            central_fragment, contact_fragment = fragment2, fragment1
+                        at1, at2 = 0, 1
+                        central_fragment, contact_fragment = fragment1, fragment2 
                             
                         # Get the bond vectors of the contact atoms to the central 
                         # fragment
@@ -417,12 +413,10 @@ def get_structure_data(input_parameters):
         structure_data = convert_to_json(structure_data)
         
         # Write data to file
-        structure_data_file = db_structures_folder + structure_crystal["str_id"] + ".json"
-        with open(structure_data_file,"w") as f:
-            f.write(structure_data)
-            
+        io_operations.write_structure_data_file(db_structures_folder,structure_crystal,structure_data)
+        
     return
-            
+    
 def get_structure_filter_data(input_parameters):
     """
     Creates a dictionary with structure information that can be used to rapidly 
@@ -442,7 +436,6 @@ def get_structure_filter_data(input_parameters):
     db_folder = "../csd_db_analysis/db_data/"
     prefix = input_parameters["data_prefix"] 
     db_structures_folder = db_folder + "_".join([prefix,"structures"]) + "/"
-    structures_filter_data_file = io_operations.check_for_file(db_folder, prefix + "_structures_filter_data.json")
     
     # Read the structures list 
     structures_list = os.listdir(db_structures_folder)
@@ -459,8 +452,6 @@ def get_structure_filter_data(input_parameters):
             
             fragments = []
             for fragment in structure_fragments:
-                if structure_fragments[fragment]["fragment"] == "component":
-                    continue
                 if structure_fragments[fragment]["fragment"] not in fragments:
                     fragments.append(structure_fragments[fragment]["fragment"])
                     
@@ -491,9 +482,11 @@ def get_structure_filter_data(input_parameters):
                 "contact_fragment_pairs": contact_fragment_pairs
                 }
         
+    # Convert data to json format
     structures_filter_data = convert_to_json(structures_filter_data)
-    structures_filter_data_file.write(structures_filter_data)
-    structures_filter_data_file.close()
+
+    # Write data to file
+    io_operations.write_structures_filter_data(input_parameters,structures_filter_data)
     
     return
         
