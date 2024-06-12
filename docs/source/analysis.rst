@@ -216,16 +216,160 @@ Key Descriptions
 List of available variables
 ---------------------------
 
-The available variables are included in the file ``variables.json`` located in the ``source_data`` folder. Each variable is described using a dictionary entry in the following format.
+The available variables are included in the file ``variables.json`` located in the ``source_data`` folder. Currently, the algorithm supports 127 different variables:
+
+- ``str_id``
+- ``space_group``
+- ``z_crystal``
+- ``z_prime``
+- ``formula``
+- ``species``
+- ``cell_length_a``
+- ``cell_length_b``
+- ``cell_length_c``
+- ``cell_length_a_sc``
+- ``cell_length_b_sc``
+- ``cell_length_c_sc``
+- ``cell_angle_alpha``
+- ``cell_angle_beta``
+- ``cell_angle_gamma``
+- ``cell_volume``
+- ``cell_density``
+- ``vdWFV``
+- ``SAS``
+- ``E_tot``
+- ``E_el``
+- ``E_vdW``
+- ``E_vdW_at``
+- ``E_vdW_rep``
+- ``E_hb``
+- ``E_hb_at``
+- ``E_hb_rep``
+- ``cc_length``
+- ``cc_type``
+- ``cc_is_in_los``
+- ``cc_central_atom_species``
+- ``cc_central_atom_fragment``
+- ``cc_central_atom_x``
+- ``cc_central_atom_y``
+- ``cc_central_atom_z``
+- ``cc_central_atom_u``
+- ``cc_central_atom_v``
+- ``cc_central_atom_w``
+- ``cc_central_atom_bv_x``
+- ``cc_central_atom_bv_y``
+- ``cc_central_atom_bv_z``
+- ``cc_central_atom_ref_bv_x``
+- ``cc_central_atom_ref_bv_y``
+- ``cc_central_atom_ref_bv_z``
+- ``cc_contact_atom_species``
+- ``cc_contact_atom_fragment``
+- ``cc_contact_atom_x``
+- ``cc_contact_atom_y``
+- ``cc_contact_atom_z``
+- ``cc_contact_atom_u``
+- ``cc_contact_atom_v``
+- ``cc_contact_atom_w``
+- ``cc_contact_atom_bv_x``
+- ``cc_contact_atom_bv_y``
+- ``cc_contact_atom_bv_z``
+- ``cc_contact_atom_ref_bv_x``
+- ``cc_contact_atom_ref_bv_y``
+- ``cc_contact_atom_ref_bv_z``
+- ``cc_contact_atom_ref_bv_r``
+- ``cc_contact_atom_ref_bv_theta``
+- ``cc_contact_atom_ref_bv_phi``
+- ``fragment``
+- ``fragment_x``
+- ``fragment_y``
+- ``fragment_z``
+- ``fragment_u``
+- ``fragment_v``
+- ``fragment_w``
+- ``fragment_e1_x``
+- ``fragment_e1_y``
+- ``fragment_e1_z``
+- ``fragment_e1_u``
+- ``fragment_e1_v``
+- ``fragment_e1_w``
+- ``fragment_w11_u``
+- ``fragment_w11_v``
+- ``fragment_w11_w``
+- ``fragment_w12_u``
+- ``fragment_w12_v``
+- ``fragment_w12_w``
+- ``fragment_w1_angle_1``
+- ``fragment_w1_angle_2``
+- ``fragment_e1_d_min``
+- ``fragment_e2_x``
+- ``fragment_e2_y``
+- ``fragment_e2_z``
+- ``fragment_e2_u``
+- ``fragment_e2_v``
+- ``fragment_e2_w``
+- ``fragment_w21_u``
+- ``fragment_w21_v``
+- ``fragment_w21_w``
+- ``fragment_w22_u``
+- ``fragment_w22_v``
+- ``fragment_w22_w``
+- ``fragment_w2_angle_1``
+- ``fragment_w2_angle_2``
+- ``fragment_e2_d_min``
+- ``fragment_e3_x``
+- ``fragment_e3_y``
+- ``fragment_e3_z``
+- ``fragment_e3_u``
+- ``fragment_e3_v``
+- ``fragment_e3_w``
+- ``fragment_w31_u``
+- ``fragment_w31_v``
+- ``fragment_w31_w``
+- ``fragment_w32_u``
+- ``fragment_w32_v``
+- ``fragment_w32_w``
+- ``fragment_w3_angle_1``
+- ``fragment_w3_angle_2``
+- ``fragment_e3_d_min``
+- ``fragment_atom_species``
+- ``fragment_atom_x``
+- ``fragment_atom_y``
+- ``fragment_atom_z``
+- ``fragment_atom_u``
+- ``fragment_atom_v``
+- ``fragment_atom_w``
+- ``fragment_atom_bv_x``
+- ``fragment_atom_bv_y``
+- ``fragment_atom_bv_z``
+- ``fragment_atom_bv_u``
+- ``fragment_atom_bv_v``
+- ``fragment_atom_bv_w``
+- ``fragment_atom_dzzp_min``
+    
+Details for each variable can be found in the `Data Extraction Procedure section <https://crystal-math.readthedocs.io/en/latest/procedure.html>`_. Each variable is described using a dictionary entry in the following format.
 
 .. code-block :: json
 
-    "str_id": {
-        "latex_name": "ID",
-        "html_name": "ID",
-        "family": "structure",
-    	"level": 1,
-    	"path": ["crystal","str_ID"],
-    	"position_symmetry": [false,false,false,-1]
+    "variable_name": {
+        "latex_name": string,
+        "html_name": string,
+        "family": string,
+    	"level": integer,
+    	"path": [list of strings],
+    	"position_symmetry": [boolean,boolean,boolean,integer]
       }
+
+
+Key Descriptions
+^^^^^^^^^^^^^^^^
+
+- ``variable_name``
+    The name of the variable. Currently 127 variables are supported.
+
+- ``latex_name``
+    The name of the variable in LaTeX format used to render static ``*.png`` images.
+
+- ``html_name``
+    The name of the variable in html format used to render interactive ``*.html`` plots.
+
         
