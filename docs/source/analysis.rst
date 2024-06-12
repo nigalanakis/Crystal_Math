@@ -427,3 +427,8 @@ Key Descriptions
     - ``24``. ``['fragment_atom_bv_u', 'fragment_atom_bv_v', 'fragment_atom_bv_w']``
 
     In case a positional variable from the above lists is selected to be displayed in any 2D/3D scatter plot, the algorithm adds the values for all the variables in the same group as well as the variables in group ``0`` to the analysis data to be able to perform the necessary coordinate transformations. 
+
+Example usage of the filters
+----------------------------
+
+The filters for the analysis are designed in a way to facilitate detailed analysis of any of the available variables in refined sets of data consistent with the needs of every user. The correct combination of the filters is crucial in order to analyze the correct set of data. Below we provide examples on how to use the filters in different scenarios:  
