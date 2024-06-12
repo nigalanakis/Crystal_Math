@@ -17,118 +17,105 @@ The configuration should be specified in JSON format as shown below:
 .. code-block:: json
 
     {
-     "plots_directory": "../csd_db_analysis/visualize/",
-     "data_directory": "../csd_db_analysis/db_data/",
-     "data_prefix": "example",
-     "figure_size": [5,3.75],
-     "data_filters": {
-         "space_group": {
-             "is_active": true,
-             "type": "single",
-             "values": ["P21/c","P21/n"],
-             "operator": "or",
-             "refine_data": false
-         }, 
-         "z_crystal": {
-             "is_active": true,
-             "type": "single",
-             "values": [4,8],
-             "operator": "or",
-             "refine_data": false
-         }, 
-         "z_prime": {
-             "is_active": true,
-             "type": "single",
-             "values": [1,2],
-             "operator": "or",
-             "refine_data": false
-         },
-         "species": {
-             "is_active": true,
-             "type": "multiple",
-             "values": ["C","H","O"],
-             "operator": "or",
-             "refine_data": false
-         },
-         "fragments": {
-             "is_active": true,
-             "type": "multiple",
-             "values": [
-                 "benzene",
-                 "carboxylic_acid",
-                 "ester_aromatic-aliphatic",
-                 "acridin"
-                 ],
-             "operator": "or",
-             "refine_data": true
-         },
-         "contact_pairs": {
-             "is_active": true,
-             "type": "multiple_lists",
-             "values": [
-                 ["H","O","hbond",true],
-                 // ...
-                 ]
-             "operator": "or",
-             "refine_data": true
-         },
-         "contact_central_fragments": {
-             "is_active": false,
-             "type": "multiple_lists",
-             "values": [
-                 ["carboxylic_acid","hbond",true],
-                 // ...
-                 ],
-             "operator": "and",
-             "refine_data": true
+         "plots_directory": "../csd_db_analysis/visualize/",
+         "data_directory": "../csd_db_analysis/db_data/",
+         "data_prefix": "homomolecular",
+         "folder": "contacts_carboxylic-acid_carboxylic-acid_OH_hb_Zprime_1",
+         "figure_size": [5,3.75],
+         "save_figs": false,
+         "data_filters": {
+             "space_group": {
+                 "is_active": false,
+                 "type": "single",
+                 "values": ["P21/c","P21/n"],
+                 "operator": "or",
+                 "refine_data": false
+             }, 
+             "z_crystal": {
+                 "is_active": false,
+                 "type": "single",
+                 "values": [4,8],
+                 "operator": "or",
+                 "refine_data": false
+             }, 
+             "z_prime": {
+                 "is_active": true,
+                 "type": "single",
+                 "values": [1],
+                 "operator": "or",
+                 "refine_data": false
              },
-         "contact_fragment_pairs": {
-             "is_active": true,
-             "type": "multiple_lists",
-             "values": [
-                ["carboxylic_acid","carboxylic_acid","hbond",true],
-                // ...
-                ],
-             "operator": "and",
-             "refine_data": true
+             "species": {
+                 "is_active": false,
+                 "type": "multiple",
+                 "values": ["C","H","N","O"],
+                 "operator": "or",
+                 "refine_data": false
+             },
+             "fragments": {
+                 "is_active": true,
+                 "type": "multiple",
+                 "values": [
+                     "carboxylic_acid",
+                     "benzene"
+                     ],
+                 "operator": "and",
+                 "refine_data": true
+             },
+             "contact_pairs": {
+                 "is_active": true,
+                 "type": "multiple_lists",
+                 "values": [
+                     ["O","H","hbond",true],
+                     ["H","C","hbond",true]
+                     ],
+                 "operator": "or",
+                 "refine_data": true
+             },
+             "contact_central_fragments": {
+                 "is_active": true,
+                 "type": "multiple_lists",
+                 "values": [
+                     ["carboxylic_acid","hbond",true]
+                     ],
+                 "operator": "or",
+                 "refine_data": true
+             },
+             "contact_fragment_pairs": {
+                 "is_active": true,
+                 "type": "multiple_lists",
+                 "values": [
+                     ["carboxylic_acid","carboxylic_acid","hbond",true]
+                     ],
+                 "operator": "and",
+                 "refine_data": true
              }
-     },
-     "plot_data_options": {
-        "individual_space_groups_plots": true,
-        "scatter": [
-            ["cell_length_a", "cell_length_b"], 
-            // ...
-            ],
-        "scatter_marker": "o",
-        "scatter_facecolor": "whitesmoke",
-        "scatter_edgecolor": "black",
-        "scatter_opacity": 1.0,
-        "scatter_lims": [
-            ["custom", "custom"], 
-            ["custom", "custom"]
-            ],
-        "3D_scatter": [
-            ["cell_length_a", "cell_length_b", "cell_length_c"],
-            // ...
-            ],
-        "3D_scatter_marker": "o",
-        "3D_scatter_facecolor": "whitesmoke",
-        "3D_scatter_edgecolor": "black",
-        "3D_scatter_opacity": 1.0,
-        "3D_scatter_lims": [
-            ["custom", "custom"], 
-            ["custom", "custom"], 
-            ["custom", "custom"]
-            ],
-        "histogram": [
-            ["cc_length", false],
-            // ...
-            ],
-        "histogram_lims": ["custom", "custom"],
-        "titles": false
-     },
-     "save_figs": false
-    }
+         },
+         "plot_data_options": {
+            "individual_space_groups_plots": true,
+            "interactive": true,
+            "percentiles": [[10,25,50,75,90],true,true,true],
+            "2D_scatter": [
+                "cell_length_b_sc","cell_length_c_sc",null],
+        		],
+            "2D_scatter_marker": "o",
+            "2D_scatter_facecolor": "whitesmoke",
+            "2D_scatter_edgecolor": "black",
+            "2D_scatter_opacity": 1.0,
+            "3D_scatter": [
+                ["cc_contact_atom_ref_bv_x","cc_contact_atom_ref_bv_y","cc_contact_atom_ref_bv_z",null]
+        ],
+    "3D_scatter_marker": "o",
+    "3D_scatter_facecolor": "whitesmoke",
+    "3D_scatter_edgecolor": "black",
+    "3D_scatter_opacity": 1.0,
+    "histogram": [
+        ["cc_length",null,false],
+        ],
+    "histogram_density": false,
+    "titles": false
+ }
+}
 
 
 Key Descriptions
