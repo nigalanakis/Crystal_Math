@@ -6,7 +6,7 @@ from csd_operations import cluster_refcode_families
 from csd_operations import get_refcode_families
 from csd_operations import get_unique_structures
 from utilities import convert_seconds_to_hms
-from get_structure_data import get_structure_data, get_structure_filter_data, add_symmetric_positions
+from get_structure_data import get_structure_data, get_structure_filter_data
 
 def main(input_file):
     # Load execution parameters 
