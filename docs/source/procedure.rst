@@ -78,7 +78,7 @@ The configuration should be specified in JSON format as shown below:
 	"get_unique_structures": false,
 	"get_structure_data": false,
 	"get_structure_filter_data": false,
-	"unique_structures_clustering_method": 'vdWFV',
+	"unique_structures_clustering_method": "vdWFV",
 	"structure_list": ["csd-unique", "all"],
 	"structures_to_exclude": ["BALDUP", "CEMVAS", "DAGRIN", "DAHKUV", "FADGEW", "HUPCUT", "JIKXOT", "LUQDAE", "PEVLOR", "TEVYAV", "VIRLOY", "ZEPDAZ04"],
 	"crystal_type": ["homomolecular"],
@@ -136,7 +136,8 @@ Key Descriptions
 	- ``[["ACSALA", [0,1,11]], ["ACRDIN","all"],...]`` In each sublist, the first entry is the RefCode family name, and the second can be a list of specific entries such as ``[0,1,11]`` or it can be set to ``"all"`` to search for all the entries for the specific RefCode family. In the case we require to analyze specific entries, the indices must match what is available in the database. In the ``"ACSALA"`` example, the indices ``[0,1,11]`` are valid when combined with the ``"csd-all"`` key. When searching for unique structures however, the only valid keys are ``[24,32,35]`` corresponding to the lowest energy structures for each of the three known polymorphs.
 
 - ``unique_structures_clustering_method``
-	Currently only ``"energy"`` is supported, which selects structures with the lowest intermolecular lattice energy.
+	- ``"energy"``: selects structures with the lowest intermolecular lattice energy.
+	- ``"vdWFV"``: selects structures with the lowest vdW free volume (highest packing coefficient).
 
 - ``target_species``
 	List of allowed atomic species. Structures not containing these are discarded.
