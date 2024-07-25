@@ -84,7 +84,6 @@ The configuration should be specified in JSON format as shown below:
 	"crystal_type": ["homomolecular"],
 	"target_species": ["C", "H", "N", "O", "F", "Cl", "Br", "I", "P", "S"],
 	"add_symmetric_positions": true,
-	"data_prefix": "homomolecular",
 	"target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],
 	"target_z_prime_values": [1, 2, 3, 4, 5],
 	"target_fragments": [],
@@ -100,8 +99,11 @@ The configuration should be specified in JSON format as shown below:
 Key Descriptions
 ^^^^^^^^^^^^^^^^
 
-- ``save_directory``
+- ``data_directory``
 	Specifies the directory where data will be saved. Using the default option is recommended.
+
+- ``data_prefix``
+	Defines the prefix for naming the extracted data files.
 
 - ``get_refcode_families``
 	When set to ``true``, extracts all refcode families from the CSD, saving the output as ``"data_prefix"_csd_refcode_families.json`` within the ``db_data`` directory.
@@ -132,9 +134,6 @@ Key Descriptions
 	or you can extract data from specific structures and/or specific compounds, by providing a list of the desired structures in the following format:
 	
 	- ``[["ACSALA", [0,1,11]], ["ACRDIN","all"],...]`` In each sublist, the first entry is the RefCode family name, and the second can be a list of specific entries such as ``[0,1,11]`` or it can be set to ``"all"`` to search for all the entries for the specific RefCode family. In the case we require to analyze specific entries, the indices must match what is available in the database. In the ``"ACSALA"`` example, the indices ``[0,1,11]`` are valid when combined with the ``"csd-all"`` key. When searching for unique structures however, the only valid keys are ``[24,32,35]`` corresponding to the lowest energy structures for each of the three known polymorphs.
-
-- ``data_prefix``
-	A prefix for the output files to help identify them.
 
 - ``unique_structures_clustering_method``
 	Currently only ``"energy"`` is supported, which selects structures with the lowest intermolecular lattice energy.
