@@ -159,7 +159,7 @@ def get_structure_data(input_parameters):
         cell_points = np.dot(cell_reference_points, structure["crystal"]["lattice_vectors"])
         
         # Loop over all fragments to calculate the fragment orientation
-        print('Analyzing structure ' + structure["crystal"]["ID"])
+        # print('Analyzing structure ' + structure["crystal"]["ID"])
         for fragment in structure["fragments"]:
             current_fragment = structure["fragments"][fragment]
             # Get the list of atoms that are used for the aligmnent

@@ -33,12 +33,12 @@ def structure_check(input_parameters,crystal,molecule):
     -------
     True if a structure is accepted, None otherwise.
     '''
-    # Discard structures with based on the Z prime value 
-    if crystal.z_prime not in input_parameters["target_z_prime_values"]:
+    # Discard structures with based on the Z prime value
+    if crystal.z_prime not in input_parameters['target_z_prime_values']:
         return None
 
     # Discard structures with unwanted space group 
-    if input_parameters["target_space_groups"] != [] and crystal.spacegroup_symbol not in input_parameters["target_space_groups"]:
+    if input_parameters['target_space_groups'] != [] and crystal.spacegroup_symbol not in input_parameters['target_space_groups']:
         return None
     
     # Assign unknow bond types, add missing hydrogens and assign 
@@ -68,40 +68,42 @@ def structure_check(input_parameters,crystal,molecule):
     # Discard structures based on the their type (homomolecular, co-crystals, hydrates)
     components = [c.formula for c in molecule.components]
     if all(item == components[0] for item in components):
-        crystal_type = "homomolecular"
+        crystal_type = 'homomolecular'
     else:
-        if "H2 O1" in components:
-            crystal_type = "hydrate"
+        if 'H2 O1' in components:
+            crystal_type = 'hydrate'
         else:
-            crystal_type = "co-crystal"
-    if crystal_type not in input_parameters["crystal_type"]:
+            crystal_type = 'co-crystal'    
+    if crystal_type not in input_parameters['crystal_type']:
         return None
     
     # Discard structures based on formal charge of molecules
     for component in molecule.components:
-        if component.formal_charge not in input_parameters["molecule_formal_charges"]:
+        if crystal_type == 'homomolecular' and component.formal_charge not in input_parameters['molecule_formal_charges']:
             return None
     
     # Discard structures with out-of-range molecular weight
     for component in molecule.components:
-        if component.molecular_weight > input_parameters["molecule_weight_limit"]:
+        if component.molecular_weight > input_parameters['molecule_weight_limit']:
             return None
 
     # Discard structures with unwanted atomic species
-    if input_parameters["target_species"] != []:
+    if input_parameters['target_species'] != []:
         for s in get_unique_species(crystal.formula):
-            if s not in input_parameters["target_species"]:
+            if s not in input_parameters['target_species']:
                 return None
                 
     return True
 
-def get_refcode_families():
+def get_refcode_families(input_parameters):
     '''
     Reads the CSD database and returns the refcode families and the structures
     for each family.
     
     Parameters
     ----------
+    input_parameters : dict
+        A dictionary with the user defined input parameters.
     
     Returns
     -------
@@ -117,7 +119,7 @@ def get_refcode_families():
    
     # Iterate through all entries in the CSD
     family_i = ''
-    for entry in reader:
+    for entry in reader: 
         family_j = entry.identifier[:6]
         if family_j != family_i:
             refcode_families[family_j] = [entry.identifier]
@@ -126,7 +128,7 @@ def get_refcode_families():
         family_i = family_j
         
     # Specify the filename you want to write to
-    filename = '../csd_db_analysis/db_data/csd_refcode_families.json'
+    filename = '../csd_db_analysis/db_data/' + input_parameters['data_prefix'] + '_csd_refcode_families.json'
     
     # Writing the dictionary to a file in JSON format
     with open(filename, 'w') as f:
@@ -153,10 +155,10 @@ def cluster_refcode_families(input_parameters):
         family grouped based on similarity.
     '''   
     # Open the refcode families file and read data.
-    refcode_families_f = '../csd_db_analysis/db_data/csd_refcode_families.json'
+    refcode_families_f = '../csd_db_analysis/db_data/' + input_parameters['data_prefix'] + '_csd_refcode_families.json'
     if not os.path.exists(refcode_families_f):
         # If the file does not exist, raise an exception
-        raise FileNotFoundError(f"The file {refcode_families_f} does not exist.")
+        raise FileNotFoundError(f'The file {refcode_families_f} does not exist.')
     else:
         # Set the checking similarity engine
         similarity_engine = PackingSimilarity()
@@ -174,7 +176,7 @@ def cluster_refcode_families(input_parameters):
         
         # Get families with more than one structure. For families with one
         # one structure, add structure to the unique structure lise.
-        csd_entries = io.EntryReader("CSD")
+        csd_entries = io.EntryReader('CSD')
         families_clustered = {}
         for family in refcode_families:
             if len(refcode_families[family]) > 1:
@@ -212,7 +214,7 @@ def cluster_refcode_families(input_parameters):
                 families_clustered[family] = [[refcode_families[family][0]]]
                 
     # Specify the filename for the clustered families
-    filename = '../csd_db_analysis/db_data/csd_refcode_families_clustered.json'
+    filename = '../csd_db_analysis/db_data/' + input_parameters['data_prefix'] + '_csd_refcode_families_clustered.json'
     
     # Writing the dictionary to a file in JSON format
     with open(filename, 'w') as f:
@@ -237,16 +239,15 @@ def get_unique_structures(input_parameters):
         A dictionaty with the unique polymorphs for each refcode family.
     '''
     # Set the unique structures clustering method
-    unique_structures_clustering_method = input_parameters["unique_structures_clustering_method"]
-    if unique_structures_clustering_method == "energy":
+    unique_structures_clustering_method = input_parameters['unique_structures_clustering_method']
+    if unique_structures_clustering_method == 'energy':
         visualhabit_settings = VisualHabit.Settings()
-        minimum_energy = np.inf
     
     # Open the refcode families clusters file and read data.
-    refcode_families_clusters_f  = '../csd_db_analysis/db_data/csd_refcode_families_clustered.json'
+    refcode_families_clusters_f  = '../csd_db_analysis/db_data/' + input_parameters['data_prefix'] + '_csd_refcode_families_clustered.json'
     if not os.path.exists(refcode_families_clusters_f ):
         # If the file does not exist, raise an exception
-        raise FileNotFoundError(f"The file {refcode_families_clusters_f} does not exist.")
+        raise FileNotFoundError(f'The file {refcode_families_clusters_f} does not exist.')
     else:
         # Get the families and member structures.
         with open(refcode_families_clusters_f) as f:
@@ -254,11 +255,9 @@ def get_unique_structures(input_parameters):
         families_clustered = ast.literal_eval(data)
         
         # Loop over refcode family clusters.
-        csd_entries = io.EntryReader("CSD")
+        csd_entries = io.EntryReader('CSD')
         unique_structures = {}
         for family in families_clustered:
-            print(family)
-            
             # Loop over the numbe rof polymorphs 
             unique_structures[family] = []
             n_polymorphs = len(families_clustered[family])
@@ -268,33 +267,44 @@ def get_unique_structures(input_parameters):
                 # If the polymorph has only one structure deposited, add 
                 # structure to the dictionary. Else, cluster similar structures.
                 if n_similar_structures == 1:
-                    if families_clustered[family][i][0] in input_parameters["structures_to_exclude"]:
+                    if families_clustered[family][i][0] in input_parameters['structures_to_exclude']:
                         continue
                     unique_structures[family].append(families_clustered[family][i][0])
                 else:
-                    min_energy_structure = ""
+                    # Set the minimum value for the ranking
+                    minimum_value = np.inf
+                    minimum_value_structure = ''
                     for structure in families_clustered[family][i]:
-                        if structure in input_parameters["structures_to_exclude"]:
+                        if structure in input_parameters['structures_to_exclude']:
                             continue 
                         
                         entry = csd_entries.entry(structure)
                         crystal = entry.crystal
                         
-                        if unique_structures_clustering_method == "energy":
+                        if unique_structures_clustering_method == 'energy':
                             try:
                                 results = VisualHabit(settings=visualhabit_settings).calculate(crystal)
                             except Exception:
                                 continue 
                             lattice_energy = results.lattice_energy.total
                                                         
-                            if lattice_energy < minimum_energy:
-                                min_energy_structure = structure
-                    if min_energy_structure != "": 
-                        unique_structures[family].append(min_energy_structure)
+                            if lattice_energy < minimum_value:
+                                minimum_value = lattice_energy
+                                minimum_value_structure = structure
+                        
+                        if unique_structures_clustering_method == 'vdWFV':
+                            vdWFV = 1.0 - crystal.packing_coefficient
+                            
+                            if vdWFV < minimum_value:
+                                minimum_value = vdWFV
+                                minimum_value_structure = structure
+                                
+                    if minimum_value_structure != '': 
+                        unique_structures[family].append(minimum_value_structure)
             unique_structures[family] = sorted(unique_structures[family])
             
     # Specify the filename for the clustered families
-    filename = '../csd_db_analysis/db_data/csd_refcode_families_unique_structures.json'
+    filename = '../csd_db_analysis/db_data/' + input_parameters['data_prefix'] + '_csd_refcode_families_unique_structures.json'
     
     # Writing the dictionary to a file in JSON format
     with open(filename, 'w') as f:
@@ -307,10 +317,10 @@ def check_for_target_fragments(input_parameters,molecule):
 
     # Check for target fragments
     for fragment in fragment_list:
-        if fragment not in input_parameters["target_fragments"]:
+        if fragment not in input_parameters['target_fragments']:
             continue
 
-        csd_fragment = ccdc.search.SMARTSSubstructure(fragment_list[fragment]["smarts"])
+        csd_fragment = ccdc.search.SMARTSSubstructure(fragment_list[fragment]['smarts'])
         fragmentSearch = ccdc.search.SubstructureSearch()
         fragmentID = fragmentSearch.add_substructure(csd_fragment)
         hits = fragmentSearch.search(molecule)
@@ -321,7 +331,7 @@ def check_for_target_fragments(input_parameters,molecule):
     return True
         
 def get_csd_atom_and_molecule_properties(crystal,molecule,atoms):
-    """ 
+    ''' 
     Extracts and returns the atomic and  molecular properties for a CSD entry. 
     
     Parameters
@@ -339,27 +349,27 @@ def get_csd_atom_and_molecule_properties(crystal,molecule,atoms):
         A dictionary with the atomic properties.
     molecule_properties : dict
         A dictionary with the molecular properties.
-    """
+    '''
     structure_molecule = {}
-    structure_molecule["atoms_charge"] = np.array([at.partial_charge for at in atoms])
-    structure_molecule["atoms_labels"] = [at.label for at in atoms]
-    structure_molecule["atoms_mass"] = np.round(np.array([at.atomic_weight for at in atoms]),4)
-    structure_molecule["atoms_species"] = [at.atomic_symbol for at in atoms]
-    structure_molecule["atoms_vdW_radius"] = np.round(np.array([at.vdw_radius for at in atoms]),4)
-    structure_molecule["atoms_coordinates_f"] = np.round(np.array([[at.fractional_coordinates[i] for i in [0,1,2]] for at in atoms]),4)
-    structure_molecule["atoms_coordinates_c"] = np.round(np.array([[at.coordinates[i] for i in [0,1,2]] for at in atoms]),4)
-    structure_molecule["n_atoms"] = len(atoms)
-    structure_molecule["coordinates_f"] = np.round(np.sum(structure_molecule["atoms_mass"].reshape(structure_molecule["n_atoms"],1) * structure_molecule["atoms_coordinates_f"],axis=0) / np.sum(structure_molecule["atoms_mass"]),4)
-    structure_molecule["coordinates_c"] = np.round(np.sum(structure_molecule["atoms_mass"].reshape(structure_molecule["n_atoms"],1) * structure_molecule["atoms_coordinates_c"],axis=0) / np.sum(structure_molecule["atoms_mass"]),4)
-    structure_molecule["volume"] = np.round(molecule.molecular_volume,4)
-    structure_molecule["atoms_bond_vectors_f"] = np.round(structure_molecule["atoms_coordinates_f"] - structure_molecule["coordinates_f"],4)
-    structure_molecule["atoms_bond_vectors_c"] = np.round(structure_molecule["atoms_coordinates_c"] - structure_molecule["coordinates_c"],4)
-    structure_molecule["bonds"] = [[bond.atoms[0].label, bond.atoms[1].label] for bond in molecule.bonds]
+    structure_molecule['atoms_charge'] = np.array([at.partial_charge for at in atoms])
+    structure_molecule['atoms_labels'] = [at.label for at in atoms]
+    structure_molecule['atoms_mass'] = np.round(np.array([at.atomic_weight for at in atoms]),4)
+    structure_molecule['atoms_species'] = [at.atomic_symbol for at in atoms]
+    structure_molecule['atoms_vdW_radius'] = np.round(np.array([at.vdw_radius for at in atoms]),4)
+    structure_molecule['atoms_coordinates_f'] = np.round(np.array([[at.fractional_coordinates[i] for i in [0,1,2]] for at in atoms]),4)
+    structure_molecule['atoms_coordinates_c'] = np.round(np.array([[at.coordinates[i] for i in [0,1,2]] for at in atoms]),4)
+    structure_molecule['n_atoms'] = len(atoms)
+    structure_molecule['coordinates_f'] = np.round(np.sum(structure_molecule['atoms_mass'].reshape(structure_molecule['n_atoms'],1) * structure_molecule['atoms_coordinates_f'],axis=0) / np.sum(structure_molecule['atoms_mass']),4)
+    structure_molecule['coordinates_c'] = np.round(np.sum(structure_molecule['atoms_mass'].reshape(structure_molecule['n_atoms'],1) * structure_molecule['atoms_coordinates_c'],axis=0) / np.sum(structure_molecule['atoms_mass']),4)
+    structure_molecule['volume'] = np.round(molecule.molecular_volume,4)
+    structure_molecule['atoms_bond_vectors_f'] = np.round(structure_molecule['atoms_coordinates_f'] - structure_molecule['coordinates_f'],4)
+    structure_molecule['atoms_bond_vectors_c'] = np.round(structure_molecule['atoms_coordinates_c'] - structure_molecule['coordinates_c'],4)
+    structure_molecule['bonds'] = [[bond.atoms[0].label, bond.atoms[1].label] for bond in molecule.bonds]
     
     return structure_molecule
 
 def get_csd_crystal_properties(crystal):
-    """ 
+    ''' 
     Extracts and returns the crystal properties for a CSD entry. 
     
     Parameters
@@ -371,10 +381,10 @@ def get_csd_crystal_properties(crystal):
     -------
     crystal_properties : dict 
         A dictionary with the crystal properties.
-    """
+    '''
     # Set the engine for energy calculation 
     visualhabit_settings = VisualHabit.Settings()
-    visualhabit_settings.potential = "gavezzotti"
+    visualhabit_settings.potential = 'gavezzotti'
     try:
         energy = VisualHabit(settings=visualhabit_settings).calculate(crystal)
     except Exception:
@@ -383,48 +393,48 @@ def get_csd_crystal_properties(crystal):
         lattice_energy = energy.lattice_energy
     
     crystal_properties = {}
-    crystal_properties["ID"] = crystal.identifier
-    crystal_properties["formula"] = crystal.formula
-    crystal_properties["species"] = get_unique_species(crystal.formula)
-    crystal_properties["space_group"] = crystal.spacegroup_symbol
-    crystal_properties["z_crystal"] = crystal.z_value
-    crystal_properties["z_prime"] = crystal.z_prime 
-    crystal_properties["cell_lengths"] = np.round(np.array([l for l in crystal.cell_lengths]),4)
-    crystal_properties["scaled_cell_lengths"] = np.round(np.array([l for l in crystal.cell_lengths])/crystal.cell_lengths[0],4)
-    crystal_properties["cell_angles"] = np.round(np.array([l for l in crystal.cell_angles]),2)
-    crystal_properties["cell_volume"] = np.round(crystal.cell_volume,4) 
-    crystal_properties["cell_density"] = np.round(crystal.calculated_density,4)
-    crystal_properties["vdWFV"] = np.round(1.0 - crystal.packing_coefficient,4)
-    crystal_properties["SAS"] = np.round(crystal.void_volume(probe_radius=1.2,grid_spacing=0.2,mode='accessible'),4)
-    crystal_properties["lattice_vectors"] = np.round(get_lattice_vectors(crystal_properties["cell_lengths"],crystal_properties["cell_angles"],crystal_properties["cell_volume"]),4)
-    crystal_properties["inverse_lattice_vectors"] = np.round(get_lattice_vectors(crystal_properties["cell_lengths"],crystal_properties["cell_angles"],crystal_properties["cell_volume"],inverse=True),4)
-    crystal_properties["close_contacts"] = crystal.contacts(intermolecular='Intermolecular',distance_range=(-3.0, 0.60)) 
-    crystal_properties["hbonds"] = crystal.hbonds(intermolecular='Intermolecular')
+    crystal_properties['ID'] = crystal.identifier
+    crystal_properties['formula'] = crystal.formula
+    crystal_properties['species'] = get_unique_species(crystal.formula)
+    crystal_properties['space_group'] = crystal.spacegroup_symbol
+    crystal_properties['z_crystal'] = crystal.z_value
+    crystal_properties['z_prime'] = crystal.z_prime 
+    crystal_properties['cell_lengths'] = np.round(np.array([l for l in crystal.cell_lengths]),4)
+    crystal_properties['scaled_cell_lengths'] = np.round(np.array([l for l in crystal.cell_lengths])/crystal.cell_lengths[0],4)
+    crystal_properties['cell_angles'] = np.round(np.array([l for l in crystal.cell_angles]),2)
+    crystal_properties['cell_volume'] = np.round(crystal.cell_volume,4) 
+    crystal_properties['cell_density'] = np.round(crystal.calculated_density,4)
+    crystal_properties['vdWFV'] = np.round(1.0 - crystal.packing_coefficient,4)
+    crystal_properties['SAS'] = np.round(crystal.void_volume(probe_radius=1.2,grid_spacing=0.2,mode='accessible'),4)
+    crystal_properties['lattice_vectors'] = np.round(get_lattice_vectors(crystal_properties['cell_lengths'],crystal_properties['cell_angles'],crystal_properties['cell_volume']),4)
+    crystal_properties['inverse_lattice_vectors'] = np.round(get_lattice_vectors(crystal_properties['cell_lengths'],crystal_properties['cell_angles'],crystal_properties['cell_volume'],inverse=True),4)
+    crystal_properties['close_contacts'] = crystal.contacts(intermolecular='Intermolecular',distance_range=(-3.0, 0.50)) 
+    crystal_properties['hbonds'] = crystal.hbonds(intermolecular='Intermolecular')
     if energy != None:
-        crystal_properties["lattice_energy"] = {
-            "total": np.round(lattice_energy.total,4), 
-            "electrostatic": np.round(lattice_energy.electrostatic,4),
-            "vdW": np.round(lattice_energy.vdw,4),
-            "vdW_attraction": np.round(lattice_energy.vdw_attraction,4),
-            "vdW_repulsion": np.round(lattice_energy.vdw_repulsion,4),
-            "h-bond": np.round(lattice_energy.h_bond,4),
-            "h-bond_attraction": np.round(lattice_energy.h_bond_attraction,4),
-            "h-bond_repulsion": np.round(lattice_energy.h_bond_repulsion,4)
+        crystal_properties['lattice_energy'] = {
+            'total': np.round(lattice_energy.total,4), 
+            'electrostatic': np.round(lattice_energy.electrostatic,4),
+            'vdW': np.round(lattice_energy.vdw,4),
+            'vdW_attraction': np.round(lattice_energy.vdw_attraction,4),
+            'vdW_repulsion': np.round(lattice_energy.vdw_repulsion,4),
+            'h-bond': np.round(lattice_energy.h_bond,4),
+            'h-bond_attraction': np.round(lattice_energy.h_bond_attraction,4),
+            'h-bond_repulsion': np.round(lattice_energy.h_bond_repulsion,4)
             }
     else:
-        crystal_properties["lattice_energy"] = {
-            "total": 0.0, 
-            "electrostatic": 0.0,
-            "vdW": 0.0,
-            "vdW_attraction": 0.0,
-            "vdW_repulsion": 0.0,
-            "h-bond": 0.0,
-            "h-bond_attraction": 0.0,
-            "h-bond_repulsion": 0.0}
+        crystal_properties['lattice_energy'] = {
+            'total': 0.0, 
+            'electrostatic': 0.0,
+            'vdW': 0.0,
+            'vdW_attraction': 0.0,
+            'vdW_repulsion': 0.0,
+            'h-bond': 0.0,
+            'h-bond_attraction': 0.0,
+            'h-bond_repulsion': 0.0}
     return crystal_properties
 
 def get_csd_structure_fragments(input_parameters,structure,molecule):
-    """ 
+    ''' 
     Identify and returns the fragments in a molecule 
     
     Parameters
@@ -440,7 +450,7 @@ def get_csd_structure_fragments(input_parameters,structure,molecule):
     -------
     str_fragments : dict
         A dictionary with the identified fragments in the molecule
-    """
+    '''
     # Update the reference fragment list 
     fragment_list = create_reference_fragments()
     
@@ -448,35 +458,35 @@ def get_csd_structure_fragments(input_parameters,structure,molecule):
     fragments = {}
     i_hit = 0
     for fragment in fragment_list:
-        csd_fragment = ccdc.search.SMARTSSubstructure(fragment_list[fragment]["smarts"])
+        csd_fragment = ccdc.search.SMARTSSubstructure(fragment_list[fragment]['smarts'])
         fragmentSearch = ccdc.search.SubstructureSearch()
         fragmentID = fragmentSearch.add_substructure(csd_fragment)
         hits = fragmentSearch.search(molecule)
         for hit in hits:
             i_hit += 1
-            key = "F" + str(i_hit).zfill(2) + "." + fragment
+            key = 'F' + str(i_hit).zfill(2) + '.' + fragment
             hit_atoms = []
             hit_atoms_species = []
             hit_atoms_labels = []
             for at in hit.match_atoms():
-                hit_atoms.append(structure["molecule"]["atoms_labels"].index(at.label))
+                hit_atoms.append(structure['molecule']['atoms_labels'].index(at.label))
                 hit_atoms_species.append(at.atomic_symbol)
                 hit_atoms_labels.append(at.label)
             fragments[key] = {}
-            fragments[key]["smarts"] = fragment_list[fragment]["smarts"]
-            fragments[key]["atoms"] = hit_atoms
-            fragments[key]["atoms_species"] = hit_atoms_species
-            fragments[key]["atoms_labels"] = hit_atoms_labels
-            fragments[key]["atoms_mass"] = np.round(np.array(fragment_list[fragment]["mass"]),4)
-            fragments[key]["n_atoms"] = len(fragments[key]["atoms"])
-            fragments[key]["atoms_coordinates_c"] = np.round(np.array(structure["molecule"]["atoms_coordinates_c"][hit_atoms]),4)
-            fragments[key]["atoms_coordinates_f"] = np.round(np.array(structure["molecule"]["atoms_coordinates_f"][hit_atoms]),4)
-            fragments[key]["atoms_coordinates_sf"] = np.round(np.array(fragment_list[fragment]["coordinates_sf"]),4)
-            fragments[key]["atoms_to_align"] = fragment_list[fragment]["atoms_to_align"]
-            fragments[key]["coordinates_c"] = np.round(np.sum(fragments[key]["atoms_mass"].reshape(fragments[key]["n_atoms"],1) * fragments[key]["atoms_coordinates_c"],axis=0) / np.sum(fragments[key]["atoms_mass"]),4)
-            fragments[key]["coordinates_f"] = np.round(np.sum(fragments[key]["atoms_mass"].reshape(fragments[key]["n_atoms"],1) * fragments[key]["atoms_coordinates_f"],axis=0) / np.sum(fragments[key]["atoms_mass"]),4)
-            fragments[key]["atoms_bond_vectors_c"] = np.round(fragments[key]["atoms_coordinates_c"] - fragments[key]["coordinates_c"],4)
-            fragments[key]["atoms_bond_vectors_f"] = np.round(fragments[key]["atoms_coordinates_f"] - fragments[key]["coordinates_f"],4)
+            fragments[key]['smarts'] = fragment_list[fragment]['smarts']
+            fragments[key]['atoms'] = hit_atoms
+            fragments[key]['atoms_species'] = hit_atoms_species
+            fragments[key]['atoms_labels'] = hit_atoms_labels
+            fragments[key]['atoms_mass'] = np.round(np.array(fragment_list[fragment]['mass']),4)
+            fragments[key]['n_atoms'] = len(fragments[key]['atoms'])
+            fragments[key]['atoms_coordinates_c'] = np.round(np.array(structure['molecule']['atoms_coordinates_c'][hit_atoms]),4)
+            fragments[key]['atoms_coordinates_f'] = np.round(np.array(structure['molecule']['atoms_coordinates_f'][hit_atoms]),4)
+            fragments[key]['atoms_coordinates_sf'] = np.round(np.array(fragment_list[fragment]['coordinates_sf']),4)
+            fragments[key]['atoms_to_align'] = fragment_list[fragment]['atoms_to_align']
+            fragments[key]['coordinates_c'] = np.round(np.sum(fragments[key]['atoms_mass'].reshape(fragments[key]['n_atoms'],1) * fragments[key]['atoms_coordinates_c'],axis=0) / np.sum(fragments[key]['atoms_mass']),4)
+            fragments[key]['coordinates_f'] = np.round(np.sum(fragments[key]['atoms_mass'].reshape(fragments[key]['n_atoms'],1) * fragments[key]['atoms_coordinates_f'],axis=0) / np.sum(fragments[key]['atoms_mass']),4)
+            fragments[key]['atoms_bond_vectors_c'] = np.round(fragments[key]['atoms_coordinates_c'] - fragments[key]['coordinates_c'],4)
+            fragments[key]['atoms_bond_vectors_f'] = np.round(fragments[key]['atoms_coordinates_f'] - fragments[key]['coordinates_f'],4)
             
     # Remove subsets (sub-fragments)
     entries_to_remove = set()
@@ -485,7 +495,7 @@ def get_csd_structure_fragments(input_parameters,structure,molecule):
     for key1 in fragments:
         for key2 in fragments:
             if key1 != key2 and key1 not in entries_to_remove and key2 not in entries_to_remove:
-                if fragments[key1]["smarts"] == fragments[key2]["smarts"]:
+                if fragments[key1]['smarts'] == fragments[key2]['smarts']:
                     continue
                 
                 atoms1 = set(fragments[key1]['atoms_labels'])
@@ -504,32 +514,32 @@ def get_csd_structure_fragments(input_parameters,structure,molecule):
     # Add a fragment number ID
     str_fragments = {}
     for i, key in enumerate(fragments):
-        new_key = "F" + str(i + 1).zfill(2) + "." + key[4:]
+        new_key = 'F' + str(i + 1).zfill(2) + '.' + key[4:]
         str_fragments[new_key] = fragments[key]
         
     # Add fragments for full components 
-    if input_parameters["add_full_component"]:
+    if input_parameters['add_full_component']:
         for i, component in enumerate(molecule.components):
-            key = "FMC.component_" + str(i + 1)
+            key = 'FMC.component_' + str(i + 1)
             str_fragments[key] = {}
-            str_fragments[key]["atoms_labels"] =  [at.label for at in component.atoms]
-            str_fragments[key]["atoms"] = [structure["molecule"]["atoms_labels"].index(at.label) for at in component.atoms]
-            str_fragments[key]["atoms_species"] = [at.atomic_symbol for at in component.atoms]
-            str_fragments[key]["atoms_mass"] = np.round(np.array([at.atomic_weight for at in component.atoms]),4)
-            str_fragments[key]["n_atoms"] = len(component.atoms)
-            str_fragments[key]["atoms_coordinates_c"] = np.round(np.array([at.coordinates for at in component.atoms]),4)
-            str_fragments[key]["atoms_coordinates_f"] = np.round(np.array([at.fractional_coordinates for at in component.atoms]),4)
-            str_fragments[key]["atoms_to_align"] = "all"
-            str_fragments[key]["coordinates_c"] = np.round(np.sum(str_fragments[key]["atoms_mass"].reshape(str_fragments[key]["n_atoms"],1) * str_fragments[key]["atoms_coordinates_c"],axis=0) / np.sum(str_fragments[key]["atoms_mass"]),4)
-            str_fragments[key]["coordinates_f"] = np.round(np.sum(str_fragments[key]["atoms_mass"].reshape(str_fragments[key]["n_atoms"],1) * str_fragments[key]["atoms_coordinates_f"],axis=0) / np.sum(str_fragments[key]["atoms_mass"]),4)
-            str_fragments[key]["atoms_bond_vectors_c"] = np.round(str_fragments[key]["atoms_coordinates_c"] - str_fragments[key]["coordinates_c"],4)
-            str_fragments[key]["atoms_bond_vectors_f"] = np.round(str_fragments[key]["atoms_coordinates_c"] - str_fragments[key]["coordinates_c"],4)
+            str_fragments[key]['atoms_labels'] =  [at.label for at in component.atoms]
+            str_fragments[key]['atoms'] = [structure['molecule']['atoms_labels'].index(at.label) for at in component.atoms]
+            str_fragments[key]['atoms_species'] = [at.atomic_symbol for at in component.atoms]
+            str_fragments[key]['atoms_mass'] = np.round(np.array([at.atomic_weight for at in component.atoms]),4)
+            str_fragments[key]['n_atoms'] = len(component.atoms)
+            str_fragments[key]['atoms_coordinates_c'] = np.round(np.array([at.coordinates for at in component.atoms]),4)
+            str_fragments[key]['atoms_coordinates_f'] = np.round(np.array([at.fractional_coordinates for at in component.atoms]),4)
+            str_fragments[key]['atoms_to_align'] = 'all'
+            str_fragments[key]['coordinates_c'] = np.round(np.sum(str_fragments[key]['atoms_mass'].reshape(str_fragments[key]['n_atoms'],1) * str_fragments[key]['atoms_coordinates_c'],axis=0) / np.sum(str_fragments[key]['atoms_mass']),4)
+            str_fragments[key]['coordinates_f'] = np.round(np.sum(str_fragments[key]['atoms_mass'].reshape(str_fragments[key]['n_atoms'],1) * str_fragments[key]['atoms_coordinates_f'],axis=0) / np.sum(str_fragments[key]['atoms_mass']),4)
+            str_fragments[key]['atoms_bond_vectors_c'] = np.round(str_fragments[key]['atoms_coordinates_c'] - str_fragments[key]['coordinates_c'],4)
+            str_fragments[key]['atoms_bond_vectors_f'] = np.round(str_fragments[key]['atoms_coordinates_c'] - str_fragments[key]['coordinates_c'],4)
             
             # Set the rotation of the full component
-            inertia_eigenvalues, inertia_eigenvectors = calculate_inertia(str_fragments[key]["atoms_mass"],str_fragments[key]["atoms_bond_vectors_c"])                
+            inertia_eigenvalues, inertia_eigenvectors = calculate_inertia(str_fragments[key]['atoms_mass'],str_fragments[key]['atoms_bond_vectors_c'])                
             inertia_eigenvalues, inertia_eigenvectors = sort_eigenvectors(inertia_eigenvalues,inertia_eigenvectors)
             inertia_eigenvectors = ensure_right_handed_coordinate_system(inertia_eigenvectors)
             
-            str_fragments[key]["atoms_coordinates_sf"]  = np.round(np.round(np.matmul(str_fragments[key]["atoms_bond_vectors_c"],inertia_eigenvectors), decimals=4),4)
+            str_fragments[key]['atoms_coordinates_sf']  = np.round(np.round(np.matmul(str_fragments[key]['atoms_bond_vectors_c'],inertia_eigenvectors), decimals=4),4)
             
     return str_fragments

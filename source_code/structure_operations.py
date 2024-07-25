@@ -1,6 +1,7 @@
 import networkx as nx 
 import numpy as np
 import re 
+from collections import defaultdict
 
 def get_unique_species(molecule):
     """
@@ -28,6 +29,44 @@ def get_unique_species(molecule):
     
     return unique_species
 
+def get_atoms_from_formula(formula):
+    '''
+    Reads the atomic formula and returns the number of atoms for each species 
+
+    Parameters
+    ----------
+    formula : str
+        The molecular formula.
+
+    Returns
+    -------
+    species_counts : dict
+        A dictionary with the count for each species.
+    n_atoms : int
+        The total number of atoms in the molecule.
+    '''
+    # This regular expression will match speciess and their counts
+    species_regex = r'([A-Z][a-z]?)(\d*)'
+
+    # Use defaultdict to handle speciess with no specified count (count of 1)
+    species_counts = defaultdict(int)
+    n_atoms = 0
+    n_heavy_atoms = 0
+
+    # Find all matches of the species regex in the formula
+    for species, count in re.findall(species_regex, formula):
+        # If count is empty, it means the species count is 1
+        species_count = int(count) if count else 1
+        # Add the count to the species in the dictionary
+        species_counts[species] += species_count
+        # Add the count to the total number of atoms
+        n_atoms += species_count
+        # Add the count to the total number of heavy atoms
+        if species != 'H':
+            n_heavy_atoms += species_count
+
+    return dict(species_counts), n_atoms, n_heavy_atoms
+    
 def similarity_check(structures,similarity_engine):
     '''
     Performs a similarity check between a group of structures
