@@ -78,7 +78,7 @@ The configuration should be specified in JSON format as shown below:
 	"get_unique_structures": false,
 	"get_structure_data": false,
 	"get_structure_filter_data": false,
-	"unique_structures_clustering_method"
+	"unique_structures_clustering_method": 'vdWFV',
 	"structure_list": ["csd-unique", "all"],
 	"structures_to_exclude": ["BALDUP", "CEMVAS", "DAGRIN", "DAHKUV", "FADGEW", "HUPCUT", "JIKXOT", "LUQDAE", "PEVLOR", "TEVYAV", "VIRLOY", "ZEPDAZ04"],
 	"crystal_type": ["homomolecular"],
