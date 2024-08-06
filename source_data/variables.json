@@ -1,0 +1,891 @@
+{
+  "str_id": {
+    "latex_name": "ID",
+    "html_name": "ID",
+    "family": "structure",
+	"path": ["crystal","str_id"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "space_group": {
+	"latex_name": "Space Group",
+	"html_name": "Space Group",
+    "family": "structure",
+	"path": ["crystal","space_group"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "z_crystal": {
+	"latex_name": "$Z$",
+  	"html_name": "<i>Z</i>",
+    "family": "structure",
+	"path": ["crystal","z_crystal"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "z_prime": {
+	"latex_name": "$Z^{\\prime}$",
+	"html_name": "<i>Z</i>",
+    "family": "structure",
+	"path": ["crystal","z_prime"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "formula": {
+	"latex_name": "Formula",
+	"html_name": "Formula",
+    "family": "structure",
+	"path": ["crystal","formula"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "species": {
+	"latex_name": "Species",
+  	"html_name": "Species",
+    "family": "structure",
+	"path": ["crystal","species"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cell_length_a": {
+	"latex_name": "$a$ (\\AA)",
+	"html_name": "<i>a</i> (Ang.)",
+    "family": "structure",
+	"path": ["crystal","cell_lengths",0],
+	"position_symmetry": [false,false,false,0]
+  },
+  "cell_length_b": {
+	"latex_name": "$b$ (\\AA)",
+	"html_name": "<i>b</i> (Ang.)",
+    "family": "structure",
+	"path": ["crystal","cell_lengths",1],
+	"position_symmetry": [false,false,false,0]
+  },
+  "cell_length_c": {
+	"latex_name": "$c$ (\\AA)",
+	"html_name": "<i>c</i> (Ang.)",
+    "family": "structure",
+	"path": ["crystal","cell_lengths",2],
+	"position_symmetry": [false,false,false,0]
+  },
+  "cell_length_a_sc": {
+	"latex_name": "$a_{\\mathrm{sc}}$",
+	"html_name": "<i>a</i><sub>sc</sub>",
+    "family": "structure",
+	"path": ["crystal","scaled_cell_lengths",0],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cell_length_b_sc": {
+	"latex_name": "$b_{\\mathrm{sc}}$",
+	"html_name": "<i>b</i><sub>sc</sub>",
+    "family": "structure",
+	"path": ["crystal","scaled_cell_lengths",1],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cell_length_c_sc": {
+	"latex_name": "$c_{\\mathrm{sc}}$",
+	"html_name": "<i>c</i><sub>sc</sub>",
+    "family": "structure",
+	"path": ["crystal","scaled_cell_lengths",2],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cell_angle_alpha": {
+	"latex_name": "$\\alpha$ (deg)",
+	"html_name": "<i>&#945;</i> (deg)",
+    "family": "structure",
+	"path": ["crystal","cell_angles",0],
+	"position_symmetry": [false,false,false,0]
+  },
+  "cell_angle_beta": {
+	"latex_name": "$\\beta$ (deg)",
+	"html_name": "<i>&#946;</i> (deg)",
+    "family": "structure",
+	"path": ["crystal","cell_angles",1],
+	"position_symmetry": [false,false,false,0]
+  },
+  "cell_angle_gamma": {
+	"latex_name": "$\\gamma$ (deg)",
+	"html_name": "<i>&#947;</i> (deg)",
+    "family": "structure",
+	"path": ["crystal","cell_angles",2],
+	"position_symmetry": [false,false,false,0]
+  },
+  "cell_volume": {
+	"latex_name": "$\\Omega$ (\\AA$^3$)",
+	"html_name": "<i>&#937;</i> (Ang.<sup>3</sup>)",
+    "family": "structure",
+	"path": ["crystal","cell_volume"],
+	"position_symmetry": [false,false,false,0]
+  },
+  "cell_density": {
+	"latex_name": "$\\rho$ (gr/cm$^3)$",
+	"html_name": "<i>&#961;</i> (gr/cm<sup>3</sup>)",
+    "family": "structure",
+	"path": ["crystal","cell_density"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "vdWFV": {
+	"latex_name": "vdWFV (\\%)",
+  	"html_name": "vdWFV (%)",
+    "family": "structure",
+	"path": ["crystal","vdWFV"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "SAS": {
+	"latex_name": "SAS (\\%)",
+  	"html_name": "SAS (%)",
+    "family": "structure",
+	"path": ["crystal","SAS"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "E_tot": {
+	"latex_name": "$E_{\\mathrm{tot}}$ (kJ/mol)",
+	"html_name": "<i>E</i><sub>tot</sup> (kJ/mol)",
+    "family": "structure",
+	"path": ["crystal","lattice_energy","total"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "E_el": {
+	"latex_name": "$E_{\\mathrm{el}}$ (kJ/mol)",
+	"html_name": "<i>E</i><sub>el</sup> (kJ/mol)",
+    "family": "structure",
+	"path": ["crystal","lattice_energy","electrostatic"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "E_vdW": {
+	"latex_name": "$E_{\\mathrm{vdW}}$ (kJ/mol)",
+	"html_name": "<i>E</i><sub>vdW</sup> (kJ/mol)",
+    "family": "structure",
+	"path": ["crystal","lattice_energy","vdW"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "E_vdW_at": {
+	"latex_name": "$E_{\\mathrm{vdW,at}}$ (kJ/mol)",
+	"html_name": "<i>E</i><sub>vdW,at</sup> (kJ/mol)",
+    "family": "structure",
+	"path": ["crystal","lattice_energy","vdW_attraction"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "E_vdW_rep": {
+	"latex_name": "$E_{\\mathrm{vdW,rep}}$ (kJ/mol)",
+	"html_name": "<i>E</i><sub>vdW,rep</sup> (kJ/mol)",
+    "family": "structure",
+	"path": ["crystal","lattice_energy","vdW_repulsion"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "E_hb": {
+	"latex_name": "$E_{\\mathrm{hb}}$ (kJ/mol)",
+	"html_name": "<i>E</i><sub>hb</sup> (kJ/mol)",
+    "family": "structure",
+	"path": ["crystal","lattice_energy","h-bond"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "E_hb_at": {
+	"latex_name": "$E_{\\mathrm{hb,at}}$ (kJ/mol)",
+	"html_name": "<i>E</i><sub>hb,at</sup> (kJ/mol)",
+    "family": "structure",
+	"path": ["crystal","lattice_energy","h-bond_attraction"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "E_hb_rep": {
+	"latex_name": "$E_{\\mathrm{hb,rep}}$ (kJ/mol)",
+	"html_name": "<i>E</i><sub>hb,rep</sup> (kJ/mol)",
+    "family": "structure",
+	"path": ["crystal","lattice_energy","h-bond_repulsion"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_length": {
+    "latex_name": "$l_{\\mathrm{cc}}$ (\\AA)",
+    "html_name": "<i>l</i><sub>cc</sub> (Ang.)",
+    "family": "contact",
+	"path": ["crystal","close_contacts","pair_key","cc_length"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_type": {
+    "latex_name": "CC type",
+     "html_name": "CC type",
+    "family": "contact",
+	"path": ["crystal","close_contacts","pair_key","cc_type"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_is_in_los": {
+    "latex_name": "CC is in LOS",
+    "html_name": "CC is in LOS",
+    "family": "contact",
+	"path": ["crystal","close_contacts","pair_key","cc_is_in_los"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_central_atom_species": {
+	"latex_name": "CC species (cen)",
+  	"html_name": "CC species (cen)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","atom"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_central_atom_fragment": {
+	"latex_name": "CC fragment (cen)",
+  	"html_name": "CC fragment (cen)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","fragment"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_central_atom_x": {
+	"latex_name": "$x_{\\mathrm{cc,cen}}$ (\\AA)",
+    "html_name": "<i>x</i><sub>cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","coordinates","cartesian",0],
+	"position_symmetry": [true,true,false,1]
+  },
+  "cc_central_atom_y": {
+	"latex_name": "$y_{\\mathrm{cc,cen}}$ (\\AA)",
+    "html_name": "<i>y</i><sub>cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","coordinates","cartesian",1],
+	"position_symmetry": [true,true,false,1]
+  },
+  "cc_central_atom_z": {
+	"latex_name": "$z_{\\mathrm{cc,cen}}$ (\\AA)",
+    "html_name": "<i>z</i><sub>cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","coordinates","cartesian",2],
+	"position_symmetry": [true,true,false,1]
+  },
+  "cc_central_atom_u": {
+	"latex_name": "$u_{\\mathrm{cc,cen}}$",
+    "html_name": "<i>u</i><sub>cc,cen</sub>",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","coordinates","fractional",0],
+	"position_symmetry": [true,true,true,2]
+  },
+  "cc_central_atom_v": {
+	"latex_name": "$v_{\\mathrm{cc,cen}}$",
+    "html_name": "<i>v</i><sub>cc,cen</sub>",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","coordinates","fractional",1],
+	"position_symmetry": [true,true,true,2]
+  },
+  "cc_central_atom_w": {
+	"latex_name": "$w_{\\mathrm{cc,cen}}$",
+    "html_name": "<i>w</i><sub>cc,cen</sub>",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","coordinates","fractional",2],
+	"position_symmetry": [true,true,true,2]
+  },
+  "cc_central_atom_bv_x": {
+	"latex_name": "${x}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+    "html_name": "<i>x</i><sub>0,cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","bond_vectors",0],
+	"position_symmetry": [true,false,false,3]
+  },
+  "cc_central_atom_bv_y": {
+	"latex_name": "${y}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+    "html_name": "<i>y</i><sub>0,cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","bond_vectors",1],
+	"position_symmetry": [true,false,false,3]
+  },
+  "cc_central_atom_bv_z": {
+	"latex_name": "${z}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+    "html_name": "<i>z</i><sub>0,cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","bond_vectors",2],
+	"position_symmetry": [true,false,false,3]
+  },
+  "cc_central_atom_ref_bv_x": {
+	"latex_name": "${x}^{\\prime}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+    "html_name": "<i>x'</i><sub>0,cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","reference_bond_vectors",0],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_central_atom_ref_bv_y": {
+	"latex_name": "${y}^{\\prime}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+    "html_name": "<i>y'</i><sub>0,cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","reference_bond_vectors",1],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_central_atom_ref_bv_z": {
+	"latex_name": "${z}^{\\prime}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+    "html_name": "<i>z'</i><sub>0,cc,cen</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_central_atom","reference_bond_vectors",2],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_contact_atom_species": {
+	"latex_name": "CC species (cen)",
+  	"html_name": "CC species (cen)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","atom"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_contact_atom_fragment": {
+	"latex_name": "CC fragment (cen)",
+  	"html_name": "CC fragment (cen)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","fragment"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_contact_atom_x": {
+	"latex_name": "$x_{\\mathrm{cc_con}}$ (\\AA)",
+    "html_name": "<i>x</i><sub>cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","coordinates","cartesian",0],
+	"position_symmetry": [true,true,false,4]
+  },
+  "cc_contact_atom_y": {
+	"latex_name": "$y_{\\mathrm{cc_con}}$ (\\AA)",
+    "html_name": "<i>y</i><sub>cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","coordinates","cartesian",1],
+	"position_symmetry": [true,true,false,4]
+  },
+  "cc_contact_atom_z": {
+	"latex_name": "$z_{\\mathrm{cc_con}}$ (\\AA)",
+    "html_name": "<i>z</i><sub>cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","coordinates","cartesian",2],
+	"position_symmetry": [true,true,false,4]
+  },
+  "cc_contact_atom_u": {
+	"latex_name": "$u_{\\mathrm{cc_con}}$",
+    "html_name": "<i>u</i><sub>cc,con</sub>",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","coordinates","fractional",0],
+	"position_symmetry": [true,true,true,5]
+  },
+  "cc_contact_atom_v": {
+	"latex_name": "$v_{\\mathrm{cc_con}}$",
+    "html_name": "<i>v</i><sub>cc,con</sub>",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","coordinates","fractional",1],
+	"position_symmetry": [true,true,true,5]
+  },
+  "cc_contact_atom_w": {
+	"latex_name": "$w_{\\mathrm{cc_con}}$",
+    "html_name": "<i>w</i><sub>cc,con</sub>",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","coordinates","fractional",2],
+	"position_symmetry": [true,true,true,5]
+  },
+  "cc_contact_atom_bv_x": {
+	"latex_name": "${x}_{\\mathrm{0,cc,con}}$ (\\AA)",
+    "html_name": "<i>x</i><sub>0,cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","bond_vectors",0],
+	"position_symmetry": [true,false,false,6]
+  },
+  "cc_contact_atom_bv_y": {
+	"latex_name": "${y}_{\\mathrm{0,cc,con}}$ (\\AA)",
+    "html_name": "<i>y</i><sub>0,cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","bond_vectors",1],
+	"position_symmetry": [true,false,false,6]
+  },
+  "cc_contact_atom_bv_z": {
+	"latex_name": "${z}_{\\mathrm{0,cc,con}}$ (\\AA)",
+    "html_name": "<i>z</i><sub>0,cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","bond_vectors",2],
+	"position_symmetry": [true,false,false,6]
+  },
+  "cc_contact_atom_ref_bv_x": {
+	"latex_name": "${x}^{\\prime}_{\\mathrm{0,cc,con}}$ (\\AA)",
+    "html_name": "<i>x'</i><sub>0,cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","reference_bond_vectors",0],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_contact_atom_ref_bv_y": {
+	"latex_name": "${y}^{\\prime}_{\\mathrm{0,cc,con}}$ (\\AA)",
+    "html_name": "<i>y'</i><sub>0,cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","reference_bond_vectors",1],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_contact_atom_ref_bv_z": {
+	"latex_name": "${z}^{\\prime}_{\\mathrm{0,cc,con}}$ (\\AA)",
+    "html_name": "<i>z'</i><sub>0,cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","reference_bond_vectors",2],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_contact_atom_ref_bv_r": {
+	"latex_name": "${r}^{\\prime}_{\\mathrm{0,cc,con}}$ (\\AA)",
+    "html_name": "<i>r'</i><sub>0,cc,con</sub> (Ang.)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","reference_bond_vectors_spherical",0],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_contact_atom_ref_bv_theta": {
+	"latex_name": "${\\theta}^{\\prime}_{\\mathrm{0,cc,con}}$ (deg)",
+    "html_name": "<i>θ'</i><sub>0,cc,con</sub> (deg)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","reference_bond_vectors_spherical",1],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "cc_contact_atom_ref_bv_phi": {
+	"latex_name": "${\\phi}^{\\prime}_{\\mathrm{0,cc,con}}$ (deg)",
+    "html_name": "<i>φ'</i><sub>0,cc,con</sub> (deg)",
+    "family": "contact_atom",
+	"path": ["crystal","close_contacts","pair_key","cc_contact_atom","reference_bond_vectors_spherical",2],
+	"position_symmetry": [false,false,false,-1]
+  },  
+  "fragment": {
+	"latex_name": "fragment",
+  	"html_name": "fragment",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","fragment"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_x": {
+	"latex_name": "$x_{\\mathrm{fr}}$ (\\AA)",
+	"html_name": "<i>x</i><sub>fr</sub> (Ang.)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","coordinates","cartesian",0],
+	"position_symmetry": [true,true,false,7]
+  },
+  "fragment_y": {
+	"latex_name": "$y_{\\mathrm{fr}}$ (\\AA)",
+	"html_name": "<i>y</i><sub>fr</sub> (Ang.)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","coordinates","cartesian",1],
+	"position_symmetry": [true,true,false,7]
+  },
+  "fragment_z": {
+	"latex_name": "$z_{\\mathrm{fr}}$ (\\AA)",
+	"html_name": "<i>z</i><sub>fr</sub> (Ang.)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","coordinates","cartesian",2],
+	"position_symmetry": [true,true,false,7]
+  },
+  "fragment_u": {
+	"latex_name": "$u_{\\mathrm{fr}}$",
+	"html_name": "<i>u</i><sub>fr</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","coordinates","fractional",0],
+	"position_symmetry": [true,true,true,8]
+  },
+  "fragment_v": {
+	"latex_name": "$v_{\\mathrm{fr}}$",
+	"html_name": "<i>v</i><sub>fr</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","coordinates","fractional",1],
+	"position_symmetry": [true,true,true,8]
+  },
+  "fragment_w": {
+	"latex_name": "$w_{\\mathrm{fr}}$",
+	"html_name": "<i>w</i><sub>fr</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","coordinates","fractional",2],
+	"position_symmetry": [true,true,true,8]
+  },
+  "fragment_e1_x": {
+	"latex_name": "$e_{1,x}$",
+	"html_name": "<i>e</i><sub>1,x</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","cartesian",0],
+	"position_symmetry": [true,false,false,9]
+  },
+  "fragment_e1_y": {
+	"latex_name": "$e_{1,y}$",
+	"html_name": "<i>e</i><sub>1,y</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","cartesian",1],
+	"position_symmetry": [true,false,false,9]
+  },
+  "fragment_e1_z": {
+	"latex_name": "$e_{1,z}$",
+	"html_name": "<i>e</i><sub>1,z</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","cartesian",2],
+	"position_symmetry": [true,false,false,9]
+  },
+  "fragment_e1_u": {
+	"latex_name": "$e_{1,u}$",
+	"html_name": "<i>e</i><sub>1,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","crystallographic",0],
+	"position_symmetry": [true,false,false,10]
+  },
+  "fragment_e1_v": {
+	"latex_name": "$e_{1,v}$",
+	"html_name": "<i>e</i><sub>1,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","crystallographic",1],
+	"position_symmetry": [true,false,false,10]
+  },
+  "fragment_e1_w": {
+	"latex_name": "$e_{1,w}$",
+	"html_name": "<i>e</i><sub>1,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","crystallographic",2],
+	"position_symmetry": [true,false,false,10]
+  },
+  "fragment_w11_u": {
+	"latex_name": "$w_{11,u}$",
+	"html_name": "<i>w</i><sub>11,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","vector_1",0],
+	"position_symmetry": [true,false,false,11]
+  },
+  "fragment_w11_v": {
+	"latex_name": "$w_{11,v}$",
+	"html_name": "<i>w</i><sub>11,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","vector_1",1],
+	"position_symmetry": [true,false,false,11]
+  },
+  "fragment_w11_w": {
+	"latex_name": "$w_{11,w}$",
+	"html_name": "<i>w</i><sub>11,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","vector_1",2],
+	"position_symmetry": [true,false,false,11]
+  },
+  "fragment_w12_u": {
+	"latex_name": "$w_{12,u}$",
+	"html_name": "<i>w</i><sub>12,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","vector_2",0],
+	"position_symmetry": [true,false,false,12]
+  },
+  "fragment_w12_v": {
+	"latex_name": "$w_{12,v}$",
+	"html_name": "<i>w</i><sub>12,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","vector_2",1],
+	"position_symmetry": [true,false,false,12]
+  },
+  "fragment_w12_w": {
+	"latex_name": "$w_{12,w}$",
+	"html_name": "<i>w</i><sub>12,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","vector_2",2],
+	"position_symmetry": [true,false,false,12]
+  },
+  "fragment_w1_angle_1": {
+	"latex_name": "$\\theta_{\\mathbf{w},11}$ (deg)",
+	"html_name": "<i>θ</i><sub>w,11</sub> (deg)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","angle_1"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_w1_angle_2": {
+	"latex_name": "$\\theta_{\\mathbf{w},12}$ (deg)",
+	"html_name": "<i>θ</i><sub>w,12</sub> (deg)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","angle_2"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_e1_d_min": {
+	"latex_name": "$d_{\\mathrm{min},\\mathbf{e}_1}$ (\\AA)",
+	"html_name": "<i>d</i><sub>min,<b>e<b>1</sub> (Ang.)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","min_distance_to reference_points"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_e2_x": {
+	"latex_name": "$e_{2,x}$",
+	"html_name": "<i>e</i><sub>2,x</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","cartesian",0],
+	"position_symmetry": [true,false,false,13]
+  },
+  "fragment_e2_y": {
+	"latex_name": "$e_{2,y}$",
+	"html_name": "<i>e</i><sub>2,y</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","cartesian",1],
+	"position_symmetry": [true,false,false,13]
+  },
+  "fragment_e2_z": {
+	"latex_name": "$e_{2,z}$",
+	"html_name": "<i>e</i><sub>2,z</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","cartesian",2],
+	"position_symmetry": [true,false,false,13]
+  },
+  "fragment_e2_u": {
+	"latex_name": "$e_{2,u}$",
+	"html_name": "<i>e</i><sub>2,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","crystallographic",0],
+	"position_symmetry": [true,false,false,14]
+  },
+  "fragment_e2_v": {
+	"latex_name": "$e_{2,v}$",
+	"html_name": "<i>e</i><sub>2,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","crystallographic",1],
+	"position_symmetry": [true,false,false,14]
+  },
+  "fragment_e2_w": {
+	"latex_name": "$e_{2,w}$",
+	"html_name": "<i>e</i><sub>2,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","crystallographic",2],
+	"position_symmetry": [true,false,false,14]
+  },
+  "fragment_w21_u": {
+	"latex_name": "$w_{21,u}$",
+	"html_name": "<i>w</i><sub>21,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","vector_1",0],
+	"position_symmetry": [true,false,false,15]
+  },
+  "fragment_w21_v": {
+	"latex_name": "$w_{21,v}$",
+	"html_name": "<i>w</i><sub>21,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","vector_1",1],
+	"position_symmetry": [true,false,false,15]
+  },
+  "fragment_w21_w": {
+	"latex_name": "$w_{21,w}$",
+	"html_name": "<i>w</i><sub>21,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","vector_1",2],
+	"position_symmetry": [true,false,false,15]
+  },
+  "fragment_w22_u": {
+	"latex_name": "$w_{22,u}$",
+	"html_name": "<i>w</i><sub>22,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","vector_2",0],
+	"position_symmetry": [true,false,false,16]
+  },
+  "fragment_w22_v": {
+	"latex_name": "$w_{22,v}$",
+	"html_name": "<i>w</i><sub>22,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","vector_2",1],
+	"position_symmetry": [true,false,false,16]
+  },
+  "fragment_w22_w": {
+	"latex_name": "$w_{22,w}$",
+	"html_name": "<i>w</i><sub>22,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","vector_2",2],
+	"position_symmetry": [true,false,false,16]
+  },
+  "fragment_w2_angle_1": {
+	"latex_name": "$\\theta_{\\mathbf{w},21}$ (deg)",
+	"html_name": "<i>θ</i><sub>w,21</sub> (deg)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","angle_1"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_w2_angle_2": {
+	"latex_name": "$\\theta_{\\mathbf{w},22}$ (deg)",
+	"html_name": "<i>θ</i><sub>w,22</sub> (deg)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","angle_2"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_e2_d_min": {
+	"latex_name": "$d_{\\mathrm{min},\\mathbf{e}_2}$ (\\AA)",
+	"html_name": "<i>d</i><sub>min,<b>e<b>1</sub> (Ang.)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","min_distance_to reference_points"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_e3_x": {
+	"latex_name": "$e_{3,x}$",
+	"html_name": "<i>e</i><sub>3,x</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","cartesian",0],
+	"position_symmetry": [true,false,false,17]
+  },
+  "fragment_e3_y": {
+	"latex_name": "$e_{3,y}$",
+	"html_name": "<i>e</i><sub>3,y</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","cartesian",1],
+	"position_symmetry": [true,false,false,17]
+  },
+  "fragment_e3_z": {
+	"latex_name": "$e_{3,z}$",
+	"html_name": "<i>e</i><sub>3,z</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","cartesian",2],
+	"position_symmetry": [true,false,false,17]
+  },
+  "fragment_e3_u": {
+	"latex_name": "$e_{3,u}$",
+	"html_name": "<i>e</i><sub>3,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","crystallographic",0],
+	"position_symmetry": [true,false,false,18]
+  },
+  "fragment_e3_v": {
+	"latex_name": "$e_{3,v}$",
+	"html_name": "<i>e</i><sub>3,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","crystallographic",1],
+	"position_symmetry": [true,false,false,18]
+  },
+  "fragment_e3_w": {
+	"latex_name": "$e_{3,w}$",
+	"html_name": "<i>e</i><sub>3,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","crystallographic",2],
+	"position_symmetry": [true,false,false,18]
+  },
+  "fragment_w31_u": {
+	"latex_name": "$w_{31,u}$",
+	"html_name": "<i>w</i><sub>31,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","vector_1",0],
+	"position_symmetry": [true,false,false,19]
+  },
+  "fragment_w31_v": {
+	"latex_name": "$w_{31,v}$",
+	"html_name": "<i>w</i><sub>31,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","vector_1",1],
+	"position_symmetry": [true,false,false,19]
+  },
+  "fragment_w31_w": {
+	"latex_name": "$w_{31,w}$",
+	"html_name": "<i>w</i><sub>31,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","vector_1",2],
+	"position_symmetry": [true,false,false,19]
+  },
+  "fragment_w32_u": {
+	"latex_name": "$w_{32,u}$",
+	"html_name": "<i>w</i><sub>32,u</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","vector_2",0],
+	"position_symmetry": [true,false,false,20]
+  },
+  "fragment_w32_v": {
+	"latex_name": "$w_{32,v}$",
+	"html_name": "<i>w</i><sub>32,v</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","vector_2",1],
+	"position_symmetry": [true,false,false,20]
+  },
+  "fragment_w32_w": {
+	"latex_name": "$w_{32,w}$",
+	"html_name": "<i>w</i><sub>32,w</sub>",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","vector_2",2],
+	"position_symmetry": [true,false,false,20]
+  },
+  "fragment_w3_angle_1": {
+	"latex_name": "$\\theta_{\\mathbf{w},31}$ (deg)",
+	"html_name": "<i>θ</i><sub>w,31</sub> (deg)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","angle_1"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_w3_angle_2": {
+	"latex_name": "$\\theta_{\\mathbf{w},32}$ (deg)",
+	"html_name": "<i>θ</i><sub>w,32</sub> (deg)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","angle_2"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_e3_d_min": {
+	"latex_name": "$d_{\\mathrm{min},\\mathbf{e}_3}$ (\\AA)",
+	"html_name": "<i>d</i><sub>min,<b>e<b>3</sub> (Ang.)",
+	"family": "fragment",
+	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","min_distance_to reference_points"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_atom_species": {
+	"latex_name": "Species",
+  	"html_name": "Species",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","species"],
+	"position_symmetry": [false,false,false,-1]
+  },
+  "fragment_atom_x": {
+	"latex_name": "$x_{\\mathrm{at}}$ (\\AA)",
+  	"html_name": "<i>x</i><sub>at</sub> (Ang.)",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","coordinates","cartesian",0],
+	"position_symmetry": [true,true,false,21]
+  },
+  "fragment_atom_y": {
+	"latex_name": "$y_{\\mathrm{at}}$ (\\AA)",
+  	"html_name": "<i>y</i><sub>at</sub> (Ang.)",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","coordinates","cartesian",1],
+	"position_symmetry": [true,true,false,21]
+  },
+  "fragment_atom_z": {
+	"latex_name": "$z_{\\mathrm{at}}$ (\\AA)",
+  	"html_name": "<i>z</i><sub>at</sub> (Ang.)",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","coordinates","cartesian",2],
+	"position_symmetry": [true,true,false,21]
+  },
+  "fragment_atom_u": {
+	"latex_name": "$u_{\\mathrm{at}}$",
+  	"html_name": "<i>u</i><sub>at</sub>",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","coordinates","fractional",0],
+	"position_symmetry": [true,true,true,22]
+  },
+  "fragment_atom_v": {
+	"latex_name": "$v_{\\mathrm{at}}$",
+  	"html_name": "<i>v</i><sub>at</sub>",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","coordinates","fractional",1],
+	"position_symmetry": [true,true,true,22]
+  },
+  "fragment_atom_w": {
+	"latex_name": "$w_{\\mathrm{at}}$",
+  	"html_name": "<i>w</i><sub>at</sub>",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","coordinates","fractional",2],
+	"position_symmetry": [true,true,true,22]
+  },
+  "fragment_atom_bv_x": {
+	"latex_name": "${x}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+	"html_name": "<i>x</i><sub>0,at</sub> (Ang.)",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","bond_vectors","cartesian",0],
+	"position_symmetry": [true,false,false,23]
+  },
+  "fragment_atom_bv_y": {
+	"latex_name": "${y}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+	"html_name": "<i>y</i><sub>0,at</sub> (Ang.)",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","bond_vectors","cartesian",1],
+	"position_symmetry": [true,false,false,23]
+  },
+  "fragment_atom_bv_z": {
+	"latex_name": "${z}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+	"html_name": "<i>z</i><sub>0,at</sub> (Ang.)",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","bond_vectors","cartesian",2],
+	"position_symmetry": [true,false,false,23]
+  },
+  "fragment_atom_bv_u": {
+	"latex_name": "${u}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+	"html_name": "<i>u</i><sub>0,at</sub>",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","bond_vectors","fractional",0],
+	"position_symmetry": [true,false,false,24]
+  },
+  "fragment_atom_bv_v": {
+	"latex_name": "${v}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+	"html_name": "<i>v</i><sub>0,at</sub>",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","bond_vectors","fractional",1],
+	"position_symmetry": [true,false,false,24]
+  },
+  "fragment_atom_bv_w": {
+	"latex_name": "${w}_{\\mathrm{0,cc,cen}}$ (\\AA)",
+	"html_name": "<i>w</i><sub>0,at</sub>",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","bond_vectors","fractional",2],
+	"position_symmetry": [true,false,false,24]
+  },
+  "fragment_atom_dzzp_min": {
+	"latex_name": "$d_{\\mathrm{ZZP,min}}$",
+	"html_name": "<i>d</i><sub>ZZP,min</sub> (Ang.)",
+	"family": "fragment_atom",
+	"path": ["fragments","fragment_key","atoms","atom_key","dzzp_min"],
+	"position_symmetry": [false,false,false,-1]
+  }
+}
