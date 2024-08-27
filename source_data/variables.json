@@ -577,7 +577,7 @@
 	"latex_name": "$d_{\\mathrm{min},\\mathbf{e}_1}$ (\\AA)",
 	"html_name": "<i>d</i><sub>min,<b>e<b>1</sub> (Ang.)",
 	"family": "fragment",
-	"path": ["fragments","fragment_key","inertia_planes","e_1","perpendicular_vectors","min_distance_to reference_points"],
+	"path": ["fragments","fragment_key","inertia_planes","e_1","min_distance_to reference_points"],
 	"position_symmetry": [false,false,false,-1]
   },
   "fragment_e2_x": {
@@ -682,7 +682,7 @@
 	"latex_name": "$d_{\\mathrm{min},\\mathbf{e}_2}$ (\\AA)",
 	"html_name": "<i>d</i><sub>min,<b>e<b>1</sub> (Ang.)",
 	"family": "fragment",
-	"path": ["fragments","fragment_key","inertia_planes","e_2","perpendicular_vectors","min_distance_to reference_points"],
+	"path": ["fragments","fragment_key","inertia_planes","e_2","min_distance_to reference_points"],
 	"position_symmetry": [false,false,false,-1]
   },
   "fragment_e3_x": {
@@ -787,7 +787,7 @@
 	"latex_name": "$d_{\\mathrm{min},\\mathbf{e}_3}$ (\\AA)",
 	"html_name": "<i>d</i><sub>min,<b>e<b>3</sub> (Ang.)",
 	"family": "fragment",
-	"path": ["fragments","fragment_key","inertia_planes","e_3","perpendicular_vectors","min_distance_to reference_points"],
+	"path": ["fragments","fragment_key","inertia_planes","e_3","min_distance_to reference_points"],
 	"position_symmetry": [false,false,false,-1]
   },
   "fragment_atom_species": {
