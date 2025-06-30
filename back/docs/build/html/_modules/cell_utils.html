@@ -1,0 +1,219 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cell_utils &mdash; CrystalMath 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CrystalMath
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CrystalMath</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">cell_utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for cell_utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: cell_utils.py</span>
+
+<span class="sd">Batch utilities for converting unit-cell parameters to normalized/scaled forms</span>
+<span class="sd">and constructing cell matrices, leveraging PyTorch for GPU acceleration.</span>
+
+<span class="sd">Dependencies</span>
+<span class="sd">------------</span>
+<span class="sd">torch</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;compute_scaled_cell&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;compute_cell_matrix_batch&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+
+
+<div class="viewcode-block" id="compute_scaled_cell">
+<a class="viewcode-back" href="../api/cell_utils.html#cell_utils.compute_scaled_cell">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_scaled_cell</span><span class="p">(</span>
+        <span class="n">lengths</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">angles</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute scaled cell parameters for a batch of structures.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lengths : torch.Tensor, shape (B, 3)</span>
+<span class="sd">        Unit-cell lengths [a, b, c] for each structure in the batch.</span>
+<span class="sd">    angles : torch.Tensor, shape (B, 3)</span>
+<span class="sd">        Unit-cell angles [α, β, γ] in degrees for each structure in the batch.</span>
+<span class="sd">    device : torch.device, optional</span>
+<span class="sd">        Target device for output. If None, uses the device of `lengths`.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    torch.Tensor, shape (B, 6)</span>
+<span class="sd">        Scaled cell feature vectors on the specified device, where each row is</span>
+<span class="sd">        [1.0, b/a, c/a, α/90, β/90, γ/90].</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">lengths</span><span class="o">.</span><span class="n">device</span>
+    <span class="c1"># ensure on correct device</span>
+    <span class="n">lengths</span> <span class="o">=</span> <span class="n">lengths</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">angles</span> <span class="o">=</span> <span class="n">angles</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="o">/</span> <span class="mf">90.0</span>
+
+    <span class="c1"># unpack dims: (B,1) each</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">lengths</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">lengths</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">lengths</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="c1"># build scaled vector</span>
+    <span class="n">ones</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">scaled</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">ones</span><span class="p">,</span> <span class="n">b</span> <span class="o">/</span> <span class="n">a</span><span class="p">,</span> <span class="n">c</span> <span class="o">/</span> <span class="n">a</span><span class="p">,</span> <span class="n">angles</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (B,6)</span>
+    <span class="k">return</span> <span class="n">scaled</span></div>
+
+
+
+<div class="viewcode-block" id="compute_cell_matrix_batch">
+<a class="viewcode-back" href="../api/cell_utils.html#cell_utils.compute_cell_matrix_batch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_cell_matrix_batch</span><span class="p">(</span>
+        <span class="n">lengths</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">angles</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute a batch of real-space cell matrices from unit-cell parameters.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lengths : torch.Tensor, shape (B, 3)</span>
+<span class="sd">        Unit-cell lengths [a, b, c] for each structure in the batch.</span>
+<span class="sd">    angles : torch.Tensor, shape (B, 3)</span>
+<span class="sd">        Unit-cell angles [α, β, γ] in degrees for each structure in the batch.</span>
+<span class="sd">    device : torch.device, optional</span>
+<span class="sd">        Target device for output. If None, uses the device of `lengths`.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    torch.Tensor, shape (B, 3, 3)</span>
+<span class="sd">        Real-space cell matrices on the specified device, where each 3×3 matrix</span>
+<span class="sd">        has rows:</span>
+<span class="sd">          [a,      0,                             0]</span>
+<span class="sd">          [b·cos(γ), b·sin(γ),                   0]</span>
+<span class="sd">          [c·cos(β), c·(cos(α) – cos(β)·cos(γ))/sin(γ), c_z]</span>
+<span class="sd">        with c_z = sqrt(c² – M[2,0]² – M[2,1]²).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">lengths</span><span class="o">.</span><span class="n">device</span>
+    <span class="c1"># move to device and convert angles to radians</span>
+    <span class="n">lengths</span> <span class="o">=</span> <span class="n">lengths</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">angles</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">180.0</span><span class="p">)</span>
+
+    <span class="c1"># unpack components</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">lengths</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                <span class="c1"># each (B,)</span>
+    <span class="n">cos_a</span><span class="p">,</span> <span class="n">cos_b</span><span class="p">,</span> <span class="n">cos_g</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sin_g</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>                     <span class="c1"># (B,)</span>
+
+    <span class="c1"># compute safe c_z</span>
+    <span class="n">cz_sq</span> <span class="o">=</span> <span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="n">cos_b</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">cos_a</span> <span class="o">-</span> <span class="n">cos_b</span> <span class="o">*</span> <span class="n">cos_g</span><span class="p">)</span> <span class="o">/</span> <span class="n">sin_g</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">cz</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">cz_sq</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>   <span class="c1"># (B,)</span>
+
+    <span class="c1"># build rows</span>
+    <span class="n">row0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">a</span><span class="p">)],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">row1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">b</span> <span class="o">*</span> <span class="n">cos_g</span><span class="p">,</span> <span class="n">b</span> <span class="o">*</span> <span class="n">sin_g</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">b</span><span class="p">)],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">row2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">c</span> <span class="o">*</span> <span class="n">cos_b</span><span class="p">,</span>
+                         <span class="n">c</span> <span class="o">*</span> <span class="p">(</span><span class="n">cos_a</span> <span class="o">-</span> <span class="n">cos_b</span> <span class="o">*</span> <span class="n">cos_g</span><span class="p">)</span> <span class="o">/</span> <span class="n">sin_g</span><span class="p">,</span>
+                         <span class="n">cz</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># stack into (B,3,3)</span>
+    <span class="n">cell</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">row0</span><span class="p">,</span> <span class="n">row1</span><span class="p">,</span> <span class="n">row2</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cell</span></div>
+
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

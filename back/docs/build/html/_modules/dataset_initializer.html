@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dataset_initializer &mdash; CrystalMath 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CrystalMath
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CrystalMath</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">dataset_initializer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for dataset_initializer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: dataset_initializer.py</span>
+
+<span class="sd">Initialize all required datasets in a processed HDF5 file based on maximum dimensions</span>
+<span class="sd">scanned from the raw data.</span>
+
+<span class="sd">Dependencies</span>
+<span class="sd">------------</span>
+<span class="sd">h5py</span>
+<span class="sd">numpy</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+<span class="n">dt_str</span>     <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">string_dtype</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">str_vlen</span>   <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">vlen_dtype</span><span class="p">(</span><span class="n">dt_str</span><span class="p">)</span>        <span class="c1"># variable‐length UTF-8 strings</span>
+<span class="n">int_vlen</span>   <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">vlen_dtype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>      <span class="c1"># variable‐length int32 arrays</span>
+<span class="n">float_vlen</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">vlen_dtype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>    <span class="c1"># variable‐length float32 arrays</span>
+<span class="n">bool_vlen</span>  <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">vlen_dtype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">)</span>      <span class="c1"># variable‐length bool arrays</span>
+
+<div class="viewcode-block" id="DatasetInitializer">
+<a class="viewcode-back" href="../api/dataset_initializer.html#dataset_initializer.DatasetInitializer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DatasetInitializer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create and configure all datasets in the output HDF5 file prior to writing raw and computed data.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    h5_out : h5py.File</span>
+<span class="sd">        Output HDF5 file handle into which datasets will be created.</span>
+<span class="sd">    refcodes : List[str]</span>
+<span class="sd">        List of structure refcodes for which data will be stored.</span>
+<span class="sd">    dims : dict</span>
+<span class="sd">        Dictionary of maximum dimensions for ragged arrays:</span>
+<span class="sd">        &#39;atoms&#39;, &#39;bonds&#39;, &#39;fragments&#39;, &#39;contacts_inter&#39;, &#39;contacts_intra&#39;,</span>
+<span class="sd">        &#39;hbonds_inter&#39;, &#39;hbonds_intra&#39;.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    initialize_datasets()</span>
+<span class="sd">        Create all required datasets for raw and computed data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h5_out</span><span class="p">:</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">,</span> <span class="n">refcodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">dims</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the DatasetInitializer.</span>
+<span class="sd">    </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        h5_out : h5py.File</span>
+<span class="sd">            Open HDF5 file handle where datasets will be created.</span>
+<span class="sd">        refcodes : list of str</span>
+<span class="sd">            List of structure refcodes for which data will be stored.</span>
+<span class="sd">        dims : dict</span>
+<span class="sd">            Maximum dimension sizes for ragged arrays:</span>
+<span class="sd">            &#39;atoms&#39;, &#39;bonds&#39;, &#39;fragments&#39;, &#39;contacts_inter&#39;, &#39;contacts_intra&#39;,</span>
+<span class="sd">            &#39;hbonds_inter&#39;, &#39;hbonds_intra&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span> <span class="o">=</span> <span class="n">h5_out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refcodes</span> <span class="o">=</span> <span class="n">refcodes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dims</span> <span class="o">=</span> <span class="n">dims</span>
+
+        <span class="c1"># unpack dims once</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">refcodes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_atoms</span>          <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="s1">&#39;atoms&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_bonds</span>          <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="s1">&#39;bonds&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_fragments</span>      <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="s1">&#39;fragments&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_contacts_inter</span> <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="s1">&#39;contacts_inter&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_contacts_intra</span> <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="s1">&#39;contacts_intra&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_hbonds_inter</span>   <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="s1">&#39;hbonds_inter&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_hbonds_intra</span>   <span class="o">=</span> <span class="n">dims</span><span class="p">[</span><span class="s1">&#39;hbonds_intra&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_refcode_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create the &#39;refcode_list&#39; dataset containing all refcodes.</span>
+
+<span class="sd">        The dataset has shape (N,) and dtype variable-length UTF-8 string.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">refcodes</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt_str</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_crystal_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create fixed-size datasets for crystal-level fields with shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;z_value&#39;             : (N,) float32</span>
+<span class="sd">          - &#39;z_prime&#39;             : (N,) float32</span>
+<span class="sd">          - &#39;cell_lengths&#39;        : (N, 3) float32</span>
+<span class="sd">          - &#39;cell_angles&#39;         : (N, 3) float32</span>
+<span class="sd">          - &#39;cell_volume&#39;         : (N,) float32</span>
+<span class="sd">          - &#39;cell_matrix&#39;         : (N, 3, 3) float32</span>
+<span class="sd">          - &#39;cell_density&#39;        : (N,) float32</span>
+<span class="sd">          - &#39;packing_coefficient&#39; : (N,) float32</span>
+<span class="sd">          - &#39;scaled_cell&#39;         : (N, 6) float32</span>
+<span class="sd">          - &#39;identifier&#39;          : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;space_group&#39;         : (N,) vlen&lt;string&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;z_value&#39;</span><span class="p">,</span>             <span class="p">(</span><span class="n">N</span><span class="p">,),</span>      <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;z_prime&#39;</span><span class="p">,</span>             <span class="p">(</span><span class="n">N</span><span class="p">,),</span>      <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;cell_lengths&#39;</span><span class="p">,</span>        <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;cell_angles&#39;</span><span class="p">,</span>         <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">,</span>         <span class="p">(</span><span class="n">N</span><span class="p">,),</span>      <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;cell_matrix&#39;</span><span class="p">,</span>         <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;cell_density&#39;</span><span class="p">,</span>        <span class="p">(</span><span class="n">N</span><span class="p">,),</span>      <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;packing_coefficient&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span>      <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;scaled_cell&#39;</span><span class="p">,</span>         <span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;identifier&#39;</span><span class="p">,</span>          <span class="p">(</span><span class="n">N</span><span class="p">,),</span>      <span class="n">dtype</span><span class="o">=</span><span class="n">dt_str</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;space_group&#39;</span><span class="p">,</span>         <span class="p">(</span><span class="n">N</span><span class="p">,),</span>      <span class="n">dtype</span><span class="o">=</span><span class="n">dt_str</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_atom_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-atom datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;n_atoms&#39;                          : (N,) int32</span>
+<span class="sd">          - &#39;atom_label&#39;                       : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;atom_symbol&#39;                      : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;atom_sybyl_type&#39;                  : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;atom_neighbour_list&#39;              : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;atom_number&#39;                      : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;atom_fragment_id&#39;                 : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;atom_coords&#39;                      : (N,) vlen&lt;float32&gt;  (flattened 3·n_atoms)</span>
+<span class="sd">          - &#39;atom_frac_coords&#39;                 : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;atom_weight&#39;                      : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;atom_charge&#39;                      : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;atom_distances_to_special_planes&#39; : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">,</span>                          <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_label&#39;</span><span class="p">,</span>                       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_symbol&#39;</span><span class="p">,</span>                      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_sybyl_type&#39;</span><span class="p">,</span>                  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_neighbour_list&#39;</span><span class="p">,</span>              <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_number&#39;</span><span class="p">,</span>                      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_fragment_id&#39;</span><span class="p">,</span>                 <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_coords&#39;</span><span class="p">,</span>                      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_frac_coords&#39;</span><span class="p">,</span>                 <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_weight&#39;</span><span class="p">,</span>                      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_charge&#39;</span><span class="p">,</span>                      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;atom_distances_to_special_planes&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_bond_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-bond datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;n_bonds&#39;                              : (N,) int32</span>
+<span class="sd">          - &#39;bond_id&#39;                              : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;bond_type&#39;                            : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;bond_atom1&#39;                           : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;bond_atom2&#39;                           : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;bond_atom1_idx&#39;                       : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;bond_atom2_idx&#39;                       : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;bond_length&#39;                          : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;bond_vector_angles_to_special_planes&#39; : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;bond_is_cyclic&#39;                       : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">          - &#39;bond_is_rotatable_raw&#39;                : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">          - &#39;bond_is_rotatable&#39;                    : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;n_bonds&#39;</span><span class="p">,</span>                              <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_id&#39;</span><span class="p">,</span>                              <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_type&#39;</span><span class="p">,</span>                            <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_atom1&#39;</span><span class="p">,</span>                           <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_atom2&#39;</span><span class="p">,</span>                           <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_atom1_idx&#39;</span><span class="p">,</span>                       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_atom2_idx&#39;</span><span class="p">,</span>                       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_length&#39;</span><span class="p">,</span>                          <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_vector_angles_to_special_planes&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_is_cyclic&#39;</span><span class="p">,</span>                       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_is_rotatable_raw&#39;</span><span class="p">,</span>                <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_is_rotatable&#39;</span><span class="p">,</span>                    <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_bond_angles_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-bond-angle datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;bond_angle_id&#39;      : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;bond_angle&#39;         : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;bond_angle_mask&#39;    : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">          - &#39;bond_angle_atom_idx&#39;: (N,) vlen&lt;int32&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_angle_id&#39;</span><span class="p">,</span>        <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_angle&#39;</span><span class="p">,</span>           <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_angle_mask&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;bond_angle_atom_idx&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_torsion_angles_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-torsion-angle datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;torsion_id&#39;      : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;torsion&#39;         : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;torsion_mask&#39;    : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">          - &#39;torsion_atom_idx&#39;: (N,) vlen&lt;int32&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+        
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;torsion_id&#39;</span><span class="p">,</span>        <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;torsion&#39;</span><span class="p">,</span>           <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;torsion_mask&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;torsion_atom_idx&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_intermolecular_contact_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-intermolecular-contact datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;inter_cc_n_contacts&#39;                   : (N,) int32</span>
+<span class="sd">          - &#39;inter_cc_id&#39;                           : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;inter_cc_central_atom&#39;                 : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom&#39;                 : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;inter_cc_central_atom_coords&#39;          : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom_coords&#39;          : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_central_atom_frac_coords&#39;     : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom_frac_coords&#39;     : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_length&#39;                       : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_strength&#39;                     : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_in_los&#39;                       : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">          - &#39;inter_cc_symmetry_A&#39;                   : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_symmetry_T&#39;                   : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_symmetry_A_inv&#39;               : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_symmetry_T_inv&#39;               : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_central_atom_fragment_idx&#39;    : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom_fragment_idx&#39;    : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;inter_cc_central_atom_idx&#39;             : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom_idx&#39;             : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;inter_cc_is_hbond&#39;                     : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom_to_fragment_com_dist&#39;      : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom_to_fragment_com_frac_dist&#39; : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom_to_fragment_com_vec&#39;       : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_cc_contact_atom_to_fragment_com_frac_vec&#39;  : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+    
+        <span class="c1"># 1) Number of contacts (still fixed‐length int)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_n_contacts&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    
+        <span class="c1"># 2) IDs and labels → vlen&lt;string&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_id&#39;</span><span class="p">,</span>           <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_central_atom&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 3) Coordinates → flatten (nC, 3) → (3*nC) vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_central_atom_coords&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom_coords&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_central_atom_frac_coords&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom_frac_coords&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 4) Lengths, strengths, in_los → vlen&lt;float&gt; or vlen&lt;bool&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_length&#39;</span><span class="p">,</span>    <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_strength&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_in_los&#39;</span><span class="p">,</span>    <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 5) Symmetry operations → vlen&lt;string&gt;, vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_symmetry_A&#39;</span><span class="p">,</span>     <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_symmetry_T&#39;</span><span class="p">,</span>     <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_symmetry_A_inv&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_symmetry_T_inv&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 6) Fragment indices → vlen&lt;int&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_central_atom_fragment_idx&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom_fragment_idx&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 7) Atom indices, H‐bond  flags → vlen&lt;int&gt; </span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_central_atom_idx&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom_idx&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_is_hbond&#39;</span><span class="p">,</span>         <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 8) Computed distances/vectors to fragment COM → vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom_to_fragment_com_dist&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom_to_fragment_com_frac_dist&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom_to_fragment_com_vec&#39;</span><span class="p">,</span>       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_cc_contact_atom_to_fragment_com_frac_vec&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_intramolecular_contact_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-intramolecular-contact datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;intra_n_contacts&#39;                  : (N,) int32</span>
+<span class="sd">          - &#39;intra_cc_id&#39;                       : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;intra_cc_central_atom&#39;             : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;intra_cc_contact_atom&#39;             : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;intra_cc_central_atom_coords&#39;      : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_cc_contact_atom_coords&#39;      : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_cc_central_atom_frac_coords&#39; : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_cc_contact_atom_frac_coords&#39; : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_cc_length&#39;                   : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_cc_strength&#39;                 : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_cc_in_los&#39;                   : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">          - &#39;intra_cc_central_atom_idx&#39;         : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;intra_cc_contact_atom_idx&#39;         : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+    
+        <span class="c1"># 1) Number of contacts (fixed-length int per structure)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_n_contacts&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    
+        <span class="c1"># 2) IDs and labels → vlen&lt;string&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_id&#39;</span><span class="p">,</span>               <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_central_atom&#39;</span><span class="p">,</span>     <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_contact_atom&#39;</span><span class="p">,</span>     <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 3) Cartesian coords: flatten (nC,3) → (3·nC), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_central_atom_coords&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_contact_atom_coords&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 4) Fractional coords: flatten (nC,3) → (3·nC), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_central_atom_frac_coords&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_contact_atom_frac_coords&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 5) Lengths &amp; strengths → vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_length&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_strength&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 6) In-line-of-sight flags → vlen&lt;bool&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_in_los&#39;</span><span class="p">,</span>    <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 7) Atom indices  → vlen&lt;int&gt; </span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_central_atom_idx&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_cc_contact_atom_idx&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+       
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_intermolecular_hbond_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-intermolecular-H-bond datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;inter_hb_n_hbonds&#39;                  : (N,) int32</span>
+<span class="sd">          - &#39;inter_hb_id&#39;                        : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;inter_hb_central_atom&#39;              : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;inter_hb_hydrogen_atom&#39;             : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;inter_hb_contact_atom&#39;              : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;inter_hb_central_atom_coords&#39;       : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_hb_hydrogen_atom_coords&#39;      : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_hb_contact_atom_coords&#39;       : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_hb_central_atom_frac_coords&#39;  : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_hb_hydrogen_atom_frac_coords&#39; : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_hb_contact_atom_frac_coords&#39;  : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_hb_length&#39;                    : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_hb_angle&#39;                     : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;inter_hb_in_los&#39;                    : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">          - &#39;inter_hb_symmetry&#39;                  : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;inter_hb_central_atom_idx&#39;          : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;inter_hb_hydrogen_atom_idx&#39;         : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;inter_hb_contact_atom_idx&#39;          : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+    
+        <span class="c1"># 1) Number of H‐bonds (fixed‐length int)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_n_hbonds&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    
+        <span class="c1"># 2) IDs and labels → vlen&lt;string&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_id&#39;</span><span class="p">,</span>             <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_central_atom&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_hydrogen_atom&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_contact_atom&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 3) Cartesian coords: flatten (nH,3) → (3·nH), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_central_atom_coords&#39;</span><span class="p">,</span>       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_hydrogen_atom_coords&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_contact_atom_coords&#39;</span><span class="p">,</span>       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 4) Fractional coords: flatten (nH,3) → (3·nH), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_central_atom_frac_coords&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_hydrogen_atom_frac_coords&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_contact_atom_frac_coords&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 5) Lengths &amp; angles → vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_length&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_angle&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 6) In‐line‐of‐sight flags → vlen&lt;bool&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_in_los&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 7) Symmetry ops → vlen&lt;string&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_symmetry&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 8) Atom indices  → vlen&lt;int&gt; </span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_central_atom_idx&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_hydrogen_atom_idx&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_contact_atom_idx&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_intramolecular_hbond_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-intramolecular-H-bond datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;intra_n_hbonds&#39;                     : (N,) int32</span>
+<span class="sd">          - &#39;intra_hb_id&#39;                        : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;intra_hb_central_atom&#39;              : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;intra_hb_hydrogen_atom&#39;             : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;intra_hb_contact_atom&#39;              : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;intra_hb_central_atom_coords&#39;       : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_hb_hydrogen_atom_coords&#39;      : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_hb_contact_atom_coords&#39;       : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_hb_central_atom_frac_coords&#39;  : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_hb_hydrogen_atom_frac_coords&#39; : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_hb_contact_atom_frac_coords&#39;  : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_hb_length&#39;                    : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_hb_angle&#39;                     : (N,) vlen&lt;float32&gt;</span>
+<span class="sd">          - &#39;intra_hb_in_los&#39;                    : (N,) vlen&lt;bool&gt;</span>
+<span class="sd">          - &#39;intra_hb_central_atom_idx&#39;          : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;intra_hb_hydrogen_atom_idx&#39;         : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;intra_hb_contact_atom_idx&#39;          : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+    
+        <span class="c1"># 1) Number of H‐bonds (fixed‐length int per structure)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_n_hbonds&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    
+        <span class="c1"># 2) IDs and labels → vlen&lt;string&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_id&#39;</span><span class="p">,</span>             <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_central_atom&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_hydrogen_atom&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_contact_atom&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 3) Cartesian coords: flatten (nH, 3) → (3·nH), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_central_atom_coords&#39;</span><span class="p">,</span>       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_hydrogen_atom_coords&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_contact_atom_coords&#39;</span><span class="p">,</span>       <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 4) Fractional coords: flatten (nH, 3) → (3·nH), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_central_atom_frac_coords&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_hydrogen_atom_frac_coords&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_contact_atom_frac_coords&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 5) Lengths &amp; angles → vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_length&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_angle&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 5) Symmetry operations → vlen&lt;string&gt;, vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_symmetry_A&#39;</span><span class="p">,</span>     <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_symmetry_T&#39;</span><span class="p">,</span>     <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_symmetry_A_inv&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;inter_hb_symmetry_T_inv&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 6) In‐line‐of‐sight flags → vlen&lt;bool&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_in_los&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">bool_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 7) Atom indices  → vlen&lt;int&gt; </span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_central_atom_idx&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_hydrogen_atom_idx&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;intra_hb_contact_atom_idx&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_fragment_properties_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create per-fragment computed property datasets under shape (N, …).</span>
+<span class="sd">    </span>
+<span class="sd">          - &#39;n_fragments&#39;                          : (N,) int32</span>
+<span class="sd">          - &#39;fragment_local_id&#39;                    : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;fragment_formulas&#39;                    : (N,) vlen&lt;string&gt;</span>
+<span class="sd">          - &#39;fragment_n_atoms&#39;                     : (N,) vlen&lt;int32&gt;</span>
+<span class="sd">          - &#39;fragment_com_coords&#39;                  : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_com_frac_coords&#39;             : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_cen_coords&#39;                  : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_cen_frac_coords&#39;             : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_inertia_tensors&#39;             : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_inertia_eigvals&#39;             : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_inertia_eigvecs&#39;             : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_inertia_quaternions&#39;         : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_quadrupole_tensors&#39;          : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_quadrupole_eigvals&#39;          : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_quadrupole_eigvecs&#39;          : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_quadrupole_quaternions&#39;      : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_atom_to_com_dist&#39;            : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_atom_to_com_frac_dist&#39;       : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_atom_to_com_vecs&#39;            : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_atom_to_com_frac_vecs&#39;       : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_Ql&#39;                          : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_plane_centroid&#39;              : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_plane_normal&#39;                : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_planarity_rmsd&#39;              : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_planarity_max_dev&#39;           : (N,) vlen&lt;float32]</span>
+<span class="sd">          - &#39;fragment_planarity_score&#39;             : (N,) vlen&lt;float32]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">h</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span>
+    
+        <span class="c1"># 1) How many fragments each structure actually had (fixed‐length int)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    
+        <span class="c1"># 2) fragment_ids (vlen&lt;int&gt;)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_local_id&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">int_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 3) fragment_formulas (vlen&lt;string&gt;)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_formula&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">str_vlen</span><span class="p">)</span>
+        
+        <span class="c1"># 4) fragment_ids (vlen&lt;int&gt;)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_n_atoms&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">h5py</span><span class="o">.</span><span class="n">vlen_dtype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">))</span>
+    
+        <span class="c1"># 5) fragment centers of mass (cart + frac) → flatten (nF, 3) to (3*nF), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_com_coords&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_com_frac_coords&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 6) fragment centroids (cart + frac) → flatten (nF, 3) to (3*nF), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_cen_coords&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_cen_frac_coords&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 7) inertia tensors: flatten (nF, 3, 3) to (9*nF), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_inertia_tensors&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_inertia_eigvals&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_inertia_eigvecs&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_inertia_quaternions&#39;</span><span class="p">,</span>  <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 8) quadrupole tensors: flatten (nF, 3, 3) to (9*nF), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_quadrupole_tensors&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_quadrupole_eigvals&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_quadrupole_eigvecs&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_quadrupole_quaternions&#39;</span><span class="p">,(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 9) atom_to_com_dist: flatten per‐fragment A entries into (nF * A), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_atom_to_com_dist&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_atom_to_com_frac_dist&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        
+        <span class="c1"># 10) atom_to_com_vecs: flatten (nF, A, 3) to (3 * nF * A), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_atom_to_com_vec&#39;</span><span class="p">,</span>      <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_atom_to_com_frac_vec&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 11) Steinhardt Ql: flatten (nF, 5) to (5 * nF), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_Ql&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 12) Plane centroids &amp; normals: flatten (nF, 3) to (3 * nF), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_plane_centroid&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_plane_normal&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+    
+        <span class="c1"># 13) Planarity metrics: flatten (nF,) each → (nF), vlen&lt;float&gt;</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_planarity_rmsd&#39;</span><span class="p">,</span>    <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_planarity_max_dev&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        <span class="n">h</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;fragment_planarity_score&#39;</span><span class="p">,</span>   <span class="p">(</span><span class="n">N</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float_vlen</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="DatasetInitializer.initialize_datasets">
+<a class="viewcode-back" href="../api/dataset_initializer.html#dataset_initializer.DatasetInitializer.initialize_datasets">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialize_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create all HDF5 datasets required for storing raw and computed data.</span>
+<span class="sd">    </span>
+<span class="sd">        This method calls each of the internal _init_ methods to set up:</span>
+<span class="sd">        refcode list, crystal fields, atom fields, bond fields,</span>
+<span class="sd">        bond-angle/torsion fields, contact/H-bond fields, and fragment property fields.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_refcode_list</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_crystal_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_atom_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_bond_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_bond_angles_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_torsion_angles_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_intermolecular_contact_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_intramolecular_contact_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_intermolecular_hbond_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_intramolecular_hbond_fields</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_fragment_properties_fields</span><span class="p">()</span></div>
+</div>
+
+     
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

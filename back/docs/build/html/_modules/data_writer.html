@@ -1,0 +1,1226 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>data_writer &mdash; CrystalMath 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CrystalMath
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CrystalMath</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">data_writer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for data_writer</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: data_writer.py</span>
+
+<span class="sd">Provides RawDataWriter and ComputedDataWriter to write raw and computed</span>
+<span class="sd">datasets into a processed HDF5 file. All per‐structure data is written</span>
+<span class="sd">slice‐by‐slice, with variable‐length (vlen) datasets for atoms, bonds,</span>
+<span class="sd">contacts, and H‐bonds.</span>
+
+<span class="sd">Dependencies</span>
+<span class="sd">------------</span>
+<span class="sd">h5py</span>
+<span class="sd">numpy</span>
+<span class="sd">torch</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<div class="viewcode-block" id="RawDataWriter">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.RawDataWriter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">RawDataWriter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write raw crystal, atom, bond, intramolecular and intermolecular contact,</span>
+<span class="sd">    and H-bond data into the output HDF5 file, slice-by-slice.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    h5_out : h5py.File</span>
+<span class="sd">        Open HDF5 file for writing processed data.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    write_raw_crystal_data(start, crystal_parameters)</span>
+<span class="sd">        Write raw crystal parameters into the HDF5 datasets.</span>
+<span class="sd">    write_raw_atom_data(start, atom_parameters)</span>
+<span class="sd">        Write raw per-atom data into the HDF5 datasets.</span>
+<span class="sd">    write_raw_bond_data(start, bond_parameters)</span>
+<span class="sd">        Write raw per-bond data into the HDF5 datasets.</span>
+<span class="sd">    write_raw_intramolecular_contact_data(start, intra_cc_parameters)</span>
+<span class="sd">        Write raw intra-molecular contact data into the HDF5 datasets.</span>
+<span class="sd">    write_raw_intramolecular_hbond_data(start, intra_hb_parameters)</span>
+<span class="sd">        Write raw intra-molecular H-bond data into the HDF5 datasets.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h5_out</span><span class="p">:</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        h5_out : h5py.File</span>
+<span class="sd">            Open HDF5 file for writing processed data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span> <span class="o">=</span> <span class="n">h5_out</span>
+
+<div class="viewcode-block" id="RawDataWriter.write_raw_crystal_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.RawDataWriter.write_raw_crystal_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_raw_crystal_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">crystal_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write raw crystal parameters into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        crystal_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary of raw crystal-level arrays or tensors:</span>
+<span class="sd">            &#39;cell_lengths&#39;, &#39;cell_angles&#39;, and any scalar metrics.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1) Convert any torch tensors to numpy on CPU</span>
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">crystal_parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+
+        <span class="c1"># 2) Determine batch‐size B</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">arrs</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># 3) Slice each dataset appropriately</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">arrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span>   <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">ds</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span>
+            <span class="k">elif</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">ds</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">B</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">arr</span>
+            <span class="k">elif</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">ds</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">B</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">arr</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unsupported ndim </span><span class="si">{</span><span class="n">arr</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2"> for raw crystal field &#39;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span></div>
+
+                
+<div class="viewcode-block" id="RawDataWriter.write_raw_atom_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.RawDataWriter.write_raw_atom_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_raw_atom_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">atom_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write raw per‐atom data into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        atom_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing per-atom raw data:</span>
+<span class="sd">            &#39;atom_label&#39;, &#39;atom_symbol&#39;, &#39;atom_number&#39;,</span>
+<span class="sd">            &#39;atom_coords&#39;, &#39;atom_frac_coords&#39;,</span>
+<span class="sd">            &#39;atom_weight&#39;, &#39;atom_charge&#39;,</span>
+<span class="sd">            &#39;atom_sybyl_type&#39;, &#39;atom_neighbour_list&#39;,</span>
+<span class="sd">            and &#39;atom_mask&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">N_max</span> <span class="o">=</span> <span class="n">atom_parameters</span><span class="p">[</span><span class="s1">&#39;atom_number&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+    
+        <span class="c1"># 1) Define your key groups</span>
+        <span class="n">int_keys</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;atom_number&#39;</span><span class="p">]</span>
+        <span class="n">flat3_keys</span>    <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;atom_coords&#39;</span><span class="p">,</span> <span class="s1">&#39;atom_frac_coords&#39;</span><span class="p">]</span>
+        <span class="n">float1_keys</span>   <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;atom_weight&#39;</span><span class="p">,</span> <span class="s1">&#39;atom_charge&#39;</span><span class="p">]</span>
+        <span class="n">vlen_str_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;atom_label&#39;</span><span class="p">,</span> <span class="s1">&#39;atom_symbol&#39;</span><span class="p">,</span> <span class="s1">&#39;atom_sybyl_type&#39;</span><span class="p">,</span> <span class="s1">&#39;atom_neighbour_list&#39;</span><span class="p">]</span>
+
+        <span class="c1"># 2) Pre-convert all numeric/coord tensors → NumPy on CPU</span>
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span> <span class="o">+</span> <span class="n">float1_keys</span> <span class="o">+</span> <span class="n">flat3_keys</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;atom_mask&#39;</span><span class="p">]:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">atom_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">na</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">arrs</span><span class="p">[</span><span class="s1">&#39;atom_mask&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+            <span class="c1"># 3) number of atoms</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">na</span>
+
+            <span class="c1"># 4) integer arrays</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">na</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+
+            <span class="c1"># 5) flattened coords</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">flat3_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">na</span><span class="p">,</span> <span class="p">:]</span>       <span class="c1"># shape (na,3)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># 6) 1-D float arrays</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float1_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">na</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+
+            <span class="c1"># 7) vlen-string lists (never force into a 2D array)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">vlen_str_keys</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">atom_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                    <span class="c1"># unlikely, but handle it</span>
+                    <span class="n">seq</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">na</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">seq</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">na</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># Python list of lists</span>
+                    <span class="n">seq</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">na</span><span class="p">]</span>
+                <span class="c1"># write as list of str</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">]</span></div>
+
+                
+<div class="viewcode-block" id="RawDataWriter.write_raw_bond_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.RawDataWriter.write_raw_bond_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_raw_bond_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">bond_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write raw per‐bond data into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        bond_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing per-bond raw data:</span>
+<span class="sd">            &#39;n_bonds&#39;, &#39;bond_atom1_idx&#39;, &#39;bond_atom2_idx&#39;,</span>
+<span class="sd">            &#39;bond_atom1&#39;, &#39;bond_atom2&#39;, &#39;bond_type&#39;,</span>
+<span class="sd">            &#39;bond_is_rotatable_raw&#39;, &#39;bond_is_cyclic&#39;,</span>
+<span class="sd">            and &#39;bond_length&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1) Key groups</span>
+        <span class="n">count_key</span>      <span class="o">=</span> <span class="s1">&#39;n_bonds&#39;</span>
+        <span class="n">int_keys</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_atom1_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;bond_atom2_idx&#39;</span><span class="p">]</span>
+        <span class="n">bool_keys</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_is_cyclic&#39;</span><span class="p">]</span>
+        <span class="n">vlen_str_keys</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_atom1&#39;</span><span class="p">,</span> <span class="s1">&#39;bond_atom2&#39;</span><span class="p">,</span> <span class="s1">&#39;bond_type&#39;</span><span class="p">]</span>
+        <span class="n">vlen_bool_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_is_rotatable_raw&#39;</span><span class="p">]</span>
+        <span class="n">vlen_float_keys</span><span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_length&#39;</span><span class="p">]</span>
+
+        <span class="c1"># 2) Pre-convert fixed-shape arrays → NumPy on CPU</span>
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="n">count_key</span><span class="p">,</span> <span class="o">*</span><span class="n">int_keys</span><span class="p">,</span> <span class="o">*</span><span class="n">bool_keys</span><span class="p">):</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">bond_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">arrs</span><span class="p">[</span><span class="n">count_key</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1"># 3) Write each structure</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">nb</span>  <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">arrs</span><span class="p">[</span><span class="n">count_key</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># 3a) bond count</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">count_key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nb</span>
+
+            <span class="c1"># 3b) fixed-length ints</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+
+            <span class="c1"># 3c) fixed-length bools</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bool_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+
+            <span class="c1"># 3d) vlen strings</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">vlen_str_keys</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">bond_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nb</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+
+            <span class="c1"># 3e) vlen bools</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">vlen_bool_keys</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">bond_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nb</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
+
+            <span class="c1"># 3f) vlen floats</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">vlen_float_keys</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">bond_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nb</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span></div>
+
+                
+<div class="viewcode-block" id="RawDataWriter.write_raw_intramolecular_contact_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.RawDataWriter.write_raw_intramolecular_contact_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_raw_intramolecular_contact_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">intra_cc_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write raw intramolecular contact data into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        intra_cc_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing raw intra-molecular contact data:</span>
+<span class="sd">            &#39;intra_cc_id&#39;, &#39;intra_cc_central_atom&#39;,</span>
+<span class="sd">            &#39;intra_cc_contact_atom&#39;, &#39;intra_cc_central_atom_idx&#39;,</span>
+<span class="sd">            &#39;intra_cc_contact_atom_idx&#39;,</span>
+<span class="sd">            &#39;intra_cc_central_atom_coords&#39;,</span>
+<span class="sd">            &#39;intra_cc_contact_atom_coords&#39;,</span>
+<span class="sd">            &#39;intra_cc_central_atom_frac_coords&#39;,</span>
+<span class="sd">            &#39;intra_cc_contact_atom_frac_coords&#39;,</span>
+<span class="sd">            &#39;intra_cc_length&#39;, &#39;intra_cc_strength&#39;,</span>
+<span class="sd">            and &#39;intra_cc_in_los&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">flat3_keys</span>      <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intra_cc_central_atom_coords&#39;</span><span class="p">,</span> <span class="s1">&#39;intra_cc_contact_atom_coords&#39;</span><span class="p">]</span>
+        <span class="n">flat3_frac_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intra_cc_central_atom_frac_coords&#39;</span><span class="p">,</span> <span class="s1">&#39;intra_cc_contact_atom_frac_coords&#39;</span><span class="p">]</span>
+        <span class="n">float1_keys</span>     <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intra_cc_length&#39;</span><span class="p">,</span> <span class="s1">&#39;intra_cc_strength&#39;</span><span class="p">]</span>
+        <span class="n">int_keys</span>        <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intra_cc_central_atom_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;intra_cc_contact_atom_idx&#39;</span><span class="p">]</span>
+        <span class="n">bool_keys</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intra_cc_in_los&#39;</span><span class="p">]</span>
+
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">flat3_keys</span> <span class="o">+</span> <span class="n">flat3_frac_keys</span> <span class="o">+</span> <span class="n">float1_keys</span> <span class="o">+</span> <span class="n">bool_keys</span> <span class="o">+</span> <span class="n">int_keys</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">intra_cc_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+
+        <span class="c1"># 2) String‐list inputs (keep as Python lists or object‐arrays)</span>
+        <span class="n">labels_cl</span> <span class="o">=</span> <span class="n">intra_cc_parameters</span><span class="p">[</span><span class="s1">&#39;intra_cc_central_atom&#39;</span><span class="p">]</span>
+        <span class="n">str_keys</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intra_cc_id&#39;</span><span class="p">,</span> <span class="s1">&#39;intra_cc_central_atom&#39;</span><span class="p">,</span><span class="s1">&#39;intra_cc_contact_atom&#39;</span><span class="p">]</span>
+
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_cl</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">nC</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_cl</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># 4) count</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;intra_n_contacts&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nC</span>
+
+            <span class="c1"># 5) vlen‐string fields</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">str_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">intra_cc_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nC</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nC</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+
+            <span class="c1"># 6) vlen‐int fields</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">intra_cc_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nC</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nC</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
+
+            <span class="c1"># 7) flattened Cartesian coords</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">flat3_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nC</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># 8) flattened fractional coords</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">flat3_frac_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nC</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># 9) 1‐D floats</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float1_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nC</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+
+            <span class="c1"># 10) 1‐D bools</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bool_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nC</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span></div>
+
+                
+<div class="viewcode-block" id="RawDataWriter.write_raw_intramolecular_hbond_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.RawDataWriter.write_raw_intramolecular_hbond_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_raw_intramolecular_hbond_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">intra_hb_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write raw intramolecular H‐bond data into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        intra_hb_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing raw intra-molecular H-bond data:</span>
+<span class="sd">            &#39;intra_hb_id&#39;, &#39;intra_hb_central_atom&#39;,</span>
+<span class="sd">            &#39;intra_hb_hydrogen_atom&#39;, &#39;intra_hb_contact_atom&#39;,</span>
+<span class="sd">            &#39;intra_hb_central_atom_idx&#39;,</span>
+<span class="sd">            &#39;intra_hb_hydrogen_atom_idx&#39;,</span>
+<span class="sd">            &#39;intra_hb_contact_atom_idx&#39;,</span>
+<span class="sd">            &#39;intra_hb_central_atom_coords&#39;,</span>
+<span class="sd">            &#39;intra_hb_hydrogen_atom_coords&#39;,</span>
+<span class="sd">            &#39;intra_hb_contact_atom_coords&#39;,</span>
+<span class="sd">            &#39;intra_hb_central_atom_frac_coords&#39;,</span>
+<span class="sd">            &#39;intra_hb_hydrogen_atom_frac_coords&#39;,</span>
+<span class="sd">            &#39;intra_hb_contact_atom_frac_coords&#39;,</span>
+<span class="sd">            &#39;intra_hb_length&#39;, &#39;intra_hb_angle&#39;,</span>
+<span class="sd">            and &#39;intra_hb_in_los&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1) Prepare NumPy arrays for all fixed‐shape fields</span>
+        <span class="n">flat3_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;intra_hb_central_atom_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intra_hb_hydrogen_atom_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intra_hb_contact_atom_coords&#39;</span>
+            <span class="p">]</span>
+        <span class="n">flat3_frac_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;intra_hb_central_atom_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intra_hb_hydrogen_atom_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intra_hb_contact_atom_frac_coords&#39;</span>
+            <span class="p">]</span>
+        <span class="n">float1_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intra_hb_length&#39;</span><span class="p">,</span> <span class="s1">&#39;intra_hb_angle&#39;</span><span class="p">]</span>
+        <span class="n">int_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;intra_hb_central_atom_idx&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intra_hb_hydrogen_atom_idx&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intra_hb_contact_atom_idx&#39;</span>
+            <span class="p">]</span>
+        <span class="n">bool_keys</span>   <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;intra_hb_in_los&#39;</span><span class="p">]</span>
+
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">flat3_keys</span> <span class="o">+</span> <span class="n">flat3_frac_keys</span> <span class="o">+</span> <span class="n">float1_keys</span> <span class="o">+</span> <span class="n">bool_keys</span> <span class="o">+</span> <span class="n">int_keys</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">intra_hb_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+
+        <span class="c1"># 2) vlen‐string inputs</span>
+        <span class="n">labels_cl</span> <span class="o">=</span> <span class="n">intra_hb_parameters</span><span class="p">[</span><span class="s1">&#39;intra_hb_central_atom&#39;</span><span class="p">]</span>
+        <span class="n">str_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;intra_hb_id&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;intra_hb_central_atom&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intra_hb_hydrogen_atom&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;intra_hb_contact_atom&#39;</span>
+            <span class="p">]</span>
+
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_cl</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">nH</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_cl</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># 4) number of H-bonds</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;intra_n_hbonds&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nH</span>
+
+            <span class="c1"># 5) vlen‐string fields</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">str_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">intra_hb_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nH</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nH</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nH</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span>
+
+            <span class="c1"># 6) vlen‐int fields</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">intra_hb_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nH</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nH</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nH</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
+
+            <span class="c1"># 7) flattened Cartesian coords</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">flat3_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nH</span><span class="p">,</span> <span class="p">:]</span>   <span class="c1"># (nH,3)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># 8) flattened fractional coords</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">flat3_frac_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nH</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># 9) 1‐D floats</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float1_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nH</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span>
+
+            <span class="c1"># 10) 1‐D bools</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bool_keys</span><span class="p">:</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nH</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">seq</span></div>
+</div>
+
+            
+
+<div class="viewcode-block" id="ComputedDataWriter">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.ComputedDataWriter">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ComputedDataWriter</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Write computed crystal, atom, bond, molecule, and contact/H-bond features into the output HDF5 file.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    h5_out : h5py.File</span>
+<span class="sd">        Open HDF5 file for writing processed data.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    write_computed_crystal_data(start: int, crystal_parameters: Dict[str, Any]) -&gt; None</span>
+<span class="sd">        Write computed crystal parameters (&#39;scaled_cell&#39;, &#39;cell_matrix&#39;) into the HDF5 datasets.</span>
+<span class="sd">    write_computed_atom_data(start: int, atom_parameters: Dict[str, Any]) -&gt; None</span>
+<span class="sd">        Write computed atom-level features (&#39;atom_fragment_id&#39;, &#39;atom_dist_to_special_planes&#39;) into the HDF5 datasets.</span>
+<span class="sd">    write_computed_bond_data(start: int, bond_parameters: Dict[str, Any]) -&gt; None</span>
+<span class="sd">        Write computed bond-level features (&#39;bond_is_rotatable&#39;, &#39;bond_vector_angles_to_special_planes&#39;) into the HDF5 datasets.</span>
+<span class="sd">    write_computed_molecule_data(start: int, molecule_parameters: Dict[str, Any]) -&gt; None</span>
+<span class="sd">        Write computed intra-molecular bond angles and torsion features into the HDF5 datasets.</span>
+<span class="sd">    write_computed_intermolecular_contact_data(start: int, inter_cc_parameters: Dict[str, Any]) -&gt; None</span>
+<span class="sd">        Write computed intermolecular contact features (IDs, indices, coords, lengths, strengths, h-bond flags, fragment mappings, vectors) into the HDF5 datasets.</span>
+<span class="sd">    write_computed_intermolecular_hbond_data(start: int, inter_hb_parameters: Dict[str, Any]) -&gt; None</span>
+<span class="sd">        Write computed intermolecular H-bond features (IDs, donor/acceptor labels, indices, coords, lengths, angles, masks, symmetry ops) into the HDF5 datasets.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h5_out</span><span class="p">:</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize ComputedDataWriter.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        h5_out : h5py.File</span>
+<span class="sd">            Open HDF5 file for writing processed data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span> <span class="o">=</span> <span class="n">h5_out</span>
+
+<div class="viewcode-block" id="ComputedDataWriter.write_computed_crystal_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.ComputedDataWriter.write_computed_crystal_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_computed_crystal_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">crystal_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write computed crystal parameters into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        crystal_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing computed crystal data:</span>
+<span class="sd">            &#39;scaled_cell&#39; (shape (B, 6)) and &#39;cell_matrix&#39; (shape (B, 3, 3)).</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># First convert any torch.Tensors to numpy arrays</span>
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">crystal_parameters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+        
+        <span class="c1"># Batch‐size</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">arrs</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">arrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">ds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="n">ds</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">B</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">arr</span>
+            <span class="k">elif</span> <span class="n">arr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">ds</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">B</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">arr</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># fallback—e.g. someone might pass a 1‐D array of scalars</span>
+                <span class="n">ds</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">B</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span></div>
+
+                
+<div class="viewcode-block" id="ComputedDataWriter.write_computed_atom_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.ComputedDataWriter.write_computed_atom_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_computed_atom_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">atom_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write computed atom-level features into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        atom_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing computed atom data:</span>
+<span class="sd">            &#39;atom_fragment_id&#39; (list or array of shape (B, N)),</span>
+<span class="sd">            &#39;atom_dist_to_special_planes&#39; (shape (B, N, P)).</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">atom_parameters</span><span class="p">[</span><span class="s1">&#39;atom_fragment_id&#39;</span><span class="p">])</span>
+
+        <span class="c1"># Pre-extract &amp; convert the distances array once</span>
+        <span class="n">dist_arr</span> <span class="o">=</span> <span class="n">atom_parameters</span><span class="p">[</span><span class="s1">&#39;atom_dist_to_special_planes&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">dist_arr</span><span class="p">):</span>
+            <span class="n">dist_arr</span> <span class="o">=</span> <span class="n">dist_arr</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    
+        <span class="c1"># Pre-extract &amp; convert the fragment-id container once</span>
+        <span class="n">frag_container</span> <span class="o">=</span> <span class="n">atom_parameters</span><span class="p">[</span><span class="s1">&#39;atom_fragment_id&#39;</span><span class="p">]</span>
+        <span class="c1"># If it&#39;s a single Tensor of shape (B, N_max), convert to numpy</span>
+        <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">frag_container</span><span class="p">):</span>
+            <span class="n">frag_container</span> <span class="o">=</span> <span class="n">frag_container</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="c1"># Otherwise assume it&#39;s already a list of lists</span>
+    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+    
+            <span class="c1"># 1) number of real atoms</span>
+            <span class="n">na</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">])</span>
+    
+            <span class="c1"># 2) fragment IDs</span>
+            <span class="c1"># frag_container[i] is now a Python list</span>
+            <span class="n">all_ids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">frag_container</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+            <span class="n">frag_ids</span> <span class="o">=</span> <span class="n">all_ids</span><span class="p">[:</span><span class="n">na</span><span class="p">]</span>
+            <span class="n">frag_ids</span> <span class="o">=</span> <span class="n">frag_ids</span><span class="p">[</span><span class="n">frag_ids</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;atom_fragment_id&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">frag_ids</span>
+    
+            <span class="c1"># 3) distances: slice then flatten</span>
+            <span class="n">block</span> <span class="o">=</span> <span class="n">dist_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">na</span><span class="p">,</span> <span class="p">:]</span>       <span class="c1"># shape (na, 26)</span>
+            <span class="n">flattened</span> <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># length = na * 26</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;atom_distances_to_special_planes&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">flattened</span></div>
+
+        
+<div class="viewcode-block" id="ComputedDataWriter.write_computed_bond_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.ComputedDataWriter.write_computed_bond_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_computed_bond_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">bond_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write computed bond-level features into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        bond_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing computed bond data:</span>
+<span class="sd">            &#39;bond_is_rotatable&#39; (shape (B, M)) and</span>
+<span class="sd">            &#39;bond_vector_angles_to_special_planes&#39; (shape (B, M, K)).</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1) Extract &amp; convert the full arrays once</span>
+        <span class="n">rot_arr</span> <span class="o">=</span> <span class="n">bond_parameters</span><span class="p">[</span><span class="s1">&#39;bond_is_rotatable&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">rot_arr</span><span class="p">):</span>
+            <span class="n">rot_arr</span> <span class="o">=</span> <span class="n">rot_arr</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    
+        <span class="n">ang_arr</span> <span class="o">=</span> <span class="n">bond_parameters</span><span class="p">[</span><span class="s1">&#39;bond_vector_angles_to_special_planes&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">ang_arr</span><span class="p">):</span>
+            <span class="n">ang_arr</span> <span class="o">=</span> <span class="n">ang_arr</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    
+        <span class="c1"># 2) Loop over structures</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">M_max</span> <span class="o">=</span> <span class="n">rot_arr</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+    
+            <span class="c1"># how many real bonds?</span>
+            <span class="n">nb</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;n_bonds&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">])</span>
+    
+            <span class="c1"># slice off the first nb flags (shape (nb,))</span>
+            <span class="n">comp_rot</span> <span class="o">=</span> <span class="n">rot_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;bond_is_rotatable&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">comp_rot</span>
+    
+            <span class="c1"># slice &amp; flatten the angles (shape (nb,13) → (nb*13,))</span>
+            <span class="n">angle_block</span> <span class="o">=</span> <span class="n">ang_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">nb</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">flat_angles</span> <span class="o">=</span> <span class="n">angle_block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;bond_vector_angles_to_special_planes&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">flat_angles</span></div>
+
+            
+<div class="viewcode-block" id="ComputedDataWriter.write_computed_molecule_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.ComputedDataWriter.write_computed_molecule_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_computed_molecule_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">molecule_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write computed intra-molecular bond angles and torsion features.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        molecule_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing computed molecule data:</span>
+<span class="sd">            &#39;bond_angle_id&#39;, &#39;bond_angle&#39;, &#39;bond_angle_mask&#39;,</span>
+<span class="sd">            &#39;bond_angle_atom_idx&#39;, &#39;torsion_id&#39;, &#39;torsion&#39;,</span>
+<span class="sd">            &#39;torsion_mask&#39;, and &#39;torsion_atom_idx&#39;.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 1) Convert any torch.Tensor → numpy array for numeric &amp; boolean keys</span>
+        <span class="n">float_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_angle&#39;</span><span class="p">,</span> <span class="s1">&#39;torsion&#39;</span><span class="p">]</span>
+        <span class="n">bool_keys</span>  <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_angle_mask&#39;</span><span class="p">,</span> <span class="s1">&#39;torsion_mask&#39;</span><span class="p">]</span>
+        <span class="n">int_keys</span>   <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_angle_atom_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;torsion_atom_idx&#39;</span><span class="p">]</span>
+
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float_keys</span> <span class="o">+</span> <span class="n">bool_keys</span> <span class="o">+</span> <span class="n">int_keys</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">molecule_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+
+        <span class="c1"># 2) String‐ID keys stay as Python lists or numpy arrays of strings</span>
+        <span class="n">str_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;bond_angle_id&#39;</span><span class="p">,</span> <span class="s1">&#39;torsion_id&#39;</span><span class="p">]</span>
+
+        <span class="c1"># 3) Number of structures in this batch</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">molecule_parameters</span><span class="p">[</span><span class="n">str_keys</span><span class="p">[</span><span class="mi">0</span><span class="p">]])</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+
+            <span class="c1"># --- vlen strings ---</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">str_keys</span><span class="p">:</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">molecule_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">row</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
+
+            <span class="c1"># --- vlen floats ---</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float_keys</span><span class="p">:</span>
+                <span class="n">arr</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="c1"># length = number of IDs for this field</span>
+                <span class="n">n_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">molecule_parameters</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2">_id&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">n_items</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="k">else</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+            <span class="c1"># --- vlen bools ---</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bool_keys</span><span class="p">:</span>
+                <span class="n">arr</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">n_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">molecule_parameters</span><span class="p">[</span><span class="n">key</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_mask&#39;</span><span class="p">,</span> <span class="s1">&#39;_id&#39;</span><span class="p">)][</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">n_items</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="k">else</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+            <span class="c1"># --- vlen ints (flatten last axis) ---</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span><span class="p">:</span>
+                <span class="n">arr</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="c1"># pick the right ID list to get length</span>
+                <span class="n">id_key</span> <span class="o">=</span> <span class="s1">&#39;bond_angle_id&#39;</span> <span class="k">if</span> <span class="s1">&#39;angle&#39;</span> <span class="ow">in</span> <span class="n">key</span> <span class="k">else</span> <span class="s1">&#39;torsion_id&#39;</span>
+                <span class="n">n_items</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">molecule_parameters</span><span class="p">[</span><span class="n">id_key</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                    <span class="n">block</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:</span><span class="n">n_items</span><span class="p">,</span> <span class="p">:]</span>
+                    <span class="n">flat</span>  <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># list of tuples → flatten</span>
+                    <span class="n">flat</span> <span class="o">=</span> <span class="p">[</span><span class="n">atom</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">molecule_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">group</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">flat</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span></div>
+
+                
+<div class="viewcode-block" id="ComputedDataWriter.write_computed_intermolecular_contact_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.ComputedDataWriter.write_computed_intermolecular_contact_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_computed_intermolecular_contact_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">inter_cc_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write computed intermolecular contact features into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        inter_cc_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing computed intermolecular contact data,</span>
+<span class="sd">            including IDs, atom labels, indices, coords, frac_coords,</span>
+<span class="sd">            lengths, strengths, masks, symmetry ops, hbond flags, and</span>
+<span class="sd">            fragment‐mapping and vector fields.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Define groups of keys by how to write them</span>
+        <span class="n">float3_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;inter_cc_central_atom_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_contact_atom_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_central_atom_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_contact_atom_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_contact_atom_to_fragment_com_vec&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_contact_atom_to_fragment_com_frac_vec&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_symmetry_T&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;inter_cc_symmetry_T_inv&#39;</span>
+            <span class="p">]</span>
+        <span class="n">float1_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;inter_cc_length&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_strength&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_contact_atom_to_fragment_com_dist&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_contact_atom_to_fragment_com_frac_dist&#39;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="n">int_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;inter_cc_central_atom_idx&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_contact_atom_idx&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_central_atom_fragment_idx&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_cc_contact_atom_fragment_idx&#39;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="n">matrix9_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;inter_cc_symmetry_A&#39;</span><span class="p">,</span> <span class="s1">&#39;inter_cc_symmetry_A_inv&#39;</span><span class="p">]</span>
+        <span class="n">bool_keys</span>    <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;inter_cc_in_los&#39;</span><span class="p">,</span> <span class="s1">&#39;inter_cc_is_hbond&#39;</span><span class="p">]</span>
+        
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float1_keys</span> <span class="o">+</span> <span class="n">float3_keys</span> <span class="o">+</span> <span class="n">int_keys</span> <span class="o">+</span> <span class="n">matrix9_keys</span> <span class="o">+</span> <span class="n">bool_keys</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">inter_cc_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+    
+        <span class="n">str_keys</span>    <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;inter_cc_central_atom&#39;</span><span class="p">,</span> <span class="s1">&#39;inter_cc_contact_atom&#39;</span><span class="p">]</span>
+        <span class="n">labels_cl</span> <span class="o">=</span> <span class="n">inter_cc_parameters</span><span class="p">[</span><span class="s1">&#39;inter_cc_central_atom&#39;</span><span class="p">]</span>
+        <span class="n">labels_ct</span> <span class="o">=</span> <span class="n">inter_cc_parameters</span><span class="p">[</span><span class="s1">&#39;inter_cc_contact_atom&#39;</span><span class="p">]</span>
+        
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_cl</span><span class="p">)</span>
+    
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">nC</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_cl</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+            <span class="c1"># 1) number of contacts</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;inter_cc_n_contacts&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nC</span>
+            
+            <span class="c1"># 2) IDs for each contact pair</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">labels_cl</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">labels_ct</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nC</span><span class="p">)]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;inter_cc_id&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span>
+    
+            <span class="c1"># 3) variable-length string arrays</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">str_keys</span><span class="p">:</span>
+                <span class="n">seq</span>  <span class="o">=</span> <span class="n">inter_cc_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">])</span>
+    
+            <span class="c1"># 4) flattened 3-D vectors → (3*nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float3_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="n">flat</span>  <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">flat</span>
+    
+            <span class="c1"># 5) 1-D float arrays → (nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float1_keys</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    
+            <span class="c1"># 6) integer arrays → (nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    
+            <span class="c1"># 7) boolean arrays → (nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bool_keys</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+    
+            <span class="c1"># 8) symmetry matrices (3×3 → 9 floats per contact) → (9*nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">matrix9_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="n">flat</span>  <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">flat</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span></div>
+
+                
+<div class="viewcode-block" id="ComputedDataWriter.write_computed_intermolecular_hbond_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.ComputedDataWriter.write_computed_intermolecular_hbond_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_computed_intermolecular_hbond_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">inter_hb_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+            <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write computed intermolecular H‐bond features into the HDF5 datasets.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        inter_hb_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing computed intermolecular H‐bond data,</span>
+<span class="sd">            including IDs, donor/acceptor labels, indices, coords,</span>
+<span class="sd">            frac_coords, lengths, angles, masks, symmetry ops, etc.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Define groups of keys by how to write them</span>
+        <span class="n">float3_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;inter_hb_central_atom_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_hydrogen_atom_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_contact_atom_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_central_atom_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_hydrogen_atom_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_contact_atom_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_symmetry_T&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;inter_hb_symmetry_T_inv&#39;</span>
+            <span class="p">]</span>
+        <span class="n">float1_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;inter_hb_length&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_angle&#39;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="n">int_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;inter_hb_central_atom_idx&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_hydrogen_atom_idx&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;inter_hb_contact_atom_idx&#39;</span><span class="p">,</span>
+            <span class="p">]</span>
+        <span class="n">matrix9_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;inter_hb_symmetry_A&#39;</span><span class="p">,</span> <span class="s1">&#39;inter_hb_symmetry_A_inv&#39;</span><span class="p">]</span>
+        <span class="n">bool_keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;inter_hb_in_los&#39;</span><span class="p">]</span>
+        
+        <span class="n">arrs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float1_keys</span> <span class="o">+</span> <span class="n">float3_keys</span> <span class="o">+</span> <span class="n">int_keys</span> <span class="o">+</span> <span class="n">matrix9_keys</span> <span class="o">+</span> <span class="n">bool_keys</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">inter_hb_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">):</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+
+        <span class="n">str_keys</span>    <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;inter_hb_central_atom&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;inter_hb_hydrogen_atom&#39;</span><span class="p">,</span> 
+            <span class="s1">&#39;inter_hb_contact_atom&#39;</span>
+            <span class="p">]</span>
+        <span class="n">labels_cl</span> <span class="o">=</span> <span class="n">inter_hb_parameters</span><span class="p">[</span><span class="s1">&#39;inter_hb_central_atom&#39;</span><span class="p">]</span>
+        <span class="n">labels_h</span>  <span class="o">=</span> <span class="n">inter_hb_parameters</span><span class="p">[</span><span class="s1">&#39;inter_hb_hydrogen_atom&#39;</span><span class="p">]</span>
+        <span class="n">labels_ct</span> <span class="o">=</span> <span class="n">inter_hb_parameters</span><span class="p">[</span><span class="s1">&#39;inter_hb_contact_atom&#39;</span><span class="p">]</span>
+        
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_cl</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">nC</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels_cl</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># 1) number of contacts</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;inter_hb_n_hbonds&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nC</span>
+            
+            <span class="c1"># 2) IDs for each contact pair</span>
+            <span class="n">ids</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">labels_cl</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">labels_h</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">labels_ct</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nC</span><span class="p">)]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;inter_hb_id&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ids</span><span class="p">)</span>
+
+            <span class="c1"># 3) variable-length string arrays</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">str_keys</span><span class="p">:</span>
+                <span class="n">seq</span>  <span class="o">=</span> <span class="n">inter_hb_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">vals</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">vals</span><span class="p">])</span>
+
+            <span class="c1"># 4) flattened 3-D vectors → (3*nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float3_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="n">flat</span>  <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">flat</span>
+
+            <span class="c1"># 5) 1-D float arrays → (nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float1_keys</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+            <span class="c1"># 6) integer arrays → (nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+            <span class="c1"># 7) boolean arrays → (nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">bool_keys</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">bool</span><span class="p">)</span>
+                
+            <span class="c1"># 8) symmetry matrices (3×3 → 9 floats per contact) → (9*nC,)</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">matrix9_keys</span><span class="p">:</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arrs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">][:</span><span class="n">nC</span><span class="p">]</span>
+                <span class="n">flat</span>  <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">flat</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span></div>
+
+                
+<div class="viewcode-block" id="ComputedDataWriter.write_computed_fragment_data">
+<a class="viewcode-back" href="../api/data_writer.html#data_writer.ComputedDataWriter.write_computed_fragment_data">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write_computed_fragment_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+            <span class="n">fragment_parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write computed fragment-level properties into the HDF5 datasets.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        start : int</span>
+<span class="sd">            Index offset in the output datasets corresponding to this batch.</span>
+<span class="sd">        fragment_parameters : Dict[str, Any]</span>
+<span class="sd">            Dictionary containing computed fragment data:</span>
+<span class="sd">            - &#39;n_fragments&#39;                   : (B,) or list of ints</span>
+<span class="sd">            - &#39;fragment_local_id&#39;             : (B, nF) or list of lists of ints</span>
+<span class="sd">            - &#39;fragment_formula&#39;              : list of lists of str</span>
+<span class="sd">            - &#39;fragment_n_atoms&#39;              : (B, nF) or list of lists of ints</span>
+<span class="sd">            - all other keys as numpy/Tensor arrays:</span>
+<span class="sd">              &#39;fragment_com_coords&#39;,</span>
+<span class="sd">              &#39;fragment_com_frac_coords&#39;,</span>
+<span class="sd">              &#39;fragment_cen_coords&#39;,</span>
+<span class="sd">              &#39;fragment_cen_frac_coords&#39;,</span>
+<span class="sd">              &#39;fragment_inertia_tensors&#39;,</span>
+<span class="sd">              &#39;fragment_inertia_eigvals&#39;,</span>
+<span class="sd">              &#39;fragment_inertia_eigvecs&#39;,</span>
+<span class="sd">              &#39;fragment_inertia_quaternions&#39;,</span>
+<span class="sd">              &#39;fragment_quadrupole_tensors&#39;,</span>
+<span class="sd">              &#39;fragment_quadrupole_eigvals&#39;,</span>
+<span class="sd">              &#39;fragment_quadrupole_eigvecs&#39;,</span>
+<span class="sd">              &#39;fragment_quadrupole_quaternions&#39;,</span>
+<span class="sd">              &#39;fragment_atom_to_com_dist&#39;,</span>
+<span class="sd">              &#39;fragment_atom_to_com_frac_dist&#39;,</span>
+<span class="sd">              &#39;fragment_atom_to_com_vec&#39;,</span>
+<span class="sd">              &#39;fragment_atom_to_com_frac_vec&#39;,</span>
+<span class="sd">              &#39;fragment_Ql&#39;,</span>
+<span class="sd">              &#39;fragment_plane_centroid&#39;,</span>
+<span class="sd">              &#39;fragment_plane_normal&#39;,</span>
+<span class="sd">              &#39;fragment_planarity_rmsd&#39;,</span>
+<span class="sd">              &#39;fragment_planarity_max_dev&#39;,</span>
+<span class="sd">              &#39;fragment_planarity_score&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># 1) Convert all numeric / tensor fields to numpy arrays</span>
+        <span class="c1">#    now including fragment_structure_id so we can group by structure</span>
+        <span class="n">int_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;fragment_structure_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_local_id&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_n_atoms&#39;</span>
+        <span class="p">]</span>
+        <span class="n">float_keys</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;fragment_com_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_com_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_cen_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_cen_frac_coords&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_inertia_tensors&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_inertia_eigvals&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_inertia_eigvecs&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_inertia_quaternions&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_quadrupole_tensors&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_quadrupole_eigvals&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_quadrupole_eigvecs&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_quadrupole_quaternions&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_atom_to_com_dist&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_atom_to_com_frac_dist&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_atom_to_com_vec&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_atom_to_com_frac_vec&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_Ql&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_plane_centroid&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_plane_normal&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_planarity_rmsd&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_planarity_max_dev&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;fragment_planarity_score&#39;</span>
+        <span class="p">]</span>
+
+        <span class="n">arrs_int</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">arrs_flt</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">int_keys</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">fragment_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">arrs_int</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+                <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">float_keys</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="n">fragment_parameters</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="n">arrs_flt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">vals</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+                <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># 2) Extract formulas</span>
+        <span class="n">formulas</span> <span class="o">=</span> <span class="n">fragment_parameters</span><span class="p">[</span><span class="s1">&#39;fragment_formula&#39;</span><span class="p">]</span>
+
+        <span class="c1"># 3) Book-keeping</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fragment_parameters</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">struct_ids</span> <span class="o">=</span> <span class="n">arrs_int</span><span class="p">[</span><span class="s1">&#39;fragment_structure_id&#39;</span><span class="p">]</span>  <span class="c1"># shape (F,)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="n">nF</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">fragment_parameters</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># write scalar count</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">nF</span>
+
+            <span class="c1"># build a mask to select the F_i fragments of structure i</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">struct_ids</span> <span class="o">==</span> <span class="n">i</span><span class="p">)</span>
+
+            <span class="c1"># --- integer‐vlen fields ---</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;fragment_local_id&#39;</span><span class="p">,</span> <span class="s1">&#39;fragment_n_atoms&#39;</span><span class="p">]:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">arrs_int</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span>        <span class="c1"># shape (F_i,)</span>
+                <span class="n">row</span>  <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="n">nF</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">row</span>
+
+            <span class="c1"># --- string‐vlen field: formulas ---</span>
+            <span class="n">seq</span> <span class="o">=</span> <span class="n">formulas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">is_tensor</span><span class="p">(</span><span class="n">seq</span><span class="p">):</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                <span class="n">seq</span> <span class="o">=</span> <span class="n">seq</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="s1">&#39;fragment_formula&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">[:</span><span class="n">nF</span><span class="p">]]</span>
+
+            <span class="c1"># --- float‐vlen fields ---</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">arrs_flt</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>           <span class="c1"># shape (F_i, …)</span>
+                <span class="n">block</span> <span class="o">=</span> <span class="n">block</span><span class="p">[:</span><span class="n">nF</span><span class="p">]</span>          <span class="c1"># drop any extra padding</span>
+                <span class="n">flat</span>  <span class="o">=</span> <span class="n">block</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># flatten to 1D</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h5_out</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">flat</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

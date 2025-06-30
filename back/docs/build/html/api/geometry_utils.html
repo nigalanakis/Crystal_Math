@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>geometry_utils module &mdash; CrystalMath 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="hdf5_utils module" href="hdf5_utils.html" />
+    <link rel="prev" title="fragment_utils module" href="fragment_utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CrystalMath
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cell_utils.html">cell_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact_utils.html">contact_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crystal_analyzer.html">crystal_analyzer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csa_config.html">csa_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csa_main.html">csa_main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csd_operations.html">csd_operations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csd_structure_validator.html">csd_structure_validator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_reader.html">data_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_writer.html">data_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_initializer.html">dataset_initializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension_scanner.html">dimension_scanner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fragment_utils.html">fragment_utils module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">geometry_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_angles_between_bonds_and_crystallographic_planes_frac_batch"><code class="docutils literal notranslate"><span class="pre">compute_angles_between_bonds_and_crystallographic_planes_frac_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_atom_vectors_to_point_batch"><code class="docutils literal notranslate"><span class="pre">compute_atom_vectors_to_point_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_best_fit_plane_batch"><code class="docutils literal notranslate"><span class="pre">compute_best_fit_plane_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_bond_angles_batch"><code class="docutils literal notranslate"><span class="pre">compute_bond_angles_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_bond_rotatability_batch"><code class="docutils literal notranslate"><span class="pre">compute_bond_rotatability_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_distances_to_crystallographic_planes_frac_batch"><code class="docutils literal notranslate"><span class="pre">compute_distances_to_crystallographic_planes_frac_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_fragment_pairwise_vectors_and_distances_batch"><code class="docutils literal notranslate"><span class="pre">compute_fragment_pairwise_vectors_and_distances_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_global_steinhardt_order_parameters_batch"><code class="docutils literal notranslate"><span class="pre">compute_global_steinhardt_order_parameters_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_planarity_metrics_batch"><code class="docutils literal notranslate"><span class="pre">compute_planarity_metrics_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_quaternions_from_rotation_matrices"><code class="docutils literal notranslate"><span class="pre">compute_quaternions_from_rotation_matrices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometry_utils.compute_torsion_angles_batch"><code class="docutils literal notranslate"><span class="pre">compute_torsion_angles_batch()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="hdf5_utils.html">hdf5_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure_data_extractor.html">structure_data_extractor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure_post_extraction_processor.html">structure_post_extraction_processor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symmetry_utils.html">symmetry_utils module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CrystalMath</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">geometry_utils module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/geometry_utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-geometry_utils">
+<span id="geometry-utils-module"></span><h1>geometry_utils module<a class="headerlink" href="#module-geometry_utils" title="Link to this heading"></a></h1>
+<p>Module: geometry_utils.py</p>
+<dl class="simple">
+<dt>Batch-based utilities for computing geometric descriptors of molecules and fragments using PyTorch. Includes:</dt><dd><ul class="simple">
+<li><p>Best-fit plane / centroid</p></li>
+<li><p>Planarity metrics (RMSD, max deviation, planarity score)</p></li>
+<li><p>Global Steinhardt Q_l order parameters</p></li>
+<li><p>Distances to special crystallographic planes (fractional)</p></li>
+<li><p>Angles between bonds and special planes (fractional)</p></li>
+<li><p>Quaternion computation from rotation matrices</p></li>
+</ul>
+</dd>
+</dl>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<p>math
+numpy
+torch
+typing</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_angles_between_bonds_and_crystallographic_planes_frac_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_angles_between_bonds_and_crystallographic_planes_frac_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_angles_between_bonds_and_crystallographic_planes_frac_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_angles_between_bonds_and_crystallographic_planes_frac_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute angles (in degrees) between each bond vector and the 13 crystallographic plane normals.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_frac_coords<span class="classifier">torch.Tensor, shape (B, A, 3)</span></dt><dd><p>Fractional coordinates of all atoms, padded to A per structure.</p>
+</dd>
+<dt>bond_atom1<span class="classifier">torch.LongTensor, shape (B, M)</span></dt><dd><p>Index of the first atom in each bond slot.</p>
+</dd>
+<dt>bond_atom2<span class="classifier">torch.LongTensor, shape (B, M)</span></dt><dd><p>Index of the second atom in each bond slot.</p>
+</dd>
+<dt>bond_mask<span class="classifier">torch.BoolTensor, shape (B, M)</span></dt><dd><p>True for real bonds, False for padding.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device on which to perform the computation.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>torch.Tensor, shape (B, M, 13)</dt><dd><p>Bond–plane angles in degrees; zeros where bond_mask is False.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_atom_vectors_to_point_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_atom_vectors_to_point_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">com_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">com_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_atom_vectors_to_point_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_atom_vectors_to_point_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute displacement vectors and Euclidean distances from each atom to a reference point.</p>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_coords<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates, padded to N per fragment.</p>
+</dd>
+<dt>atom_frac_coords<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Fractional coordinates, padded to N per fragment.</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor, shape (B, N)</span></dt><dd><p>True for real atoms, False for padding.</p>
+</dd>
+<dt>com_coords<span class="classifier">torch.Tensor, shape (B, 3)</span></dt><dd><p>Reference points in Cartesian space.</p>
+</dd>
+<dt>com_frac_coords<span class="classifier">torch.Tensor, shape (B, 3)</span></dt><dd><p>Reference points in fractional space.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device for computation.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>dists_cart<span class="classifier">torch.Tensor, shape (B, N)</span></dt><dd><p>Euclidean distances in Cartesian space.</p>
+</dd>
+<dt>dists_frac<span class="classifier">torch.Tensor, shape (B, N)</span></dt><dd><p>Euclidean distances in fractional space.</p>
+</dd>
+<dt>vecs_cart<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Cartesian displacement vectors (atom → point).</p>
+</dd>
+<dt>vecs_frac<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Fractional displacement vectors.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_best_fit_plane_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_best_fit_plane_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_best_fit_plane_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_best_fit_plane_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute best-fit plane normals and centroids via SVD.</p>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>coords<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates of atoms, padded to N.</p>
+</dd>
+<dt>mask<span class="classifier">torch.BoolTensor, shape (B, N)</span></dt><dd><p>True for real atoms, False for padding.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device for computation.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>normals<span class="classifier">torch.Tensor, shape (B, 3)</span></dt><dd><p>Unit normals of the best-fit planes (z ≥ 0).</p>
+</dd>
+<dt>centroids<span class="classifier">torch.Tensor, shape (B, 3)</span></dt><dd><p>Centroid of valid atoms per batch entry.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_bond_angles_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_bond_angles_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom1_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom2_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">BoolTensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">LongTensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_bond_angles_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_bond_angles_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute all bond angles (i–j–k) in a batch.</p>
+<section id="id5">
+<h2>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_labels<span class="classifier">List[List[str]]</span></dt><dd><p>Atom labels per structure (B × N).</p>
+</dd>
+<dt>atom_coords<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates of atoms.</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor, shape (B, N)</span></dt><dd><p>True for real atoms.</p>
+</dd>
+<dt>bond_atom1_idx<span class="classifier">torch.LongTensor, shape (B, M)</span></dt><dd><p>Index of first atom in each bond slot.</p>
+</dd>
+<dt>bond_atom2_idx<span class="classifier">torch.LongTensor, shape (B, M)</span></dt><dd><p>Index of second atom in each bond slot.</p>
+</dd>
+<dt>bond_mask<span class="classifier">torch.BoolTensor, shape (B, M)</span></dt><dd><p>True for real bonds.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device for computation.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>angle_ids<span class="classifier">List[List[str]]</span></dt><dd><p>Per-structure list of “i–j–k” strings.</p>
+</dd>
+<dt>angles<span class="classifier">torch.Tensor, shape (B, P_max)</span></dt><dd><p>Angle values in degrees (0 where padding).</p>
+</dd>
+<dt>mask_ang<span class="classifier">torch.BoolTensor, shape (B, P_max)</span></dt><dd><p>True for real angles.</p>
+</dd>
+<dt>idx_tensor<span class="classifier">torch.LongTensor, shape (B, P_max, 3)</span></dt><dd><p>Atom index triples for each angle.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_bond_rotatability_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_bond_rotatability_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom1_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom2_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_is_cyclic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_types</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_is_rotatable_raw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">BoolTensor</span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_bond_rotatability_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_bond_rotatability_batch" title="Link to this definition"></a></dt>
+<dd><p>Determine which bonds are rotatable based on CSD criteria.</p>
+<section id="id7">
+<h2>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_symbols<span class="classifier">List[List[str]]</span></dt><dd><p>Element symbols per atom for each structure (B × N).</p>
+</dd>
+<dt>bond_atom1_idx<span class="classifier">torch.LongTensor, shape (B, M)</span></dt><dd><p>Index of the first atom in each bond slot.</p>
+</dd>
+<dt>bond_atom2_idx<span class="classifier">torch.LongTensor, shape (B, M)</span></dt><dd><p>Index of the second atom in each bond slot.</p>
+</dd>
+<dt>bond_is_cyclic<span class="classifier">torch.BoolTensor, shape (B, M)</span></dt><dd><p>True if the bond is in a ring.</p>
+</dd>
+<dt>bond_types<span class="classifier">List[List[str]]</span></dt><dd><p>Bond types (e.g. ‘single’, ‘double’, ‘triple’) per slot.</p>
+</dd>
+<dt>bond_is_rotatable_raw<span class="classifier">List[List[bool]]</span></dt><dd><p>Original CSD rotatability flags per slot.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device for the output tensor.</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h2>Returns<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>torch.BoolTensor, shape (B, M)</dt><dd><p>True where the bond passes all checks and is rotatable.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_distances_to_crystallographic_planes_frac_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_distances_to_crystallographic_planes_frac_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_distances_to_crystallographic_planes_frac_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_distances_to_crystallographic_planes_frac_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute fractional distances of each atom to the 26 special crystallographic planes.</p>
+<section id="id9">
+<h2>Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_frac_coords<span class="classifier">torch.Tensor, shape (B, A, 3)</span></dt><dd><p>Fractional coordinates of atoms, padded to A slots per structure.</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor, shape (B, A)</span></dt><dd><p>True for valid atoms, False for padding.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device on which to perform the computation.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h2>Returns<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>torch.Tensor, shape (B, A, 26)</dt><dd><p>Absolute fractional distances to each plane (13 normals × 2 denominators).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_fragment_pairwise_vectors_and_distances_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_fragment_pairwise_vectors_and_distances_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heavy_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_fragment_pairwise_vectors_and_distances_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_fragment_pairwise_vectors_and_distances_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute pairwise displacement vectors and Euclidean distances between 
+non-hydrogen atoms in each fragment.</p>
+<section id="id11">
+<h2>Parameters<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>coords<span class="classifier">torch.Tensor, shape (F, A, 3)</span></dt><dd><p>Cartesian coordinates for each of F fragments, padded to A atoms.</p>
+</dd>
+<dt>mask<span class="classifier">torch.BoolTensor, shape (F, A)</span></dt><dd><p>True for real atoms slots, False for padding.</p>
+</dd>
+<dt>heavy_mask<span class="classifier">torch.BoolTensor, shape (F, A)</span></dt><dd><p>True for heavy (non-H) atom slots, False otherwise.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device on which to perform the computation.</p>
+</dd>
+</dl>
+</section>
+<section id="id12">
+<h2>Returns<a class="headerlink" href="#id12" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>distances<span class="classifier">torch.Tensor, shape (F, A, A)</span></dt><dd><p>Pairwise Euclidean distances. Entry <cite>[f,i,j]</cite> is the distance between
+atom i and j in fragment f if both are heavy &amp; real; zero otherwise.</p>
+</dd>
+<dt>vectors<span class="classifier">torch.Tensor, shape (F, A, A, 3)</span></dt><dd><p>Pairwise displacement vectors: coords[j]−coords[i] for each heavy-atom
+pair, zero for any non-heavy or padding atom involved.</p>
+</dd>
+<dt>atom1_idx<span class="classifier">torch.LongTensor, shape (P,)</span></dt><dd><p>The “i” index of each unique heavy-atom pair (i&lt;j), across all fragments.</p>
+</dd>
+<dt>atom2_idx<span class="classifier">torch.LongTensor, shape (P,)</span></dt><dd><p>The “j” index of each unique heavy-atom pair (i&lt;j), across all fragments.</p>
+</dd>
+</dl>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<p>The order of entries in <cite>atom1_indices</cite> and <cite>atom2_indices</cite> matches the
+order you’d get by iterating through <cite>torch.nonzero(pair_valid &amp; (j&gt;i))</cite>.</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_global_steinhardt_order_parameters_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_global_steinhardt_order_parameters_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_to_com_vecs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l_values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[2,</span> <span class="pre">4,</span> <span class="pre">6,</span> <span class="pre">8,</span> <span class="pre">10]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_global_steinhardt_order_parameters_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_global_steinhardt_order_parameters_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute global Steinhardt Q_l order parameters for a batch.</p>
+<section id="id13">
+<h2>Parameters<a class="headerlink" href="#id13" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_to_com_vecs<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Positions relative to the center of mass.</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor, shape (B, N)</span></dt><dd><p>True for real atoms, False for padding.</p>
+</dd>
+<dt>atom_weights<span class="classifier">torch.Tensor or None, shape (B, N)</span></dt><dd><p>Per-atom weights, or None for uniform weights.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device for computation.</p>
+</dd>
+<dt>l_values<span class="classifier">List[int], optional</span></dt><dd><p>List of ℓ values at which to compute Q_l.</p>
+</dd>
+<dt>eps<span class="classifier">float, optional</span></dt><dd><p>Small constant to avoid division by zero.</p>
+</dd>
+</dl>
+</section>
+<section id="id14">
+<h2>Returns<a class="headerlink" href="#id14" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>torch.Tensor, shape (B, len(l_values))</dt><dd><p>Q_l values for each batch entry.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_planarity_metrics_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_planarity_metrics_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">centroids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">decay_width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_planarity_metrics_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_planarity_metrics_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute planarity metrics (RMSD, max deviation, planarity score) for a batch.</p>
+<section id="id15">
+<h2>Parameters<a class="headerlink" href="#id15" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>coords<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates of atoms, padded to N.</p>
+</dd>
+<dt>mask<span class="classifier">torch.BoolTensor, shape (B, N)</span></dt><dd><p>True for real atoms.</p>
+</dd>
+<dt>normals<span class="classifier">torch.Tensor, shape (B, 3)</span></dt><dd><p>Plane normals (unit vectors).</p>
+</dd>
+<dt>centroids<span class="classifier">torch.Tensor, shape (B, 3)</span></dt><dd><p>Centroids of valid atoms.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device for computation.</p>
+</dd>
+<dt>decay_width<span class="classifier">float, optional</span></dt><dd><p>Width parameter for exponential planarity score.</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h2>Returns<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>rmsd<span class="classifier">torch.Tensor, shape (B,)</span></dt><dd><p>Root‐mean‐square deviation from the plane.</p>
+</dd>
+<dt>max_dev<span class="classifier">torch.Tensor, shape (B,)</span></dt><dd><p>Maximum absolute deviation from the plane.</p>
+</dd>
+<dt>planarity_score<span class="classifier">torch.Tensor, shape (B,)</span></dt><dd><p>Exponential planarity score exp(–rmsd/decay_width).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_quaternions_from_rotation_matrices">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_quaternions_from_rotation_matrices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tensor</span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_quaternions_from_rotation_matrices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_quaternions_from_rotation_matrices" title="Link to this definition"></a></dt>
+<dd><p>Convert rotation matrices into unit quaternions [w, x, y, z] with w ≥ 0.</p>
+<section id="id17">
+<h2>Parameters<a class="headerlink" href="#id17" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>R<span class="classifier">torch.Tensor, shape (B, 3, 3)</span></dt><dd><p>Proper rotation matrices (RᵀR = I, det=+1).</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device for computation.</p>
+</dd>
+</dl>
+</section>
+<section id="id18">
+<h2>Returns<a class="headerlink" href="#id18" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>torch.Tensor, shape (B, 4)</dt><dd><p>Unit quaternions corresponding to each rotation matrix.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="geometry_utils.compute_torsion_angles_batch">
+<span class="sig-prename descclassname"><span class="pre">geometry_utils.</span></span><span class="sig-name descname"><span class="pre">compute_torsion_angles_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom1_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom2_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">BoolTensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">LongTensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/geometry_utils.html#compute_torsion_angles_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#geometry_utils.compute_torsion_angles_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute all torsion angles (i–j–k–l) for each molecule in a batch.</p>
+<section id="id19">
+<h2>Parameters<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_labels<span class="classifier">List[List[str]]</span></dt><dd><p>Atom labels per structure (B × N).</p>
+</dd>
+<dt>atom_coords<span class="classifier">torch.Tensor, shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates.</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor, shape (B, N)</span></dt><dd><p>True for real atoms.</p>
+</dd>
+<dt>bond_atom1_idx<span class="classifier">torch.Tensor, shape (B, M)</span></dt><dd><p>Index of first atom in each bond slot.</p>
+</dd>
+<dt>bond_atom2_idx<span class="classifier">torch.Tensor, shape (B, M)</span></dt><dd><p>Index of second atom in each bond slot.</p>
+</dd>
+<dt>bond_mask<span class="classifier">torch.BoolTensor, shape (B, M)</span></dt><dd><p>True for real bonds.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device for computation.</p>
+</dd>
+</dl>
+</section>
+<section id="id20">
+<h2>Returns<a class="headerlink" href="#id20" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>torsion_ids<span class="classifier">List[List[str]]</span></dt><dd><p>Per-structure list of “i–j–k–l” strings.</p>
+</dd>
+<dt>torsions<span class="classifier">torch.Tensor, shape (B, T_max)</span></dt><dd><p>Dihedral angles in degrees (0 where padding).</p>
+</dd>
+<dt>mask_tor<span class="classifier">torch.BoolTensor, shape (B, T_max)</span></dt><dd><p>True for real torsions.</p>
+</dd>
+<dt>idx_tensor<span class="classifier">torch.LongTensor, shape (B, T_max, 4)</span></dt><dd><p>Atom index quadruplets for each torsion.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fragment_utils.html" class="btn btn-neutral float-left" title="fragment_utils module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hdf5_utils.html" class="btn btn-neutral float-right" title="hdf5_utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

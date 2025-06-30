@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>structure_post_extraction_processor module &mdash; CrystalMath 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="symmetry_utils module" href="symmetry_utils.html" />
+    <link rel="prev" title="structure_data_extractor module" href="structure_data_extractor.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CrystalMath
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cell_utils.html">cell_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact_utils.html">contact_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crystal_analyzer.html">crystal_analyzer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csa_config.html">csa_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csa_main.html">csa_main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csd_operations.html">csd_operations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csd_structure_validator.html">csd_structure_validator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_reader.html">data_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_writer.html">data_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_initializer.html">dataset_initializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension_scanner.html">dimension_scanner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fragment_utils.html">fragment_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_utils.html">geometry_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hdf5_utils.html">hdf5_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure_data_extractor.html">structure_data_extractor module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">structure_post_extraction_processor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure_post_extraction_processor.AtomParams"><code class="docutils literal notranslate"><span class="pre">AtomParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.AtomParams.charges"><code class="docutils literal notranslate"><span class="pre">AtomParams.charges</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.AtomParams.coords"><code class="docutils literal notranslate"><span class="pre">AtomParams.coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.AtomParams.frac_coords"><code class="docutils literal notranslate"><span class="pre">AtomParams.frac_coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.AtomParams.labels"><code class="docutils literal notranslate"><span class="pre">AtomParams.labels</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.AtomParams.mask"><code class="docutils literal notranslate"><span class="pre">AtomParams.mask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.AtomParams.symbols"><code class="docutils literal notranslate"><span class="pre">AtomParams.symbols</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.AtomParams.weights"><code class="docutils literal notranslate"><span class="pre">AtomParams.weights</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#structure_post_extraction_processor.BondParams"><code class="docutils literal notranslate"><span class="pre">BondParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.BondParams.atom1_idx"><code class="docutils literal notranslate"><span class="pre">BondParams.atom1_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.BondParams.atom2_idx"><code class="docutils literal notranslate"><span class="pre">BondParams.atom2_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.BondParams.bond_type"><code class="docutils literal notranslate"><span class="pre">BondParams.bond_type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.BondParams.is_cyclic"><code class="docutils literal notranslate"><span class="pre">BondParams.is_cyclic</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.BondParams.is_rotatable_raw"><code class="docutils literal notranslate"><span class="pre">BondParams.is_rotatable_raw</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.BondParams.mask"><code class="docutils literal notranslate"><span class="pre">BondParams.mask</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#structure_post_extraction_processor.CrystalParams"><code class="docutils literal notranslate"><span class="pre">CrystalParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.CrystalParams.cell_angles"><code class="docutils literal notranslate"><span class="pre">CrystalParams.cell_angles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.CrystalParams.cell_lengths"><code class="docutils literal notranslate"><span class="pre">CrystalParams.cell_lengths</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams"><code class="docutils literal notranslate"><span class="pre">InterCCParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.central_atom"><code class="docutils literal notranslate"><span class="pre">InterCCParams.central_atom</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.central_atom_frac_coords"><code class="docutils literal notranslate"><span class="pre">InterCCParams.central_atom_frac_coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.central_atom_idx"><code class="docutils literal notranslate"><span class="pre">InterCCParams.central_atom_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.contact_atom"><code class="docutils literal notranslate"><span class="pre">InterCCParams.contact_atom</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.contact_atom_frac_coords"><code class="docutils literal notranslate"><span class="pre">InterCCParams.contact_atom_frac_coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.contact_atom_idx"><code class="docutils literal notranslate"><span class="pre">InterCCParams.contact_atom_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.in_los"><code class="docutils literal notranslate"><span class="pre">InterCCParams.in_los</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.lengths"><code class="docutils literal notranslate"><span class="pre">InterCCParams.lengths</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.strengths"><code class="docutils literal notranslate"><span class="pre">InterCCParams.strengths</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.symmetry_A"><code class="docutils literal notranslate"><span class="pre">InterCCParams.symmetry_A</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.symmetry_A_inv"><code class="docutils literal notranslate"><span class="pre">InterCCParams.symmetry_A_inv</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.symmetry_T"><code class="docutils literal notranslate"><span class="pre">InterCCParams.symmetry_T</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterCCParams.symmetry_T_inv"><code class="docutils literal notranslate"><span class="pre">InterCCParams.symmetry_T_inv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams"><code class="docutils literal notranslate"><span class="pre">InterHBParams</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.angles"><code class="docutils literal notranslate"><span class="pre">InterHBParams.angles</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.central_atom"><code class="docutils literal notranslate"><span class="pre">InterHBParams.central_atom</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.central_atom_frac_coords"><code class="docutils literal notranslate"><span class="pre">InterHBParams.central_atom_frac_coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.central_atom_idx"><code class="docutils literal notranslate"><span class="pre">InterHBParams.central_atom_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.contact_atom"><code class="docutils literal notranslate"><span class="pre">InterHBParams.contact_atom</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.contact_atom_frac_coords"><code class="docutils literal notranslate"><span class="pre">InterHBParams.contact_atom_frac_coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.contact_atom_idx"><code class="docutils literal notranslate"><span class="pre">InterHBParams.contact_atom_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.hydrogen_atom"><code class="docutils literal notranslate"><span class="pre">InterHBParams.hydrogen_atom</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.hydrogen_atom_frac_coords"><code class="docutils literal notranslate"><span class="pre">InterHBParams.hydrogen_atom_frac_coords</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.hydrogen_atom_idx"><code class="docutils literal notranslate"><span class="pre">InterHBParams.hydrogen_atom_idx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.in_los"><code class="docutils literal notranslate"><span class="pre">InterHBParams.in_los</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.lengths"><code class="docutils literal notranslate"><span class="pre">InterHBParams.lengths</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.symmetry_A"><code class="docutils literal notranslate"><span class="pre">InterHBParams.symmetry_A</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.symmetry_A_inv"><code class="docutils literal notranslate"><span class="pre">InterHBParams.symmetry_A_inv</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.symmetry_T"><code class="docutils literal notranslate"><span class="pre">InterHBParams.symmetry_T</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.InterHBParams.symmetry_T_inv"><code class="docutils literal notranslate"><span class="pre">InterHBParams.symmetry_T_inv</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#structure_post_extraction_processor.StructurePostExtractionProcessor"><code class="docutils literal notranslate"><span class="pre">StructurePostExtractionProcessor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure_post_extraction_processor.StructurePostExtractionProcessor.run"><code class="docutils literal notranslate"><span class="pre">StructurePostExtractionProcessor.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="symmetry_utils.html">symmetry_utils module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CrystalMath</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">structure_post_extraction_processor module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/structure_post_extraction_processor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-structure_post_extraction_processor">
+<span id="structure-post-extraction-processor-module"></span><h1>structure_post_extraction_processor module<a class="headerlink" href="#module-structure_post_extraction_processor" title="Link to this heading"></a></h1>
+<p>Module: structure_post_extraction_processor.py</p>
+<p>Post-extraction processing for CSD structures.</p>
+<p>Reads raw HDF5 outputs (from StructureDataExtractor), computes derived features
+(geometric, topological, contact-based) in GPU-accelerated batches, and writes
+both raw and computed datasets into a new “<a href="#id1"><span class="problematic" id="id2">*</span></a>_processed.h5” container. Designed for
+high throughput and minimal I/O overhead.</p>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<p>h5py
+numpy
+torch
+data_reader
+data_writer
+dataset_initializer
+dimension_scanner
+cell_utils
+contact_utils
+fragment_utils
+geometry_utils
+symmetry_utils</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.AtomParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">structure_post_extraction_processor.</span></span><span class="sig-name descname"><span class="pre">AtomParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">charges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/structure_post_extraction_processor.html#AtomParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_post_extraction_processor.AtomParams" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<p>Container for atomic-level parameters.</p>
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>labels<span class="classifier">List[List[str]]</span></dt><dd><p>Atom labels for each structure, padded to max_atoms.</p>
+</dd>
+<dt>symbols<span class="classifier">List[List[str]]</span></dt><dd><p>Atomic symbols for each structure, padded to max_atoms.</p>
+</dd>
+<dt>coords<span class="classifier">torch.Tensor, shape (B, max_atoms, 3)</span></dt><dd><p>Cartesian coordinates of each atom.</p>
+</dd>
+<dt>frac_coords<span class="classifier">torch.Tensor, shape (B, max_atoms, 3)</span></dt><dd><p>Fractional coordinates of each atom.</p>
+</dd>
+<dt>mask<span class="classifier">torch.BoolTensor, shape (B, max_atoms)</span></dt><dd><p>Boolean mask indicating valid atom entries.</p>
+</dd>
+<dt>weights<span class="classifier">torch.Tensor, shape (B, max_atoms)</span></dt><dd><p>Atomic weights.</p>
+</dd>
+<dt>charges<span class="classifier">torch.Tensor, shape (B, max_atoms)</span></dt><dd><p>Partial charges per atom.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.AtomParams.charges">
+<span class="sig-name descname"><span class="pre">charges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.AtomParams.charges" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 6</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.AtomParams.coords">
+<span class="sig-name descname"><span class="pre">coords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.AtomParams.coords" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.AtomParams.frac_coords">
+<span class="sig-name descname"><span class="pre">frac_coords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.AtomParams.frac_coords" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.AtomParams.labels">
+<span class="sig-name descname"><span class="pre">labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#structure_post_extraction_processor.AtomParams.labels" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.AtomParams.mask">
+<span class="sig-name descname"><span class="pre">mask</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoolTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.AtomParams.mask" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.AtomParams.symbols">
+<span class="sig-name descname"><span class="pre">symbols</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#structure_post_extraction_processor.AtomParams.symbols" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.AtomParams.weights">
+<span class="sig-name descname"><span class="pre">weights</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.AtomParams.weights" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.BondParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">structure_post_extraction_processor.</span></span><span class="sig-name descname"><span class="pre">BondParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom1_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom2_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_rotatable_raw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_cyclic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/structure_post_extraction_processor.html#BondParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_post_extraction_processor.BondParams" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<p>Container for bond-level parameters.</p>
+<section id="id3">
+<h2>Attributes<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom1_idx<span class="classifier">torch.LongTensor, shape (B, max_bonds)</span></dt><dd><p>Index of first atom in each bond.</p>
+</dd>
+<dt>atom2_idx<span class="classifier">torch.LongTensor, shape (B, max_bonds)</span></dt><dd><p>Index of second atom in each bond.</p>
+</dd>
+<dt>bond_type<span class="classifier">torch.Tensor, shape (B, max_bonds)</span></dt><dd><p>Numeric or categorical encoding of bond types.</p>
+</dd>
+<dt>is_rotatable_raw<span class="classifier">torch.BoolTensor, shape (B, max_bonds)</span></dt><dd><p>Initial mask for bond rotatability.</p>
+</dd>
+<dt>is_cyclic<span class="classifier">torch.BoolTensor, shape (B, max_bonds)</span></dt><dd><p>Indicates if bond is part of a ring.</p>
+</dd>
+<dt>mask<span class="classifier">torch.BoolTensor, shape (B, max_bonds)</span></dt><dd><p>Boolean mask indicating valid bond entries.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.BondParams.atom1_idx">
+<span class="sig-name descname"><span class="pre">atom1_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LongTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.BondParams.atom1_idx" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.BondParams.atom2_idx">
+<span class="sig-name descname"><span class="pre">atom2_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LongTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.BondParams.atom2_idx" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.BondParams.bond_type">
+<span class="sig-name descname"><span class="pre">bond_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.BondParams.bond_type" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.BondParams.is_cyclic">
+<span class="sig-name descname"><span class="pre">is_cyclic</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoolTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.BondParams.is_cyclic" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.BondParams.is_rotatable_raw">
+<span class="sig-name descname"><span class="pre">is_rotatable_raw</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoolTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.BondParams.is_rotatable_raw" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.BondParams.mask">
+<span class="sig-name descname"><span class="pre">mask</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BoolTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.BondParams.mask" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.CrystalParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">structure_post_extraction_processor.</span></span><span class="sig-name descname"><span class="pre">CrystalParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cell_lengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_angles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/structure_post_extraction_processor.html#CrystalParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_post_extraction_processor.CrystalParams" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<p>Container for basic crystal parameters.</p>
+<section id="id4">
+<h2>Attributes<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>cell_lengths<span class="classifier">torch.Tensor, shape (B, 3)</span></dt><dd><p>Unit-cell lengths [a, b, c] for each structure in the batch.</p>
+</dd>
+<dt>cell_angles<span class="classifier">torch.Tensor, shape (B, 3)</span></dt><dd><p>Unit-cell angles [α, β, γ] in degrees for each structure in the batch.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.CrystalParams.cell_angles">
+<span class="sig-name descname"><span class="pre">cell_angles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.CrystalParams.cell_angles" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.CrystalParams.cell_lengths">
+<span class="sig-name descname"><span class="pre">cell_lengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.CrystalParams.cell_lengths" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">structure_post_extraction_processor.</span></span><span class="sig-name descname"><span class="pre">InterCCParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_atom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_atom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_atom_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_atom_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_los</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry_A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry_T</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry_A_inv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry_T_inv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/structure_post_extraction_processor.html#InterCCParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<p>Container for intermolecular close-contact parameters.</p>
+<section id="id5">
+<h2>Attributes<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>central_atom<span class="classifier">List[List[str]]</span></dt><dd><p>Labels of central atoms in each contact.</p>
+</dd>
+<dt>contact_atom<span class="classifier">List[List[str]]</span></dt><dd><p>Labels of contact atoms.</p>
+</dd>
+<dt>central_atom_idx<span class="classifier">torch.LongTensor, shape (B, C)</span></dt><dd><p>Indices of central atoms.</p>
+</dd>
+<dt>contact_atom_idx<span class="classifier">torch.LongTensor, shape (B, C)</span></dt><dd><p>Indices of contact atoms.</p>
+</dd>
+<dt>central_atom_frac_coords<span class="classifier">torch.Tensor, shape (B, C, 3)</span></dt><dd><p>Fractional coords of central atoms.</p>
+</dd>
+<dt>contact_atom_frac_coords<span class="classifier">torch.Tensor, shape (B, C, 3)</span></dt><dd><p>Fractional coords of contact atoms.</p>
+</dd>
+<dt>lengths<span class="classifier">torch.Tensor, shape (B, C)</span></dt><dd><p>Contact distances.</p>
+</dd>
+<dt>strengths<span class="classifier">torch.Tensor, shape (B, C)</span></dt><dd><p>Contact strength metrics.</p>
+</dd>
+<dt>in_los<span class="classifier">torch.Tensor, shape (B, C)</span></dt><dd><p>Mask for line-of-sight contacts.</p>
+</dd>
+<dt>symmetry_A<span class="classifier">torch.Tensor, shape (B, C, 3, 3)</span></dt><dd><p>Symmetry operation rotation matrices.</p>
+</dd>
+<dt>symmetry_T<span class="classifier">torch.Tensor, shape (B, C, 3)</span></dt><dd><p>Symmetry operation translation vectors.</p>
+</dd>
+<dt>symmetry_A_inv<span class="classifier">torch.Tensor, shape (B, C, 3, 3)</span></dt><dd><p>Inverse rotation matrices.</p>
+</dd>
+<dt>symmetry_T_inv<span class="classifier">torch.Tensor, shape (B, C, 3)</span></dt><dd><p>Inverse translation vectors.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.central_atom">
+<span class="sig-name descname"><span class="pre">central_atom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.central_atom" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.central_atom_frac_coords">
+<span class="sig-name descname"><span class="pre">central_atom_frac_coords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.central_atom_frac_coords" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.central_atom_idx">
+<span class="sig-name descname"><span class="pre">central_atom_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LongTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.central_atom_idx" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.contact_atom">
+<span class="sig-name descname"><span class="pre">contact_atom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.contact_atom" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.contact_atom_frac_coords">
+<span class="sig-name descname"><span class="pre">contact_atom_frac_coords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.contact_atom_frac_coords" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.contact_atom_idx">
+<span class="sig-name descname"><span class="pre">contact_atom_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LongTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.contact_atom_idx" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.in_los">
+<span class="sig-name descname"><span class="pre">in_los</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.in_los" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 8</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.lengths">
+<span class="sig-name descname"><span class="pre">lengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.lengths" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 6</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.strengths">
+<span class="sig-name descname"><span class="pre">strengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.strengths" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 7</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.symmetry_A">
+<span class="sig-name descname"><span class="pre">symmetry_A</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.symmetry_A" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 9</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.symmetry_A_inv">
+<span class="sig-name descname"><span class="pre">symmetry_A_inv</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.symmetry_A_inv" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 11</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.symmetry_T">
+<span class="sig-name descname"><span class="pre">symmetry_T</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.symmetry_T" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 10</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterCCParams.symmetry_T_inv">
+<span class="sig-name descname"><span class="pre">symmetry_T_inv</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterCCParams.symmetry_T_inv" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 12</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">structure_post_extraction_processor.</span></span><span class="sig-name descname"><span class="pre">InterHBParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_atom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hydrogen_atom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_atom</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_atom_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hydrogen_atom_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_atom_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hydrogen_atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angles</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_los</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry_A</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry_T</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry_A_inv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">symmetry_T_inv</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/structure_post_extraction_processor.html#InterHBParams"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">NamedTuple</span></code></p>
+<p>Container for intermolecular hydrogen-bond parameters.</p>
+<section id="id6">
+<h2>Attributes<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>central_atom<span class="classifier">List[List[str]]</span></dt><dd><p>Labels of hydrogen-bond donor atoms.</p>
+</dd>
+<dt>hydrogen_atom<span class="classifier">List[List[str]]</span></dt><dd><p>Labels of hydrogen atoms.</p>
+</dd>
+<dt>contact_atom<span class="classifier">List[List[str]]</span></dt><dd><p>Labels of acceptor atoms.</p>
+</dd>
+<dt>central_atom_idx<span class="classifier">torch.LongTensor, shape (B, H)</span></dt><dd><p>Indices of donor atoms.</p>
+</dd>
+<dt>hydrogen_atom_idx<span class="classifier">torch.LongTensor, shape (B, H)</span></dt><dd><p>Indices of hydrogen atoms.</p>
+</dd>
+<dt>contact_atom_idx<span class="classifier">torch.LongTensor, shape (B, H)</span></dt><dd><p>Indices of acceptor atoms.</p>
+</dd>
+<dt>central_atom_frac_coords<span class="classifier">torch.Tensor, shape (B, H, 3)</span></dt><dd><p>Fractional coords of donor atoms.</p>
+</dd>
+<dt>hydrogen_atom_frac_coords<span class="classifier">torch.Tensor, shape (B, H, 3)</span></dt><dd><p>Fractional coords of hydrogen atoms.</p>
+</dd>
+<dt>contact_atom_frac_coords<span class="classifier">torch.Tensor, shape (B, H, 3)</span></dt><dd><p>Fractional coords of acceptor atoms.</p>
+</dd>
+<dt>lengths<span class="classifier">torch.Tensor, shape (B, H)</span></dt><dd><p>H-bond distances.</p>
+</dd>
+<dt>angles<span class="classifier">torch.Tensor, shape (B, H)</span></dt><dd><p>H-bond angles.</p>
+</dd>
+<dt>in_los<span class="classifier">torch.Tensor, shape (B, H)</span></dt><dd><p>Mask for line-of-sight H-bonds.</p>
+</dd>
+<dt>symmetry_A<span class="classifier">torch.Tensor, shape (B, H, 3, 3)</span></dt><dd><p>Symmetry rotation matrices.</p>
+</dd>
+<dt>symmetry_T<span class="classifier">torch.Tensor, shape (B, H, 3)</span></dt><dd><p>Symmetry translation vectors.</p>
+</dd>
+<dt>symmetry_A_inv<span class="classifier">torch.Tensor, shape (B, H, 3, 3)</span></dt><dd><p>Inverse rotation matrices.</p>
+</dd>
+<dt>symmetry_T_inv<span class="classifier">torch.Tensor, shape (B, H, 3)</span></dt><dd><p>Inverse translation vectors.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.angles">
+<span class="sig-name descname"><span class="pre">angles</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.angles" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 10</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.central_atom">
+<span class="sig-name descname"><span class="pre">central_atom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.central_atom" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.central_atom_frac_coords">
+<span class="sig-name descname"><span class="pre">central_atom_frac_coords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.central_atom_frac_coords" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 6</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.central_atom_idx">
+<span class="sig-name descname"><span class="pre">central_atom_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LongTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.central_atom_idx" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.contact_atom">
+<span class="sig-name descname"><span class="pre">contact_atom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.contact_atom" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.contact_atom_frac_coords">
+<span class="sig-name descname"><span class="pre">contact_atom_frac_coords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.contact_atom_frac_coords" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 8</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.contact_atom_idx">
+<span class="sig-name descname"><span class="pre">contact_atom_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LongTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.contact_atom_idx" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.hydrogen_atom">
+<span class="sig-name descname"><span class="pre">hydrogen_atom</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.hydrogen_atom" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.hydrogen_atom_frac_coords">
+<span class="sig-name descname"><span class="pre">hydrogen_atom_frac_coords</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.hydrogen_atom_frac_coords" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 7</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.hydrogen_atom_idx">
+<span class="sig-name descname"><span class="pre">hydrogen_atom_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">LongTensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.hydrogen_atom_idx" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.in_los">
+<span class="sig-name descname"><span class="pre">in_los</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.in_los" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 11</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.lengths">
+<span class="sig-name descname"><span class="pre">lengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.lengths" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 9</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.symmetry_A">
+<span class="sig-name descname"><span class="pre">symmetry_A</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.symmetry_A" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 12</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.symmetry_A_inv">
+<span class="sig-name descname"><span class="pre">symmetry_A_inv</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.symmetry_A_inv" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 14</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.symmetry_T">
+<span class="sig-name descname"><span class="pre">symmetry_T</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.symmetry_T" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 13</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.InterHBParams.symmetry_T_inv">
+<span class="sig-name descname"><span class="pre">symmetry_T_inv</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#structure_post_extraction_processor.InterHBParams.symmetry_T_inv" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 15</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.StructurePostExtractionProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">structure_post_extraction_processor.</span></span><span class="sig-name descname"><span class="pre">StructurePostExtractionProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdf5_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">device</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/structure_post_extraction_processor.html#StructurePostExtractionProcessor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_post_extraction_processor.StructurePostExtractionProcessor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Orchestrates post-extraction computation of derived structure features.</p>
+<p>Reads raw data from an HDF5 file, processes structures in GPU-accelerated
+batches to compute geometric, topological, and contact-based features, and
+writes both raw and computed data to a new processed HDF5 file.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="structure_post_extraction_processor.StructurePostExtractionProcessor.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/structure_post_extraction_processor.html#StructurePostExtractionProcessor.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_post_extraction_processor.StructurePostExtractionProcessor.run" title="Link to this definition"></a></dt>
+<dd><p>Execute the full post-extraction processing pipeline.</p>
+<p>Removes any existing processed file, reads raw data, initializes output
+datasets, processes structures in batches, and writes both raw and computed
+data to the output HDF5 file.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="structure_data_extractor.html" class="btn btn-neutral float-left" title="structure_data_extractor module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="symmetry_utils.html" class="btn btn-neutral float-right" title="symmetry_utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

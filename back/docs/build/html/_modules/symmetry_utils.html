@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>symmetry_utils &mdash; CrystalMath 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CrystalMath
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/modules.html">src</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CrystalMath</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">symmetry_utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for symmetry_utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: symmetry_utils.py</span>
+
+<span class="sd">Functions to parse and apply crystallographic symmetry operators, augmenting</span>
+<span class="sd">parameter dictionaries with rotation matrices and translation vectors.</span>
+
+<span class="sd">Dependencies</span>
+<span class="sd">------------</span>
+<span class="sd">torch</span>
+<span class="sd">&quot;&quot;&quot;</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fractions</span><span class="w"> </span><span class="kn">import</span> <span class="n">Fraction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;parse_sym_op&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;invert_sym_op&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;add_symmetry_matrices&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;add_inter_cc_symmetry&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;add_inter_hb_symmetry&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="parse_sym_op">
+<a class="viewcode-back" href="../api/symmetry_utils.html#symmetry_utils.parse_sym_op">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">parse_sym_op</span><span class="p">(</span><span class="n">sym</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Parse a crystallographic symmetry-operator string into rotation matrix and translation vector.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sym : str</span>
+<span class="sd">        Symmetry operator string (e.g. &#39;x+1/2, -y+1/2, z&#39;).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A : torch.Tensor, shape (3, 3)</span>
+<span class="sd">        Integer rotation matrix.</span>
+<span class="sd">    t : torch.Tensor, shape (3,)</span>
+<span class="sd">        Float translation vector.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If the input string does not contain exactly three comma-separated expressions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># remove whitespace, split into 3 axis expressions</span>
+    <span class="n">exprs</span> <span class="o">=</span> <span class="n">sym</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">exprs</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid symmetry operator: </span><span class="si">{</span><span class="n">sym</span><span class="si">!r}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+    <span class="n">axis_map</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">expr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">exprs</span><span class="p">):</span>
+        <span class="c1"># 1) find ±x, ±y, ±z terms</span>
+        <span class="k">for</span> <span class="n">axis</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">axis_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;([+-]?)(?:1)?&#39;</span> <span class="o">+</span> <span class="n">axis</span><span class="p">,</span> <span class="n">expr</span><span class="p">):</span>
+                <span class="n">sign</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span> <span class="k">else</span> <span class="mi">1</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">sign</span>
+
+        <span class="c1"># 2) strip out x/y/z pieces</span>
+        <span class="n">const_str</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[+-]?\d*\.?\d*?[xyz]&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">expr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">const_str</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># 3) extract numeric tokens</span>
+        <span class="n">nums</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[+-]?\d+\.\d+|[+-]?\d+/\d+|[+-]?\d+&#39;</span><span class="p">,</span> <span class="n">const_str</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+            <span class="n">num</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;+-&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[+-]?\d&#39;</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="c1"># parse number (fraction or float)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;/&#39;</span> <span class="ow">in</span> <span class="n">num</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">Fraction</span><span class="p">(</span><span class="n">num</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">Fraction</span><span class="p">(</span><span class="n">num</span><span class="p">)</span><span class="o">.</span><span class="n">limit_denominator</span><span class="p">())</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">val</span>
+
+    <span class="k">return</span> <span class="n">A</span><span class="p">,</span> <span class="n">t</span></div>
+
+
+
+<div class="viewcode-block" id="invert_sym_op">
+<a class="viewcode-back" href="../api/symmetry_utils.html#symmetry_utils.invert_sym_op">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">invert_sym_op</span><span class="p">(</span><span class="n">A</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the inverse of a symmetry operator defined by A and t.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    A : torch.Tensor, shape (3, 3)</span>
+<span class="sd">        Rotation matrix.</span>
+<span class="sd">    t : torch.Tensor, shape (3,)</span>
+<span class="sd">        Translation vector.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A_inv : torch.Tensor, shape (3, 3)</span>
+<span class="sd">        Inverse rotation (transpose of A).</span>
+<span class="sd">    t_inv : torch.Tensor, shape (3,)</span>
+<span class="sd">        Inverse translation (-A_inv @ t).</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If A is not shape (3,3) or t is not shape (3,).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="ow">or</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;A must be (3,3) and t must be (3,)&quot;</span><span class="p">)</span>
+    <span class="n">A_inv</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">t</span><span class="p">()</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+    <span class="n">t_inv</span> <span class="o">=</span> <span class="o">-</span><span class="n">A_inv</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">@</span> <span class="n">t</span>
+    <span class="k">return</span> <span class="n">A_inv</span><span class="p">,</span> <span class="n">t_inv</span></div>
+
+
+
+<div class="viewcode-block" id="add_symmetry_matrices">
+<a class="viewcode-back" href="../api/symmetry_utils.html#symmetry_utils.add_symmetry_matrices">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_symmetry_matrices</span><span class="p">(</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">sym_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">coords_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add parsed symmetry matrices and their inverses to a parameter dictionary.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parameters : Dict[str, Any]</span>
+<span class="sd">        Dictionary containing symmetry strings and coordinate tensors.</span>
+<span class="sd">    sym_key : str</span>
+<span class="sd">        Key for List[List[str]] of symmetry operator strings in `parameters`.</span>
+<span class="sd">    coords_key : str</span>
+<span class="sd">        Key for torch.Tensor of shape (B, N, …) holding coordinates.</span>
+<span class="sd">    device : torch.device, optional</span>
+<span class="sd">        Device on which to store the resulting tensors. If None, inferred.</span>
+
+<span class="sd">    Modifies</span>
+<span class="sd">    --------</span>
+<span class="sd">    parameters : adds the following keys</span>
+<span class="sd">        &#39;{sym_key}_A&#39;      : torch.Tensor, shape (B, N, 3, 3)</span>
+<span class="sd">        &#39;{sym_key}_T&#39;      : torch.Tensor, shape (B, N, 3)</span>
+<span class="sd">        &#39;{sym_key}_A_inv&#39;  : torch.Tensor, shape (B, N, 3, 3)</span>
+<span class="sd">        &#39;{sym_key}_T_inv&#39;  : torch.Tensor, shape (B, N, 3)</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If input tensor shapes or list lengths are invalid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># determine device</span>
+    <span class="k">if</span> <span class="n">device</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;__device__&#39;</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">))</span>
+    <span class="c1"># get batch size and max_contacts from coords tensor</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="n">coords_key</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="ow">or</span> <span class="n">coords</span><span class="o">.</span><span class="n">dim</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected torch.Tensor for &#39;</span><span class="si">{</span><span class="n">coords_key</span><span class="si">}</span><span class="s2">&#39; with dim &gt;=2&quot;</span><span class="p">)</span>
+    <span class="n">B</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># collect symmetry op strings</span>
+    <span class="n">sym_ops_batch</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="n">parameters</span><span class="p">[</span><span class="n">sym_key</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sym_ops_batch</span><span class="p">)</span> <span class="o">!=</span> <span class="n">B</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected </span><span class="si">{</span><span class="n">B</span><span class="si">}</span><span class="s2"> lists in &#39;</span><span class="si">{</span><span class="n">sym_key</span><span class="si">}</span><span class="s2">&#39;, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sym_ops_batch</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># unique preserving order</span>
+    <span class="n">flat</span> <span class="o">=</span> <span class="p">[</span><span class="n">op</span> <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="n">sym_ops_batch</span> <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">sub</span><span class="p">]</span>
+    <span class="n">unique</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">flat</span><span class="p">))</span>
+
+    <span class="c1"># parse unique ops</span>
+    <span class="n">A_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">T_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">op</span> <span class="ow">in</span> <span class="n">unique</span><span class="p">:</span>
+        <span class="n">A</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">parse_sym_op</span><span class="p">(</span><span class="n">op</span><span class="p">)</span>
+        <span class="n">A_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+        <span class="n">T_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="c1"># stack</span>
+    <span class="n">A_all</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">A_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">T_all</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">T_list</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># compute inverses</span>
+    <span class="n">A_inv_all</span> <span class="o">=</span> <span class="n">A_all</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+    <span class="c1"># T_inv = -A_inv @ T</span>
+    <span class="n">T_inv_all</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">A_inv_all</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">@</span> <span class="n">T_all</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># build index map</span>
+    <span class="n">idx_map</span> <span class="o">=</span> <span class="p">{</span><span class="n">op</span><span class="p">:</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">op</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique</span><span class="p">)}</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sym_ops_batch</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">op</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+            <span class="n">idx</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">idx_map</span><span class="p">[</span><span class="n">op</span><span class="p">]</span>
+
+    <span class="c1"># gather per-contact tensors</span>
+    <span class="n">A_per</span> <span class="o">=</span> <span class="n">A_all</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>        <span class="c1"># (B,N,3,3)</span>
+    <span class="n">T_per</span> <span class="o">=</span> <span class="n">T_all</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>        <span class="c1"># (B,N,3)</span>
+    <span class="n">Ainv_per</span> <span class="o">=</span> <span class="n">A_inv_all</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="c1"># (B,N,3,3)</span>
+    <span class="n">Tinv_per</span> <span class="o">=</span> <span class="n">T_inv_all</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="c1"># (B,N,3)</span>
+
+    <span class="c1"># assign back</span>
+    <span class="n">parameters</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sym_key</span><span class="si">}</span><span class="s1">_A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">A_per</span>
+    <span class="n">parameters</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sym_key</span><span class="si">}</span><span class="s1">_T&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">T_per</span>
+    <span class="n">parameters</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sym_key</span><span class="si">}</span><span class="s1">_A_inv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ainv_per</span>
+    <span class="n">parameters</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">sym_key</span><span class="si">}</span><span class="s1">_T_inv&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Tinv_per</span></div>
+
+
+
+<div class="viewcode-block" id="add_inter_cc_symmetry">
+<a class="viewcode-back" href="../api/symmetry_utils.html#symmetry_utils.add_inter_cc_symmetry">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_inter_cc_symmetry</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shortcut to add inter_cc symmetry matrices.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parameters : Dict[str, Any]</span>
+<span class="sd">        Must contain &#39;inter_cc_symmetry&#39; and &#39;inter_cc_central_atom_coords&#39;.</span>
+<span class="sd">    device : torch.device, optional</span>
+<span class="sd">        Device for computation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">add_symmetry_matrices</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="s1">&#39;inter_cc_symmetry&#39;</span><span class="p">,</span> <span class="s1">&#39;inter_cc_central_atom_coords&#39;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="add_inter_hb_symmetry">
+<a class="viewcode-back" href="../api/symmetry_utils.html#symmetry_utils.add_inter_hb_symmetry">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">add_inter_hb_symmetry</span><span class="p">(</span><span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Shortcut to add inter_hb symmetry matrices.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    parameters : Dict[str, Any]</span>
+<span class="sd">        Must contain &#39;inter_hb_symmetry&#39; and &#39;inter_hb_central_atom_coords&#39;.</span>
+<span class="sd">    device : torch.device, optional</span>
+<span class="sd">        Device for computation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">add_symmetry_matrices</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="s1">&#39;inter_hb_symmetry&#39;</span><span class="p">,</span> <span class="s1">&#39;inter_hb_central_atom_coords&#39;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

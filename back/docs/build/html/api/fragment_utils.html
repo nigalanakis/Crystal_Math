@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fragment_utils module &mdash; CrystalMath 2.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=60dbed4a"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="geometry_utils module" href="geometry_utils.html" />
+    <link rel="prev" title="dimension_scanner module" href="dimension_scanner.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CrystalMath
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cell_utils.html">cell_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contact_utils.html">contact_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crystal_analyzer.html">crystal_analyzer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csa_config.html">csa_config module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csa_main.html">csa_main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csd_operations.html">csd_operations module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csd_structure_validator.html">csd_structure_validator module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_reader.html">data_reader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_writer.html">data_writer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_initializer.html">dataset_initializer module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dimension_scanner.html">dimension_scanner module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">fragment_utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fragment_utils.compute_center_of_mass_batch"><code class="docutils literal notranslate"><span class="pre">compute_center_of_mass_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fragment_utils.compute_centroid_batch"><code class="docutils literal notranslate"><span class="pre">compute_centroid_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fragment_utils.compute_inertia_tensor_batch"><code class="docutils literal notranslate"><span class="pre">compute_inertia_tensor_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fragment_utils.compute_quadrupole_tensor_batch"><code class="docutils literal notranslate"><span class="pre">compute_quadrupole_tensor_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fragment_utils.identify_rigid_fragments_batch"><code class="docutils literal notranslate"><span class="pre">identify_rigid_fragments_batch()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fragment_utils.prepare_fragments_batch"><code class="docutils literal notranslate"><span class="pre">prepare_fragments_batch()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_utils.html">geometry_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hdf5_utils.html">hdf5_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure_data_extractor.html">structure_data_extractor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure_post_extraction_processor.html">structure_post_extraction_processor module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="symmetry_utils.html">symmetry_utils module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CrystalMath</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">fragment_utils module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/fragment_utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-fragment_utils">
+<span id="fragment-utils-module"></span><h1>fragment_utils module<a class="headerlink" href="#module-fragment_utils" title="Link to this heading"></a></h1>
+<p>Module: fragment_utils.py</p>
+<p>Utilities for batch processing of molecular fragments, including rigid‐fragment
+identification and computation of per‐fragment properties.</p>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<p>torch
+typing</p>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="fragment_utils.compute_center_of_mass_batch">
+<span class="sig-prename descclassname"><span class="pre">fragment_utils.</span></span><span class="sig-name descname"><span class="pre">compute_center_of_mass_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/fragment_utils.html#compute_center_of_mass_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fragment_utils.compute_center_of_mass_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute Cartesian and fractional centers of mass for each fragment.</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_coords<span class="classifier">torch.Tensor of shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates, padded to N atoms.</p>
+</dd>
+<dt>atom_frac_coords<span class="classifier">torch.Tensor of shape (B, N, 3)</span></dt><dd><p>Fractional coordinates, padded similarly.</p>
+</dd>
+<dt>atom_weights<span class="classifier">torch.Tensor of shape (B, N)</span></dt><dd><p>Atomic weights (zero for padding).</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor of shape (B, N)</span></dt><dd><p>True for real atoms, False for padding.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device to perform computation on.</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>com_coords<span class="classifier">torch.Tensor of shape (B, 3)</span></dt><dd><p>Cartesian center of mass per fragment.</p>
+</dd>
+<dt>com_frac_coords<span class="classifier">torch.Tensor of shape (B, 3)</span></dt><dd><p>Fractional center of mass per fragment.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fragment_utils.compute_centroid_batch">
+<span class="sig-prename descclassname"><span class="pre">fragment_utils.</span></span><span class="sig-name descname"><span class="pre">compute_centroid_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/fragment_utils.html#compute_centroid_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fragment_utils.compute_centroid_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute geometric centroids in Cartesian and fractional coordinates.</p>
+<section id="id1">
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_coords<span class="classifier">torch.Tensor of shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates, padded to N atoms.</p>
+</dd>
+<dt>atom_frac_coords<span class="classifier">torch.Tensor of shape (B, N, 3)</span></dt><dd><p>Fractional coordinates, padded similarly.</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor of shape (B, N)</span></dt><dd><p>True for real atoms, False for padding.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device to perform computation on.</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h2>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>centroid_coords<span class="classifier">torch.Tensor of shape (B, 3)</span></dt><dd><p>Cartesian centroids per fragment.</p>
+</dd>
+<dt>centroid_frac_coords<span class="classifier">torch.Tensor of shape (B, 3)</span></dt><dd><p>Fractional centroids per fragment.</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fragment_utils.compute_inertia_tensor_batch">
+<span class="sig-prename descclassname"><span class="pre">fragment_utils.</span></span><span class="sig-name descname"><span class="pre">compute_inertia_tensor_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">com_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/fragment_utils.html#compute_inertia_tensor_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fragment_utils.compute_inertia_tensor_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute each fragment’s inertia tensor, eigenvalues, and oriented eigenvectors.</p>
+<section id="id3">
+<h2>Parameters<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_coords<span class="classifier">torch.Tensor of shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates, padded to N atoms.</p>
+</dd>
+<dt>atom_weights<span class="classifier">torch.Tensor of shape (B, N)</span></dt><dd><p>Atomic weights, zero for padding.</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor of shape (B, N)</span></dt><dd><p>True for real atoms.</p>
+</dd>
+<dt>com_coords<span class="classifier">torch.Tensor of shape (B, 3)</span></dt><dd><p>Pre‐computed center of mass coordinates.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device to perform computation on.</p>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h2>Returns<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>inertia_tensors<span class="classifier">torch.Tensor of shape (B, 3, 3)</span></dt><dd><p>Inertia tensor for each fragment.</p>
+</dd>
+<dt>eigvals<span class="classifier">torch.Tensor of shape (B, 3)</span></dt><dd><p>Eigenvalues (λ₁ ≤ λ₂ ≤ λ₃) per fragment.</p>
+</dd>
+<dt>eigvecs<span class="classifier">torch.Tensor of shape (B, 3, 3)</span></dt><dd><p>Corresponding right‐handed eigenvectors (columns).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fragment_utils.compute_quadrupole_tensor_batch">
+<span class="sig-prename descclassname"><span class="pre">fragment_utils.</span></span><span class="sig-name descname"><span class="pre">compute_quadrupole_tensor_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_charges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">com_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/fragment_utils.html#compute_quadrupole_tensor_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fragment_utils.compute_quadrupole_tensor_batch" title="Link to this definition"></a></dt>
+<dd><p>Compute each fragment’s quadrupole tensor, eigenvalues, and eigenvectors.</p>
+<section id="id5">
+<h2>Parameters<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_coords<span class="classifier">torch.Tensor of shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates, padded to N atoms.</p>
+</dd>
+<dt>atom_charges<span class="classifier">torch.Tensor of shape (B, N)</span></dt><dd><p>Atomic charges, zero for padding.</p>
+</dd>
+<dt>atom_mask<span class="classifier">torch.BoolTensor of shape (B, N)</span></dt><dd><p>True for real atoms.</p>
+</dd>
+<dt>com_coords<span class="classifier">torch.Tensor of shape (B, 3)</span></dt><dd><p>Pre‐computed center of mass coordinates.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device to perform computation on.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>quad_tensors<span class="classifier">torch.Tensor of shape (B, 3, 3)</span></dt><dd><p>Quadrupole tensor Q per fragment.</p>
+</dd>
+<dt>eigvals<span class="classifier">torch.Tensor of shape (B, 3)</span></dt><dd><p>Eigenvalues of Q (ascending).</p>
+</dd>
+<dt>eigvecs<span class="classifier">torch.Tensor of shape (B, 3, 3)</span></dt><dd><p>Right‐handed eigenvectors (columns).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fragment_utils.identify_rigid_fragments_batch">
+<span class="sig-prename descclassname"><span class="pre">fragment_utils.</span></span><span class="sig-name descname"><span class="pre">identify_rigid_fragments_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_mask</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_atom2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_is_rotatable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BoolTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">LongTensor</span></span></span><a class="reference internal" href="../_modules/fragment_utils.html#identify_rigid_fragments_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fragment_utils.identify_rigid_fragments_batch" title="Link to this definition"></a></dt>
+<dd><p>Identify rigid fragments in a batch via iterative label propagation on GPU.</p>
+<section id="id7">
+<h2>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_mask<span class="classifier">torch.BoolTensor of shape (B, N)</span></dt><dd><p>True for real atoms, False for padding slots.</p>
+</dd>
+<dt>bond_atom1<span class="classifier">torch.LongTensor of shape (B, M)</span></dt><dd><p>First‐atom indices for each bond (–1 for padding).</p>
+</dd>
+<dt>bond_atom2<span class="classifier">torch.LongTensor of shape (B, M)</span></dt><dd><p>Second‐atom indices for each bond (–1 for padding).</p>
+</dd>
+<dt>bond_is_rotatable<span class="classifier">torch.BoolTensor of shape (B, M)</span></dt><dd><p>True if the bond is rotatable; non-rotatable bonds join fragments.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device to perform computation on (e.g. ‘cuda’).</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h2>Returns<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>frag_id<span class="classifier">torch.LongTensor of shape (B, N)</span></dt><dd><p>Fragment ID for each atom (0..K−1 for real atoms, −1 for padding).</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="fragment_utils.prepare_fragments_batch">
+<span class="sig-prename descclassname"><span class="pre">fragment_utils.</span></span><span class="sig-name descname"><span class="pre">prepare_fragments_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_fragment_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_frac_coords</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_charges</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_symbol_codes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LongTensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_to_element</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_H</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">device</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/fragment_utils.html#prepare_fragments_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#fragment_utils.prepare_fragments_batch" title="Link to this definition"></a></dt>
+<dd><p>Assemble per‐fragment tensors and compute chemical formulas for a batch.</p>
+<section id="id9">
+<h2>Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>atom_fragment_id<span class="classifier">torch.LongTensor of shape (B, N)</span></dt><dd><p>Fragment index per atom (−1 for padding).</p>
+</dd>
+<dt>atom_coords<span class="classifier">torch.Tensor of shape (B, N, 3)</span></dt><dd><p>Cartesian coordinates, padded to N atoms.</p>
+</dd>
+<dt>atom_frac_coords<span class="classifier">torch.Tensor of shape (B, N, 3)</span></dt><dd><p>Fractional coordinates, padded similarly.</p>
+</dd>
+<dt>atom_weights<span class="classifier">torch.Tensor of shape (B, N)</span></dt><dd><p>Atomic weights (zero for padding).</p>
+</dd>
+<dt>atom_charges<span class="classifier">torch.Tensor of shape (B, N)</span></dt><dd><p>Partial charges (zero for padding).</p>
+</dd>
+<dt>atom_symbol_codes<span class="classifier">torch.LongTensor of shape (B, N)</span></dt><dd><p>Integer element codes per atom.</p>
+</dd>
+<dt>code_to_element<span class="classifier">List[str]</span></dt><dd><p>Mapping from element code to symbol.</p>
+</dd>
+<dt>code_H<span class="classifier">int</span></dt><dd><p>Integer code corresponding to hydrogen.</p>
+</dd>
+<dt>device<span class="classifier">torch.device</span></dt><dd><p>Device to perform computation on.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h2>Returns<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>dict with keys:</dt><dd><p>fragment_structure_id : torch.LongTensor of shape (F,)
+fragment_local_id     : torch.LongTensor of shape (F,)
+fragment_n_atoms      : torch.LongTensor of shape (F,)
+fragment_atom_coords  : torch.Tensor of shape (F, max_A, 3)
+fragment_atom_frac_coords : torch.Tensor of shape (F, max_A, 3)
+fragment_atom_weight  : torch.Tensor of shape (F, max_A)
+fragment_atom_charge  : torch.Tensor of shape (F, max_A)
+fragment_atom_mask    : torch.BoolTensor of shape (F, max_A)
+fragment_atom_heavy_mask : torch.BoolTensor of shape (F, max_A)
+fragment_formula      : List[str] of length F</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dimension_scanner.html" class="btn btn-neutral float-left" title="dimension_scanner module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="geometry_utils.html" class="btn btn-neutral float-right" title="geometry_utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
