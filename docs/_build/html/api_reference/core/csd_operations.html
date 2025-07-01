@@ -1,0 +1,1928 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>csd_operations module &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d6d662bc" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d6d662bc" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=9f22d18c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/custom.js?v=398222f2"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Crystal Structure Analysis (CSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#essential-next-steps">Essential Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#common-workflows-after-setup">Common Workflows After Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#required-parameters">Required Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#pipeline-control">Pipeline Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#csd-filtering">CSD Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#performance-settings">Performance Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#example-configurations">Example Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#required-licenses">Required Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#required-parameters">Required Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#data-directory">data_directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#data-prefix">data_prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#pipeline-control">Pipeline Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#actions">actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#csd-filtering">CSD Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#filters">filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#structure-selection">Structure Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#chemical-filters">Chemical Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#performance-settings">Performance Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#batch-sizes">Batch Sizes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#example-configurations">Example Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#basic-organic-analysis">Basic Organic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#pharmaceutical-analysis">Pharmaceutical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#high-throughput-screening">High-Throughput Screening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#local-cif-file-analysis">Local CIF File Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#schema-validation">Schema Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#common-validation-errors">Common Validation Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#default-configuration">Default Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#minimal-configuration">Minimal Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#configuration-issues">Configuration Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#getting-started-tutorials">Getting Started Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#domain-specific-tutorials">Domain-Specific Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#advanced-analysis-tutorials">Advanced Analysis Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#specialized-workflows">Specialized Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#tutorial-structure">Tutorial Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#quick-start-recommendations">Quick Start Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#tutorial-downloads">Tutorial Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#tutorial-support">Tutorial Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#contributing-tutorials">Contributing Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#learning-paths">Learning Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#quick-start-examples">Quick Start Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#data-access-examples">Data Access Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#analysis-examples">Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#visualization-examples">Visualization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#integration-examples">Integration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#performance-examples">Performance Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#example-categories">Example Categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#basic-data-operations">Basic Data Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#advanced-workflows">Advanced Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#common-configuration-patterns">Common Configuration Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#commonly-used-helper-functions">Commonly Used Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#interactive-examples">Interactive Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#jupyter-notebook-examples">Jupyter Notebook Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#command-line-examples">Command Line Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#troubleshooting-examples">Troubleshooting Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#example-downloads">Example Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#browse-examples-by-category">Browse Examples by Category</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="crystal_analyzer.html">crystal_analyzer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crystal_analyzer.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extraction_config"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extraction_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.csd_ops"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.csd_ops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extractor"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extractor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.data_dir"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.data_dir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.__init__"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extract_data"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extract_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_analyzer.html#crystalanalyzer-class">CrystalAnalyzer Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#id0"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_analyzer.html#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#extract-data">extract_data()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#private-methods">Private Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="crystal_analyzer.html#private-attributes">Private Attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_analyzer.html#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_analyzer.html#configuration-dependencies">Configuration Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_analyzer.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crystal_analyzer.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="csa_config.html">csa_config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig.from_json"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig.data_directory"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.data_directory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig.data_prefix"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.data_prefix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig.actions"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig.filters"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.filters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig.extraction_batch_size"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.extraction_batch_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig.post_extraction_batch_size"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.post_extraction_batch_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#id0"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#csa_config.ExtractionConfig.__init__"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="csa_config.html#csa_config.load_config"><code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_config.html#configuration-management-for-csa-pipeline">Configuration Management for CSA Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_config.html#extractionconfig-class">ExtractionConfig Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#id1"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="csa_config.html#configuration-loading-functions">Configuration Loading Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="csa_config.html#id12"><code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="csa_config.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_config.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_config.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="csa_main.html">csa_main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#csa_main.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#csa_main.parse_args"><code class="docutils literal notranslate"><span class="pre">parse_args()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#csa_main.run_extraction"><code class="docutils literal notranslate"><span class="pre">run_extraction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#csa_main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#command-line-interface-for-csa-pipeline">Command-Line Interface for CSA Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#main-functions">Main Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="csa_main.html#id0"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_main.html#id2"><code class="docutils literal notranslate"><span class="pre">run_extraction()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#configuration-and-logging">Configuration and Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="csa_main.html#id3"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="csa_main.html#id4"><code class="docutils literal notranslate"><span class="pre">parse_args()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#command-line-usage">Command-Line Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#integration-examples">Integration Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="csa_main.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../extraction/structure_data_extractor.html">structure_data_extractor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#structure_data_extractor.StructureDataExtractor"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../extraction/structure_data_extractor.html#structure_data_extractor.StructureDataExtractor.hdf5_path"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.hdf5_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../extraction/structure_data_extractor.html#structure_data_extractor.StructureDataExtractor.filters"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.filters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../extraction/structure_data_extractor.html#structure_data_extractor.StructureDataExtractor.batch_size"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.batch_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../extraction/structure_data_extractor.html#structure_data_extractor.StructureDataExtractor.reader"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.reader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../extraction/structure_data_extractor.html#structure_data_extractor.StructureDataExtractor.__init__"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../extraction/structure_data_extractor.html#structure_data_extractor.StructureDataExtractor.run"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#raw-structure-data-extraction-pipeline">Raw Structure Data Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#structuredataextractor-class">StructureDataExtractor Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../extraction/structure_data_extractor.html#id0"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#data-extraction-functions">Data Extraction Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../extraction/structure_data_extractor.html#structure_data_extractor._extract_one"><code class="docutils literal notranslate"><span class="pre">_extract_one()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#hdf5-data-organization">HDF5 Data Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#data-access-patterns">Data Access Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../extraction/structure_data_extractor.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#data-access-patterns">Data Access Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#error-handling-patterns">Error Handling Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#performance-optimization">Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#module-dependencies">Module Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#import-patterns">Import Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#common-workflows">Common Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#advanced-usage-examples">Advanced Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html">Performance Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#data-storage-design">Data Storage Design</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#hdf5-schema-architecture">HDF5 Schema Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#algorithm-details">Algorithm Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#similarity-clustering-algorithm">Similarity Clustering Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#geometric-calculation-algorithms">Geometric Calculation Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#fragment-analysis-algorithms">Fragment Analysis Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#contact-detection-algorithms">Contact Detection Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#performance-optimization-details">Performance Optimization Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#gpu-memory-management">GPU Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#testing-and-validation">Testing and Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#unit-testing-framework">Unit Testing Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#documentation-and-maintenance">Documentation and Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#code-documentation-standards">Code Documentation Standards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#algorithms-and-methods">Algorithms and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#system-architecture">System Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#high-level-design">High-Level Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#core-components">Core Components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Crystal Structure Analysis (CSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">csd_operations module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-org/crystal-structure-analysis/blob/main/docs/source/api_reference/core/csd_operations.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="csd-operations-module">
+<h1>csd_operations module<a class="headerlink" href="#csd-operations-module" title="Link to this heading"></a></h1>
+<p id="module-csd_operations">Module: csd_operations.py</p>
+<p>High-level interface for interacting with the Cambridge Structural Database (CSD).</p>
+<p>This module provides functionality to:
+- Extract and filter refcode families
+- Cluster structures by packing similarity
+- Select representative structures using the vdWFV metric
+- Save intermediate results to CSV</p>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<p>pandas
+networkx
+ccdc
+csd_structure_validator</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">csd_operations.</span></span><span class="sig-name descname"><span class="pre">SimilaritySettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_bond_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogen_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogen_positions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing_shell_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_spacegroup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise_unit_cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#SimilaritySettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.SimilaritySettings" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configuration settings for packing similarity comparisons of crystal structures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance_tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>default=0.2</em>) – Maximum allowed deviation in atomic distances (Å) when comparing packings.</p></li>
+<li><p><strong>angle_tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>default=20.0</em>) – Maximum allowed angular deviation (degrees) between molecular orientations.</p></li>
+<li><p><strong>ignore_bond_types</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, matching bond orders are not required for similarity.</p></li>
+<li><p><strong>ignore_hydrogen_counts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, differences in hydrogen counts are ignored.</p></li>
+<li><p><strong>ignore_hydrogen_positions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, explicit hydrogen coordinate differences are ignored.</p></li>
+<li><p><strong>packing_shell_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>default=15</em>) – Number of molecules considered in each packing-shell comparison.</p></li>
+<li><p><strong>ignore_spacegroup</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, space-group designations are not required to match.</p></li>
+<li><p><strong>normalise_unit_cell</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, unit cell parameters are normalized before comparison.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.distance_tolerance">
+<span class="sig-name descname"><span class="pre">distance_tolerance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#csd_operations.SimilaritySettings.distance_tolerance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.angle_tolerance">
+<span class="sig-name descname"><span class="pre">angle_tolerance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20.0</span></em><a class="headerlink" href="#csd_operations.SimilaritySettings.angle_tolerance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.ignore_bond_types">
+<span class="sig-name descname"><span class="pre">ignore_bond_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#csd_operations.SimilaritySettings.ignore_bond_types" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.ignore_hydrogen_counts">
+<span class="sig-name descname"><span class="pre">ignore_hydrogen_counts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#csd_operations.SimilaritySettings.ignore_hydrogen_counts" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.ignore_hydrogen_positions">
+<span class="sig-name descname"><span class="pre">ignore_hydrogen_positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#csd_operations.SimilaritySettings.ignore_hydrogen_positions" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.packing_shell_size">
+<span class="sig-name descname"><span class="pre">packing_shell_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">15</span></em><a class="headerlink" href="#csd_operations.SimilaritySettings.packing_shell_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.ignore_spacegroup">
+<span class="sig-name descname"><span class="pre">ignore_spacegroup</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#csd_operations.SimilaritySettings.ignore_spacegroup" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.normalise_unit_cell">
+<span class="sig-name descname"><span class="pre">normalise_unit_cell</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#csd_operations.SimilaritySettings.normalise_unit_cell" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.SimilaritySettings.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_bond_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogen_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogen_positions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing_shell_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_spacegroup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise_unit_cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#csd_operations.SimilaritySettings.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">csd_operations.</span></span><span class="sig-name descname"><span class="pre">CSDOperations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_prefix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>High-level interface for querying, validating, clustering, and selecting
+crystal structures from the Cambridge Structural Database (CSD).</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.data_directory">
+<span class="sig-name descname"><span class="pre">data_directory</span></span><a class="headerlink" href="#csd_operations.CSDOperations.data_directory" title="Link to this definition"></a></dt>
+<dd><p>Base directory for reading and writing CSD-related files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.data_prefix">
+<span class="sig-name descname"><span class="pre">data_prefix</span></span><a class="headerlink" href="#csd_operations.CSDOperations.data_prefix" title="Link to this definition"></a></dt>
+<dd><p>Prefix used when naming output files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.reader">
+<span class="sig-name descname"><span class="pre">reader</span></span><a class="headerlink" href="#csd_operations.CSDOperations.reader" title="Link to this definition"></a></dt>
+<dd><p>CCDC EntryReader instance connected to the “CSD” database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>io.EntryReader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.similarity_engine">
+<span class="sig-name descname"><span class="pre">similarity_engine</span></span><a class="headerlink" href="#csd_operations.CSDOperations.similarity_engine" title="Link to this definition"></a></dt>
+<dd><p>Engine for computing pairwise packing similarity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PackingSimilarity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_prefix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize CSDOperations with target directory and filename prefix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_directory</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em>) – Directory under which all CSV outputs will be saved.</p></li>
+<li><p><strong>data_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Prefix for generated CSV filenames (e.g., “&lt;prefix&gt;_refcode_families.csv”).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.get_refcode_families_df">
+<span class="sig-name descname"><span class="pre">get_refcode_families_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.get_refcode_families_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations.get_refcode_families_df" title="Link to this definition"></a></dt>
+<dd><p>Query the CSD and group entries by base refcode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns:
+- family_id : str, first six characters of the refcode
+- refcode   : str, full CSD refcode</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.save_refcode_families_csv">
+<span class="sig-name descname"><span class="pre">save_refcode_families_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.save_refcode_families_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations.save_refcode_families_csv" title="Link to this definition"></a></dt>
+<dd><p>Write the refcode-families DataFrame to a CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em><em>, </em><em>optional</em>) – DataFrame to save. If None, uses get_refcode_families_df().</p></li>
+<li><p><strong>filename</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em><em>, </em><em>optional</em>) – Full file path for output. If None, defaults to
+data_directory / f”{data_prefix}_refcode_families.csv”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.13)"><strong>OSError</strong></a> – If writing to disk fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.filter_families_by_size">
+<span class="sig-name descname"><span class="pre">filter_families_by_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.filter_families_by_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations.filter_families_by_size" title="Link to this definition"></a></dt>
+<dd><p>Exclude families with fewer than a specified number of members.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame with columns [‘family_id’, ‘refcode’].</p></li>
+<li><p><strong>min_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>default=2</em>) – Minimum number of members for a family to be retained.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered DataFrame.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.13)"><strong>KeyError</strong></a> – If ‘family_id’ column is missing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.cluster_families">
+<span class="sig-name descname"><span class="pre">cluster_families</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.cluster_families"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations.cluster_families" title="Link to this definition"></a></dt>
+<dd><p>Perform packing similarity clustering on each refcode family.</p>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Load initial refcode families CSV.</p></li>
+<li><p>Group refcodes by ‘family_id’.</p></li>
+<li><p>For each group, validate entries and build a similarity graph.</p></li>
+<li><p>Identify connected components as clusters.</p></li>
+<li><p>Save clustered results to CSV.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">param filters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Criteria for structure validation.</p>
+</dd>
+<dt class="field-even">type filters<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns [‘family_id’, ‘refcode’, ‘cluster_id’].</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-odd">raises FileNotFoundError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the initial CSV is missing.</p>
+</dd>
+<dt class="field-even">raises RuntimeError<span class="colon">:</span></dt>
+<dd class="field-even"><p>If clustering fails for any family.</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations.get_unique_structures">
+<span class="sig-name descname"><span class="pre">get_unique_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vdWFV'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.get_unique_structures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations.get_unique_structures" title="Link to this definition"></a></dt>
+<dd><p>Select one representative per cluster using the vdWFV metric.</p>
+<section id="id1">
+<h2>Workflow<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Load clustered families CSV.</p></li>
+<li><p>Group by [‘family_id’, ‘cluster_id’].</p></li>
+<li><p>Compute vdWFV for each refcode; select the minimum.</p></li>
+<li><p>Save unique representatives to CSV.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">param filters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Placeholder for revalidation filters.</p>
+</dd>
+<dt class="field-even">type filters<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+<dt class="field-odd">param method<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Only ‘vdWFV’ is supported.</p>
+</dd>
+<dt class="field-even">type method<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, default=”vdWFV”</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns [‘family_id’, ‘refcode’].</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-odd">raises FileNotFoundError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If clustered CSV is missing.</p>
+</dd>
+<dt class="field-even">raises NotImplementedError<span class="colon">:</span></dt>
+<dd class="field-even"><p>If method is not ‘vdWFV’.</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="cambridge-structural-database-operations">
+<h2>Cambridge Structural Database Operations<a class="headerlink" href="#cambridge-structural-database-operations" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">csd_operations</span></code> module provides high-level interfaces for interacting with the Cambridge Structural Database (CSD), including family extraction, similarity clustering, and representative structure selection.</p>
+</section>
+<section id="similaritysettings-class">
+<h2>SimilaritySettings Class<a class="headerlink" href="#similaritysettings-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">csd_operations.</span></span><span class="sig-name descname"><span class="pre">SimilaritySettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_bond_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogen_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogen_positions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing_shell_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_spacegroup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise_unit_cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#SimilaritySettings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configuration settings for packing similarity comparisons of crystal structures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance_tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>default=0.2</em>) – Maximum allowed deviation in atomic distances (Å) when comparing packings.</p></li>
+<li><p><strong>angle_tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>default=20.0</em>) – Maximum allowed angular deviation (degrees) between molecular orientations.</p></li>
+<li><p><strong>ignore_bond_types</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, matching bond orders are not required for similarity.</p></li>
+<li><p><strong>ignore_hydrogen_counts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, differences in hydrogen counts are ignored.</p></li>
+<li><p><strong>ignore_hydrogen_positions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, explicit hydrogen coordinate differences are ignored.</p></li>
+<li><p><strong>packing_shell_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>default=15</em>) – Number of molecules considered in each packing-shell comparison.</p></li>
+<li><p><strong>ignore_spacegroup</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, space-group designations are not required to match.</p></li>
+<li><p><strong>normalise_unit_cell</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – If True, unit cell parameters are normalized before comparison.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Configuration for Packing Similarity Comparisons</strong></p>
+<p>Dataclass controlling parameters for 3D crystal packing similarity calculations using CCDC algorithms.</p>
+<p><strong>Key Parameters:</strong></p>
+<ul class="simple">
+<li><p><strong>distance_tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) - Maximum deviation in atomic distances (Å)</p></li>
+<li><p><strong>angle_tolerance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">float</span></code></a>) - Maximum angular deviation (degrees)</p></li>
+<li><p><strong>packing_shell_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) - Number of molecules in comparison shell</p></li>
+<li><p><strong>ignore_hydrogen_positions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) - Whether to ignore H-atom coordinates</p></li>
+<li><p><strong>normalise_unit_cell</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) - Whether to normalize unit cell parameters</p></li>
+</ul>
+<p><strong>Default Configuration:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="n">SimilaritySettings</span><span class="p">(</span>
+    <span class="n">distance_tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>        <span class="c1"># 0.2 Å distance tolerance</span>
+    <span class="n">angle_tolerance</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span>          <span class="c1"># 20° angular tolerance</span>
+    <span class="n">ignore_bond_types</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>        <span class="c1"># Ignore bond order differences</span>
+    <span class="n">ignore_hydrogen_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>   <span class="c1"># Ignore H-count differences</span>
+    <span class="n">ignore_hydrogen_positions</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="c1"># Ignore H-position differences</span>
+    <span class="n">packing_shell_size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>         <span class="c1"># 15-molecule comparison shell</span>
+    <span class="n">ignore_spacegroup</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>        <span class="c1"># Ignore space group differences</span>
+    <span class="n">normalise_unit_cell</span><span class="o">=</span><span class="kc">True</span>       <span class="c1"># Normalize unit cell parameters</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Tuning Guidelines:</strong></p>
+<ul class="simple">
+<li><p><strong>Strict Similarity</strong> - Reduce distance/angle tolerances</p></li>
+<li><p><strong>Loose Similarity</strong> - Increase tolerances for broader clustering</p></li>
+<li><p><strong>Performance</strong> - Reduce packing_shell_size for faster comparisons</p></li>
+<li><p><strong>Accuracy</strong> - Increase packing_shell_size for more reliable comparisons</p></li>
+</ul>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">distance_tolerance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">angle_tolerance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20.0</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">ignore_bond_types</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">ignore_hydrogen_counts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">ignore_hydrogen_positions</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">packing_shell_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">15</span></em><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">ignore_spacegroup</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">normalise_unit_cell</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_bond_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogen_counts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogen_positions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">packing_shell_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">15</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_spacegroup</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalise_unit_cell</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="csdoperations-class">
+<h2>CSDOperations Class<a class="headerlink" href="#csdoperations-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="id11">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">csd_operations.</span></span><span class="sig-name descname"><span class="pre">CSDOperations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_prefix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>High-level interface for querying, validating, clustering, and selecting
+crystal structures from the Cambridge Structural Database (CSD).</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">data_directory</span></span><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd><p>Base directory for reading and writing CSD-related files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">data_prefix</span></span><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dd><p>Prefix used when naming output files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">reader</span></span><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
+<dd><p>CCDC EntryReader instance connected to the “CSD” database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>io.EntryReader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">similarity_engine</span></span><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
+<dd><p>Engine for computing pairwise packing similarity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PackingSimilarity</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><strong>High-Level CSD Interface for Structure Operations</strong></p>
+<p>Primary interface for querying, validating, clustering, and selecting crystal structures from the Cambridge Structural Database.</p>
+<p><strong>Core Responsibilities:</strong></p>
+<ul class="simple">
+<li><p><strong>Family Extraction</strong> - Query and organize structures into chemical families</p></li>
+<li><p><strong>Quality Validation</strong> - Filter structures based on experimental criteria</p></li>
+<li><p><strong>Similarity Clustering</strong> - Group structures by 3D packing similarity</p></li>
+<li><p><strong>Representative Selection</strong> - Choose optimal structures using statistical metrics</p></li>
+<li><p><strong>Data Management</strong> - Save intermediate results and manage file I/O</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Attributes:</strong></dt><dd><ul class="simple">
+<li><p><strong>data_directory</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Path</span></code>) - Base directory for file operations</p></li>
+<li><p><strong>data_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) - Filename prefix for all generated files</p></li>
+<li><p><strong>reader</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">io.EntryReader</span></code>) - CCDC database connection</p></li>
+<li><p><strong>similarity_engine</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">PackingSimilarity</span></code>) - Packing comparison engine</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_prefix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
+<dd><p>Initialize CSDOperations with target directory and filename prefix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_directory</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em>) – Directory under which all CSV outputs will be saved.</p></li>
+<li><p><strong>data_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Prefix for generated CSV filenames (e.g., “&lt;prefix&gt;_refcode_families.csv”).</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Initialize CSD Operations Handler</strong></p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><strong>data_directory</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[str,</span> <span class="pre">Path]</span></code>) - Base directory for file I/O</p></li>
+<li><p><strong>data_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) - Prefix for generated filenames</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Initialization Process:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up file paths and directories</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">data_directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data_directory</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">data_prefix</span> <span class="o">=</span> <span class="n">data_prefix</span>
+
+<span class="c1"># Initialize CSD connection</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">EntryReader</span><span class="p">(</span><span class="s2">&quot;CSD&quot;</span><span class="p">)</span>
+
+<span class="c1"># Set up packing similarity engine</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">similarity_engine</span> <span class="o">=</span> <span class="n">PackingSimilarity</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Directory Structure Created:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>data_directory/
+├── {prefix}_refcode_families.csv
+├── {prefix}_refcode_families_clustered.csv
+├── {prefix}_refcode_families_unique.csv
+└── structures/
+    ├── REFCODE01.cif
+    ├── REFCODE02.cif
+    └── ...
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_prefix</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
+<dd><p>Initialize CSDOperations with target directory and filename prefix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_directory</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em>) – Directory under which all CSV outputs will be saved.</p></li>
+<li><p><strong>data_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Prefix for generated CSV filenames (e.g., “&lt;prefix&gt;_refcode_families.csv”).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">get_refcode_families_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.get_refcode_families_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
+<dd><p>Query the CSD and group entries by base refcode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns:
+- family_id : str, first six characters of the refcode
+- refcode   : str, full CSD refcode</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id19">
+<span class="sig-name descname"><span class="pre">save_refcode_families_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.save_refcode_families_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
+<dd><p>Write the refcode-families DataFrame to a CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em><em>, </em><em>optional</em>) – DataFrame to save. If None, uses get_refcode_families_df().</p></li>
+<li><p><strong>filename</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em><em>, </em><em>optional</em>) – Full file path for output. If None, defaults to
+data_directory / f”{data_prefix}_refcode_families.csv”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.13)"><strong>OSError</strong></a> – If writing to disk fails.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id20">
+<span class="sig-name descname"><span class="pre">filter_families_by_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.filter_families_by_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id20" title="Link to this definition"></a></dt>
+<dd><p>Exclude families with fewer than a specified number of members.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame with columns [‘family_id’, ‘refcode’].</p></li>
+<li><p><strong>min_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>default=2</em>) – Minimum number of members for a family to be retained.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered DataFrame.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.13)"><strong>KeyError</strong></a> – If ‘family_id’ column is missing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id21">
+<span class="sig-name descname"><span class="pre">cluster_families</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.cluster_families"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
+<dd><p>Perform packing similarity clustering on each refcode family.</p>
+<section id="id22">
+<h3>Workflow<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Load initial refcode families CSV.</p></li>
+<li><p>Group refcodes by ‘family_id’.</p></li>
+<li><p>For each group, validate entries and build a similarity graph.</p></li>
+<li><p>Identify connected components as clusters.</p></li>
+<li><p>Save clustered results to CSV.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">param filters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Criteria for structure validation.</p>
+</dd>
+<dt class="field-even">type filters<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns [‘family_id’, ‘refcode’, ‘cluster_id’].</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-odd">raises FileNotFoundError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the initial CSV is missing.</p>
+</dd>
+<dt class="field-even">raises RuntimeError<span class="colon">:</span></dt>
+<dd class="field-even"><p>If clustering fails for any family.</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id23">
+<span class="sig-name descname"><span class="pre">get_unique_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vdWFV'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.get_unique_structures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
+<dd><p>Select one representative per cluster using the vdWFV metric.</p>
+<section id="id24">
+<h3>Workflow<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Load clustered families CSV.</p></li>
+<li><p>Group by [‘family_id’, ‘cluster_id’].</p></li>
+<li><p>Compute vdWFV for each refcode; select the minimum.</p></li>
+<li><p>Save unique representatives to CSV.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">param filters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Placeholder for revalidation filters.</p>
+</dd>
+<dt class="field-even">type filters<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+<dt class="field-odd">param method<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Only ‘vdWFV’ is supported.</p>
+</dd>
+<dt class="field-even">type method<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, default=”vdWFV”</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns [‘family_id’, ‘refcode’].</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-odd">raises FileNotFoundError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If clustered CSV is missing.</p>
+</dd>
+<dt class="field-even">raises NotImplementedError<span class="colon">:</span></dt>
+<dd class="field-even"><p>If method is not ‘vdWFV’.</p>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="family-extraction-methods">
+<h2>Family Extraction Methods<a class="headerlink" href="#family-extraction-methods" title="Link to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="id25">
+<span class="sig-prename descclassname"><span class="pre">CSDOperations.</span></span><span class="sig-name descname"><span class="pre">get_refcode_families_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.get_refcode_families_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id25" title="Link to this definition"></a></dt>
+<dd><p>Query the CSD and group entries by base refcode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns:
+- family_id : str, first six characters of the refcode
+- refcode   : str, full CSD refcode</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+</dl>
+<p><strong>Extract Structure Families from CSD</strong></p>
+<p>Queries the CSD to organize structures into families based on chemical similarity and refcode relationships.</p>
+<p><strong>Family Organization:</strong></p>
+<p>Structures are grouped by:
+* <strong>Chemical connectivity</strong> - Same molecular graph
+* <strong>Refcode patterns</strong> - Related experimental studies
+* <strong>Publication relationships</strong> - Same research group/journal</p>
+<dl class="simple">
+<dt><strong>Returns:</strong></dt><dd><dl class="simple">
+<dt><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> with columns:</dt><dd><ul class="simple">
+<li><p><strong>family_id</strong> - Unique identifier for each chemical family</p></li>
+<li><p><strong>refcode</strong> - CSD refcode for individual structures</p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Example Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id    refcode
+FAM001       ABINIK
+FAM001       ABINIK01
+FAM001       ABINIK02
+FAM002       ACETAC
+FAM002       ACETAC01
+...
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id26">
+<span class="sig-prename descclassname"><span class="pre">CSDOperations.</span></span><span class="sig-name descname"><span class="pre">save_refcode_families_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.save_refcode_families_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id26" title="Link to this definition"></a></dt>
+<dd><p>Write the refcode-families DataFrame to a CSV file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em><em>, </em><em>optional</em>) – DataFrame to save. If None, uses get_refcode_families_df().</p></li>
+<li><p><strong>filename</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em><em>, </em><em>optional</em>) – Full file path for output. If None, defaults to
+data_directory / f”{data_prefix}_refcode_families.csv”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.13)"><strong>OSError</strong></a> – If writing to disk fails.</p>
+</dd>
+</dl>
+<p><strong>Save Family Assignments to CSV</strong></p>
+<p>Writes refcode family assignments to disk for persistence and downstream processing.</p>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>, optional) - DataFrame to save; if None, generates new one</p></li>
+<li><p><strong>filename</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[str,</span> <span class="pre">Path]</span></code>, optional) - Output path; if None, uses default naming</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Default File Path:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{data_directory}/{data_prefix}_refcode_families.csv
+</pre></div>
+</div>
+<p><strong>CSV Format:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id,refcode
+FAM001,ABINIK
+FAM001,ABINIK01
+FAM002,ACETAC
+...
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id27">
+<span class="sig-prename descclassname"><span class="pre">CSDOperations.</span></span><span class="sig-name descname"><span class="pre">filter_families_by_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.filter_families_by_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id27" title="Link to this definition"></a></dt>
+<dd><p>Exclude families with fewer than a specified number of members.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame with columns [‘family_id’, ‘refcode’].</p></li>
+<li><p><strong>min_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>default=2</em>) – Minimum number of members for a family to be retained.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Filtered DataFrame.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.13)"><strong>KeyError</strong></a> – If ‘family_id’ column is missing.</p>
+</dd>
+</dl>
+<p><strong>Filter Families by Member Count</strong></p>
+<p>Removes families with insufficient members for meaningful clustering analysis.</p>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>) - Family assignments DataFrame</p></li>
+<li><p><strong>min_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) - Minimum family size (default: 2)</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Filtering Logic:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Count members per family</span>
+<span class="n">family_counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;family_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+
+<span class="c1"># Keep only families with sufficient members</span>
+<span class="n">valid_families</span> <span class="o">=</span> <span class="n">family_counts</span><span class="p">[</span><span class="n">family_counts</span> <span class="o">&gt;=</span> <span class="n">min_size</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;family_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">valid_families</span><span class="p">)]</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Use Cases:</strong></dt><dd><ul class="simple">
+<li><p><strong>Statistical significance</strong> - Ensure meaningful clustering</p></li>
+<li><p><strong>Computational efficiency</strong> - Focus on families with multiple structures</p></li>
+<li><p><strong>Quality control</strong> - Remove singleton families</p></li>
+</ul>
+</dd>
+<dt><strong>Returns:</strong></dt><dd><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> with filtered family assignments</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="clustering-methods">
+<h2>Clustering Methods<a class="headerlink" href="#clustering-methods" title="Link to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="id28">
+<span class="sig-prename descclassname"><span class="pre">CSDOperations.</span></span><span class="sig-name descname"><span class="pre">cluster_families</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.cluster_families"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id28" title="Link to this definition"></a></dt>
+<dd><p>Perform packing similarity clustering on each refcode family.</p>
+<section id="id29">
+<h3>Workflow<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Load initial refcode families CSV.</p></li>
+<li><p>Group refcodes by ‘family_id’.</p></li>
+<li><p>For each group, validate entries and build a similarity graph.</p></li>
+<li><p>Identify connected components as clusters.</p></li>
+<li><p>Save clustered results to CSV.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">param filters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Criteria for structure validation.</p>
+</dd>
+<dt class="field-even">type filters<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns [‘family_id’, ‘refcode’, ‘cluster_id’].</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-odd">raises FileNotFoundError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If the initial CSV is missing.</p>
+</dd>
+<dt class="field-even">raises RuntimeError<span class="colon">:</span></dt>
+<dd class="field-even"><p>If clustering fails for any family.</p>
+</dd>
+</dl>
+<p><strong>Perform Packing Similarity Clustering</strong></p>
+<p>Groups structures within each family based on 3D crystal packing similarity using CCDC algorithms.</p>
+<p><strong>Clustering Workflow:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Load Families</strong> - Read refcode family assignments</p></li>
+<li><p><strong>Parallel Processing</strong> - Distribute families across CPU cores</p></li>
+<li><p><strong>Structure Validation</strong> - Apply quality filters to each structure</p></li>
+<li><p><strong>Similarity Computation</strong> - Calculate pairwise packing similarities</p></li>
+<li><p><strong>Graph Construction</strong> - Build similarity graphs with threshold cutoffs</p></li>
+<li><p><strong>Cluster Identification</strong> - Find connected components as clusters</p></li>
+<li><p><strong>Result Aggregation</strong> - Combine results from all families</p></li>
+</ol>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>filters</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) - Structure validation criteria</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Similarity Algorithm:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For each pair of structures in a family</span>
+<span class="n">similarity</span> <span class="o">=</span> <span class="n">PackingSimilarity</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span>
+    <span class="n">crystal1</span><span class="o">=</span><span class="n">entry1</span><span class="o">.</span><span class="n">crystal</span><span class="p">,</span>
+    <span class="n">crystal2</span><span class="o">=</span><span class="n">entry2</span><span class="o">.</span><span class="n">crystal</span><span class="p">,</span>
+    <span class="n">distance_tolerance</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">angle_tolerance</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span>
+    <span class="n">packing_shell_size</span><span class="o">=</span><span class="mi">15</span>
+<span class="p">)</span>
+
+<span class="c1"># Similarity values range from 0 (dissimilar) to 1 (identical)</span>
+<span class="k">if</span> <span class="n">similarity</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
+    <span class="n">graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">refcode1</span><span class="p">,</span> <span class="n">refcode2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Cluster Output:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id    refcode     cluster_id
+FAM001       ABINIK      1
+FAM001       ABINIK01    1
+FAM001       ABINIK02    2
+FAM002       ACETAC      1
+FAM002       ACETAC01    1
+...
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Performance Characteristics:</strong></dt><dd><ul class="simple">
+<li><p><strong>CPU Parallelization</strong> - Uses multiple cores for family processing</p></li>
+<li><p><strong>Memory Efficiency</strong> - Processes families independently</p></li>
+<li><p><strong>Scalability</strong> - Linear scaling with number of families</p></li>
+</ul>
+</dd>
+<dt><strong>Returns:</strong></dt><dd><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> with clustered family assignments</p>
+</dd>
+<dt><strong>Raises:</strong></dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileNotFoundError</span></code></a> - If refcode families CSV is missing</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#RuntimeError" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RuntimeError</span></code></a> - If clustering fails for any family</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations._check_structure">
+<span class="sig-prename descclassname"><span class="pre">CSDOperations.</span></span><span class="sig-name descname"><span class="pre">_check_structure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">identifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations._check_structure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations._check_structure" title="Link to this definition"></a></dt>
+<dd><p>Validate a CSD entry against filter criteria.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>identifier</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – CSD refcode.</p></li>
+<li><p><strong>filters</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Any</em><em>]</em>) – Validation criteria.</p></li>
+<li><p><strong>entry</strong> (<em>io.Entry</em><em>, </em><em>optional</em>) – Preloaded CSD entry. If None, loaded internally.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the structure is valid, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If validation fails unexpectedly.</p>
+</dd>
+</dl>
+<p><strong>Validate Structure Against Filter Criteria</strong></p>
+<p>Applies comprehensive quality filters to determine structure suitability for analysis.</p>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>identifier</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) - CSD refcode to validate</p></li>
+<li><p><strong>filters</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict</span></code>) - Validation criteria dictionary</p></li>
+<li><p><strong>entry</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">io.Entry</span></code>, optional) - Pre-loaded CSD entry</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Validation Categories:</strong></p>
+<p><strong>Quality Filters:</strong>
+* <strong>Resolution limits</strong> - X-ray diffraction quality
+* <strong>R-factor thresholds</strong> - Refinement quality indicators
+* <strong>Completeness requirements</strong> - Data collection completeness
+* <strong>Temperature ranges</strong> - Experimental condition constraints</p>
+<p><strong>Chemical Filters:</strong>
+* <strong>Element restrictions</strong> - Allowed atomic species
+* <strong>Molecular weight limits</strong> - Size constraints
+* <strong>Z’ value constraints</strong> - Asymmetric unit requirements
+* <strong>Crystal type requirements</strong> - Homomolecular vs. solvated</p>
+<p><strong>Structural Filters:</strong>
+* <strong>Disorder exclusion</strong> - Remove disordered structures
+* <strong>Polymer exclusion</strong> - Exclude polymeric materials
+* <strong>Solvate handling</strong> - Include/exclude solvated structures</p>
+<p><strong>Example Filter Configuration:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;min_resolution&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>           <span class="c1"># Å</span>
+    <span class="s2">&quot;max_r_factor&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>            <span class="c1"># 5% max R-factor</span>
+    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">],</span> <span class="c1"># Organic only</span>
+    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span>   <span class="c1"># 500 Da limit</span>
+    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>     <span class="c1"># Z&#39; = 1 only</span>
+    <span class="s2">&quot;exclude_disorder&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No disorder</span>
+    <span class="s2">&quot;exclude_polymers&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No polymers</span>
+    <span class="s2">&quot;exclude_solvates&quot;</span><span class="p">:</span> <span class="kc">True</span>          <span class="c1"># No solvates</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Returns:</strong></dt><dd><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a> indicating if structure passes all validation criteria</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="representative-selection-methods">
+<h2>Representative Selection Methods<a class="headerlink" href="#representative-selection-methods" title="Link to this heading"></a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="id30">
+<span class="sig-prename descclassname"><span class="pre">CSDOperations.</span></span><span class="sig-name descname"><span class="pre">get_unique_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vdWFV'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations.get_unique_structures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id30" title="Link to this definition"></a></dt>
+<dd><p>Select one representative per cluster using the vdWFV metric.</p>
+<section id="id31">
+<h3>Workflow<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Load clustered families CSV.</p></li>
+<li><p>Group by [‘family_id’, ‘cluster_id’].</p></li>
+<li><p>Compute vdWFV for each refcode; select the minimum.</p></li>
+<li><p>Save unique representatives to CSV.</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">param filters<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Placeholder for revalidation filters.</p>
+</dd>
+<dt class="field-even">type filters<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dict[str, Any]</p>
+</dd>
+<dt class="field-odd">param method<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Only ‘vdWFV’ is supported.</p>
+</dd>
+<dt class="field-even">type method<span class="colon">:</span></dt>
+<dd class="field-even"><p>str, default=”vdWFV”</p>
+</dd>
+<dt class="field-odd">returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame with columns [‘family_id’, ‘refcode’].</p>
+</dd>
+<dt class="field-even">rtype<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.DataFrame</p>
+</dd>
+<dt class="field-odd">raises FileNotFoundError<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If clustered CSV is missing.</p>
+</dd>
+<dt class="field-even">raises NotImplementedError<span class="colon">:</span></dt>
+<dd class="field-even"><p>If method is not ‘vdWFV’.</p>
+</dd>
+</dl>
+<p><strong>Select Representative Structures from Clusters</strong></p>
+<p>Chooses one optimal representative structure from each cluster using the vdWFV (van der Waals Fit Volume) metric.</p>
+<p><strong>Selection Algorithm:</strong></p>
+<p>The vdWFV method selects the structure with the most typical packing density within each cluster:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For each cluster, compute vdWFV for all members</span>
+<span class="n">vdwfv_values</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">:</span>
+    <span class="n">entry</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="n">refcode</span><span class="p">)</span>
+    <span class="n">vdwfv_values</span><span class="p">[</span><span class="n">refcode</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="o">.</span><span class="n">vdw_fit_volume</span>
+
+<span class="c1"># Select structure closest to cluster median</span>
+<span class="n">median_vdwfv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">vdwfv_values</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+<span class="n">representative</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">vdwfv_values</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">median_vdwfv</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) - Selection method (“vdWFV” only supported)</p></li>
+</ul>
+</dd>
+<dt><strong>Selection Criteria:</strong></dt><dd><ul class="simple">
+<li><p><strong>Typicality</strong> - Representative of cluster packing behavior</p></li>
+<li><p><strong>Quality</strong> - Prefers high-quality experimental data</p></li>
+<li><p><strong>Completeness</strong> - Avoids structures with missing data</p></li>
+</ul>
+</dd>
+<dt><strong>Output Files:</strong></dt><dd><ul class="simple">
+<li><p><strong>CSV</strong> - <code class="docutils literal notranslate"><span class="pre">{prefix}_refcode_families_unique.csv</span></code></p></li>
+<li><p><strong>Structure Directory</strong> - Individual CIF files for representatives</p></li>
+</ul>
+</dd>
+<dt><strong>Returns:</strong></dt><dd><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> with selected representative structures</p>
+</dd>
+<dt><strong>Raises:</strong></dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileNotFoundError</span></code></a> - If clustered families CSV is missing</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a> - If method other than “vdWFV” requested</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="csd_operations.CSDOperations._save_unique_structures">
+<span class="sig-prename descclassname"><span class="pre">CSDOperations.</span></span><span class="sig-name descname"><span class="pre">_save_unique_structures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#CSDOperations._save_unique_structures"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations.CSDOperations._save_unique_structures" title="Link to this definition"></a></dt>
+<dd><p>Save unique structure representatives to CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>df</strong> (<em>pd.DataFrame</em>) – DataFrame with columns [‘family_id’, ‘refcode’].</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.13)"><strong>OSError</strong></a> – If file writing fails.</p>
+</dd>
+</dl>
+<p><strong>Save Representative Structures to CSV</strong></p>
+<p>Persists the selected unique structures for downstream processing.</p>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>df</strong> (<a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v2.3.0)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a>) - DataFrame with representative assignments</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Output Format:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id,refcode
+FAM001,ABINIK01
+FAM002,ACETAC
+FAM003,BENZAC02
+...
+</pre></div>
+</div>
+<p><strong>File Location:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{data_directory}/{data_prefix}_refcode_families_unique.csv
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading"></a></h2>
+<p><strong>_process_single_family</strong></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="csd_operations._process_single_family">
+<span class="sig-prename descclassname"><span class="pre">csd_operations.</span></span><span class="sig-name descname"><span class="pre">_process_single_family</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#_process_single_family"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations._process_single_family" title="Link to this definition"></a></dt>
+<dd><p>Validate and cluster a single refcode family by packing similarity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em><em>, </em><em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Any</em><em>]</em><em>]</em>) – <ul class="simple">
+<li><p>family_id : str</p></li>
+<li><p>structures : List[str]</p></li>
+<li><p>filters : Dict of validation criteria</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>family_id and list of clusters (each a list of refcodes).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, List[List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If any error occurs during processing.</p>
+</dd>
+</dl>
+<p><strong>Process Individual Family for Clustering</strong></p>
+<p>Worker function for parallel clustering of structure families.</p>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[str,</span> <span class="pre">List[str],</span> <span class="pre">Dict]</span></code>) - (family_id, refcodes, filters)</p></li>
+</ul>
+</dd>
+<dt><strong>Processing Steps:</strong></dt><dd><ol class="arabic simple">
+<li><p><strong>Validation</strong> - Check each structure against filters</p></li>
+<li><p><strong>Similarity Matrix</strong> - Compute all pairwise similarities</p></li>
+<li><p><strong>Graph Construction</strong> - Build similarity network</p></li>
+<li><p><strong>Clustering</strong> - Identify connected components</p></li>
+<li><p><strong>Result Packaging</strong> - Return cluster assignments</p></li>
+</ol>
+</dd>
+<dt><strong>Returns:</strong></dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[str,</span> <span class="pre">List[List[str]]]</span></code> - (family_id, list of clusters)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><strong>_representative_for_cluster</strong></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="csd_operations._representative_for_cluster">
+<span class="sig-prename descclassname"><span class="pre">csd_operations.</span></span><span class="sig-name descname"><span class="pre">_representative_for_cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/csd_operations.html#_representative_for_cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#csd_operations._representative_for_cluster" title="Link to this definition"></a></dt>
+<dd><p>Select the refcode with minimal vdWFV in a cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>args</strong> (<em>Tuple</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em><em>]</em>) – <ul class="simple">
+<li><p>family_id : str</p></li>
+<li><p>cluster : List[str]</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>family_id and representative refcode.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If any lookup fails.</p>
+</dd>
+</dl>
+<p><strong>Select Representative from Single Cluster</strong></p>
+<p>Worker function for parallel representative selection.</p>
+<dl class="simple">
+<dt><strong>Selection Process:</strong></dt><dd><ol class="arabic simple">
+<li><p><strong>Load Structures</strong> - Access CSD entries for cluster members</p></li>
+<li><p><strong>Compute Metrics</strong> - Calculate vdWFV for each structure</p></li>
+<li><p><strong>Statistical Analysis</strong> - Find cluster median vdWFV</p></li>
+<li><p><strong>Representative Selection</strong> - Choose structure closest to median</p></li>
+</ol>
+</dd>
+<dt><strong>Returns:</strong></dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[str,</span> <span class="pre">str]</span></code> - (family_id, representative_refcode)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<p><strong>Basic CSD Operations Workflow</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">csd_operations</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSDOperations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Initialize CSD operations</span>
+<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span>
+    <span class="n">data_directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./analysis_output&quot;</span><span class="p">),</span>
+    <span class="n">data_prefix</span><span class="o">=</span><span class="s2">&quot;my_analysis&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Step 1: Extract refcode families</span>
+<span class="n">families_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">get_refcode_families_df</span><span class="p">()</span>
+<span class="n">csd_ops</span><span class="o">.</span><span class="n">save_refcode_families_csv</span><span class="p">(</span><span class="n">families_df</span><span class="p">)</span>
+
+<span class="c1"># Step 2: Filter by family size</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">filter_families_by_size</span><span class="p">(</span><span class="n">families_df</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Step 3: Cluster families by similarity</span>
+<span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span>
+    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">clustered_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">cluster_families</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+
+<span class="c1"># Step 4: Select unique representatives</span>
+<span class="n">unique_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">get_unique_structures</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;vdWFV&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Custom Similarity Settings</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">csd_operations</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimilaritySettings</span><span class="p">,</span> <span class="n">CSDOperations</span>
+
+<span class="c1"># Configure custom similarity parameters</span>
+<span class="n">strict_settings</span> <span class="o">=</span> <span class="n">SimilaritySettings</span><span class="p">(</span>
+    <span class="n">distance_tolerance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>     <span class="c1"># Stricter distance matching</span>
+    <span class="n">angle_tolerance</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>       <span class="c1"># Stricter angle matching</span>
+    <span class="n">packing_shell_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>      <span class="c1"># Larger comparison shell</span>
+    <span class="n">ignore_hydrogen_positions</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># Include H positions</span>
+<span class="p">)</span>
+
+<span class="c1"># Initialize with custom settings</span>
+<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span>
+    <span class="n">data_directory</span><span class="o">=</span><span class="s2">&quot;./output&quot;</span><span class="p">,</span>
+    <span class="n">data_prefix</span><span class="o">=</span><span class="s2">&quot;strict_analysis&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Apply custom settings to similarity engine</span>
+<span class="n">csd_ops</span><span class="o">.</span><span class="n">similarity_engine</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">strict_settings</span>
+</pre></div>
+</div>
+<p><strong>High-Throughput Processing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">csd_operations</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSDOperations</span>
+
+<span class="c1"># Configure for maximum parallelization</span>
+<span class="n">n_cores</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span>  <span class="c1"># Leave 2 cores free</span>
+
+<span class="c1"># Process large datasets efficiently</span>
+<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span><span class="s2">&quot;./large_analysis&quot;</span><span class="p">,</span> <span class="s2">&quot;high_throughput&quot;</span><span class="p">)</span>
+
+<span class="c1"># Use relaxed filters for speed</span>
+<span class="n">fast_filters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">1000.0</span><span class="p">,</span>
+    <span class="s2">&quot;min_resolution&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>  <span class="c1"># Relaxed resolution</span>
+    <span class="s2">&quot;max_r_factor&quot;</span><span class="p">:</span> <span class="mf">0.10</span>    <span class="c1"># Relaxed R-factor</span>
+<span class="p">}</span>
+
+<span class="c1"># Execute clustering with optimized settings</span>
+<span class="n">clustered</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">cluster_families</span><span class="p">(</span><span class="n">fast_filters</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Quality Control and Validation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement comprehensive quality control</span>
+<span class="n">quality_filters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;min_resolution&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>           <span class="c1"># High resolution only</span>
+    <span class="s2">&quot;max_r_factor&quot;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>            <span class="c1"># Strict R-factor</span>
+    <span class="s2">&quot;min_completeness&quot;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>        <span class="c1"># 95% data completeness</span>
+    <span class="s2">&quot;exclude_disorder&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No disorder</span>
+    <span class="s2">&quot;exclude_polymers&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No polymers</span>
+    <span class="s2">&quot;exclude_solvates&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No solvates</span>
+    <span class="s2">&quot;temperature_range&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">],</span>   <span class="c1"># Low-temperature data</span>
+    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">,</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="s2">&quot;Cl&quot;</span><span class="p">,</span><span class="s2">&quot;F&quot;</span><span class="p">]</span>  <span class="c1"># Common elements</span>
+<span class="p">}</span>
+
+<span class="c1"># Validate structures before clustering</span>
+<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span><span class="s2">&quot;./quality_analysis&quot;</span><span class="p">,</span> <span class="s2">&quot;high_quality&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">family_id</span><span class="p">,</span> <span class="n">refcodes</span> <span class="ow">in</span> <span class="n">families</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">valid_structures</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">refcodes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">_check_structure</span><span class="p">(</span><span class="n">refcode</span><span class="p">,</span> <span class="n">quality_filters</span><span class="p">):</span>
+            <span class="n">valid_structures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">refcode</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_structures</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Family </span><span class="si">{</span><span class="n">family_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_structures</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid structures&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-optimization">
+<h2>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h2>
+<p><strong>Memory Management</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure for large datasets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">memory_efficient_clustering</span><span class="p">(</span><span class="n">csd_ops</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process families in memory-efficient batches.&quot;&quot;&quot;</span>
+
+    <span class="n">families_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">get_refcode_families_df</span><span class="p">()</span>
+    <span class="n">family_groups</span> <span class="o">=</span> <span class="n">families_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;family_id&#39;</span><span class="p">)</span>
+
+    <span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">family_id</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">family_groups</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">batch_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>  <span class="c1"># Periodic garbage collection</span>
+
+        <span class="c1"># Process single family</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">_process_single_family</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">family_id</span><span class="p">,</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;refcode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">filters</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">all_results</span>
+</pre></div>
+</div>
+<p><strong>Parallel Processing Tuning</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+
+<span class="c1"># Optimize worker count based on system resources</span>
+<span class="n">optimal_workers</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span>        <span class="c1"># Leave CPU headroom</span>
+    <span class="mi">32</span><span class="p">,</span>                        <span class="c1"># Reasonable upper limit</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">family_groups</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span>    <span class="c1"># At least 4 families per worker</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">optimal_workers</span><span class="si">}</span><span class="s2"> parallel workers&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Disk I/O Optimization</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use SSD storage for temporary files</span>
+<span class="n">fast_storage</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/tmp/csd_analysis&quot;</span><span class="p">)</span>  <span class="c1"># RAM disk or SSD</span>
+<span class="n">fast_storage</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span>
+    <span class="n">data_directory</span><span class="o">=</span><span class="n">fast_storage</span><span class="p">,</span>
+    <span class="n">data_prefix</span><span class="o">=</span><span class="s2">&quot;temp_analysis&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Move final results to permanent storage</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="n">final_location</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./permanent_storage&quot;</span><span class="p">)</span>
+<span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">fast_storage</span><span class="p">,</span> <span class="n">final_location</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="crystal_analyzer.html"><span class="doc">crystal_analyzer module</span></a> : Pipeline orchestration
+<a class="reference internal" href="../extraction/structure_data_extractor.html"><span class="doc">structure_data_extractor module</span></a> : Raw data extraction
+<span class="xref std std-doc">../validation/csd_structure_validator</span> : Structure validation
+<span class="xref std std-doc">../processing/geometry_utils</span> : Geometric calculations</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jul 01, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

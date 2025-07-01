@@ -1,0 +1,1747 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>structure_data_extractor module &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d6d662bc" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=d6d662bc" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=9f22d18c"></script>
+      <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../../_static/custom.js?v=398222f2"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="crystal_analyzer.CrystalAnalyzer" href="../generated/crystal_analyzer.CrystalAnalyzer.html" />
+    <link rel="prev" title="csa_main module" href="../core/csa_main.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Crystal Structure Analysis (CSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#essential-next-steps">Essential Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#common-workflows-after-setup">Common Workflows After Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#required-parameters">Required Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#pipeline-control">Pipeline Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#csd-filtering">CSD Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#performance-settings">Performance Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#example-configurations">Example Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#required-licenses">Required Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#required-parameters">Required Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#data-directory">data_directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#data-prefix">data_prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#pipeline-control">Pipeline Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#actions">actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#csd-filtering">CSD Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#filters">filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#structure-selection">Structure Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#chemical-filters">Chemical Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#performance-settings">Performance Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#batch-sizes">Batch Sizes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#example-configurations">Example Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#basic-organic-analysis">Basic Organic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#pharmaceutical-analysis">Pharmaceutical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#high-throughput-screening">High-Throughput Screening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#local-cif-file-analysis">Local CIF File Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#schema-validation">Schema Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#common-validation-errors">Common Validation Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#default-configuration">Default Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#minimal-configuration">Minimal Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#configuration-issues">Configuration Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../user_guide/index.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../user_guide/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#getting-started-tutorials">Getting Started Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#domain-specific-tutorials">Domain-Specific Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#advanced-analysis-tutorials">Advanced Analysis Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#specialized-workflows">Specialized Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#tutorial-structure">Tutorial Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#quick-start-recommendations">Quick Start Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#tutorial-downloads">Tutorial Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#tutorial-support">Tutorial Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#contributing-tutorials">Contributing Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#learning-paths">Learning Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#quick-start-examples">Quick Start Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#data-access-examples">Data Access Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#analysis-examples">Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#visualization-examples">Visualization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#integration-examples">Integration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#performance-examples">Performance Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#example-categories">Example Categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#basic-data-operations">Basic Data Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#advanced-workflows">Advanced Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#common-configuration-patterns">Common Configuration Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#commonly-used-helper-functions">Commonly Used Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#interactive-examples">Interactive Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#jupyter-notebook-examples">Jupyter Notebook Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#command-line-examples">Command Line Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#troubleshooting-examples">Troubleshooting Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/index.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#example-downloads">Example Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#browse-examples-by-category">Browse Examples by Category</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../core/crystal_analyzer.html">crystal_analyzer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../core/crystal_analyzer.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extraction_config"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extraction_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.csd_ops"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.csd_ops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extractor"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extractor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.data_dir"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.data_dir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.__init__"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extract_data"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extract_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core/crystal_analyzer.html#crystalanalyzer-class">CrystalAnalyzer Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#id0"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core/crystal_analyzer.html#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#extract-data">extract_data()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#private-methods">Private Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/crystal_analyzer.html#private-attributes">Private Attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core/crystal_analyzer.html#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/crystal_analyzer.html#configuration-dependencies">Configuration Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/crystal_analyzer.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/crystal_analyzer.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../core/csa_config.html">csa_config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig.from_json"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig.data_directory"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.data_directory</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig.data_prefix"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.data_prefix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig.actions"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.actions</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig.filters"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.filters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig.extraction_batch_size"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.extraction_batch_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig.post_extraction_batch_size"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.post_extraction_batch_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#id0"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.from_json()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#csa_config.ExtractionConfig.__init__"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig.__init__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_config.html#csa_config.load_config"><code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_config.html#configuration-management-for-csa-pipeline">Configuration Management for CSA Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_config.html#extractionconfig-class">ExtractionConfig Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#id1"><code class="docutils literal notranslate"><span class="pre">ExtractionConfig</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_config.html#configuration-loading-functions">Configuration Loading Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_config.html#id12"><code class="docutils literal notranslate"><span class="pre">load_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_config.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_config.html#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_config.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../core/csa_main.html">csa_main module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#csa_main.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#csa_main.parse_args"><code class="docutils literal notranslate"><span class="pre">parse_args()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#csa_main.run_extraction"><code class="docutils literal notranslate"><span class="pre">run_extraction()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#csa_main.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#command-line-interface-for-csa-pipeline">Command-Line Interface for CSA Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#main-functions">Main Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_main.html#id0"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_main.html#id2"><code class="docutils literal notranslate"><span class="pre">run_extraction()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#configuration-and-logging">Configuration and Logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_main.html#id3"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../core/csa_main.html#id4"><code class="docutils literal notranslate"><span class="pre">parse_args()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#command-line-usage">Command-Line Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#integration-examples">Integration Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core/csa_main.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">structure_data_extractor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure_data_extractor.StructureDataExtractor"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure_data_extractor.StructureDataExtractor.hdf5_path"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.hdf5_path</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_data_extractor.StructureDataExtractor.filters"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.filters</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_data_extractor.StructureDataExtractor.batch_size"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.batch_size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_data_extractor.StructureDataExtractor.reader"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.reader</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_data_extractor.StructureDataExtractor.__init__"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure_data_extractor.StructureDataExtractor.run"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#raw-structure-data-extraction-pipeline">Raw Structure Data Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structuredataextractor-class">StructureDataExtractor Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">StructureDataExtractor</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#data-extraction-functions">Data Extraction Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#structure_data_extractor._extract_one"><code class="docutils literal notranslate"><span class="pre">_extract_one()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#hdf5-data-organization">HDF5 Data Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-access-patterns">Data Access Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#data-access-patterns">Data Access Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#error-handling-patterns">Error Handling Patterns</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#performance-optimization">Performance Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#module-dependencies">Module Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#import-patterns">Import Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#common-workflows">Common Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#advanced-usage-examples">Advanced Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html">Performance Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#data-storage-design">Data Storage Design</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#hdf5-schema-architecture">HDF5 Schema Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#algorithm-details">Algorithm Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#similarity-clustering-algorithm">Similarity Clustering Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#geometric-calculation-algorithms">Geometric Calculation Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#fragment-analysis-algorithms">Fragment Analysis Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#contact-detection-algorithms">Contact Detection Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#performance-optimization-details">Performance Optimization Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#gpu-memory-management">GPU Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#testing-and-validation">Testing and Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#unit-testing-framework">Unit Testing Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#documentation-and-maintenance">Documentation and Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#code-documentation-standards">Code Documentation Standards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#algorithms-and-methods">Algorithms and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../technical_details/index.html#system-architecture">System Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#high-level-design">High-Level Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../technical_details/index.html#core-components">Core Components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Crystal Structure Analysis (CSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">API Reference</a></li>
+      <li class="breadcrumb-item active">structure_data_extractor module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-org/crystal-structure-analysis/blob/main/docs/source/api_reference/extraction/structure_data_extractor.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-structure_data_extractor">
+<span id="structure-data-extractor-module"></span><h1>structure_data_extractor module<a class="headerlink" href="#module-structure_data_extractor" title="Link to this heading"></a></h1>
+<p>Module: structure_data_extractor.py</p>
+<p>Parallel extraction of raw CSD data into an HDF5 container.</p>
+<p>This module defines:
+- <cite>_extract_one</cite>: Retrieve and package raw crystal, molecule, contact, and hydrogen-bond data for a single refcode.
+- <cite>StructureDataExtractor</cite>: Manage parallel batch extraction of multiple refcodes into an HDF5 file.</p>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<p>numpy
+h5py
+ccdc
+hdf5_utils</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">structure_data_extractor.</span></span><span class="sig-name descname"><span class="pre">StructureDataExtractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdf5_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Manage parallel extraction of raw CSD data into an HDF5 container.</p>
+<p>This class:
+- Loads a list of refcodes from CSV (clustered or unique).
+- Initializes or overwrites an HDF5 file with a ‘/structures’ group.
+- Batches refcodes and invokes <cite>_extract_one()</cite> in parallel.
+- Writes each structure’s raw fields into its own HDF5 subgroup.</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor.hdf5_path">
+<span class="sig-name descname"><span class="pre">hdf5_path</span></span><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor.hdf5_path" title="Link to this definition"></a></dt>
+<dd><p>File path for the output HDF5 container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor.filters">
+<span class="sig-name descname"><span class="pre">filters</span></span><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor.filters" title="Link to this definition"></a></dt>
+<dd><p>ExtractionConfig.filters dictionary (e.g., data_directory, data_prefix,
+center_molecule, etc.).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor.batch_size">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor.batch_size" title="Link to this definition"></a></dt>
+<dd><p>Number of refcodes to process concurrently per batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor.reader">
+<span class="sig-name descname"><span class="pre">reader</span></span><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor.reader" title="Link to this definition"></a></dt>
+<dd><p>CCDC EntryReader instance used by <cite>_extract_one</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>io.EntryReader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">run</span> <span class="pre">:</span> <span class="pre">()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></span></dt>
+<dd><p>Execute the full extraction pipeline: overwrite HDF5, initialize,
+load refcode list, and process each batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">_load_refcodes</span> <span class="pre">:</span> <span class="pre">()</span> <span class="pre">-&gt;</span> <span class="pre">List[str]</span></span></dt>
+<dd><p>Read the CSV of refcodes to extract.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">_process_batch</span> <span class="pre">:</span> <span class="pre">(batch:</span> <span class="pre">List[str],</span> <span class="pre">h5:</span> <span class="pre">h5py.File)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></span></dt>
+<dd><p>Extract raw data for each batch of refcodes and write to HDF5.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdf5_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StructureDataExtractor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hdf5_path</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em>) – Path for the HDF5 file to create or overwrite.</p></li>
+<li><p><strong>filters</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Any</em><em>]</em>) – ExtractionConfig.filters, containing:
+- ‘data_directory’
+- ‘data_prefix’
+- ‘center_molecule’
+and other keys.</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of structures to extract concurrently per batch.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor.run" title="Link to this definition"></a></dt>
+<dd><p>Perform the full raw-data extraction for all refcodes into HDF5.</p>
+<p>This method:
+- Deletes the existing HDF5 file at <cite>hdf5_path</cite> if it exists.
+- Calls <cite>initialize_hdf5_file</cite> to create the ‘/structures’ group.
+- Loads all refcodes via <cite>_load_refcodes()</cite> and writes the ‘/refcode_list’ dataset.
+- Processes refcodes in batches of size <cite>batch_size</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Submits each refcode to <cite>ProcessPoolExecutor</cite> running <cite>_extract_one()</cite>.</p></li>
+<li><p>Collects <cite>(refcode, raw_data)</cite> tuples.</p></li>
+<li><p>Writes raw fields under <cite>/structures/&lt;refcode&gt;/…</cite> as typed datasets.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Closes the HDF5 file.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If the refcode list CSV is missing.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If any CCDC call or HDF5 write operation fails.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="raw-structure-data-extraction-pipeline">
+<h2>Raw Structure Data Extraction Pipeline<a class="headerlink" href="#raw-structure-data-extraction-pipeline" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">structure_data_extractor</span></code> module manages parallel extraction of comprehensive structural data from the Cambridge Structural Database into optimized HDF5 containers. This module forms the core of Stage 4 in the CSA pipeline.</p>
+</section>
+<section id="structuredataextractor-class">
+<h2>StructureDataExtractor Class<a class="headerlink" href="#structuredataextractor-class" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">structure_data_extractor.</span></span><span class="sig-name descname"><span class="pre">StructureDataExtractor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdf5_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Manage parallel extraction of raw CSD data into an HDF5 container.</p>
+<p>This class:
+- Loads a list of refcodes from CSV (clustered or unique).
+- Initializes or overwrites an HDF5 file with a ‘/structures’ group.
+- Batches refcodes and invokes <cite>_extract_one()</cite> in parallel.
+- Writes each structure’s raw fields into its own HDF5 subgroup.</p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">hdf5_path</span></span><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd><p>File path for the output HDF5 container.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">filters</span></span><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd><p>ExtractionConfig.filters dictionary (e.g., data_directory, data_prefix,
+center_molecule, etc.).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd><p>Number of refcodes to process concurrently per batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">reader</span></span><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd><p>CCDC EntryReader instance used by <cite>_extract_one</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>io.EntryReader</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">run</span> <span class="pre">:</span> <span class="pre">()</span> <span class="pre">-&gt;</span> <span class="pre">None</span></span></dt>
+<dd><p>Execute the full extraction pipeline: overwrite HDF5, initialize,
+load refcode list, and process each batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">_load_refcodes</span> <span class="pre">:</span> <span class="pre">()</span> <span class="pre">-&gt;</span> <span class="pre">List[str]</span></span></dt>
+<dd><p>Read the CSV of refcodes to extract.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">_process_batch</span> <span class="pre">:</span> <span class="pre">(batch:</span> <span class="pre">List[str],</span> <span class="pre">h5:</span> <span class="pre">h5py.File)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></span></dt>
+<dd><p>Extract raw data for each batch of refcodes and write to HDF5.</p>
+</dd></dl>
+
+<p><strong>Parallel HDF5 Data Extraction Manager</strong></p>
+<p>Orchestrates the extraction of raw structural data from CSD entries into a structured HDF5 format optimized for downstream processing and analysis.</p>
+<p><strong>Core Functionality:</strong></p>
+<ul class="simple">
+<li><p><strong>Parallel Processing</strong> - Distributes extraction across multiple CPU cores</p></li>
+<li><p><strong>HDF5 Management</strong> - Creates and manages structured datasets with proper typing</p></li>
+<li><p><strong>Data Validation</strong> - Ensures data integrity and completeness</p></li>
+<li><p><strong>Memory Optimization</strong> - Processes structures in configurable batch sizes</p></li>
+<li><p><strong>Error Handling</strong> - Robust error recovery and logging</p></li>
+</ul>
+<p><strong>Data Extracted:</strong></p>
+<p><strong>Crystal-Level Data:</strong>
+* Space group symmetry and operators
+* Unit cell parameters (lengths, angles, volume)
+* Z and Z’ values
+* Density and packing coefficient</p>
+<p><strong>Molecular Data:</strong>
+* Atomic coordinates (Cartesian and fractional)
+* Atomic properties (element, charge, formal charge)
+* Bond connectivity and bond orders
+* Molecular topology and geometry</p>
+<p><strong>Intermolecular Interactions:</strong>
+* Close contact identification and distances
+* Hydrogen bond detection and geometry
+* Symmetry-expanded contact networks
+* Contact classification and properties</p>
+<dl class="simple">
+<dt><strong>Attributes:</strong></dt><dd><ul class="simple">
+<li><p><strong>hdf5_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Path</span></code>) - Output HDF5 file location</p></li>
+<li><p><strong>filters</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) - Extraction configuration and filters</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) - Structures processed per batch</p></li>
+<li><p><strong>reader</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">io.EntryReader</span></code>) - CCDC database connection</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdf5_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StructureDataExtractor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hdf5_path</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em>) – Path for the HDF5 file to create or overwrite.</p></li>
+<li><p><strong>filters</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Any</em><em>]</em>) – ExtractionConfig.filters, containing:
+- ‘data_directory’
+- ‘data_prefix’
+- ‘center_molecule’
+and other keys.</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of structures to extract concurrently per batch.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Initialize Structure Data Extractor</strong></p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p><strong>hdf5_path</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[str,</span> <span class="pre">Path]</span></code>) - Path for output HDF5 file</p></li>
+<li><p><strong>filters</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) - Extraction configuration dictionary</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>) - Number of structures per processing batch</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Filter Configuration:</strong></p>
+<p>The filters dictionary contains:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;data_directory&quot;</span><span class="p">:</span> <span class="s2">&quot;./output&quot;</span><span class="p">,</span>      <span class="c1"># Base output directory</span>
+    <span class="s2">&quot;data_prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;analysis&quot;</span><span class="p">,</span>         <span class="c1"># Filename prefix</span>
+    <span class="s2">&quot;center_molecule&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>          <span class="c1"># Center molecule in unit cell</span>
+    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">],</span> <span class="c1"># Allowed elements</span>
+    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span>    <span class="c1"># Molecular weight limit</span>
+    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>      <span class="c1"># Z&#39; constraints</span>
+    <span class="c1"># ... additional validation criteria</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Initialization Process:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up file paths</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">hdf5_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">filters</span> <span class="o">=</span> <span class="n">filters</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+
+<span class="c1"># Initialize CSD connection</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">EntryReader</span><span class="p">(</span><span class="s2">&quot;CSD&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd><p>Perform the full raw-data extraction for all refcodes into HDF5.</p>
+<p>This method:
+- Deletes the existing HDF5 file at <cite>hdf5_path</cite> if it exists.
+- Calls <cite>initialize_hdf5_file</cite> to create the ‘/structures’ group.
+- Loads all refcodes via <cite>_load_refcodes()</cite> and writes the ‘/refcode_list’ dataset.
+- Processes refcodes in batches of size <cite>batch_size</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Submits each refcode to <cite>ProcessPoolExecutor</cite> running <cite>_extract_one()</cite>.</p></li>
+<li><p>Collects <cite>(refcode, raw_data)</cite> tuples.</p></li>
+<li><p>Writes raw fields under <cite>/structures/&lt;refcode&gt;/…</cite> as typed datasets.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Closes the HDF5 file.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If the refcode list CSV is missing.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If any CCDC call or HDF5 write operation fails.</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Execute Complete Data Extraction Pipeline</strong></p>
+<p>Orchestrates the full extraction workflow from refcode list to populated HDF5 file.</p>
+<p><strong>Pipeline Stages:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>File Initialization</strong> - Remove existing HDF5 and create new structure</p></li>
+<li><p><strong>Refcode Loading</strong> - Read list of structures to extract</p></li>
+<li><p><strong>HDF5 Setup</strong> - Initialize datasets and group structure</p></li>
+<li><p><strong>Batch Processing</strong> - Extract data in parallel batches</p></li>
+<li><p><strong>Data Writing</strong> - Store structured data with proper typing</p></li>
+<li><p><strong>Validation</strong> - Verify data integrity and completeness</p></li>
+</ol>
+<p><strong>HDF5 Structure Created:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>analysis.h5
+├── /refcode_list              # List of all extracted refcodes
+└── /structures/               # Root group for structure data
+    ├── REFCODE01/             # Individual structure group
+    │   ├── identifier         # CSD refcode
+    │   ├── space_group        # Space group symbol
+    │   ├── z_value           # Z value
+    │   ├── z_prime           # Z&#39; value
+    │   ├── cell_volume       # Unit cell volume
+    │   ├── cell_density      # Crystal density
+    │   ├── packing_coefficient # Packing coefficient
+    │   ├── cell_lengths      # a, b, c parameters
+    │   ├── cell_angles       # α, β, γ angles
+    │   ├── symmetry_operators # Space group operators
+    │   ├── atom_labels       # Atomic labels
+    │   ├── atom_coordinates  # Cartesian coordinates
+    │   ├── atom_frac_coordinates # Fractional coordinates
+    │   ├── atom_atomic_weights # Atomic masses
+    │   ├── atom_atomic_numbers # Atomic numbers
+    │   ├── atom_formal_charges # Formal charges
+    │   ├── atom_symbols      # Element symbols
+    │   ├── atom_sybyl_types  # SYBYL atom types
+    │   ├── atom_neighbours   # Connectivity lists
+    │   ├── bond_atom1_labels # Bond partner 1
+    │   ├── bond_atom2_labels # Bond partner 2
+    │   ├── bond_orders       # Bond order values
+    │   ├── intermolecular_contacts/ # Contact data
+    │   └── intermolecular_hbonds/   # H-bond data
+    └── REFCODE02/             # Next structure
+        └── ...
+</pre></div>
+</div>
+<p><strong>Progress Monitoring:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>INFO - Initializing HDF5 file: analysis.h5
+INFO - Loaded 8234 refcodes for extraction
+INFO - Processing batch 1/258 (32 structures)
+INFO - Processing batch 2/258 (32 structures)
+...
+INFO - Extraction complete: 8234 structures processed
+INFO - HDF5 file closed: analysis.h5
+</pre></div>
+</div>
+<p><strong>Error Handling:</strong></p>
+<ul class="simple">
+<li><p><strong>Structure Failures</strong> - Individual structure errors are logged and skipped</p></li>
+<li><p><strong>Batch Failures</strong> - Failed batches are retried with smaller sizes</p></li>
+<li><p><strong>HDF5 Errors</strong> - File corruption triggers automatic recovery</p></li>
+<li><p><strong>Memory Issues</strong> - Out-of-memory conditions reduce batch sizes</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Raises:</strong></dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileNotFoundError</span></code></a> - If refcode list CSV is missing</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Exception</span></code></a> - For CCDC API or HDF5 operation failures</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor._load_refcodes">
+<span class="sig-name descname"><span class="pre">_load_refcodes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor._load_refcodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor._load_refcodes" title="Link to this definition"></a></dt>
+<dd><p>Read the list of refcodes to extract from a CSV file.</p>
+<p>The CSV filename is chosen based on <cite>filters[‘structure_list’][0]</cite>:
+- “csd-unique” → “{data_prefix}_refcode_families_unique.csv”
+- otherwise → “{data_prefix}_refcode_families_clustered.csv”</p>
+<p>If filters[“structure_list”][0] == “cif”, returns all .cif filenames
+from the directory in filters[“structure_list”][1].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Refcode strings to process.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>List[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If the CSV file does not exist.</p>
+</dd>
+</dl>
+<p><strong>Load Refcode List from CSV</strong></p>
+<p>Reads the list of structures to extract from the unique structures CSV file.</p>
+<p><strong>File Sources:</strong></p>
+<p>The method searches for refcode lists in order of preference:</p>
+<ol class="arabic simple">
+<li><p><strong>Unique structures</strong> - <code class="docutils literal notranslate"><span class="pre">{prefix}_refcode_families_unique.csv</span></code></p></li>
+<li><p><strong>Clustered families</strong> - <code class="docutils literal notranslate"><span class="pre">{prefix}_refcode_families_clustered.csv</span></code></p></li>
+<li><p><strong>All families</strong> - <code class="docutils literal notranslate"><span class="pre">{prefix}_refcode_families.csv</span></code></p></li>
+</ol>
+<p><strong>CSV Format Expected:</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id,refcode
+FAM001,ABINIK01
+FAM002,ACETAC
+FAM003,BENZAC02
+...
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Returns:</strong></dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">List[str]</span></code> - List of CSD refcodes to extract</p>
+</dd>
+</dl>
+<p><strong>Error Handling:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multiple fallback options</span>
+<span class="n">csv_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;data_prefix&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_refcode_families_unique.csv&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;data_prefix&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_refcode_families_clustered.csv&quot;</span><span class="p">,</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;data_prefix&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_refcode_families.csv&quot;</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">csv_file</span> <span class="ow">in</span> <span class="n">csv_files</span><span class="p">:</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;data_directory&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="n">csv_file</span>
+    <span class="k">if</span> <span class="n">csv_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)[</span><span class="s1">&#39;refcode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;No refcode CSV files found&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="structure_data_extractor.StructureDataExtractor._process_batch">
+<span class="sig-name descname"><span class="pre">_process_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor._process_batch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_data_extractor.StructureDataExtractor._process_batch" title="Link to this definition"></a></dt>
+<dd><p>Extract raw data for a batch of refcodes and write to HDF5.</p>
+<p>This method:
+- Submits each refcode in <cite>batch</cite> to <cite>ProcessPoolExecutor</cite> calling</p>
+<blockquote>
+<div><p><cite>_extract_one(refcode, filters, center_flag)</cite>.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>Collects <cite>(refcode, raw_data)</cite> tuples for successful extractions.</p></li>
+<li><p>For each tuple, writes datasets under <cite>/structures/&lt;refcode&gt;/</cite>:
+- Crystal-level data: identifier, space_group, z_value, etc.
+- Atom data: atom_label, atom_coords, atom_frac_coords, etc.
+- Bond data: bond_id, bond_atom1, bond_atom2, etc.
+- Contact and hydrogen-bond datasets for intermolecular and intramolecular interactions.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – Sub-list of refcodes to process.</p></li>
+<li><p><strong>h5</strong> (<a class="reference external" href="https://docs.h5py.org/en/stable/high/file.html#h5py.File" title="(in h5py v3.14)"><em>h5py.File</em></a>) – Open HDF5 file returned by <cite>initialize_hdf5_file()</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If any error occurs during extraction or dataset writing.</p>
+</dd>
+</dl>
+<p><strong>Process Structure Batch with Parallel Extraction</strong></p>
+<p>Extracts raw data for a batch of structures using parallel processing and writes results to HDF5.</p>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>batch</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">List[str]</span></code>) - Refcodes to process in this batch</p></li>
+<li><p><strong>h5</strong> (<a class="reference external" href="https://docs.h5py.org/en/stable/high/file.html#h5py.File" title="(in h5py v3.14)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h5py.File</span></code></a>) - Open HDF5 file handle</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Parallel Processing:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimize worker count</span>
+<span class="n">max_workers</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">batch</span><span class="p">),</span> <span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Submit extraction jobs</span>
+<span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+    <span class="n">futures</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">_extract_one</span><span class="p">,</span> <span class="n">refcode</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">,</span> <span class="n">center_flag</span><span class="p">):</span> <span class="n">refcode</span>
+        <span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">batch</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Collect results</span>
+    <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Data Writing Process:</strong></p>
+<p>For each structure, creates properly typed HDF5 datasets:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create structure group</span>
+<span class="n">grp</span> <span class="o">=</span> <span class="n">h5</span><span class="p">[</span><span class="s2">&quot;structures&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="n">refcode</span><span class="p">)</span>
+
+<span class="c1"># Write crystal data with appropriate types</span>
+<span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;space_group&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">space_group</span><span class="p">,</span>
+                  <span class="n">dtype</span><span class="o">=</span><span class="n">h5py</span><span class="o">.</span><span class="n">string_dtype</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;cell_volume&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">volume</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;atom_coordinates&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">coords</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+<span class="c1"># Handle variable-length data</span>
+<span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s2">&quot;atom_neighbours&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">neighbors</span><span class="p">,</span>
+                  <span class="n">dtype</span><span class="o">=</span><span class="n">h5py</span><span class="o">.</span><span class="n">string_dtype</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>Memory Management:</strong></p>
+<ul class="simple">
+<li><p><strong>Batch-wise processing</strong> prevents memory overflow</p></li>
+<li><p><strong>Immediate writing</strong> avoids accumulating data in memory</p></li>
+<li><p><strong>Garbage collection</strong> triggered between batches</p></li>
+<li><p><strong>Resource monitoring</strong> tracks memory usage</p></li>
+</ul>
+<p><strong>Error Recovery:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Process batch</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">extract_batch_parallel</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">MemoryError</span><span class="p">:</span>
+    <span class="c1"># Reduce batch size and retry</span>
+    <span class="n">smaller_batches</span> <span class="o">=</span> <span class="n">split_batch</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">batch_size</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">small_batch</span> <span class="ow">in</span> <span class="n">smaller_batches</span><span class="p">:</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">extract_batch_parallel</span><span class="p">(</span><span class="n">small_batch</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdf5_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd><p>Initialize a StructureDataExtractor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hdf5_path</strong> (<em>Union</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Path</em><em>]</em>) – Path for the HDF5 file to create or overwrite.</p></li>
+<li><p><strong>filters</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Any</em><em>]</em>) – ExtractionConfig.filters, containing:
+- ‘data_directory’
+- ‘data_prefix’
+- ‘center_molecule’
+and other keys.</p></li>
+<li><p><strong>batch_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of structures to extract concurrently per batch.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#StructureDataExtractor.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd><p>Perform the full raw-data extraction for all refcodes into HDF5.</p>
+<p>This method:
+- Deletes the existing HDF5 file at <cite>hdf5_path</cite> if it exists.
+- Calls <cite>initialize_hdf5_file</cite> to create the ‘/structures’ group.
+- Loads all refcodes via <cite>_load_refcodes()</cite> and writes the ‘/refcode_list’ dataset.
+- Processes refcodes in batches of size <cite>batch_size</cite>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Submits each refcode to <cite>ProcessPoolExecutor</cite> running <cite>_extract_one()</cite>.</p></li>
+<li><p>Collects <cite>(refcode, raw_data)</cite> tuples.</p></li>
+<li><p>Writes raw fields under <cite>/structures/&lt;refcode&gt;/…</cite> as typed datasets.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Closes the HDF5 file.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If the refcode list CSV is missing.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If any CCDC call or HDF5 write operation fails.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="data-extraction-functions">
+<h2>Data Extraction Functions<a class="headerlink" href="#data-extraction-functions" title="Link to this heading"></a></h2>
+<p><strong>_extract_one</strong></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="structure_data_extractor._extract_one">
+<span class="sig-prename descclassname"><span class="pre">structure_data_extractor.</span></span><span class="sig-name descname"><span class="pre">_extract_one</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">refcode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_molecule</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/structure_data_extractor.html#_extract_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#structure_data_extractor._extract_one" title="Link to this definition"></a></dt>
+<dd><p>Retrieve raw fields for one CSD refcode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>refcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – CSD identifier (e.g., “ABCDEF12”).</p></li>
+<li><p><strong>filters</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>Any</em><em>]</em>) – ExtractionConfig.filters may include:
+- ‘target_z_prime_values’
+- ‘target_space_groups’
+- ‘center_molecule’</p></li>
+<li><p><strong>center_molecule</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, recenter the crystal before extracting coordinates.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl>
+<dt>refcode<span class="classifier">str</span></dt><dd><p>Same as input.</p>
+</dd>
+<dt>raw_data<span class="classifier">Dict[str, Any]</span></dt><dd><p>Contains:
+- ‘crystal_data’: dict of crystal properties (identifier, space_group,</p>
+<blockquote>
+<div><p>z_value, z_prime, cell_lengths, cell_angles, cell_volume,
+cell_density, packing_coefficient, symmetry_operators).</p>
+</div></blockquote>
+<ul class="simple">
+<li><dl class="simple">
+<dt>’molecule_data’: dict with:</dt><dd><ul>
+<li><p>’atoms’: mapping label → dict of atomic_symbol, coordinates,
+fractional_coordinates, atomic_weight, atomic_number,
+partial_charge, neighbour_labels, sybyl_type.</p></li>
+<li><p>’bonds’: mapping id → dict of atom1, atom2, bond_type,
+is_cyclic, is_rotatable, length.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>’intermolecular_contacts’, ‘intramolecular_contacts’,
+‘intermolecular_hbonds’, ‘intramolecular_hbonds’: dicts of
+corresponding data (if any).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, Any]]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If any CCDC call fails (entry not found, missing coordinates, etc.).</p>
+</dd>
+</dl>
+<p><strong>Extract Complete Data for Single Structure</strong></p>
+<p>Worker function that extracts all structural data for a single CSD entry.</p>
+<dl class="simple">
+<dt><strong>Parameters:</strong></dt><dd><ul class="simple">
+<li><p><strong>refcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) - CSD refcode to extract</p></li>
+<li><p><strong>filters</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) - Extraction configuration</p></li>
+<li><p><strong>center_molecule</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) - Whether to center molecule in unit cell</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Extraction Process:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>CSD Entry Loading</strong> - Connect to database and load entry</p></li>
+<li><p><strong>Crystal Data</strong> - Extract unit cell and symmetry information</p></li>
+<li><p><strong>Molecular Data</strong> - Extract atomic coordinates and connectivity</p></li>
+<li><p><strong>Contact Analysis</strong> - Identify intermolecular interactions</p></li>
+<li><p><strong>Data Packaging</strong> - Organize data for HDF5 storage</p></li>
+</ol>
+<p><strong>Crystal Data Extracted:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">crystal_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;identifier&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">identifier</span><span class="p">,</span>
+    <span class="s2">&quot;space_group&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="o">.</span><span class="n">spacegroup_symbol</span><span class="p">,</span>
+    <span class="s2">&quot;z_value&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="o">.</span><span class="n">z_value</span><span class="p">,</span>
+    <span class="s2">&quot;z_prime&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="o">.</span><span class="n">z_prime</span><span class="p">,</span>
+    <span class="s2">&quot;cell_volume&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="o">.</span><span class="n">cell_volume</span><span class="p">,</span>
+    <span class="s2">&quot;cell_density&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="o">.</span><span class="n">calculated_density</span><span class="p">,</span>
+    <span class="s2">&quot;packing_coefficient&quot;</span><span class="p">:</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="o">.</span><span class="n">packing_coefficient</span><span class="p">,</span>
+    <span class="s2">&quot;cell_lengths&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span>
+    <span class="s2">&quot;cell_angles&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">],</span>
+    <span class="s2">&quot;symmetry_operators&quot;</span><span class="p">:</span> <span class="n">symmetry_ops</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Molecular Data Extracted:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">atom_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;coordinates&quot;</span><span class="p">:</span> <span class="n">cartesian_coords</span><span class="p">,</span>
+    <span class="s2">&quot;fractional_coordinates&quot;</span><span class="p">:</span> <span class="n">fractional_coords</span><span class="p">,</span>
+    <span class="s2">&quot;atomic_weights&quot;</span><span class="p">:</span> <span class="n">atomic_masses</span><span class="p">,</span>
+    <span class="s2">&quot;atomic_numbers&quot;</span><span class="p">:</span> <span class="n">atomic_numbers</span><span class="p">,</span>
+    <span class="s2">&quot;formal_charges&quot;</span><span class="p">:</span> <span class="n">formal_charges</span><span class="p">,</span>
+    <span class="s2">&quot;symbols&quot;</span><span class="p">:</span> <span class="n">element_symbols</span><span class="p">,</span>
+    <span class="s2">&quot;sybyl_types&quot;</span><span class="p">:</span> <span class="n">sybyl_atom_types</span><span class="p">,</span>
+    <span class="s2">&quot;neighbours&quot;</span><span class="p">:</span> <span class="n">connectivity_lists</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Contact Data Extracted:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contact_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;central_atom&quot;</span><span class="p">:</span> <span class="n">contact</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+    <span class="s2">&quot;contact_atom&quot;</span><span class="p">:</span> <span class="n">contact</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+    <span class="s2">&quot;distance&quot;</span><span class="p">:</span> <span class="n">contact</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span>
+    <span class="s2">&quot;is_intermolecular&quot;</span><span class="p">:</span> <span class="n">contact</span><span class="o">.</span><span class="n">intermolecular</span><span class="p">,</span>
+    <span class="s2">&quot;symmetry_operator&quot;</span><span class="p">:</span> <span class="n">contact</span><span class="o">.</span><span class="n">symmetry_operator</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Hydrogen Bond Data:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hbond_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;donor_atom&quot;</span><span class="p">:</span> <span class="n">hbond</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+    <span class="s2">&quot;hydrogen_atom&quot;</span><span class="p">:</span> <span class="n">hbond</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+    <span class="s2">&quot;acceptor_atom&quot;</span><span class="p">:</span> <span class="n">hbond</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+    <span class="s2">&quot;da_distance&quot;</span><span class="p">:</span> <span class="n">hbond</span><span class="o">.</span><span class="n">da_distance</span><span class="p">,</span>
+    <span class="s2">&quot;angle&quot;</span><span class="p">:</span> <span class="n">hbond</span><span class="o">.</span><span class="n">angle</span><span class="p">,</span>
+    <span class="s2">&quot;is_intermolecular&quot;</span><span class="p">:</span> <span class="n">hbond</span><span class="o">.</span><span class="n">intermolecular</span><span class="p">,</span>
+    <span class="s2">&quot;is_in_line_of_sight&quot;</span><span class="p">:</span> <span class="n">hbond</span><span class="o">.</span><span class="n">is_in_line_of_sight</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Returns:</strong></dt><dd><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[str,</span> <span class="pre">Dict[str,</span> <span class="pre">Any]]</span></code> - (refcode, extracted_data)</p>
+</dd>
+</dl>
+<p><strong>Error Handling:</strong></p>
+<ul class="simple">
+<li><p><strong>Missing structures</strong> - Gracefully handle unavailable refcodes</p></li>
+<li><p><strong>Corrupted data</strong> - Skip structures with data integrity issues</p></li>
+<li><p><strong>API failures</strong> - Retry with exponential backoff</p></li>
+<li><p><strong>Timeout handling</strong> - Abort long-running extractions</p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="hdf5-data-organization">
+<h2>HDF5 Data Organization<a class="headerlink" href="#hdf5-data-organization" title="Link to this heading"></a></h2>
+<p><strong>File Structure Design</strong></p>
+<p>The HDF5 file is organized for optimal access patterns:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>analysis.h5
+├── /refcode_list                    # 1D string array
+├── /structures/                     # Group
+│   ├── REFCODE01/                   # Structure group
+│   │   ├── identifier               # String scalar
+│   │   ├── space_group              # String scalar
+│   │   ├── z_value                  # Integer scalar
+│   │   ├── z_prime                  # Float scalar
+│   │   ├── cell_volume              # Float scalar
+│   │   ├── cell_density             # Float scalar
+│   │   ├── packing_coefficient      # Float scalar
+│   │   ├── cell_lengths             # Float array (3,)
+│   │   ├── cell_angles              # Float array (3,)
+│   │   ├── symmetry_operators       # String array (N,)
+│   │   ├── atom_labels              # String array (M,)
+│   │   ├── atom_coordinates         # Float array (M, 3)
+│   │   ├── atom_frac_coordinates    # Float array (M, 3)
+│   │   ├── atom_atomic_weights      # Float array (M,)
+│   │   ├── atom_atomic_numbers      # Integer array (M,)
+│   │   ├── atom_formal_charges      # Float array (M,)
+│   │   ├── atom_symbols             # String array (M,)
+│   │   ├── atom_sybyl_types         # String array (M,)
+│   │   ├── atom_neighbours          # Variable-length strings
+│   │   ├── bond_atom1_labels        # String array (B,)
+│   │   ├── bond_atom2_labels        # String array (B,)
+│   │   ├── bond_orders              # Float array (B,)
+│   │   ├── intermolecular_contacts/ # Group
+│   │   │   ├── central_atoms        # String array (C,)
+│   │   │   ├── contact_atoms        # String array (C,)
+│   │   │   ├── distances            # Float array (C,)
+│   │   │   └── symmetry_operators   # String array (C,)
+│   │   └── intermolecular_hbonds/   # Group
+│   │       ├── donor_atoms          # String array (H,)
+│   │       ├── hydrogen_atoms       # String array (H,)
+│   │       ├── acceptor_atoms       # String array (H,)
+│   │       ├── da_distances         # Float array (H,)
+│   │       ├── angles               # Float array (H,)
+│   │       └── line_of_sight        # Boolean array (H,)
+│   └── REFCODE02/
+│       └── ...
+</pre></div>
+</div>
+<p><strong>Data Type Optimization</strong></p>
+<p>Careful attention to data types minimizes file size:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use appropriate precision for coordinates</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>  <span class="c1"># 32-bit sufficient</span>
+
+<span class="c1"># Integer types for discrete values</span>
+<span class="n">atomic_numbers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">numbers</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int16</span><span class="p">)</span>  <span class="c1"># 16-bit sufficient</span>
+
+<span class="c1"># String types with UTF-8 encoding</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">h5py</span><span class="o">.</span><span class="n">string_dtype</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+<span class="c1"># Boolean arrays for flags</span>
+<span class="n">intermolecular_flags</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">flags</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Compression and Chunking</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Apply compression for large datasets</span>
+<span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+    <span class="s2">&quot;atom_coordinates&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">coordinates</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span>
+    <span class="n">compression</span><span class="o">=</span><span class="s2">&quot;gzip&quot;</span><span class="p">,</span>
+    <span class="n">compression_opts</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fletcher32</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<p><strong>Basic Extraction Workflow</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">structure_data_extractor</span><span class="w"> </span><span class="kn">import</span> <span class="n">StructureDataExtractor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Configure extraction</span>
+<span class="n">extractor</span> <span class="o">=</span> <span class="n">StructureDataExtractor</span><span class="p">(</span>
+    <span class="n">hdf5_path</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./output/analysis.h5&quot;</span><span class="p">),</span>
+    <span class="n">filters</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;data_directory&quot;</span><span class="p">:</span> <span class="s2">&quot;./output&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;data_prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;analysis&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;center_molecule&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span>
+<span class="p">)</span>
+
+<span class="c1"># Execute extraction</span>
+<span class="n">extractor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Memory-Optimized Extraction</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure for limited memory systems</span>
+<span class="n">memory_limited_extractor</span> <span class="o">=</span> <span class="n">StructureDataExtractor</span><span class="p">(</span>
+    <span class="n">hdf5_path</span><span class="o">=</span><span class="s2">&quot;./analysis_small.h5&quot;</span><span class="p">,</span>
+    <span class="n">filters</span><span class="o">=</span><span class="n">standard_filters</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span>  <span class="c1"># Smaller batches for memory efficiency</span>
+<span class="p">)</span>
+
+<span class="c1"># Monitor memory usage during extraction</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">monitor_extraction</span><span class="p">():</span>
+    <span class="n">process</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span>
+    <span class="n">initial_memory</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">2</span>  <span class="c1"># MB</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial memory usage: </span><span class="si">{</span><span class="n">initial_memory</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+
+    <span class="n">memory_limited_extractor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="n">final_memory</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final memory usage: </span><span class="si">{</span><span class="n">final_memory</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Memory increase: </span><span class="si">{</span><span class="n">final_memory</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">initial_memory</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>High-Throughput Extraction</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure for maximum throughput</span>
+<span class="n">high_throughput_extractor</span> <span class="o">=</span> <span class="n">StructureDataExtractor</span><span class="p">(</span>
+    <span class="n">hdf5_path</span><span class="o">=</span><span class="s2">&quot;./large_analysis.h5&quot;</span><span class="p">,</span>
+    <span class="n">filters</span><span class="o">=</span><span class="n">permissive_filters</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span>  <span class="c1"># Large batches for throughput</span>
+<span class="p">)</span>
+
+<span class="c1"># Use SSD storage for temporary files</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+
+<span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">(</span><span class="nb">dir</span><span class="o">=</span><span class="s2">&quot;/tmp&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">temp_dir</span><span class="p">:</span>
+    <span class="n">temp_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">temp_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;temp_analysis.h5&quot;</span>
+
+    <span class="c1"># Extract to fast temporary storage</span>
+    <span class="n">temp_extractor</span> <span class="o">=</span> <span class="n">StructureDataExtractor</span><span class="p">(</span>
+        <span class="n">hdf5_path</span><span class="o">=</span><span class="n">temp_path</span><span class="p">,</span>
+        <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span>
+    <span class="p">)</span>
+    <span class="n">temp_extractor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="c1"># Move to permanent storage</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">temp_path</span><span class="p">,</span> <span class="s2">&quot;./permanent/analysis.h5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Custom Data Filtering</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pharmaceutical-specific extraction</span>
+<span class="n">pharma_filters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;data_directory&quot;</span><span class="p">:</span> <span class="s2">&quot;./pharma_analysis&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data_prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;drug_crystals&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;center_molecule&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">,</span> <span class="s2">&quot;S&quot;</span><span class="p">,</span> <span class="s2">&quot;Cl&quot;</span><span class="p">,</span> <span class="s2">&quot;F&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">800.0</span><span class="p">,</span>
+    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="s2">&quot;exclude_solvates&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># Include solvates for drug analysis</span>
+    <span class="s2">&quot;min_resolution&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
+    <span class="s2">&quot;max_r_factor&quot;</span><span class="p">:</span> <span class="mf">0.05</span>
+<span class="p">}</span>
+
+<span class="n">pharma_extractor</span> <span class="o">=</span> <span class="n">StructureDataExtractor</span><span class="p">(</span>
+    <span class="n">hdf5_path</span><span class="o">=</span><span class="s2">&quot;./pharma_crystals.h5&quot;</span><span class="p">,</span>
+    <span class="n">filters</span><span class="o">=</span><span class="n">pharma_filters</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Error Recovery and Monitoring</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">robust_extraction</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">max_retries</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute extraction with automatic retry on failure.&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_retries</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">extractor</span> <span class="o">=</span> <span class="n">StructureDataExtractor</span><span class="p">(</span>
+                <span class="n">hdf5_path</span><span class="o">=</span><span class="n">hdf5_path</span><span class="p">,</span>
+                <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span>
+            <span class="p">)</span>
+
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">extractor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+            <span class="n">duration</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extraction completed in </span><span class="si">{</span><span class="n">duration</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extraction attempt </span><span class="si">{</span><span class="n">attempt</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Clean up partial file</span>
+            <span class="k">if</span> <span class="n">Path</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">Path</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">)</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">max_retries</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Retrying in 30 seconds...&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;All extraction attempts failed&quot;</span><span class="p">)</span>
+                <span class="k">raise</span>
+</pre></div>
+</div>
+<p><strong>Custom Processing Pipeline</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">custom_extraction_pipeline</span><span class="p">(</span><span class="n">refcode_lists</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process multiple datasets in parallel.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_dataset</span><span class="p">(</span><span class="n">refcodes</span><span class="p">,</span> <span class="n">output_name</span><span class="p">):</span>
+        <span class="n">extractor</span> <span class="o">=</span> <span class="n">StructureDataExtractor</span><span class="p">(</span>
+            <span class="n">hdf5_path</span><span class="o">=</span><span class="n">output_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_name</span><span class="si">}</span><span class="s2">.h5&quot;</span><span class="p">,</span>
+            <span class="n">filters</span><span class="o">=</span><span class="p">{</span>
+                <span class="s2">&quot;data_directory&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">output_dir</span><span class="p">),</span>
+                <span class="s2">&quot;data_prefix&quot;</span><span class="p">:</span> <span class="n">output_name</span><span class="p">,</span>
+                <span class="s2">&quot;center_molecule&quot;</span><span class="p">:</span> <span class="kc">False</span>
+            <span class="p">},</span>
+            <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Temporarily write refcode list</span>
+        <span class="n">temp_csv</span> <span class="o">=</span> <span class="n">output_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">output_name</span><span class="si">}</span><span class="s2">_temp_refcodes.csv&quot;</span>
+        <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;refcode&quot;</span><span class="p">:</span> <span class="n">refcodes</span><span class="p">})</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">temp_csv</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="n">extractor</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+        <span class="c1"># Clean up temporary file</span>
+        <span class="n">temp_csv</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">output_name</span>
+
+    <span class="c1"># Process datasets in parallel</span>
+    <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">extract_dataset</span><span class="p">,</span> <span class="n">refcodes</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span> <span class="n">name</span>
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">refcodes</span> <span class="ow">in</span> <span class="n">refcode_lists</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">futures</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Completed extraction for </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="data-access-patterns">
+<h2>Data Access Patterns<a class="headerlink" href="#data-access-patterns" title="Link to this heading"></a></h2>
+<p><strong>Reading Extracted Data</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_structure_data</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">,</span> <span class="n">refcode</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load all data for a specific structure.&quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">grp</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;structures/</span><span class="si">{</span><span class="n">refcode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+
+        <span class="n">structure_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;identifier&quot;</span><span class="p">:</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;identifier&quot;</span><span class="p">][()]</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span>
+            <span class="s2">&quot;space_group&quot;</span><span class="p">:</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;space_group&quot;</span><span class="p">][()]</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span>
+            <span class="s2">&quot;cell_volume&quot;</span><span class="p">:</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;cell_volume&quot;</span><span class="p">][()],</span>
+            <span class="s2">&quot;atom_coordinates&quot;</span><span class="p">:</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;atom_coordinates&quot;</span><span class="p">][:],</span>
+            <span class="s2">&quot;atom_symbols&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;atom_symbols&quot;</span><span class="p">][:]],</span>
+            <span class="c1"># ... load other datasets as needed</span>
+        <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">structure_data</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_all_refcodes</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get list of all extracted structures.&quot;&quot;&quot;</span>
+
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">refcodes</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;refcode_list&quot;</span><span class="p">][:]]</span>
+
+    <span class="k">return</span> <span class="n">refcodes</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_crystal_properties</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load crystal properties for all structures.&quot;&quot;&quot;</span>
+
+    <span class="n">properties</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;structures&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;structures/</span><span class="si">{</span><span class="n">refcode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">properties</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;refcode&quot;</span><span class="p">:</span> <span class="n">refcode</span><span class="p">,</span>
+                <span class="s2">&quot;space_group&quot;</span><span class="p">:</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;space_group&quot;</span><span class="p">][()]</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span>
+                <span class="s2">&quot;volume&quot;</span><span class="p">:</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;cell_volume&quot;</span><span class="p">][()],</span>
+                <span class="s2">&quot;density&quot;</span><span class="p">:</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;cell_density&quot;</span><span class="p">][()],</span>
+                <span class="s2">&quot;z_prime&quot;</span><span class="p">:</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;z_prime&quot;</span><span class="p">][()]</span>
+            <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">properties</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Batch Data Loading</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_coordinates_batch</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">,</span> <span class="n">refcodes</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load atomic coordinates for multiple structures.&quot;&quot;&quot;</span>
+
+    <span class="n">coordinates</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">refcodes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;structures/</span><span class="si">{</span><span class="n">refcode</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;structures/</span><span class="si">{</span><span class="n">refcode</span><span class="si">}</span><span class="s2">/atom_coordinates&quot;</span><span class="p">][:]</span>
+                <span class="n">coordinates</span><span class="p">[</span><span class="n">refcode</span><span class="p">]</span> <span class="o">=</span> <span class="n">coords</span>
+
+    <span class="k">return</span> <span class="n">coordinates</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">scan_dataset_sizes</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze dataset sizes for memory planning.&quot;&quot;&quot;</span>
+
+    <span class="n">sizes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">hdf5_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">f</span><span class="p">[</span><span class="s2">&quot;structures&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;structures/</span><span class="si">{</span><span class="n">refcode</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span>
+            <span class="n">n_atoms</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;atom_coordinates&quot;</span><span class="p">])</span>
+            <span class="n">n_contacts</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;intermolecular_contacts/distances&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="s2">&quot;intermolecular_contacts/distances&quot;</span> <span class="ow">in</span> <span class="n">grp</span> <span class="k">else</span> <span class="mi">0</span>
+
+            <span class="n">sizes</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;refcode&quot;</span><span class="p">:</span> <span class="n">refcode</span><span class="p">,</span>
+                <span class="s2">&quot;n_atoms&quot;</span><span class="p">:</span> <span class="n">n_atoms</span><span class="p">,</span>
+                <span class="s2">&quot;n_contacts&quot;</span><span class="p">:</span> <span class="n">n_contacts</span>
+            <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h2>
+<p><strong>Batch Size Optimization</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">optimize_batch_size</span><span class="p">(</span><span class="n">total_structures</span><span class="p">,</span> <span class="n">available_memory_gb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Determine optimal batch size based on system resources.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">available_memory_gb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">available_memory_gb</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">virtual_memory</span><span class="p">()</span><span class="o">.</span><span class="n">available</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Estimate memory per structure (rough approximation)</span>
+    <span class="n">memory_per_structure_mb</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Average for typical organic structures</span>
+
+    <span class="c1"># Calculate safe batch size</span>
+    <span class="n">safe_batch_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">available_memory_gb</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">memory_per_structure_mb</span><span class="p">)</span>
+
+    <span class="c1"># Apply reasonable bounds</span>
+    <span class="n">optimal_batch_size</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">safe_batch_size</span><span class="p">,</span> <span class="mi">128</span><span class="p">))</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recommended batch size: </span><span class="si">{</span><span class="n">optimal_batch_size</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">optimal_batch_size</span>
+</pre></div>
+</div>
+<p><strong>Storage Optimization</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">estimate_storage_requirements</span><span class="p">(</span><span class="n">n_structures</span><span class="p">,</span> <span class="n">avg_atoms_per_structure</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate HDF5 file size requirements.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Base structure data (coordinates, properties)</span>
+    <span class="n">base_size_per_structure</span> <span class="o">=</span> <span class="n">avg_atoms_per_structure</span> <span class="o">*</span> <span class="mi">200</span>  <span class="c1"># bytes</span>
+
+    <span class="c1"># Contact data (variable, estimate 100 contacts per structure)</span>
+    <span class="n">contact_size_per_structure</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># bytes</span>
+
+    <span class="c1"># Total estimate</span>
+    <span class="n">total_size_mb</span> <span class="o">=</span> <span class="p">(</span><span class="n">base_size_per_structure</span> <span class="o">+</span> <span class="n">contact_size_per_structure</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_structures</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1024</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Add 50% overhead for HDF5 metadata and compression efficiency</span>
+    <span class="n">estimated_size_mb</span> <span class="o">=</span> <span class="n">total_size_mb</span> <span class="o">*</span> <span class="mf">1.5</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated storage requirement: </span><span class="si">{</span><span class="n">estimated_size_mb</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">estimated_size_mb</span>
+</pre></div>
+</div>
+<p><strong>Parallel Processing Tuning</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">tune_parallel_extraction</span><span class="p">(</span><span class="n">n_structures</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Optimize parallel processing parameters.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Calculate number of batches</span>
+    <span class="n">n_batches</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_structures</span> <span class="o">+</span> <span class="n">batch_size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span>
+
+    <span class="c1"># Optimize worker count</span>
+    <span class="n">n_cores</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+    <span class="n">max_workers</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
+        <span class="n">n_cores</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>           <span class="c1"># Leave one core free</span>
+        <span class="n">n_batches</span><span class="p">,</span>             <span class="c1"># No more workers than batches</span>
+        <span class="mi">8</span>                      <span class="c1"># Reasonable upper limit</span>
+    <span class="p">)</span>
+
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing </span><span class="si">{</span><span class="n">n_structures</span><span class="si">}</span><span class="s2"> structures in </span><span class="si">{</span><span class="n">n_batches</span><span class="si">}</span><span class="s2"> batches&quot;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">max_workers</span><span class="si">}</span><span class="s2"> parallel workers&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">max_workers</span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../core/crystal_analyzer.html"><span class="doc">crystal_analyzer module</span></a> : Pipeline orchestration
+<span class="xref std std-doc">../extraction/structure_post_extraction_processor</span> : Feature engineering
+<span class="xref std std-doc">../io/hdf5_utils</span> : HDF5 utilities
+<span class="xref std std-doc">../io/data_reader</span> : Data reading utilities</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../core/csa_main.html" class="btn btn-neutral float-left" title="csa_main module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../generated/crystal_analyzer.CrystalAnalyzer.html" class="btn btn-neutral float-right" title="crystal_analyzer.CrystalAnalyzer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jul 01, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
