@@ -1,0 +1,1737 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance Architecture &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=9f22d18c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/custom.js?v=398222f2"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="structure_post_extraction_processor.BondParams" href="../api_reference/generated/structure_post_extraction_processor.BondParams.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Crystal Structure Analysis (CSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#essential-next-steps">Essential Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#common-workflows-after-setup">Common Workflows After Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#required-parameters">Required Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#pipeline-control">Pipeline Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#csd-filtering">CSD Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#performance-settings">Performance Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#example-configurations">Example Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#required-licenses">Required Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#required-parameters">Required Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#data-directory">data_directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#data-prefix">data_prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#pipeline-control">Pipeline Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#actions">actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#csd-filtering">CSD Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#filters">filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#structure-selection">Structure Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#chemical-filters">Chemical Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#performance-settings">Performance Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#batch-sizes">Batch Sizes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#example-configurations">Example Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#basic-organic-analysis">Basic Organic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#pharmaceutical-analysis">Pharmaceutical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#high-throughput-screening">High-Throughput Screening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#local-cif-file-analysis">Local CIF File Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#schema-validation">Schema Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#common-validation-errors">Common Validation Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#default-configuration">Default Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#minimal-configuration">Minimal Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#configuration-issues">Configuration Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#next-steps">Next Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html">User Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#core-concepts">Core Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#analysis-workflows">Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#data-management">Data Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-and-optimization">Performance and Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/pipeline_overview.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#next-steps">Next Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/data_model.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#research-driven-configuration">Research-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#configuring-for-specific-research-questions">Configuring for Specific Research Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#performance-driven-configuration">Performance-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#hardware-optimized-settings">Hardware-Optimized Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#iterative-development">Iterative Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#production-workflows">Production Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#chemical-space-sampling">Chemical Space Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#quality-control-filters">Quality Control Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#template-library">Template Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#custom-template-creation">Custom Template Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#pre-flight-checks">Pre-Flight Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#version-control">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#environment-specific-configs">Environment-Specific Configs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#configuration-organization">Configuration Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#common-configuration-issues">Common Configuration Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#research-driven-configuration">Research-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#configuring-for-specific-research-questions">Configuring for Specific Research Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#performance-driven-configuration">Performance-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#hardware-optimized-settings">Hardware-Optimized Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#workflow-specific-configurations">Workflow-Specific Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#iterative-development">Iterative Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#production-workflows">Production Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#advanced-filter-strategies">Advanced Filter Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#chemical-space-sampling">Chemical Space Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#quality-control-filters">Quality Control Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#template-library">Template Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#custom-template-creation">Custom Template Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#pre-flight-checks">Pre-Flight Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#version-control">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#environment-specific-configs">Environment-Specific Configs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#configuration-organization">Configuration Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#common-configuration-issues">Common Configuration Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#running-the-five-stage-pipeline">Running the Five-Stage Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#understanding-pipeline-stages">Understanding Pipeline Stages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#loading-processed-data">Loading Processed Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#basic-data-exploration">Basic Data Exploration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#statistical-analysis">Statistical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#geometric-analysis">Geometric Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#comparative-studies">Comparative Studies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#data-export-formats">Data Export Formats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#tracking-analysis-performance">Tracking Analysis Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-started-tutorials">Getting Started Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#domain-specific-tutorials">Domain-Specific Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-analysis-tutorials">Advanced Analysis Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#specialized-workflows">Specialized Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-structure">Tutorial Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#quick-start-recommendations">Quick Start Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-downloads">Tutorial Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-support">Tutorial Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#contributing-tutorials">Contributing Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#learning-paths">Learning Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#quick-start-examples">Quick Start Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#data-access-examples">Data Access Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#analysis-examples">Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#visualization-examples">Visualization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#integration-examples">Integration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#performance-examples">Performance Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#example-categories">Example Categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#basic-data-operations">Basic Data Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#advanced-workflows">Advanced Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#common-configuration-patterns">Common Configuration Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#commonly-used-helper-functions">Commonly Used Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#interactive-examples">Interactive Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#jupyter-notebook-examples">Jupyter Notebook Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#command-line-examples">Command Line Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#troubleshooting-examples">Troubleshooting Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#example-downloads">Example Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#browse-examples-by-category">Browse Examples by Category</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html">crystal_analyzer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extraction_config"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extraction_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.csd_ops"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.csd_ops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extractor"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extractor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.data_dir"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.data_dir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.__init__"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extract_data"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extract_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystalanalyzer-class">CrystalAnalyzer Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#id0"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#extract-data">extract_data()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#private-methods">Private Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#private-attributes">Private Attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#configuration-dependencies">Configuration Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#type-hints-and-documentation">Type Hints and Documentation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Details</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Performance Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data-storage-design">Data Storage Design</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#hdf5-schema-architecture">HDF5 Schema Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#algorithm-details">Algorithm Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#similarity-clustering-algorithm">Similarity Clustering Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#geometric-calculation-algorithms">Geometric Calculation Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#fragment-analysis-algorithms">Fragment Analysis Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#contact-detection-algorithms">Contact Detection Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#performance-optimization-details">Performance Optimization Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#gpu-memory-management">GPU Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#testing-and-validation">Testing and Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#unit-testing-framework">Unit Testing Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-and-maintenance">Documentation and Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#code-documentation-standards">Code Documentation Standards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#algorithms-and-methods">Algorithms and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-architecture">System Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#high-level-design">High-Level Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#core-components">Core Components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Crystal Structure Analysis (CSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Performance Architecture</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-org/crystal-structure-analysis/blob/main/docs/source/technical_details/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <dl class="simple">
+<dt><strong>Pipeline Orchestrator</strong> (<code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code>)</dt><dd><ul class="simple">
+<li><p>Coordinates execution of the five-stage pipeline</p></li>
+<li><p>Manages resource allocation and error handling</p></li>
+<li><p>Provides progress monitoring and checkpointing</p></li>
+</ul>
+</dd>
+<dt><strong>Configuration Management</strong> (<code class="docutils literal notranslate"><span class="pre">ExtractionConfig</span></code>)</dt><dd><ul class="simple">
+<li><p>Validates and normalizes configuration parameters</p></li>
+<li><p>Handles parameter inheritance and defaults</p></li>
+<li><p>Supports environment-specific overrides</p></li>
+</ul>
+</dd>
+<dt><strong>Data Extraction Pipeline</strong></dt><dd><ul class="simple">
+<li><p>Stage 1: CSD querying and family extraction</p></li>
+<li><p>Stage 2: Packing similarity clustering</p></li>
+<li><p>Stage 3: Representative structure selection</p></li>
+<li><p>Stage 4: Atomic data extraction and storage</p></li>
+<li><p>Stage 5: Feature engineering and descriptor calculation</p></li>
+</ul>
+</dd>
+<dt><strong>Storage Layer</strong> (HDF5-based)</dt><dd><ul class="simple">
+<li><p>Variable-length datasets for ragged arrays</p></li>
+<li><p>Efficient compression and chunking</p></li>
+<li><p>Metadata management and versioning</p></li>
+</ul>
+</dd>
+</dl>
+<section id="performance-architecture">
+<h1>Performance Architecture<a class="headerlink" href="#performance-architecture" title="Link to this heading"></a></h1>
+<p><strong>GPU Acceleration Strategy</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CPU Tasks                    GPU Tasks
+├── File I/O                 ├── Tensor Operations
+├── CSD Queries              ├── Distance Calculations
+├── Data Validation          ├── Matrix Operations
+├── Configuration            ├── Similarity Metrics
+└── Result Aggregation       └── Batch Processing
+</pre></div>
+</div>
+<p><strong>Memory Management</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Memory hierarchy optimization</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MemoryManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Manages memory allocation across CPU and GPU.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gpu_fraction</span><span class="o">=</span><span class="mf">0.8</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gpu_memory_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_gpu_memory</span><span class="p">()</span> <span class="o">*</span> <span class="n">gpu_fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cpu_memory_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_cpu_memory</span><span class="p">()</span> <span class="o">*</span> <span class="mf">0.7</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">allocate_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">structure_complexity</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Dynamic batch size adjustment based on memory constraints.&quot;&quot;&quot;</span>
+        <span class="n">estimated_gpu_usage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_gpu_memory</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">structure_complexity</span><span class="p">)</span>
+        <span class="n">estimated_cpu_usage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate_cpu_memory</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">structure_complexity</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">estimated_gpu_usage</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">gpu_memory_limit</span><span class="p">:</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reduce_batch_size</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="s1">&#39;gpu&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">estimated_cpu_usage</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">cpu_memory_limit</span><span class="p">:</span>
+            <span class="n">batch_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reduce_batch_size</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">batch_size</span>
+</pre></div>
+</div>
+<p><strong>Parallel Processing Design</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Multi-level parallelization</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_structures_parallel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">structure_batch</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implements nested parallelization:</span>
+<span class="sd">    - Process-level: Multiple structures in parallel</span>
+<span class="sd">    - Thread-level: I/O operations</span>
+<span class="sd">    - GPU-level: Tensor operations</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_processes</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="c1"># Process-level parallelization</span>
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">structure_group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chunk_structures</span><span class="p">(</span><span class="n">structure_batch</span><span class="p">):</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_process_structure_group</span><span class="p">,</span> <span class="n">structure_group</span><span class="p">)</span>
+            <span class="n">futures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+
+        <span class="c1"># Collect results</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">results</span>
+</pre></div>
+</div>
+<section id="data-storage-design">
+<h2>Data Storage Design<a class="headerlink" href="#data-storage-design" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="hdf5-schema-architecture">
+<h1>HDF5 Schema Architecture<a class="headerlink" href="#hdf5-schema-architecture" title="Link to this heading"></a></h1>
+<p><strong>Hierarchical Organization</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>analysis_processed.h5
+├── /metadata
+│   ├── version_info
+│   ├── creation_timestamp
+│   ├── configuration_hash
+│   └── dataset_statistics
+│
+├── /structure_identifiers
+│   └── refcode_list (N,) vlen&lt;string&gt;
+│
+├── /crystal_properties
+│   ├── z_prime (N,) int32
+│   ├── cell_volume (N,) float32
+│   ├── cell_matrix (N,3,3) float32
+│   └── space_group (N,) vlen&lt;string&gt;
+│
+├── /atomic_data
+│   ├── n_atoms (N,) int32
+│   ├── atom_coords (N,) vlen&lt;float32&gt;
+│   ├── atom_symbols (N,) vlen&lt;string&gt;
+│   └── atom_fragment_id (N,) vlen&lt;int32&gt;
+│
+├── /molecular_features
+│   ├── n_fragments (N,) int32
+│   ├── fragment_com_coords (N,) vlen&lt;float32&gt;
+│   ├── fragment_inertia_eigvals (N,) vlen&lt;float32&gt;
+│   └── fragment_formula (N,) vlen&lt;string&gt;
+│
+└── /interaction_data
+    ├── inter_cc_n_contacts (N,) int32
+    ├── inter_cc_central_atom (N,) vlen&lt;string&gt;
+    ├── inter_cc_length (N,) vlen&lt;float32&gt;
+    └── inter_hb_is_hbond (N,) vlen&lt;bool&gt;
+</pre></div>
+</div>
+<p><strong>Variable-Length Array Implementation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Efficient storage of ragged arrays</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">VariableLengthDataset</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Handles variable-length data with optimal storage.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h5_group</span><span class="p">,</span> <span class="n">dataset_name</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vlen_dtype</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">vlen_dtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">h5_group</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+            <span class="n">dataset_name</span><span class="p">,</span>
+            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,),</span>
+            <span class="n">maxshape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,),</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">vlen_dtype</span><span class="p">,</span>
+            <span class="n">chunks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;lz4&#39;</span><span class="p">,</span>
+            <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">fletcher32</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">append_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_batch</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Efficiently append batch of variable-length arrays.&quot;&quot;&quot;</span>
+        <span class="n">current_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">new_size</span> <span class="o">=</span> <span class="n">current_size</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_batch</span><span class="p">)</span>
+
+        <span class="c1"># Resize dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="n">new_size</span><span class="p">,))</span>
+
+        <span class="c1"># Write data</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data_batch</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">current_size</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Compression and Optimization</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Storage optimization strategies</span>
+<span class="n">COMPRESSION_SETTINGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;coordinates&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;compression&#39;</span><span class="p">:</span> <span class="s1">&#39;lz4&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;compression_opts&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="s1">&#39;shuffle&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;chunks&#39;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;identifiers&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;compression&#39;</span><span class="p">:</span> <span class="s1">&#39;gzip&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;compression_opts&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+        <span class="s1">&#39;shuffle&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s1">&#39;chunks&#39;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;properties&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;compression&#39;</span><span class="p">:</span> <span class="s1">&#39;lz4&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;compression_opts&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s1">&#39;shuffle&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s1">&#39;chunks&#39;</span><span class="p">:</span> <span class="kc">True</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="algorithm-details">
+<h2>Algorithm Details<a class="headerlink" href="#algorithm-details" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="similarity-clustering-algorithm">
+<h1>Similarity Clustering Algorithm<a class="headerlink" href="#similarity-clustering-algorithm" title="Link to this heading"></a></h1>
+<p><strong>Packing Similarity Calculation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_packing_similarity_batch</span><span class="p">(</span>
+        <span class="n">coords_batch</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>      <span class="c1"># (B, N, 3)</span>
+        <span class="n">cell_matrices_batch</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># (B, 3, 3)</span>
+        <span class="n">similarity_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute 3D packing similarity using CCDC algorithms.</span>
+
+<span class="sd">    Implementation of the packing similarity metric used by</span>
+<span class="sd">    the Cambridge Crystallographic Data Centre.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">coords_batch</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">coords_batch</span><span class="o">.</span><span class="n">device</span>
+
+    <span class="c1"># 1. Generate symmetry-related coordinates</span>
+    <span class="n">symmetry_coords</span> <span class="o">=</span> <span class="n">generate_symmetry_coordinates</span><span class="p">(</span>
+        <span class="n">coords_batch</span><span class="p">,</span> <span class="n">cell_matrices_batch</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 2. Compute optimal alignment between structures</span>
+    <span class="n">similarity_matrix</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="n">B</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+            <span class="c1"># Find best alignment using Kabsch algorithm</span>
+            <span class="n">rotation</span><span class="p">,</span> <span class="n">translation</span> <span class="o">=</span> <span class="n">kabsch_alignment</span><span class="p">(</span>
+                <span class="n">coords_batch</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">coords_batch</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Apply transformation and compute RMSD</span>
+            <span class="n">aligned_coords</span> <span class="o">=</span> <span class="n">apply_transformation</span><span class="p">(</span>
+                <span class="n">coords_batch</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">rotation</span><span class="p">,</span> <span class="n">translation</span>
+            <span class="p">)</span>
+
+            <span class="n">rmsd</span> <span class="o">=</span> <span class="n">compute_rmsd</span><span class="p">(</span><span class="n">coords_batch</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">aligned_coords</span><span class="p">)</span>
+            <span class="n">similarity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">rmsd</span> <span class="o">/</span> <span class="n">similarity_threshold</span><span class="p">)</span>
+
+            <span class="n">similarity_matrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">similarity</span>
+            <span class="n">similarity_matrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">similarity</span>
+
+    <span class="k">return</span> <span class="n">similarity_matrix</span>
+</pre></div>
+</div>
+<p><strong>Clustering Implementation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cluster_similar_structures</span><span class="p">(</span>
+        <span class="n">similarity_matrix</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;hierarchical&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cluster structures based on packing similarity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;hierarchical&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">hierarchical_clustering</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;graph_based&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">graph_clustering</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown clustering method: </span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">hierarchical_clustering</span><span class="p">(</span><span class="n">similarity_matrix</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Agglomerative clustering with similarity threshold.&quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.cluster.hierarchy</span><span class="w"> </span><span class="kn">import</span> <span class="n">linkage</span><span class="p">,</span> <span class="n">fcluster</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.distance</span><span class="w"> </span><span class="kn">import</span> <span class="n">squareform</span>
+
+    <span class="c1"># Convert similarity to distance</span>
+    <span class="n">distance_matrix</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">similarity_matrix</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">condensed_distances</span> <span class="o">=</span> <span class="n">squareform</span><span class="p">(</span><span class="n">distance_matrix</span><span class="p">)</span>
+
+    <span class="c1"># Perform clustering</span>
+    <span class="n">linkage_matrix</span> <span class="o">=</span> <span class="n">linkage</span><span class="p">(</span><span class="n">condensed_distances</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;average&#39;</span><span class="p">)</span>
+    <span class="n">clusters</span> <span class="o">=</span> <span class="n">fcluster</span><span class="p">(</span><span class="n">linkage_matrix</span><span class="p">,</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;distance&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Group by cluster</span>
+    <span class="n">cluster_groups</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">cluster_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">cluster_id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cluster_groups</span><span class="p">:</span>
+            <span class="n">cluster_groups</span><span class="p">[</span><span class="n">cluster_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cluster_groups</span><span class="p">[</span><span class="n">cluster_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">cluster_groups</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="geometric-calculation-algorithms">
+<h1>Geometric Calculation Algorithms<a class="headerlink" href="#geometric-calculation-algorithms" title="Link to this heading"></a></h1>
+<p><strong>Distance Calculations with Periodic Boundaries</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_distances_periodic_batch</span><span class="p">(</span>
+        <span class="n">coords1</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># (B, N1, 3)</span>
+        <span class="n">coords2</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># (B, N2, 3)</span>
+        <span class="n">cell_matrices</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># (B, 3, 3)</span>
+        <span class="n">use_minimum_image</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute distances with periodic boundary conditions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">B</span><span class="p">,</span> <span class="n">N1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">coords1</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">N2</span> <span class="o">=</span> <span class="n">coords2</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">coords1</span><span class="o">.</span><span class="n">device</span>
+
+    <span class="c1"># Vectorized distance calculation</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="n">coords1</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">coords2</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (B, N1, N2, 3)</span>
+
+    <span class="k">if</span> <span class="n">use_minimum_image</span><span class="p">:</span>
+        <span class="c1"># Apply minimum image convention</span>
+        <span class="n">fractional_diff</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span>
+            <span class="n">diff</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">inverse</span><span class="p">(</span><span class="n">cell_matrices</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Wrap to [-0.5, 0.5]</span>
+        <span class="n">fractional_diff</span> <span class="o">=</span> <span class="n">fractional_diff</span> <span class="o">-</span> <span class="n">torch</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">fractional_diff</span><span class="p">)</span>
+
+        <span class="c1"># Convert back to Cartesian</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">fractional_diff</span><span class="p">,</span> <span class="n">cell_matrices</span><span class="p">)</span>
+
+    <span class="n">distances</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (B, N1, N2)</span>
+    <span class="k">return</span> <span class="n">distances</span>
+</pre></div>
+</div>
+<p><strong>Inertia Tensor Calculation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_inertia_tensor_batch</span><span class="p">(</span>
+        <span class="n">coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>     <span class="c1"># (B, N, 3)</span>
+        <span class="n">masses</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>     <span class="c1"># (B, N)</span>
+        <span class="n">com</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>        <span class="c1"># (B, 3)</span>
+        <span class="n">atom_mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span>  <span class="c1"># (B, N)</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute inertia tensor eigenvalues and eigenvectors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">device</span>
+
+    <span class="c1"># Center coordinates at COM</span>
+    <span class="n">centered_coords</span> <span class="o">=</span> <span class="n">coords</span> <span class="o">-</span> <span class="n">com</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (B, N, 3)</span>
+
+    <span class="c1"># Apply mask</span>
+    <span class="n">centered_coords</span> <span class="o">=</span> <span class="n">centered_coords</span> <span class="o">*</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+    <span class="n">masses_masked</span> <span class="o">=</span> <span class="n">masses</span> <span class="o">*</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+
+    <span class="c1"># Compute inertia tensor components</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">centered_coords</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Each (B, N)</span>
+
+    <span class="n">Ixx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">masses_masked</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (B,)</span>
+    <span class="n">Iyy</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">masses_masked</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Izz</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">masses_masked</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Ixy</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">masses_masked</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">y</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Ixz</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">masses_masked</span> <span class="o">*</span> <span class="n">x</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Iyz</span> <span class="o">=</span> <span class="o">-</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">masses_masked</span> <span class="o">*</span> <span class="n">y</span> <span class="o">*</span> <span class="n">z</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Construct inertia tensor matrix</span>
+    <span class="n">I_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ixx</span>
+    <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Iyy</span>
+    <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">Izz</span>
+    <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ixy</span>
+    <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Ixz</span>
+    <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">I_tensor</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Iyz</span>
+
+    <span class="c1"># Compute eigenvalues and eigenvectors</span>
+    <span class="n">eigenvals</span><span class="p">,</span> <span class="n">eigenvecs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">I_tensor</span><span class="p">)</span>
+
+    <span class="c1"># Sort by eigenvalue magnitude</span>
+    <span class="n">sort_indices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">eigenvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="n">eigenvals</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sort_indices</span><span class="p">)</span>
+    <span class="n">eigenvecs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span>
+        <span class="n">eigenvecs</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sort_indices</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">eigenvals</span><span class="p">,</span> <span class="n">eigenvecs</span>
+</pre></div>
+</div>
+</section>
+<section id="fragment-analysis-algorithms">
+<h1>Fragment Analysis Algorithms<a class="headerlink" href="#fragment-analysis-algorithms" title="Link to this heading"></a></h1>
+<p><strong>Rigid Fragment Identification</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">identify_rigid_fragments_batch</span><span class="p">(</span>
+        <span class="n">coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>         <span class="c1"># (B, N, 3)</span>
+        <span class="n">bond_indices</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">],</span>  <span class="c1"># List of (E_i, 2) for each structure</span>
+        <span class="n">flexibility_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">15.0</span>  <span class="c1"># degrees</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identify rigid molecular fragments based on bond flexibility.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fragments_batch</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bond_idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bond_indices</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bond_idx</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">fragments_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Build molecular graph</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">build_molecular_graph</span><span class="p">(</span><span class="n">bond_idx</span><span class="p">)</span>
+
+        <span class="c1"># Identify rotatable bonds</span>
+        <span class="n">rotatable_bonds</span> <span class="o">=</span> <span class="n">identify_rotatable_bonds</span><span class="p">(</span>
+            <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bond_idx</span><span class="p">,</span> <span class="n">flexibility_threshold</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Remove rotatable bonds to get rigid fragments</span>
+        <span class="n">rigid_graph</span> <span class="o">=</span> <span class="n">remove_bonds</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">rotatable_bonds</span><span class="p">)</span>
+
+        <span class="c1"># Find connected components (rigid fragments)</span>
+        <span class="n">fragments</span> <span class="o">=</span> <span class="n">find_connected_components</span><span class="p">(</span><span class="n">rigid_graph</span><span class="p">)</span>
+        <span class="n">fragments_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fragments</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fragments_batch</span>
+</pre></div>
+</div>
+<p><strong>Fragment Property Calculation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_fragment_properties_batch</span><span class="p">(</span>
+        <span class="n">coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>     <span class="c1"># (B, N, 3)</span>
+        <span class="n">masses</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>     <span class="c1"># (B, N)</span>
+        <span class="n">fragments</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]],</span>  <span class="c1"># Fragment assignments</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute comprehensive fragment properties.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">max_fragments</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">frags</span><span class="p">)</span> <span class="k">for</span> <span class="n">frags</span> <span class="ow">in</span> <span class="n">fragments</span><span class="p">)</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">fragments</span><span class="p">)</span>
+
+    <span class="c1"># Initialize output tensors</span>
+    <span class="n">com_coords</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="n">max_fragments</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">inertia_eigvals</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="n">max_fragments</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">inertia_eigvecs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="n">max_fragments</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">planarity_scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="n">max_fragments</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fragment_list</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fragments</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">fragment_atoms</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fragment_list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fragment_atoms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="c1"># Fragment coordinates and masses</span>
+            <span class="n">frag_coords</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">fragment_atoms</span><span class="p">]</span>  <span class="c1"># (n_atoms, 3)</span>
+            <span class="n">frag_masses</span> <span class="o">=</span> <span class="n">masses</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">fragment_atoms</span><span class="p">]</span>  <span class="c1"># (n_atoms,)</span>
+
+            <span class="c1"># Center of mass</span>
+            <span class="n">total_mass</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">frag_masses</span><span class="p">)</span>
+            <span class="n">com</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">frag_coords</span> <span class="o">*</span> <span class="n">frag_masses</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_mass</span>
+            <span class="n">com_coords</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">com</span>
+
+            <span class="c1"># Inertia tensor</span>
+            <span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">compute_inertia_tensor_single</span><span class="p">(</span>
+                <span class="n">frag_coords</span><span class="p">,</span> <span class="n">frag_masses</span><span class="p">,</span> <span class="n">com</span>
+            <span class="p">)</span>
+            <span class="n">inertia_eigvals</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">eigvals</span>
+            <span class="n">inertia_eigvecs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">eigvecs</span>
+
+            <span class="c1"># Planarity score</span>
+            <span class="n">planarity</span> <span class="o">=</span> <span class="n">compute_planarity_score</span><span class="p">(</span><span class="n">frag_coords</span><span class="p">,</span> <span class="n">com</span><span class="p">)</span>
+            <span class="n">planarity_scores</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">planarity</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;com_coords&#39;</span><span class="p">:</span> <span class="n">com_coords</span><span class="p">,</span>
+        <span class="s1">&#39;inertia_eigvals&#39;</span><span class="p">:</span> <span class="n">inertia_eigvals</span><span class="p">,</span>
+        <span class="s1">&#39;inertia_eigvecs&#39;</span><span class="p">:</span> <span class="n">inertia_eigvecs</span><span class="p">,</span>
+        <span class="s1">&#39;planarity_scores&#39;</span><span class="p">:</span> <span class="n">planarity_scores</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="contact-detection-algorithms">
+<h1>Contact Detection Algorithms<a class="headerlink" href="#contact-detection-algorithms" title="Link to this heading"></a></h1>
+<p><strong>Intermolecular Contact Identification</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">detect_intermolecular_contacts_batch</span><span class="p">(</span>
+        <span class="n">coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>           <span class="c1"># (B, N, 3)</span>
+        <span class="n">cell_matrices</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>    <span class="c1"># (B, 3, 3)</span>
+        <span class="n">van_der_waals_radii</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>  <span class="c1"># (B, N)</span>
+        <span class="n">contact_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span>  <span class="c1"># Factor of sum of vdW radii</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Detect intermolecular contacts using symmetry operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">contacts_batch</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="n">structure_coords</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># (N, 3)</span>
+        <span class="n">cell_matrix</span> <span class="o">=</span> <span class="n">cell_matrices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># (3, 3)</span>
+        <span class="n">vdw_radii</span> <span class="o">=</span> <span class="n">van_der_waals_radii</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># (N,)</span>
+
+        <span class="c1"># Generate symmetry-related images</span>
+        <span class="n">symmetry_coords</span> <span class="o">=</span> <span class="n">generate_symmetry_images</span><span class="p">(</span>
+            <span class="n">structure_coords</span><span class="p">,</span> <span class="n">cell_matrix</span>
+        <span class="p">)</span>
+
+        <span class="n">contacts</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Check contacts between central molecule and symmetry images</span>
+        <span class="k">for</span> <span class="n">sym_idx</span><span class="p">,</span> <span class="n">sym_coords</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">symmetry_coords</span><span class="p">):</span>
+            <span class="n">distances</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cdist</span><span class="p">(</span><span class="n">structure_coords</span><span class="p">,</span> <span class="n">sym_coords</span><span class="p">)</span>  <span class="c1"># (N, N)</span>
+
+            <span class="c1"># Contact criteria</span>
+            <span class="n">vdw_sum</span> <span class="o">=</span> <span class="n">vdw_radii</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">vdw_radii</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># (N, N)</span>
+            <span class="n">contact_distances</span> <span class="o">=</span> <span class="n">vdw_sum</span> <span class="o">*</span> <span class="n">contact_threshold</span>
+
+            <span class="n">contact_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">distances</span> <span class="o">&lt;</span> <span class="n">contact_distances</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">distances</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">)</span>
+            <span class="n">contact_pairs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">contact_mask</span><span class="p">,</span> <span class="n">as_tuple</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">contact_pairs</span><span class="p">:</span>
+                <span class="n">central_atom</span><span class="p">,</span> <span class="n">contact_atom</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">pair</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+                <span class="n">distance</span> <span class="o">=</span> <span class="n">distances</span><span class="p">[</span><span class="n">central_atom</span><span class="p">,</span> <span class="n">contact_atom</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+
+                <span class="n">contacts</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                    <span class="s1">&#39;central_atom&#39;</span><span class="p">:</span> <span class="n">central_atom</span><span class="p">,</span>
+                    <span class="s1">&#39;contact_atom&#39;</span><span class="p">:</span> <span class="n">contact_atom</span><span class="p">,</span>
+                    <span class="s1">&#39;distance&#39;</span><span class="p">:</span> <span class="n">distance</span><span class="p">,</span>
+                    <span class="s1">&#39;symmetry_operation&#39;</span><span class="p">:</span> <span class="n">sym_idx</span><span class="p">,</span>
+                    <span class="s1">&#39;is_hbond&#39;</span><span class="p">:</span> <span class="n">classify_hydrogen_bond</span><span class="p">(</span>
+                        <span class="n">structure_coords</span><span class="p">[</span><span class="n">central_atom</span><span class="p">],</span>
+                        <span class="n">sym_coords</span><span class="p">[</span><span class="n">contact_atom</span><span class="p">],</span>
+                        <span class="n">distance</span>
+                    <span class="p">)</span>
+                <span class="p">})</span>
+
+        <span class="n">contacts_batch</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contacts</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">contacts_batch</span>
+</pre></div>
+</div>
+<p><strong>Hydrogen Bond Classification</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">classify_hydrogen_bond</span><span class="p">(</span>
+        <span class="n">donor_coord</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>    <span class="c1"># (3,)</span>
+        <span class="n">acceptor_coord</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="c1"># (3,)</span>
+        <span class="n">distance</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">donor_element</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">acceptor_element</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">hydrogen_coord</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># (3,) optional</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Classify whether a contact is a hydrogen bond.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Distance criteria</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mf">3.5</span><span class="p">:</span>  <span class="c1"># Å</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Element criteria</span>
+    <span class="n">hbond_donors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">}</span>
+    <span class="n">hbond_acceptors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;Cl&#39;</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">donor_element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hbond_donors</span> <span class="ow">or</span> <span class="n">acceptor_element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">hbond_acceptors</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Angle criteria (if hydrogen position available)</span>
+    <span class="k">if</span> <span class="n">hydrogen_coord</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dha_angle</span> <span class="o">=</span> <span class="n">compute_angle</span><span class="p">(</span><span class="n">donor_coord</span><span class="p">,</span> <span class="n">hydrogen_coord</span><span class="p">,</span> <span class="n">acceptor_coord</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dha_angle</span> <span class="o">&lt;</span> <span class="mf">120.0</span><span class="p">:</span>  <span class="c1"># degrees</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<section id="performance-optimization-details">
+<h2>Performance Optimization Details<a class="headerlink" href="#performance-optimization-details" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="gpu-memory-management">
+<h1>GPU Memory Management<a class="headerlink" href="#gpu-memory-management" title="Link to this heading"></a></h1>
+<p><strong>Dynamic Memory Allocation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">GPUMemoryManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Intelligent GPU memory management for batch processing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reserved_fraction</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total_memory</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">total_memory</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reserved_memory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_memory</span> <span class="o">*</span> <span class="n">reserved_fraction</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">available_memory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total_memory</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">reserved_memory</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">estimate_batch_memory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">avg_atoms</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimate memory usage for a given batch configuration.&quot;&quot;&quot;</span>
+        <span class="n">memory_per_structure</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># Coordinate data</span>
+        <span class="n">memory_per_structure</span> <span class="o">+=</span> <span class="n">avg_atoms</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">*</span> <span class="mi">4</span>  <span class="c1"># float32 coordinates</span>
+
+        <span class="c1"># Additional arrays based on data types requested</span>
+        <span class="k">if</span> <span class="s1">&#39;contacts&#39;</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
+            <span class="n">avg_contacts</span> <span class="o">=</span> <span class="n">avg_atoms</span> <span class="o">*</span> <span class="mi">5</span>  <span class="c1"># Rough estimate</span>
+            <span class="n">memory_per_structure</span> <span class="o">+=</span> <span class="n">avg_contacts</span> <span class="o">*</span> <span class="mi">8</span>  <span class="c1"># Contact data</span>
+
+        <span class="k">if</span> <span class="s1">&#39;fragments&#39;</span> <span class="ow">in</span> <span class="n">data_types</span><span class="p">:</span>
+            <span class="n">avg_fragments</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">avg_atoms</span> <span class="o">//</span> <span class="mi">10</span><span class="p">)</span>
+            <span class="n">memory_per_structure</span> <span class="o">+=</span> <span class="n">avg_fragments</span> <span class="o">*</span> <span class="mi">12</span>  <span class="c1"># Fragment data</span>
+
+        <span class="n">total_memory</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="o">*</span> <span class="n">memory_per_structure</span> <span class="o">*</span> <span class="mi">2</span>  <span class="c1"># Safety factor</span>
+        <span class="k">return</span> <span class="n">total_memory</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">optimize_batch_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_batch_size</span><span class="p">,</span> <span class="n">avg_atoms</span><span class="p">,</span> <span class="n">data_types</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Find optimal batch size that fits in available memory.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">batch_size</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">initial_batch_size</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">estimated_memory</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimate_batch_memory</span><span class="p">(</span>
+                <span class="n">batch_size</span><span class="p">,</span> <span class="n">avg_atoms</span><span class="p">,</span> <span class="n">data_types</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">estimated_memory</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">available_memory</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">batch_size</span>
+        <span class="k">return</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p><strong>Tensor Optimization Patterns</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">optimize_tensor_operations</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performance optimization patterns for tensor operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1. Use in-place operations when possible</span>
+    <span class="n">tensor</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">other_tensor</span><span class="p">)</span>  <span class="c1"># Instead of tensor = tensor + other_tensor</span>
+
+    <span class="c1"># 2. Minimize device transfers</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+        <span class="c1"># Keep all operations on same device</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">tensor1</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">tensor2</span><span class="p">)</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">bias</span><span class="p">)</span>
+
+    <span class="c1"># 3. Use appropriate data types</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>  <span class="c1"># Mixed precision</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="n">indices</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+    <span class="c1"># 4. Leverage vectorization</span>
+    <span class="c1"># Instead of loops, use batch operations</span>
+    <span class="n">distances</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cdist</span><span class="p">(</span><span class="n">coords1</span><span class="p">,</span> <span class="n">coords2</span><span class="p">)</span>  <span class="c1"># Vectorized distance matrix</span>
+
+    <span class="c1"># 5. Memory-efficient attention patterns</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">sdp_kernel</span><span class="p">(</span><span class="n">enable_math</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># Use optimized kernels when available</span>
+        <span class="n">attention_output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">scaled_dot_product_attention</span><span class="p">(</span>
+            <span class="n">query</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+<section id="testing-and-validation">
+<h2>Testing and Validation<a class="headerlink" href="#testing-and-validation" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="unit-testing-framework">
+<h1>Unit Testing Framework<a class="headerlink" href="#unit-testing-framework" title="Link to this heading"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">crystal_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">CrystalAnalyzer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">csa_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtractionConfig</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestGeometryCalculations</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test suite for geometric calculation algorithms.&quot;&quot;&quot;</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate test coordinate data.&quot;&quot;&quot;</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 2 structures, 10 atoms each</span>
+        <span class="k">return</span> <span class="n">coords</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample_cell_matrices</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate test unit cell matrices.&quot;&quot;&quot;</span>
+        <span class="c1"># Cubic cells for simplicity</span>
+        <span class="n">matrices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">matrices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">10.0</span>  <span class="c1"># 10 Å cube</span>
+        <span class="n">matrices</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="mf">15.0</span>  <span class="c1"># 15 Å cube</span>
+        <span class="k">return</span> <span class="n">matrices</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_distance_calculation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_coordinates</span><span class="p">,</span> <span class="n">sample_cell_matrices</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test periodic distance calculations.&quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">geometry_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_distances_periodic_batch</span>
+
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">sample_coordinates</span>
+        <span class="n">cells</span> <span class="o">=</span> <span class="n">sample_cell_matrices</span>
+
+        <span class="n">distances</span> <span class="o">=</span> <span class="n">compute_distances_periodic_batch</span><span class="p">(</span>
+            <span class="n">coords</span><span class="p">,</span> <span class="n">coords</span><span class="p">,</span> <span class="n">cells</span><span class="p">,</span> <span class="n">use_minimum_image</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Check dimensions</span>
+        <span class="k">assert</span> <span class="n">distances</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+
+        <span class="c1"># Check diagonal is zero (self-distances)</span>
+        <span class="n">diagonal</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">diagonal</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">dim1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dim2</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">diagonal</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">diagonal</span><span class="p">),</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+
+        <span class="c1"># Check symmetry</span>
+        <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">distances</span><span class="p">,</span> <span class="n">distances</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_inertia_tensor_calculation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sample_coordinates</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test inertia tensor eigenvalue calculation.&quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">geometry_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_inertia_tensor_batch</span>
+
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">sample_coordinates</span>
+        <span class="n">masses</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Unit masses</span>
+        <span class="n">com</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Center of mass</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+
+        <span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">compute_inertia_tensor_batch</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">masses</span><span class="p">,</span> <span class="n">com</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+
+        <span class="c1"># Check dimensions</span>
+        <span class="k">assert</span> <span class="n">eigvals</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">eigvecs</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+        <span class="c1"># Check eigenvalues are non-negative and sorted</span>
+        <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">eigvals</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">eigvals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">&gt;=</span> <span class="n">eigvals</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># Check eigenvectors are orthonormal</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">dot_products</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">eigvecs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">eigvecs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">dot_products</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Integration Testing</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TestPipelineIntegration</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test complete pipeline workflows.&quot;&quot;&quot;</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">minimal_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tmp_path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create minimal test configuration.&quot;&quot;&quot;</span>
+        <span class="n">config_data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;extraction&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;data_directory&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">),</span>
+                <span class="s2">&quot;data_prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;actions&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;get_refcode_families&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s2">&quot;cluster_refcode_families&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s2">&quot;get_unique_structures&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+                    <span class="s2">&quot;get_structure_data&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                    <span class="s2">&quot;post_extraction_process&quot;</span><span class="p">:</span> <span class="kc">True</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;filters&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;structure_list&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;cif&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;test_structures&quot;</span><span class="p">)]</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;extraction_batch_size&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s2">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span> <span class="mi">2</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="n">config_file</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;test_config.json&quot;</span>
+        <span class="n">config_file</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">config_data</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">ExtractionConfig</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">config_file</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_complete_pipeline</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">minimal_config</span><span class="p">,</span> <span class="n">sample_cif_files</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test complete pipeline execution.&quot;&quot;&quot;</span>
+        <span class="n">analyzer</span> <span class="o">=</span> <span class="n">CrystalAnalyzer</span><span class="p">(</span><span class="n">minimal_config</span><span class="p">)</span>
+
+        <span class="c1"># Should complete without errors</span>
+        <span class="n">analyzer</span><span class="o">.</span><span class="n">extract_data</span><span class="p">()</span>
+
+        <span class="c1"># Check output files exist</span>
+        <span class="n">output_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">minimal_config</span><span class="o">.</span><span class="n">data_directory</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;structures&quot;</span> <span class="o">/</span> <span class="s2">&quot;test_structures_processed.h5&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span>
+
+        <span class="c1"># Validate output data</span>
+        <span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;structures&quot;</span> <span class="o">/</span> <span class="s2">&quot;test_structures_processed.h5&quot;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="s1">&#39;refcode_list&#39;</span> <span class="ow">in</span> <span class="n">f</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
+            <span class="k">assert</span> <span class="s1">&#39;cell_volume&#39;</span> <span class="ow">in</span> <span class="n">f</span>
+            <span class="k">assert</span> <span class="s1">&#39;atom_coords&#39;</span> <span class="ow">in</span> <span class="n">f</span>
+</pre></div>
+</div>
+<section id="documentation-and-maintenance">
+<h2>Documentation and Maintenance<a class="headerlink" href="#documentation-and-maintenance" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="code-documentation-standards">
+<h1>Code Documentation Standards<a class="headerlink" href="#code-documentation-standards" title="Link to this heading"></a></h1>
+<p><strong>Docstring Format</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compute_molecular_descriptors</span><span class="p">(</span>
+        <span class="n">coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">masses</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+    <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Compute comprehensive molecular descriptors from atomic coordinates.</span>
+
+<span class="s2">    This function calculates a wide range of geometric and topological</span>
+<span class="s2">    descriptors used in crystal structure analysis, including moments</span>
+<span class="s2">    of inertia, asphericity, planarity metrics, and shape descriptors.</span>
+
+<span class="s2">    Parameters</span>
+<span class="s2">    ----------</span>
+<span class="s2">    coords : torch.Tensor, shape (B, N, 3)</span>
+<span class="s2">        Cartesian coordinates of atoms for B structures with up to N atoms each.</span>
+<span class="s2">        Coordinates should be in Ångström units.</span>
+<span class="s2">    masses : torch.Tensor, shape (B, N)</span>
+<span class="s2">        Atomic masses in atomic mass units (Da). Padding positions should</span>
+<span class="s2">        have mass 0.0.</span>
+<span class="s2">    device : torch.device</span>
+<span class="s2">        PyTorch device for computation (CPU or CUDA).</span>
+
+<span class="s2">    Returns</span>
+<span class="s2">    -------</span>
+<span class="s2">    descriptors : dict of str to torch.Tensor</span>
+<span class="s2">        Dictionary containing computed descriptors:</span>
+
+<span class="s2">        - &#39;moments_of_inertia&#39;: torch.Tensor, shape (B, 3)</span>
+<span class="s2">            Principal moments of inertia in ascending order</span>
+<span class="s2">        - &#39;asphericity&#39;: torch.Tensor, shape (B,)</span>
+<span class="s2">            Measure of deviation from spherical shape</span>
+<span class="s2">        - &#39;acylindricity&#39;: torch.Tensor, shape (B,)</span>
+<span class="s2">            Measure of deviation from cylindrical shape</span>
+<span class="s2">        - &#39;planarity_score&#39;: torch.Tensor, shape (B,)</span>
+<span class="s2">            Measure of molecular planarity (0=linear, 1=planar)</span>
+
+<span class="s2">    Raises</span>
+<span class="s2">    ------</span>
+<span class="s2">    ValueError</span>
+<span class="s2">        If input tensors have incompatible shapes or contain invalid values.</span>
+<span class="s2">    RuntimeError</span>
+<span class="s2">        If GPU computation fails due to memory constraints.</span>
+
+<span class="s2">    Notes</span>
+<span class="s2">    -----</span>
+<span class="s2">    This function uses the convention where moments of inertia are computed</span>
+<span class="s2">    about the center of mass and sorted in ascending order. The asphericity</span>
+<span class="s2">    and acylindricity parameters follow the definitions of:</span>
+
+<span class="s2">    - Asphericity: I₃ - 0.5(I₁ + I₂)</span>
+<span class="s2">    - Acylindricity: I₂ -Technical Details</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>Deep dive into CSA’s architecture, algorithms, and implementation details. This section provides comprehensive technical information for developers, advanced users, and researchers who need to understand the inner workings of the system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section assumes familiarity with crystallography, computational chemistry, and software engineering concepts.</p>
+</div>
+<section id="architecture-overview">
+<h2>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🏗️ System Architecture</div>
+<p class="sd-card-text">Overall system design, component interactions, and data flow patterns.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">architecture</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+⚡ Performance Optimization</div>
+<p class="sd-card-text">GPU acceleration, memory management, and computational efficiency.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">performance</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+💾 Data Storage Design</div>
+<p class="sd-card-text">HDF5 organization, variable-length arrays, and storage optimization.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">storage_design</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔧 Configuration System</div>
+<p class="sd-card-text">Configuration validation, inheritance, and parameter management.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">config_system</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="algorithms-and-methods">
+<h2>Algorithms and Methods<a class="headerlink" href="#algorithms-and-methods" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔍 Similarity Clustering</div>
+<p class="sd-card-text">Packing similarity metrics and clustering methodologies.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">clustering_algorithms</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+📐 Geometric Calculations</div>
+<p class="sd-card-text">Distance calculations, coordinate transformations, and geometric descriptors.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">geometry_algorithms</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🧩 Fragment Analysis</div>
+<p class="sd-card-text">Rigid fragment identification and property calculations.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">fragment_algorithms</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔗 Contact Detection</div>
+<p class="sd-card-text">Intermolecular contact identification and hydrogen bond detection.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">contact_algorithms</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="implementation-details">
+<h2>Implementation Details<a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🐍 Python Implementation</div>
+<p class="sd-card-text">Core Python modules, class hierarchies, and design patterns.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">python_details</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔥 PyTorch Integration</div>
+<p class="sd-card-text">GPU tensor operations, batch processing, and memory optimization.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">pytorch_details</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+📊 HDF5 Integration</div>
+<p class="sd-card-text">Dataset organization, compression, and efficient I/O patterns.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">hdf5_details</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔌 CSD Integration</div>
+<p class="sd-card-text">Cambridge Structural Database API usage and data extraction.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">csd_integration</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="system-architecture">
+<h2>System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading"></a></h2>
+</section>
+</section>
+<section id="high-level-design">
+<h1>High-Level Design<a class="headerlink" href="#high-level-design" title="Link to this heading"></a></h1>
+<p>CSA follows a modular, pipeline-based architecture designed for scalability and maintainability:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Configuration │    │   CSD Interface │    │  Data Validation│
+│     Manager     │────│    &amp; Querying   │────│   &amp; Filtering   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                        │                        │
+         ▼                        ▼                        ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│ Family Extraction│    │   Clustering    │    │  Representative │
+│   &amp; Grouping    │────│   &amp; Similarity  │────│   Selection     │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+         │                        │                        │
+         ▼                        ▼                        ▼
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Structure     │    │  Feature        │    │   Output        │
+│   Extraction    │────│  Engineering    │────│  Generation     │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="core-components">
+<h1>Core Components<a class="headerlink" href="#core-components" title="Link to this heading"></a></h1>
+<p><strong>Pipeline Orchestrator</strong> (<a href="#id1"><span class="problematic" id="id2">``</span></a>C</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_reference/generated/structure_post_extraction_processor.BondParams.html" class="btn btn-neutral float-left" title="structure_post_extraction_processor.BondParams" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jul 01, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

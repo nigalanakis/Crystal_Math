@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fragment_utils &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=9f22d18c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/custom.js?v=398222f2"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Crystal Structure Analysis (CSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#required-licenses">Required Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/pipeline_overview.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#analysis-workflows">Analysis Workflows</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#next-steps">Next Steps</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#type-hints-and-documentation">Type Hints and Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Crystal Structure Analysis (CSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">fragment_utils</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for fragment_utils</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: fragment_utils.py</span>
+
+<span class="sd">Utilities for batch processing of molecular fragments, including rigid‐fragment</span>
+<span class="sd">identification and computation of per‐fragment properties.</span>
+
+<span class="sd">Dependencies</span>
+<span class="sd">------------</span>
+<span class="sd">torch</span>
+<span class="sd">typing</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span>
+
+<div class="viewcode-block" id="identify_rigid_fragments_batch">
+<a class="viewcode-back" href="../api_reference/generated/fragment_utils.identify_rigid_fragments_batch.html#fragment_utils.identify_rigid_fragments_batch">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">identify_rigid_fragments_batch</span><span class="p">(</span>
+        <span class="n">atom_mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">,</span>             <span class="c1"># (B, N)</span>
+        <span class="n">bond_atom1</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span>            <span class="c1"># (B, M)</span>
+        <span class="n">bond_atom2</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span>            <span class="c1"># (B, M)</span>
+        <span class="n">bond_is_rotatable</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">,</span>     <span class="c1"># (B, M)</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identify rigid fragments in a batch via iterative label propagation on GPU.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    atom_mask : torch.BoolTensor of shape (B, N)</span>
+<span class="sd">        True for real atoms, False for padding slots.</span>
+<span class="sd">    bond_atom1 : torch.LongTensor of shape (B, M)</span>
+<span class="sd">        First‐atom indices for each bond (–1 for padding).</span>
+<span class="sd">    bond_atom2 : torch.LongTensor of shape (B, M)</span>
+<span class="sd">        Second‐atom indices for each bond (–1 for padding).</span>
+<span class="sd">    bond_is_rotatable : torch.BoolTensor of shape (B, M)</span>
+<span class="sd">        True if the bond is rotatable; non-rotatable bonds join fragments.</span>
+<span class="sd">    device : torch.device</span>
+<span class="sd">        Device to perform computation on (e.g. &#39;cuda&#39;).</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    frag_id : torch.LongTensor of shape (B, N)</span>
+<span class="sd">        Fragment ID for each atom (0..K−1 for real atoms, −1 for padding).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">B</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="n">bond_atom1</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="c1"># Move everything to GPU</span>
+    <span class="n">atom_mask</span>   <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">bond_atom1</span>  <span class="o">=</span> <span class="n">bond_atom1</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+    <span class="n">bond_atom2</span>  <span class="o">=</span> <span class="n">bond_atom2</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">long</span><span class="p">()</span>
+    <span class="n">bond_is_rot</span> <span class="o">=</span> <span class="n">bond_is_rotatable</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># 1) initialize each atom’s “label” = its own index, or –1 if padding</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">atom_mask</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">full</span><span class="p">((</span><span class="n">B</span><span class="p">,</span> <span class="n">N</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Precompute which bonds actually tie atoms together</span>
+    <span class="n">valid_bond</span> <span class="o">=</span> <span class="p">(</span><span class="n">bond_atom1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">bond_is_rot</span><span class="p">)</span>   <span class="c1"># (B, M)</span>
+
+    <span class="c1"># For safe gather, clamp negative indices to zero (we’ll mask them out later)</span>
+    <span class="n">u_idx</span> <span class="o">=</span> <span class="n">bond_atom1</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">v_idx</span> <span class="o">=</span> <span class="n">bond_atom2</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># A “big” label so that invalid bonds never win the min-scatter</span>
+    <span class="n">BIG</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">labels</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="c1"># 2) propagate minima across each non-rotatable bond for up to N iterations</span>
+    <span class="c1">#    (worst-case chain length = N−1)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">lu</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">u_idx</span><span class="p">)</span>  <span class="c1"># (B, M)</span>
+        <span class="n">lv</span> <span class="o">=</span> <span class="n">labels</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">v_idx</span><span class="p">)</span>
+        <span class="n">mn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">lu</span><span class="p">,</span> <span class="n">lv</span><span class="p">)</span>
+        <span class="c1"># mask out all rotatable or padding bonds by setting to BIG</span>
+        <span class="n">mn</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">valid_bond</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">BIG</span><span class="p">)</span>
+
+        <span class="c1"># scatter‐reduce the minima back into labels at both endpoints</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">scatter_reduce_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">u_idx</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="s1">&#39;amin&#39;</span><span class="p">,</span> <span class="n">include_self</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">labels</span><span class="o">.</span><span class="n">scatter_reduce_</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">v_idx</span><span class="p">,</span> <span class="n">mn</span><span class="p">,</span> <span class="n">reduce</span><span class="o">=</span><span class="s1">&#39;amin&#39;</span><span class="p">,</span> <span class="n">include_self</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># 3) remap each unique “root” label to 0..K−1 per batch</span>
+    <span class="n">frag_id</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="n">lb</span>   <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>                 <span class="c1"># (N,)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">atom_mask</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>              <span class="c1"># (N,)</span>
+        <span class="c1"># only consider real-atom labels</span>
+        <span class="n">real_labels</span> <span class="o">=</span> <span class="n">lb</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">real_labels</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># sorted unique roots</span>
+        <span class="n">uniq</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">real_labels</span><span class="p">)</span>
+        <span class="c1"># map each atom’s root to its index in uniq</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">uniq</span><span class="p">,</span> <span class="n">lb</span><span class="p">)</span>
+        <span class="n">frag_id</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">frag_id</span></div>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_fragments_batch</span><span class="p">(</span>
+        <span class="n">atom_fragment_id</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span>
+        <span class="n">atom_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">atom_frac_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">atom_weights</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">atom_charges</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>
+        <span class="n">atom_symbol_codes</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">,</span>
+        <span class="n">code_to_element</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">code_H</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Assemble per‐fragment tensors and compute chemical formulas for a batch.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    atom_fragment_id : torch.LongTensor of shape (B, N)</span>
+<span class="sd">        Fragment index per atom (−1 for padding).</span>
+<span class="sd">    atom_coords : torch.Tensor of shape (B, N, 3)</span>
+<span class="sd">        Cartesian coordinates, padded to N atoms.</span>
+<span class="sd">    atom_frac_coords : torch.Tensor of shape (B, N, 3)</span>
+<span class="sd">        Fractional coordinates, padded similarly.</span>
+<span class="sd">    atom_weights : torch.Tensor of shape (B, N)</span>
+<span class="sd">        Atomic weights (zero for padding).</span>
+<span class="sd">    atom_charges : torch.Tensor of shape (B, N)</span>
+<span class="sd">        Partial charges (zero for padding).</span>
+<span class="sd">    atom_symbol_codes : torch.LongTensor of shape (B, N)</span>
+<span class="sd">        Integer element codes per atom.</span>
+<span class="sd">    code_to_element : List[str]</span>
+<span class="sd">        Mapping from element code to symbol.</span>
+<span class="sd">    code_H : int</span>
+<span class="sd">        Integer code corresponding to hydrogen.</span>
+<span class="sd">    device : torch.device</span>
+<span class="sd">        Device to perform computation on.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict with keys:</span>
+<span class="sd">      fragment_structure_id : torch.LongTensor of shape (F,)</span>
+<span class="sd">      fragment_local_id     : torch.LongTensor of shape (F,)</span>
+<span class="sd">      fragment_n_atoms      : torch.LongTensor of shape (F,)</span>
+<span class="sd">      fragment_atom_coords  : torch.Tensor of shape (F, max_A, 3)</span>
+<span class="sd">      fragment_atom_frac_coords : torch.Tensor of shape (F, max_A, 3)</span>
+<span class="sd">      fragment_atom_weight  : torch.Tensor of shape (F, max_A)</span>
+<span class="sd">      fragment_atom_charge  : torch.Tensor of shape (F, max_A)</span>
+<span class="sd">      fragment_atom_mask    : torch.BoolTensor of shape (F, max_A)</span>
+<span class="sd">      fragment_atom_heavy_mask : torch.BoolTensor of shape (F, max_A)</span>
+<span class="sd">      fragment_formula      : List[str] of length F</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Move tensors to device</span>
+    <span class="n">atom_fragment_id</span> <span class="o">=</span> <span class="n">atom_fragment_id</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_coords</span> <span class="o">=</span> <span class="n">atom_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_frac_coords</span> <span class="o">=</span> <span class="n">atom_frac_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_weights</span> <span class="o">=</span> <span class="n">atom_weights</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_charges</span> <span class="o">=</span> <span class="n">atom_charges</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_symbol_codes</span> <span class="o">=</span> <span class="n">atom_symbol_codes</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="n">B</span><span class="p">,</span> <span class="n">N</span> <span class="o">=</span> <span class="n">atom_fragment_id</span><span class="o">.</span><span class="n">shape</span>
+    <span class="c1"># Determine number of fragments per structure</span>
+    <span class="n">n_frags</span>   <span class="o">=</span> <span class="p">(</span><span class="n">atom_fragment_id</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>  <span class="c1"># list length B</span>
+    <span class="n">n_frags_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">n_frags</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># shape (B,)</span>
+
+    <span class="c1"># Flatten struct and local fragment IDs</span>
+    <span class="n">struct_ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">frag_local_ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_frags</span><span class="p">[</span><span class="n">b</span><span class="p">]):</span>
+            <span class="n">struct_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+            <span class="n">frag_local_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">struct_ids</span><span class="p">)</span>
+
+    <span class="n">struct_ids_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">struct_ids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">frag_local_ids_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">frag_local_ids</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># Build fragment-atom mask (F, N)</span>
+    <span class="c1"># broadcast struct and local IDs to compare</span>
+    <span class="c1"># we index per-fragment: mask[i] = atom_fragment_id[struct_ids[i]] == frag_local_ids[i]</span>
+    <span class="n">frag_atom_mask_full</span> <span class="o">=</span> <span class="n">atom_fragment_id</span><span class="p">[</span><span class="n">struct_ids_t</span><span class="p">]</span> <span class="o">==</span> <span class="n">frag_local_ids_t</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">frag_n_atoms</span> <span class="o">=</span> <span class="n">frag_atom_mask_full</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (F,)</span>
+    <span class="n">max_A</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">frag_n_atoms</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+
+    <span class="c1"># Allocate padded fragment tensors</span>
+    <span class="n">frag_coords</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">F</span><span class="p">,</span> <span class="n">max_A</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">frag_frac</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">F</span><span class="p">,</span> <span class="n">max_A</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">frag_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">F</span><span class="p">,</span> <span class="n">max_A</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">frag_charges</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">F</span><span class="p">,</span> <span class="n">max_A</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">frag_atom_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">F</span><span class="p">,</span> <span class="n">max_A</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">frag_heavy_mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">F</span><span class="p">,</span> <span class="n">max_A</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="n">fragment_formulas</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fragment_formulas</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="p">)]</span>
+
+    <span class="c1"># Fill padded fragment tensors and compute formulas</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">F</span><span class="p">):</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">struct_ids</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">frag_local_ids</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="c1"># atom indices for this fragment</span>
+        <span class="n">atom_inds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">atom_fragment_id</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">==</span> <span class="n">f</span><span class="p">,</span> <span class="n">as_tuple</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">nA</span> <span class="o">=</span> <span class="n">atom_inds</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># Gather properties</span>
+        <span class="n">frag_coords</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">nA</span><span class="p">]</span> <span class="o">=</span> <span class="n">atom_coords</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">atom_inds</span><span class="p">]</span>
+        <span class="n">frag_frac</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">nA</span><span class="p">]</span> <span class="o">=</span> <span class="n">atom_frac_coords</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">atom_inds</span><span class="p">]</span>
+        <span class="n">frag_weights</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">nA</span><span class="p">]</span> <span class="o">=</span> <span class="n">atom_weights</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">atom_inds</span><span class="p">]</span>
+        <span class="n">frag_charges</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">nA</span><span class="p">]</span> <span class="o">=</span> <span class="n">atom_charges</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">atom_inds</span><span class="p">]</span>
+        <span class="n">frag_atom_mask</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">nA</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="c1"># Heavy atom mask via codes</span>
+        <span class="n">heavy_src</span> <span class="o">=</span> <span class="n">atom_symbol_codes</span><span class="p">[</span><span class="n">b</span><span class="p">,</span> <span class="n">atom_inds</span><span class="p">]</span>
+        <span class="n">frag_heavy_mask</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="p">:</span><span class="n">nA</span><span class="p">]</span> <span class="o">=</span> <span class="n">heavy_src</span> <span class="o">!=</span> <span class="n">code_H</span>
+        <span class="c1"># Compute formula counts on CPU</span>
+        <span class="n">codes_cpu</span> <span class="o">=</span> <span class="n">heavy_src</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+        <span class="c1"># Count occurrences</span>
+        <span class="n">counts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">codes_cpu</span><span class="p">:</span>
+            <span class="n">counts</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">codes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">codes_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">codes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">code_to_element</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+        <span class="n">formula</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">code_to_element</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="si">}{</span><span class="n">counts</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">codes_sorted</span>
+        <span class="p">)</span>
+        <span class="c1"># fragment_formulas.append(formula)</span>
+        <span class="n">fragment_formulas</span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;fragment_structure_id&#39;</span><span class="p">:</span>     <span class="n">struct_ids_t</span><span class="p">,</span>
+        <span class="s1">&#39;n_fragments&#39;</span><span class="p">:</span>               <span class="n">n_frags_t</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_local_id&#39;</span><span class="p">:</span>         <span class="n">frag_local_ids_t</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_n_atoms&#39;</span><span class="p">:</span>          <span class="n">frag_n_atoms</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_atom_coords&#39;</span><span class="p">:</span>      <span class="n">frag_coords</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_atom_frac_coords&#39;</span><span class="p">:</span> <span class="n">frag_frac</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_atom_weight&#39;</span><span class="p">:</span>      <span class="n">frag_weights</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_atom_charge&#39;</span><span class="p">:</span>      <span class="n">frag_charges</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_atom_mask&#39;</span><span class="p">:</span>        <span class="n">frag_atom_mask</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_atom_heavy_mask&#39;</span><span class="p">:</span>  <span class="n">frag_heavy_mask</span><span class="p">,</span>
+        <span class="s1">&#39;fragment_formula&#39;</span><span class="p">:</span>          <span class="n">fragment_formulas</span>
+    <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_center_of_mass_batch</span><span class="p">(</span>
+        <span class="n">atom_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>        <span class="c1"># (B, N, 3)</span>
+        <span class="n">atom_frac_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>   <span class="c1"># (B, N, 3)</span>
+        <span class="n">atom_weights</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>       <span class="c1"># (B, N)</span>
+        <span class="n">atom_mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">,</span>      <span class="c1"># (B, N)</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute Cartesian and fractional centers of mass for each fragment.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    atom_coords : torch.Tensor of shape (B, N, 3)</span>
+<span class="sd">        Cartesian coordinates, padded to N atoms.</span>
+<span class="sd">    atom_frac_coords : torch.Tensor of shape (B, N, 3)</span>
+<span class="sd">        Fractional coordinates, padded similarly.</span>
+<span class="sd">    atom_weights : torch.Tensor of shape (B, N)</span>
+<span class="sd">        Atomic weights (zero for padding).</span>
+<span class="sd">    atom_mask : torch.BoolTensor of shape (B, N)</span>
+<span class="sd">        True for real atoms, False for padding.</span>
+<span class="sd">    device : torch.device</span>
+<span class="sd">        Device to perform computation on.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    com_coords : torch.Tensor of shape (B, 3)</span>
+<span class="sd">        Cartesian center of mass per fragment.</span>
+<span class="sd">    com_frac_coords : torch.Tensor of shape (B, 3)</span>
+<span class="sd">        Fractional center of mass per fragment.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1) move everything to device</span>
+    <span class="n">atom_coords</span>      <span class="o">=</span> <span class="n">atom_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_frac_coords</span> <span class="o">=</span> <span class="n">atom_frac_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_weights</span>     <span class="o">=</span> <span class="n">atom_weights</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_mask</span>        <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># 2) mask out padding atoms (mask → float 0/1)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">atom_weights</span> <span class="o">*</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">atom_weights</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>   <span class="c1"># (B, N)</span>
+
+    <span class="c1"># 3) total mass per fragment: (B,1)</span>
+    <span class="n">total_mass</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># 4) weighted sums → COMs</span>
+    <span class="c1">#    w.unsqueeze(-1) is (B, N, 1), broadcasts over coords&#39; last dim</span>
+    <span class="n">com_coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">atom_coords</span> <span class="o">*</span> <span class="n">w</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_mass</span>
+    <span class="n">com_frac_coords</span> <span class="o">=</span> <span class="p">(</span><span class="n">atom_frac_coords</span> <span class="o">*</span> <span class="n">w</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">total_mass</span>
+
+    <span class="k">return</span> <span class="p">{</span> 
+        <span class="s1">&#39;fragment_com_coords&#39;</span><span class="p">:</span>      <span class="n">com_coords</span><span class="p">,</span> 
+        <span class="s1">&#39;fragment_com_frac_coords&#39;</span><span class="p">:</span> <span class="n">com_frac_coords</span>
+        <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_centroid_batch</span><span class="p">(</span>
+        <span class="n">atom_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>        <span class="c1"># (B, N, 3)</span>
+        <span class="n">atom_frac_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>   <span class="c1"># (B, N, 3)</span>
+        <span class="n">atom_mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">,</span>      <span class="c1"># (B, N)</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute geometric centroids in Cartesian and fractional coordinates.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    atom_coords : torch.Tensor of shape (B, N, 3)</span>
+<span class="sd">        Cartesian coordinates, padded to N atoms.</span>
+<span class="sd">    atom_frac_coords : torch.Tensor of shape (B, N, 3)</span>
+<span class="sd">        Fractional coordinates, padded similarly.</span>
+<span class="sd">    atom_mask : torch.BoolTensor of shape (B, N)</span>
+<span class="sd">        True for real atoms, False for padding.</span>
+<span class="sd">    device : torch.device</span>
+<span class="sd">        Device to perform computation on.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    centroid_coords : torch.Tensor of shape (B, 3)</span>
+<span class="sd">        Cartesian centroids per fragment.</span>
+<span class="sd">    centroid_frac_coords : torch.Tensor of shape (B, 3)</span>
+<span class="sd">        Fractional centroids per fragment.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># 1) move to device</span>
+    <span class="n">atom_coords</span>      <span class="o">=</span> <span class="n">atom_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_frac_coords</span> <span class="o">=</span> <span class="n">atom_frac_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_mask</span>        <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># 2) convert mask to float (1.0 for real atoms, 0.0 for padding)</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">atom_coords</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>             <span class="c1"># (B, N)</span>
+
+    <span class="c1"># 3) count real atoms per fragment: (B,1)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># avoid division by zero (if a fragment somehow has zero atoms)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+
+    <span class="c1"># 4) sum positions only over real atoms</span>
+    <span class="n">sum_cart</span> <span class="o">=</span> <span class="p">(</span><span class="n">atom_coords</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>      <span class="c1"># (B, 3)</span>
+    <span class="n">sum_frac</span> <span class="o">=</span> <span class="p">(</span><span class="n">atom_frac_coords</span> <span class="o">*</span> <span class="n">m</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (B, 3)</span>
+
+    <span class="c1"># 5) average → centroids</span>
+    <span class="n">centroid_coords</span>      <span class="o">=</span> <span class="n">sum_cart</span> <span class="o">/</span> <span class="n">count</span>
+    <span class="n">centroid_frac_coords</span> <span class="o">=</span> <span class="n">sum_frac</span> <span class="o">/</span> <span class="n">count</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;fragment_cen_coords&#39;</span><span class="p">:</span>      <span class="n">centroid_coords</span><span class="p">,</span> 
+        <span class="s1">&#39;fragment_cen_frac_coords&#39;</span><span class="p">:</span> <span class="n">centroid_frac_coords</span>
+        <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_inertia_tensor_batch</span><span class="p">(</span>
+        <span class="n">atom_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>    <span class="c1"># (B, N, 3)</span>
+        <span class="n">atom_weights</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>   <span class="c1"># (B, N)</span>
+        <span class="n">atom_mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">,</span>  <span class="c1"># (B, N)</span>
+        <span class="n">com_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>     <span class="c1"># (B, 3)</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute each fragment’s inertia tensor, eigenvalues, and oriented eigenvectors.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    atom_coords : torch.Tensor of shape (B, N, 3)</span>
+<span class="sd">        Cartesian coordinates, padded to N atoms.</span>
+<span class="sd">    atom_weights : torch.Tensor of shape (B, N)</span>
+<span class="sd">        Atomic weights, zero for padding.</span>
+<span class="sd">    atom_mask : torch.BoolTensor of shape (B, N)</span>
+<span class="sd">        True for real atoms.</span>
+<span class="sd">    com_coords : torch.Tensor of shape (B, 3)</span>
+<span class="sd">        Pre‐computed center of mass coordinates.</span>
+<span class="sd">    device : torch.device</span>
+<span class="sd">        Device to perform computation on.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    inertia_tensors : torch.Tensor of shape (B, 3, 3)</span>
+<span class="sd">        Inertia tensor for each fragment.</span>
+<span class="sd">    eigvals : torch.Tensor of shape (B, 3)</span>
+<span class="sd">        Eigenvalues (λ₁ ≤ λ₂ ≤ λ₃) per fragment.</span>
+<span class="sd">    eigvecs : torch.Tensor of shape (B, 3, 3)</span>
+<span class="sd">        Corresponding right‐handed eigenvectors (columns).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Move to device</span>
+    <span class="n">atom_coords</span>  <span class="o">=</span> <span class="n">atom_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_weights</span> <span class="o">=</span> <span class="n">atom_weights</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_mask</span>    <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">com_coords</span>   <span class="o">=</span> <span class="n">com_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># Expand mask &amp; weights</span>
+    <span class="n">mask3</span> <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>               <span class="c1"># (B, N, 1)</span>
+    <span class="n">w3</span>    <span class="o">=</span> <span class="n">atom_weights</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">mask3</span>    <span class="c1"># (B, N, 1)</span>
+
+    <span class="c1"># r_i = position relative to COM</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">atom_coords</span> <span class="o">-</span> <span class="n">com_coords</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">mask3</span>  <span class="c1"># (B, N, 3)</span>
+
+    <span class="c1"># r² and outer products</span>
+    <span class="n">r2</span>    <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>     <span class="c1"># (B, N, 1)</span>
+    <span class="n">outer</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">r</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>     <span class="c1"># (B, N, 3, 3)</span>
+
+    <span class="c1"># Identity for broadcasting</span>
+    <span class="n">I</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Per‐atom inertia contributions</span>
+    <span class="c1">#   w * [ (r·r) I₃ − (r⊗r) ]</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">w3</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">r2</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">I</span> <span class="o">-</span> <span class="n">outer</span><span class="p">)</span>  <span class="c1"># (B, N, 3, 3)</span>
+
+    <span class="c1"># Sum over atoms → inertia tensor</span>
+    <span class="n">inertia_tensors</span> <span class="o">=</span> <span class="n">terms</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (B, 3, 3)</span>
+
+    <span class="c1"># Diagonalize</span>
+    <span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">inertia_tensors</span><span class="p">)</span>  <span class="c1"># ascending λ&#39;s</span>
+
+    <span class="c1"># Fix eigenvector signs so each has its max‐abs component ≥ 0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>                             <span class="c1"># (B, 3)</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>   <span class="c1"># (B, 1)</span>
+        <span class="n">sign</span>    <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_idx</span><span class="p">)</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>           <span class="c1"># (B, 1)</span>
+        <span class="n">sign</span><span class="p">[</span><span class="n">sign</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">eigvecs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">vec</span> <span class="o">*</span> <span class="n">sign</span>
+
+    <span class="c1"># Enforce right‐handedness</span>
+    <span class="n">dets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">eigvecs</span><span class="p">)</span>  <span class="c1"># (B,)</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">dets</span> <span class="o">&lt;</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">left</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">eigvecs</span><span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;fragment_inertia_tensors&#39;</span><span class="p">:</span> <span class="n">inertia_tensors</span><span class="p">,</span> 
+        <span class="s1">&#39;fragment_inertia_eigvals&#39;</span><span class="p">:</span> <span class="n">eigvals</span><span class="p">,</span> 
+        <span class="s1">&#39;fragment_inertia_eigvecs&#39;</span><span class="p">:</span> <span class="n">eigvecs</span>
+        <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_quadrupole_tensor_batch</span><span class="p">(</span>
+        <span class="n">atom_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>    <span class="c1"># (B, N, 3)</span>
+        <span class="n">atom_charges</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>   <span class="c1"># (B, N)</span>
+        <span class="n">atom_mask</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">BoolTensor</span><span class="p">,</span>  <span class="c1"># (B, N)</span>
+        <span class="n">com_coords</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span>     <span class="c1"># (B, 3)</span>
+        <span class="n">device</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute each fragment’s quadrupole tensor, eigenvalues, and eigenvectors.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    atom_coords : torch.Tensor of shape (B, N, 3)</span>
+<span class="sd">        Cartesian coordinates, padded to N atoms.</span>
+<span class="sd">    atom_charges : torch.Tensor of shape (B, N)</span>
+<span class="sd">        Atomic charges, zero for padding.</span>
+<span class="sd">    atom_mask : torch.BoolTensor of shape (B, N)</span>
+<span class="sd">        True for real atoms.</span>
+<span class="sd">    com_coords : torch.Tensor of shape (B, 3)</span>
+<span class="sd">        Pre‐computed center of mass coordinates.</span>
+<span class="sd">    device : torch.device</span>
+<span class="sd">        Device to perform computation on.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    quad_tensors : torch.Tensor of shape (B, 3, 3)</span>
+<span class="sd">        Quadrupole tensor Q per fragment.</span>
+<span class="sd">    eigvals : torch.Tensor of shape (B, 3)</span>
+<span class="sd">        Eigenvalues of Q (ascending).</span>
+<span class="sd">    eigvecs : torch.Tensor of shape (B, 3, 3)</span>
+<span class="sd">        Right‐handed eigenvectors (columns).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Move to device</span>
+    <span class="n">atom_coords</span>  <span class="o">=</span> <span class="n">atom_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_charges</span> <span class="o">=</span> <span class="n">atom_charges</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">atom_mask</span>    <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">com_coords</span>   <span class="o">=</span> <span class="n">com_coords</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+
+    <span class="c1"># Masks &amp; charges</span>
+    <span class="n">mask3</span> <span class="o">=</span> <span class="n">atom_mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>                  <span class="c1"># (B, N, 1)</span>
+    <span class="n">q4</span>    <span class="o">=</span> <span class="n">atom_charges</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># (B, N, 1, 1)</span>
+    <span class="n">q4</span>    <span class="o">=</span> <span class="n">q4</span> <span class="o">*</span> <span class="n">mask3</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>                 <span class="c1"># zero out padding</span>
+
+    <span class="c1"># Shift to COM</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">atom_coords</span> <span class="o">-</span> <span class="n">com_coords</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="n">mask3</span>  <span class="c1"># (B, N, 3)</span>
+    <span class="n">r2</span>    <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>      <span class="c1"># (B, N, 1)</span>
+    <span class="n">outer</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">r</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>      <span class="c1"># (B, N, 3, 3)</span>
+
+    <span class="n">I</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Per‐atom quadrupole: q [3 (r⊗r) − |r|² I]</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="n">q4</span> <span class="o">*</span> <span class="p">(</span><span class="mf">3.0</span> <span class="o">*</span> <span class="n">outer</span> <span class="o">-</span> <span class="n">r2</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">I</span><span class="p">)</span>  <span class="c1"># (B, N, 3, 3)</span>
+    <span class="n">quad_tensors</span> <span class="o">=</span> <span class="n">terms</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>                   <span class="c1"># (B, 3, 3)</span>
+
+    <span class="c1"># Diagonalize</span>
+    <span class="n">eigvals</span><span class="p">,</span> <span class="n">eigvecs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">quad_tensors</span><span class="p">)</span>
+
+    <span class="c1"># Fix eigenvector signs (max‐abs component ≥ 0)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="n">eigvecs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">sign</span>    <span class="o">=</span> <span class="n">vec</span><span class="o">.</span><span class="n">gather</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_idx</span><span class="p">)</span><span class="o">.</span><span class="n">sign</span><span class="p">()</span>
+        <span class="n">sign</span><span class="p">[</span><span class="n">sign</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="n">eigvecs</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">vec</span> <span class="o">*</span> <span class="n">sign</span>
+
+    <span class="c1"># Enforce right‐handedness</span>
+    <span class="n">dets</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">eigvecs</span><span class="p">)</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">dets</span> <span class="o">&lt;</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">left</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+        <span class="n">eigvecs</span><span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;fragment_quadrupole_tensors&#39;</span><span class="p">:</span> <span class="n">quad_tensors</span><span class="p">,</span> 
+        <span class="s1">&#39;fragment_quadrupole_eigvals&#39;</span><span class="p">:</span> <span class="n">eigvals</span><span class="p">,</span> 
+        <span class="s1">&#39;fragment_quadrupole_eigvecs&#39;</span><span class="p">:</span> <span class="n">eigvecs</span>
+        <span class="p">}</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jun 30, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

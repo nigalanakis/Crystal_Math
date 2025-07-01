@@ -12,8 +12,8 @@ Crystal Structure Analysis (CSA) Documentation
 
 Welcome to the Crystal Structure Analysis (CSA) documentation. CSA is a comprehensive Python framework for extracting, processing, and analyzing molecular crystal structures from the Cambridge Structural Database (CSD).
 
-🚀 **Key Features**
-------------------
+🚀 Key Features
+---------------
 
 * **High-Performance Pipeline**: GPU-accelerated batch processing with PyTorch
 * **CSD Integration**: Direct interface to Cambridge Structural Database
@@ -21,8 +21,8 @@ Welcome to the Crystal Structure Analysis (CSA) documentation. CSA is a comprehe
 * **Efficient Storage**: HDF5-based data management with variable-length datasets
 * **Scalable Architecture**: Parallel processing for large datasets
 
-📖 **Quick Navigation**
-----------------------
+📖 Quick Navigation
+-------------------
 
 .. grid:: 2
    :gutter: 3
@@ -63,8 +63,8 @@ Welcome to the Crystal Structure Analysis (CSA) documentation. CSA is a comprehe
 
       Deep dive into algorithms, architecture, and performance.
 
-🔬 **What CSA Does**
--------------------
+🔬 What CSA Does
+----------------
 
 CSA transforms raw crystallographic data into rich, analysis-ready datasets through a five-stage pipeline:
 
@@ -77,8 +77,8 @@ CSA transforms raw crystallographic data into rich, analysis-ready datasets thro
 .. note::
    CSA requires a valid Cambridge Crystallographic Data Centre (CCDC) license for full functionality.
 
-📋 **Table of Contents**
-------------------------
+📋 Table of Contents
+--------------------
 
 .. toctree::
    :maxdepth: 2
@@ -87,6 +87,7 @@ CSA transforms raw crystallographic data into rich, analysis-ready datasets thro
    getting_started/index
    getting_started/installation
    getting_started/quickstart
+   getting_started/configuration
 
 .. toctree::
    :maxdepth: 2
@@ -96,19 +97,37 @@ CSA transforms raw crystallographic data into rich, analysis-ready datasets thro
 
 .. toctree::
    :maxdepth: 2
+   :caption: Tutorials
+
+   tutorials/index
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Examples
+
+   examples/index
+
+.. toctree::
+   :maxdepth: 2
    :caption: API Reference
 
    api_reference/index
 
-🤝 **Community & Support**
---------------------------
+.. toctree::
+   :maxdepth: 2
+   :caption: Technical Details
+
+   technical_details/index
+
+🤝 Community & Support
+-----------------------
 
 * **Issues**: Report bugs and request features on GitHub
 * **Discussions**: Join the community forum for questions and ideas
 * **Contributing**: Read our contribution guidelines to get involved
 
-📄 **License**
--------------
+📄 License
+----------
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 

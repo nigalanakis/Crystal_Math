@@ -1,0 +1,1360 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=9f22d18c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/custom.js?v=398222f2"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorials" href="../tutorials/index.html" />
+    <link rel="prev" title="Configuration" href="data_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Crystal Structure Analysis (CSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#essential-next-steps">Essential Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#common-workflows-after-setup">Common Workflows After Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#required-parameters">Required Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#pipeline-control">Pipeline Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#csd-filtering">CSD Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#performance-settings">Performance Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#example-configurations">Example Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#required-licenses">Required Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#required-parameters">Required Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#data-directory">data_directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#data-prefix">data_prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#pipeline-control">Pipeline Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#actions">actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#csd-filtering">CSD Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#filters">filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#structure-selection">Structure Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#chemical-filters">Chemical Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#performance-settings">Performance Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#batch-sizes">Batch Sizes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#example-configurations">Example Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#basic-organic-analysis">Basic Organic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#pharmaceutical-analysis">Pharmaceutical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#high-throughput-screening">High-Throughput Screening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#local-cif-file-analysis">Local CIF File Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#schema-validation">Schema Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#common-validation-errors">Common Validation Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#default-configuration">Default Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#minimal-configuration">Minimal Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#configuration-issues">Configuration Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#next-steps">Next Steps</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="pipeline_overview.html">User Guide</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline_overview.html#core-concepts">Core Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline_overview.html#analysis-workflows">Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline_overview.html#data-management">Data Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline_overview.html#performance-and-optimization">Performance and Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="pipeline_overview.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="pipeline_overview.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_overview.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_overview.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_overview.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_overview.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_overview.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_overview.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_overview.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_overview.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_overview.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_overview.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_overview.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_overview.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="pipeline_overview.html#next-steps">Next Steps</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="data_model.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_model.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#research-driven-configuration">Research-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#configuring-for-specific-research-questions">Configuring for Specific Research Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#performance-driven-configuration">Performance-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#hardware-optimized-settings">Hardware-Optimized Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#iterative-development">Iterative Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#production-workflows">Production Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#chemical-space-sampling">Chemical Space Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#quality-control-filters">Quality Control Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#template-library">Template Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#custom-template-creation">Custom Template Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#pre-flight-checks">Pre-Flight Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#version-control">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#environment-specific-configs">Environment-Specific Configs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#configuration-organization">Configuration Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_model.html#common-configuration-issues">Common Configuration Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#research-driven-configuration">Research-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-for-specific-research-questions">Configuring for Specific Research Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-driven-configuration">Performance-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-optimized-settings">Hardware-Optimized Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#workflow-specific-configurations">Workflow-Specific Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#iterative-development">Iterative Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#production-workflows">Production Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-filter-strategies">Advanced Filter Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#chemical-space-sampling">Chemical Space Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quality-control-filters">Quality Control Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#template-library">Template Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-template-creation">Custom Template Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pre-flight-checks">Pre-Flight Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-control">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#environment-specific-configs">Environment-Specific Configs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-organization">Configuration Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-configuration-issues">Common Configuration Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#running-the-five-stage-pipeline">Running the Five-Stage Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#understanding-pipeline-stages">Understanding Pipeline Stages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#loading-processed-data">Loading Processed Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#basic-data-exploration">Basic Data Exploration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#statistical-analysis">Statistical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#geometric-analysis">Geometric Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#comparative-studies">Comparative Studies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_analysis.html#exporting-results">Exporting Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#data-export-formats">Data Export Formats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_analysis.html#performance-monitoring">Performance Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic_analysis.html#tracking-analysis-performance">Tracking Analysis Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-started-tutorials">Getting Started Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#domain-specific-tutorials">Domain-Specific Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-analysis-tutorials">Advanced Analysis Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#specialized-workflows">Specialized Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-structure">Tutorial Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#quick-start-recommendations">Quick Start Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-downloads">Tutorial Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-support">Tutorial Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#contributing-tutorials">Contributing Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#learning-paths">Learning Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#quick-start-examples">Quick Start Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#data-access-examples">Data Access Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#analysis-examples">Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#visualization-examples">Visualization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#integration-examples">Integration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#performance-examples">Performance Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#example-categories">Example Categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#basic-data-operations">Basic Data Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#advanced-workflows">Advanced Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#common-configuration-patterns">Common Configuration Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#commonly-used-helper-functions">Commonly Used Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#interactive-examples">Interactive Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#jupyter-notebook-examples">Jupyter Notebook Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#command-line-examples">Command Line Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#troubleshooting-examples">Troubleshooting Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#example-downloads">Example Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#browse-examples-by-category">Browse Examples by Category</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html">crystal_analyzer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extraction_config"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extraction_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.csd_ops"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.csd_ops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extractor"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extractor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.data_dir"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.data_dir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.__init__"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extract_data"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extract_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystalanalyzer-class">CrystalAnalyzer Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#id0"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#extract-data">extract_data()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#private-methods">Private Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#private-attributes">Private Attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#configuration-dependencies">Configuration Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#type-hints-and-documentation">Type Hints and Documentation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html">Performance Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#data-storage-design">Data Storage Design</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#hdf5-schema-architecture">HDF5 Schema Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#algorithm-details">Algorithm Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#similarity-clustering-algorithm">Similarity Clustering Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#geometric-calculation-algorithms">Geometric Calculation Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#fragment-analysis-algorithms">Fragment Analysis Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#contact-detection-algorithms">Contact Detection Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#performance-optimization-details">Performance Optimization Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#gpu-memory-management">GPU Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#testing-and-validation">Testing and Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#unit-testing-framework">Unit Testing Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#documentation-and-maintenance">Documentation and Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#code-documentation-standards">Code Documentation Standards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#algorithms-and-methods">Algorithms and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#system-architecture">System Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#high-level-design">High-Level Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#core-components">Core Components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Crystal Structure Analysis (CSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">User Guide</a></li>
+          <li class="breadcrumb-item"><a href="pipeline_overview.html">User Guide</a></li>
+      <li class="breadcrumb-item active">Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-org/crystal-structure-analysis/blob/main/docs/source/user_guide/configuration.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h1>
+<p>This guide covers advanced configuration strategies for CSA workflows. While the <a class="reference internal" href="../getting_started/configuration.html"><span class="doc">Configuration</span></a> guide covers basic setup, this section focuses on optimizing configurations for specific research scenarios and performance requirements.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide assumes familiarity with basic CSA configuration. Review the <a class="reference internal" href="../getting_started/configuration.html"><span class="doc">Configuration</span></a> guide first if you’re new to CSA.</p>
+</div>
+<section id="research-driven-configuration">
+<h2>Research-Driven Configuration<a class="headerlink" href="#research-driven-configuration" title="Link to this heading"></a></h2>
+<section id="configuring-for-specific-research-questions">
+<h3>Configuring for Specific Research Questions<a class="headerlink" href="#configuring-for-specific-research-questions" title="Link to this heading"></a></h3>
+<p><strong>Polymorphism Studies</strong></p>
+<p>Analyzing different crystal forms of the same molecule:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./polymorphism_study&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;polymorphs&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;get_refcode_families&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cluster_refcode_families&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;get_unique_structures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;get_structure_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;post_extraction_process&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;structure_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;csd-unique&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Hydrogen Bonding Analysis</strong></p>
+<p>Focusing on structures with strong H-bond donors/acceptors:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./hbond_analysis&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hydrogen_bonds&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">400.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;has_hbond_donors&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;has_hbond_acceptors&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Conformational Flexibility</strong></p>
+<p>Studying molecules with rotatable bonds:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./flexibility_study&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;conformers&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;min_rotatable_bonds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_rotatable_bonds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">600.0</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Metal-Organic Systems</strong></p>
+<p>Including coordination compounds:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./metal_organic&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;coordination&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;organometallic&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Fe&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cu&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Zn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Ni&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;exclude_disorder&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-driven-configuration">
+<h2>Performance-Driven Configuration<a class="headerlink" href="#performance-driven-configuration" title="Link to this heading"></a></h2>
+<section id="hardware-optimized-settings">
+<h3>Hardware-Optimized Settings<a class="headerlink" href="#hardware-optimized-settings" title="Link to this heading"></a></h3>
+<p><strong>High-Memory Systems (64GB+ RAM)</strong></p>
+<p>Maximize throughput with large batches:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parallel_workers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;cache_intermediate_results&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>GPU-Accelerated Workstations</strong></p>
+<p>Balance GPU memory and compute:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;use_gpu_acceleration&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;gpu_memory_fraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Cluster/HPC Environments</strong></p>
+<p>Optimize for distributed processing:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parallel_workers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;checkpoint_frequency&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;restart_on_failure&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Limited Resource Systems</strong></p>
+<p>Conservative settings for laptops/workstations:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;parallel_workers&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;memory_optimization&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aggressive&quot;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="workflow-specific-configurations">
+<h2>Workflow-Specific Configurations<a class="headerlink" href="#workflow-specific-configurations" title="Link to this heading"></a></h2>
+<section id="iterative-development">
+<h3>Iterative Development<a class="headerlink" href="#iterative-development" title="Link to this heading"></a></h3>
+<p><strong>Rapid Prototyping</strong></p>
+<p>Quick testing with small datasets:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./prototype&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;test&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">200.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_structures&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Development Validation</strong></p>
+<p>Testing pipeline changes:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./validation&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dev_test&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;get_refcode_families&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cluster_refcode_families&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;get_unique_structures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;get_structure_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;post_extraction_process&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;structure_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;cif&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/path/to/test/structures&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;debug_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;verbose_logging&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="production-workflows">
+<h3>Production Workflows<a class="headerlink" href="#production-workflows" title="Link to this heading"></a></h3>
+<p><strong>Large-Scale Screening</strong></p>
+<p>High-throughput analysis of thousands of structures:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./large_scale_screening&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;hts_run_001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1000.0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">64</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;checkpoint_frequency&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;compression&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;lz4&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;backup_results&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Reproducible Research</strong></p>
+<p>Ensuring consistent results across runs:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./reproducible_analysis&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;paper_dataset_v1&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;random_seed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;deterministic_clustering&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;version_metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;csa_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2.0.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;csd_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024.1&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;analysis_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-15&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Dataset for publication XYZ&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-filter-strategies">
+<h2>Advanced Filter Strategies<a class="headerlink" href="#advanced-filter-strategies" title="Link to this heading"></a></h2>
+<section id="chemical-space-sampling">
+<h3>Chemical Space Sampling<a class="headerlink" href="#chemical-space-sampling" title="Link to this heading"></a></h3>
+<p><strong>Diverse Chemical Sampling</strong></p>
+<p>Ensuring broad coverage of chemical space:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;sampling_strategy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;diverse&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;molecular_descriptors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;weight_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">800</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;logp_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">-2</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;hbd_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;hba_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">],</span>
+<span class="w">        </span><span class="nt">&quot;rotatable_bonds_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="p">]</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Focused Chemical Series</strong></p>
+<p>Analyzing structurally related compounds:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;structural_patterns&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;benzene_ring&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;carboxylic_acid&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;amide_group&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;similarity_threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.7</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;scaffold_filtering&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="quality-control-filters">
+<h3>Quality Control Filters<a class="headerlink" href="#quality-control-filters" title="Link to this heading"></a></h3>
+<p><strong>High-Quality Structures Only</strong></p>
+<p>Strict quality criteria for reliable analysis:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;min_resolution&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_r_factor&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;exclude_disorder&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;exclude_polymers&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;exclude_solvates&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;min_temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;max_temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;quality_flags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;high_precision&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;complete_structure&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Experimental Condition Filters</strong></p>
+<p>Controlling for experimental variables:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;temperature_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">90</span><span class="p">,</span><span class="w"> </span><span class="mi">120</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;pressure_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ambient&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;radiation_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Mo_Ka&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cu_Ka&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;exclude_neutron&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;min_completeness&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.95</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;min_observed_reflections&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-templates">
+<h2>Configuration Templates<a class="headerlink" href="#configuration-templates" title="Link to this heading"></a></h2>
+<section id="template-library">
+<h3>Template Library<a class="headerlink" href="#template-library" title="Link to this heading"></a></h3>
+<p>CSA includes pre-defined configuration templates for common use cases:</p>
+<p><strong>Pharmaceutical Template</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy pharmaceutical template</span>
+cp<span class="w"> </span>templates/pharmaceutical.json<span class="w"> </span>my_pharma_config.json
+
+<span class="c1"># Edit specific parameters</span>
+nano<span class="w"> </span>my_pharma_config.json
+</pre></div>
+</div>
+<p><strong>Materials Science Template</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy materials template</span>
+cp<span class="w"> </span>templates/materials.json<span class="w"> </span>my_materials_config.json
+</pre></div>
+</div>
+<p><strong>Organic Chemistry Template</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy organic template</span>
+cp<span class="w"> </span>templates/organic.json<span class="w"> </span>my_organic_config.json
+</pre></div>
+</div>
+</section>
+<section id="custom-template-creation">
+<h3>Custom Template Creation<a class="headerlink" href="#custom-template-creation" title="Link to this heading"></a></h3>
+<p><strong>Creating Project Templates</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create_template.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">create_project_template</span><span class="p">(</span><span class="n">project_name</span><span class="p">,</span> <span class="n">base_template</span><span class="o">=</span><span class="s2">&quot;organic&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a custom configuration template.&quot;&quot;&quot;</span>
+
+    <span class="n">template_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;templates&quot;</span><span class="p">)</span>
+    <span class="n">base_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">((</span><span class="n">template_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">base_template</span><span class="si">}</span><span class="s2">.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+
+    <span class="c1"># Customize for project</span>
+    <span class="n">base_config</span><span class="p">[</span><span class="s2">&quot;extraction&quot;</span><span class="p">][</span><span class="s2">&quot;data_directory&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;./</span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">base_config</span><span class="p">[</span><span class="s2">&quot;extraction&quot;</span><span class="p">][</span><span class="s2">&quot;data_prefix&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">project_name</span>
+
+    <span class="c1"># Save custom template</span>
+    <span class="n">output_path</span> <span class="o">=</span> <span class="n">template_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s2">.json&quot;</span>
+    <span class="n">output_path</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">base_config</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">output_path</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-validation">
+<h2>Configuration Validation<a class="headerlink" href="#configuration-validation" title="Link to this heading"></a></h2>
+<section id="pre-flight-checks">
+<h3>Pre-Flight Checks<a class="headerlink" href="#pre-flight-checks" title="Link to this heading"></a></h3>
+<p><strong>Validate Before Running</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">csa_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtractionConfig</span><span class="p">,</span> <span class="n">validate_configuration</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_config_file</span><span class="p">(</span><span class="n">config_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Comprehensive configuration validation.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Load and parse</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">ExtractionConfig</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">config_path</span><span class="p">)</span>
+
+        <span class="c1"># Check resource requirements</span>
+        <span class="n">estimated_memory</span> <span class="o">=</span> <span class="n">estimate_memory_usage</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">estimated_time</span> <span class="o">=</span> <span class="n">estimate_runtime</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Configuration valid!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated memory: </span><span class="si">{</span><span class="n">estimated_memory</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> GB&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Estimated runtime: </span><span class="si">{</span><span class="n">estimated_time</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> hours&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Check for common issues</span>
+        <span class="n">warnings</span> <span class="o">=</span> <span class="n">check_common_issues</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">warnings</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Warnings:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">warning</span> <span class="ow">in</span> <span class="n">warnings</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">warning</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Configuration error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p><strong>Resource Estimation</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">estimate_resources</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Estimate computational requirements.&quot;&quot;&quot;</span>
+
+    <span class="c1"># Estimate dataset size</span>
+    <span class="n">estimated_structures</span> <span class="o">=</span> <span class="n">estimate_structure_count</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">filters</span><span class="p">)</span>
+
+    <span class="c1"># Memory requirements</span>
+    <span class="n">memory_per_structure</span> <span class="o">=</span> <span class="mf">2.5</span>  <span class="c1"># MB average</span>
+    <span class="n">peak_memory</span> <span class="o">=</span> <span class="p">(</span><span class="n">estimated_structures</span> <span class="o">*</span> <span class="n">memory_per_structure</span> <span class="o">*</span>
+                  <span class="n">config</span><span class="o">.</span><span class="n">extraction_batch_size</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">)</span>  <span class="c1"># GB</span>
+
+    <span class="c1"># Runtime estimation</span>
+    <span class="n">structures_per_hour</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># Typical throughput</span>
+    <span class="n">estimated_hours</span> <span class="o">=</span> <span class="n">estimated_structures</span> <span class="o">/</span> <span class="n">structures_per_hour</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;structures&#39;</span><span class="p">:</span> <span class="n">estimated_structures</span><span class="p">,</span>
+        <span class="s1">&#39;peak_memory_gb&#39;</span><span class="p">:</span> <span class="n">peak_memory</span><span class="p">,</span>
+        <span class="s1">&#39;estimated_hours&#39;</span><span class="p">:</span> <span class="n">estimated_hours</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuration-management">
+<h2>Configuration Management<a class="headerlink" href="#configuration-management" title="Link to this heading"></a></h2>
+<section id="version-control">
+<h3>Version Control<a class="headerlink" href="#version-control" title="Link to this heading"></a></h3>
+<p><strong>Track Configuration Changes</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize git repository for configs</span>
+mkdir<span class="w"> </span>csa_configurations
+<span class="nb">cd</span><span class="w"> </span>csa_configurations
+git<span class="w"> </span>init
+
+<span class="c1"># Add configurations</span>
+cp<span class="w"> </span>../my_analysis.json<span class="w"> </span>./
+git<span class="w"> </span>add<span class="w"> </span>my_analysis.json
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial analysis configuration&quot;</span>
+
+<span class="c1"># Track changes</span>
+git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>my_analysis.json
+</pre></div>
+</div>
+<p><strong>Configuration Branches</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create branches for different experiments</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>experiment_1
+<span class="c1"># Modify configuration...</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Experiment 1: increased batch size&quot;</span>
+
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>experiment_2
+<span class="c1"># Different modifications...</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Experiment 2: additional filters&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="environment-specific-configs">
+<h3>Environment-Specific Configs<a class="headerlink" href="#environment-specific-configs" title="Link to this heading"></a></h3>
+<p><strong>Development vs Production</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># config_manager.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">load_environment_config</span><span class="p">(</span><span class="n">base_config_path</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="s2">&quot;development&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load configuration with environment-specific overrides.&quot;&quot;&quot;</span>
+
+    <span class="n">base_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">base_config_path</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+
+    <span class="c1"># Look for environment-specific overrides</span>
+    <span class="n">env_config_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">base_config_path</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;.</span><span class="si">{</span><span class="n">environment</span><span class="si">}</span><span class="s1">.json&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">env_config_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="n">env_overrides</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">env_config_path</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+        <span class="n">base_config</span> <span class="o">=</span> <span class="n">merge_configs</span><span class="p">(</span><span class="n">base_config</span><span class="p">,</span> <span class="n">env_overrides</span><span class="p">)</span>
+
+    <span class="c1"># Apply environment variables</span>
+    <span class="n">base_config</span> <span class="o">=</span> <span class="n">apply_env_vars</span><span class="p">(</span><span class="n">base_config</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">base_config</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">merge_configs</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">overrides</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Deep merge configuration dictionaries.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">overrides</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">base</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">merge_configs</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">base</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<section id="configuration-organization">
+<h3>Configuration Organization<a class="headerlink" href="#configuration-organization" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Use descriptive naming</strong>: Include project, date, and version in config names</p></li>
+<li><p><strong>Document parameters</strong>: Add comments explaining non-standard settings</p></li>
+<li><p><strong>Version control</strong>: Track configuration changes alongside code</p></li>
+<li><p><strong>Environment separation</strong>: Maintain different configs for dev/test/prod</p></li>
+<li><p><strong>Template usage</strong>: Start from validated templates rather than from scratch</p></li>
+</ol>
+</section>
+<section id="performance-optimization">
+<h3>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Profile first</strong>: Measure before optimizing batch sizes</p></li>
+<li><p><strong>Incremental scaling</strong>: Gradually increase batch sizes to find optimal settings</p></li>
+<li><p><strong>Monitor resources</strong>: Watch memory and GPU utilization during runs</p></li>
+<li><p><strong>Cache strategies</strong>: Use appropriate caching for repeated analyses</p></li>
+<li><p><strong>Checkpoint frequently</strong>: Save progress for long-running analyses</p></li>
+</ol>
+</section>
+<section id="reproducibility">
+<h3>Reproducibility<a class="headerlink" href="#reproducibility" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Pin versions</strong>: Document CSA, PyTorch, and CCDC versions</p></li>
+<li><p><strong>Set random seeds</strong>: Ensure deterministic behavior</p></li>
+<li><p><strong>Save complete configs</strong>: Store exact configuration with results</p></li>
+<li><p><strong>Document environment</strong>: Record hardware and software environment</p></li>
+<li><p><strong>Validate consistency</strong>: Test configurations across different systems</p></li>
+</ol>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-configuration-issues">
+<h3>Common Configuration Issues<a class="headerlink" href="#common-configuration-issues" title="Link to this heading"></a></h3>
+<p><strong>Memory Problems</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ERROR: CUDA out of memory
+</pre></div>
+</div>
+<p><em>Solutions</em>:
+- Reduce <code class="docutils literal notranslate"><span class="pre">extraction_batch_size</span></code> and <code class="docutils literal notranslate"><span class="pre">post_extraction_batch_size</span></code>
+- Enable memory optimization: <code class="docutils literal notranslate"><span class="pre">&quot;memory_optimization&quot;:</span> <span class="pre">&quot;aggressive&quot;</span></code>
+- Use CPU processing: <code class="docutils literal notranslate"><span class="pre">&quot;use_gpu_acceleration&quot;:</span> <span class="pre">false</span></code></p>
+<p><strong>Performance Issues</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>WARNING: Very slow processing detected
+</pre></div>
+</div>
+<p><em>Solutions</em>:
+- Increase batch sizes if memory allows
+- Enable GPU acceleration
+- Reduce dataset size with more restrictive filters
+- Use faster storage (SSD) for data directory</p>
+<p><strong>Filter Problems</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ERROR: No structures match the specified filters
+</pre></div>
+</div>
+<p><em>Solutions</em>:
+- Relax restrictive filters gradually
+- Check filter syntax and valid values
+- Use filter validation tools before running
+- Start with broader filters and refine iteratively</p>
+<p><strong>File System Issues</strong></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ERROR: Permission denied writing to data directory
+</pre></div>
+</div>
+<p><em>Solutions</em>:
+- Check directory permissions: <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">755</span> <span class="pre">/path/to/data</span></code>
+- Ensure sufficient disk space
+- Use absolute paths in configuration
+- Verify write access: <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">/path/to/data/test_file</span></code></p>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>With advanced configuration mastery:</p>
+<ol class="arabic simple">
+<li><p><strong>Optimize for your hardware</strong>: Find the best performance settings</p></li>
+<li><p><strong>Develop analysis templates</strong>: Create reusable configurations</p></li>
+<li><p><strong>Automate workflows</strong>: Script configuration generation and validation</p></li>
+<li><p><strong>Share configurations</strong>: Collaborate with standardized templates</p></li>
+<li><p><strong>Monitor and improve</strong>: Continuously optimize based on usage patterns</p></li>
+</ol>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../getting_started/configuration.html"><span class="doc">Configuration</span></a> : Basic configuration guide
+<a class="reference internal" href="basic_analysis.html"><span class="doc">Basic Analysis</span></a> : Apply configurations in analysis workflows
+<span class="xref std std-doc">../technical_details/performance</span> : Performance optimization details
+<span class="xref std std-doc">../api_reference/core/csa_config</span> : Configuration API reference</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="data_model.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorials/index.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jul 01, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

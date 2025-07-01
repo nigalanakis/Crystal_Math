@@ -1,0 +1,783 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>csd_operations &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=9f22d18c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/custom.js?v=398222f2"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Crystal Structure Analysis (CSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#required-licenses">Required Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/pipeline_overview.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#analysis-workflows">Analysis Workflows</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#next-steps">Next Steps</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#type-hints-and-documentation">Type Hints and Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Crystal Structure Analysis (CSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">csd_operations</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for csd_operations</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: csd_operations.py </span>
+
+<span class="sd">High-level interface for interacting with the Cambridge Structural Database (CSD).</span>
+
+<span class="sd">This module provides functionality to:</span>
+<span class="sd">- Extract and filter refcode families</span>
+<span class="sd">- Cluster structures by packing similarity</span>
+<span class="sd">- Select representative structures using the vdWFV metric</span>
+<span class="sd">- Save intermediate results to CSV</span>
+
+<span class="sd">Dependencies</span>
+<span class="sd">------------</span>
+<span class="sd">pandas</span>
+<span class="sd">networkx</span>
+<span class="sd">ccdc</span>
+<span class="sd">csd_structure_validator</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ccdc</span><span class="w"> </span><span class="kn">import</span> <span class="n">io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ccdc.crystal</span><span class="w"> </span><span class="kn">import</span> <span class="n">PackingSimilarity</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">csd_structure_validator</span><span class="w"> </span><span class="kn">import</span> <span class="n">StructureValidator</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SimilaritySettings</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration settings for packing similarity comparisons of crystal structures.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    distance_tolerance : float, default=0.2</span>
+<span class="sd">        Maximum allowed deviation in atomic distances (Å) when comparing packings.</span>
+<span class="sd">    angle_tolerance : float, default=20.0</span>
+<span class="sd">        Maximum allowed angular deviation (degrees) between molecular orientations.</span>
+<span class="sd">    ignore_bond_types : bool, default=True</span>
+<span class="sd">        If True, matching bond orders are not required for similarity.</span>
+<span class="sd">    ignore_hydrogen_counts : bool, default=True</span>
+<span class="sd">        If True, differences in hydrogen counts are ignored.</span>
+<span class="sd">    ignore_hydrogen_positions : bool, default=True</span>
+<span class="sd">        If True, explicit hydrogen coordinate differences are ignored.</span>
+<span class="sd">    packing_shell_size : int, default=15</span>
+<span class="sd">        Number of molecules considered in each packing-shell comparison.</span>
+<span class="sd">    ignore_spacegroup : bool, default=True</span>
+<span class="sd">        If True, space-group designations are not required to match.</span>
+<span class="sd">    normalise_unit_cell : bool, default=True</span>
+<span class="sd">        If True, unit cell parameters are normalized before comparison.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">distance_tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span>
+    <span class="n">angle_tolerance</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">20.0</span>
+    <span class="n">ignore_bond_types</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">ignore_hydrogen_counts</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">ignore_hydrogen_positions</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">packing_shell_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="n">ignore_spacegroup</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">normalise_unit_cell</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<div class="viewcode-block" id="CSDOperations">
+<a class="viewcode-back" href="../api_reference/generated/csd_operations.CSDOperations.html#csd_operations.CSDOperations">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">CSDOperations</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    High-level interface for querying, validating, clustering, and selecting</span>
+<span class="sd">    crystal structures from the Cambridge Structural Database (CSD).</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_directory : Path</span>
+<span class="sd">        Base directory for reading and writing CSD-related files.</span>
+<span class="sd">    data_prefix : str</span>
+<span class="sd">        Prefix used when naming output files.</span>
+<span class="sd">    reader : io.EntryReader</span>
+<span class="sd">        CCDC EntryReader instance connected to the &quot;CSD&quot; database.</span>
+<span class="sd">    similarity_engine : PackingSimilarity</span>
+<span class="sd">        Engine for computing pairwise packing similarity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="CSDOperations.__init__">
+<a class="viewcode-back" href="../api_reference/generated/csd_operations.CSDOperations.html#csd_operations.CSDOperations.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_directory</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">],</span> <span class="n">data_prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize CSDOperations with target directory and filename prefix.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data_directory : Union[str, Path]</span>
+<span class="sd">            Directory under which all CSV outputs will be saved.</span>
+<span class="sd">        data_prefix : str</span>
+<span class="sd">            Prefix for generated CSV filenames (e.g., &quot;&lt;prefix&gt;_refcode_families.csv&quot;).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_directory</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">data_directory</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_prefix</span> <span class="o">=</span> <span class="n">data_prefix</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reader</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">EntryReader</span><span class="p">(</span><span class="s2">&quot;CSD&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_similarity_engine</span><span class="p">()</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_setup_similarity_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">settings</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">SimilaritySettings</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Instantiate and configure the packing similarity engine.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        settings : SimilaritySettings, optional</span>
+<span class="sd">            Custom threshold settings. If None, default settings are used.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="n">settings</span> <span class="ow">or</span> <span class="n">SimilaritySettings</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_engine</span> <span class="o">=</span> <span class="n">PackingSimilarity</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_engine</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">distance_tolerance</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">distance_tolerance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_engine</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">angle_tolerance</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">angle_tolerance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_engine</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">ignore_bond_types</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">ignore_bond_types</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_engine</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">ignore_hydrogen_counts</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">ignore_hydrogen_counts</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_engine</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">ignore_hydrogen_positions</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">ignore_hydrogen_positions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">similarity_engine</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">packing_shell_size</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">packing_shell_size</span>
+
+<div class="viewcode-block" id="CSDOperations.get_refcode_families_df">
+<a class="viewcode-back" href="../api_reference/generated/csd_operations.CSDOperations.html#csd_operations.CSDOperations.get_refcode_families_df">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_refcode_families_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Query the CSD and group entries by base refcode.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            DataFrame with columns:</span>
+<span class="sd">            - family_id : str, first six characters of the refcode</span>
+<span class="sd">            - refcode   : str, full CSD refcode</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="p">:</span>
+            <span class="n">identifier</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">identifier</span>
+            <span class="n">family_id</span> <span class="o">=</span> <span class="n">identifier</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+            <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;family_id&quot;</span><span class="p">:</span> <span class="n">family_id</span><span class="p">,</span> <span class="s2">&quot;refcode&quot;</span><span class="p">:</span> <span class="n">identifier</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CSDOperations.save_refcode_families_csv">
+<a class="viewcode-back" href="../api_reference/generated/csd_operations.CSDOperations.html#csd_operations.CSDOperations.save_refcode_families_csv">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_refcode_families_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write the refcode-families DataFrame to a CSV file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df : pd.DataFrame, optional</span>
+<span class="sd">            DataFrame to save. If None, uses get_refcode_families_df().</span>
+<span class="sd">        filename : Union[str, Path], optional</span>
+<span class="sd">            Full file path for output. If None, defaults to</span>
+<span class="sd">            data_directory / f&quot;{data_prefix}_refcode_families.csv&quot;.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        OSError</span>
+<span class="sd">            If writing to disk fails.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">df</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_refcode_families_df</span><span class="p">()</span>
+        <span class="n">output_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">if</span> <span class="n">filename</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_prefix</span><span class="si">}</span><span class="s2">_refcode_families.csv&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_directory</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="CSDOperations.filter_families_by_size">
+<a class="viewcode-back" href="../api_reference/generated/csd_operations.CSDOperations.html#csd_operations.CSDOperations.filter_families_by_size">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">filter_families_by_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">min_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Exclude families with fewer than a specified number of members.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df : pd.DataFrame</span>
+<span class="sd">            DataFrame with columns [&#39;family_id&#39;, &#39;refcode&#39;].</span>
+<span class="sd">        min_size : int, default=2</span>
+<span class="sd">            Minimum number of members for a family to be retained.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            Filtered DataFrame.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        KeyError</span>
+<span class="sd">            If &#39;family_id&#39; column is missing.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;family_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+        <span class="n">valid</span> <span class="o">=</span> <span class="n">counts</span><span class="p">[</span><span class="n">counts</span> <span class="o">&gt;=</span> <span class="n">min_size</span><span class="p">]</span><span class="o">.</span><span class="n">index</span>
+        <span class="k">return</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;family_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">valid</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="CSDOperations.cluster_families">
+<a class="viewcode-back" href="../api_reference/generated/csd_operations.CSDOperations.html#csd_operations.CSDOperations.cluster_families">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cluster_families</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Perform packing similarity clustering on each refcode family.</span>
+
+<span class="sd">        Workflow</span>
+<span class="sd">        --------</span>
+<span class="sd">        1. Load initial refcode families CSV.</span>
+<span class="sd">        2. Group refcodes by &#39;family_id&#39;.</span>
+<span class="sd">        3. For each group, validate entries and build a similarity graph.</span>
+<span class="sd">        4. Identify connected components as clusters.</span>
+<span class="sd">        5. Save clustered results to CSV.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filters : Dict[str, Any]</span>
+<span class="sd">            Criteria for structure validation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            DataFrame with columns [&#39;family_id&#39;, &#39;refcode&#39;, &#39;cluster_id&#39;].</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        FileNotFoundError</span>
+<span class="sd">            If the initial CSV is missing.</span>
+<span class="sd">        RuntimeError</span>
+<span class="sd">            If clustering fails for any family.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">df_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_prefix</span><span class="si">}</span><span class="s2">_refcode_families.csv&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">df_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Refcode families CSV not found: </span><span class="si">{</span><span class="n">df_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">df_path</span><span class="p">)</span>
+        <span class="n">families</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;family_id&quot;</span><span class="p">)[</span><span class="s2">&quot;refcode&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+
+        <span class="n">args</span> <span class="o">=</span> <span class="p">[(</span><span class="n">fam_id</span><span class="p">,</span> <span class="n">refcodes</span><span class="p">,</span> <span class="n">filters</span><span class="p">)</span> <span class="k">for</span> <span class="n">fam_id</span><span class="p">,</span> <span class="n">refcodes</span> <span class="ow">in</span> <span class="n">families</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="n">max_workers</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">4</span> <span class="ow">or</span> <span class="mi">4</span>
+      
+        <span class="n">records</span> <span class="o">=</span> <span class="p">[]</span>                                    <span class="c1"># ← NEW</span>
+        <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">fam_id</span><span class="p">,</span> <span class="n">clusters</span> <span class="ow">in</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_process_single_family</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">cluster_idx</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">:</span>
+                        <span class="n">records</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                            <span class="p">{</span><span class="s2">&quot;family_id&quot;</span><span class="p">:</span> <span class="n">fam_id</span><span class="p">,</span> <span class="s2">&quot;refcode&quot;</span><span class="p">:</span> <span class="n">refcode</span><span class="p">,</span> <span class="s2">&quot;cluster_id&quot;</span><span class="p">:</span> <span class="n">cluster_idx</span><span class="p">}</span>
+                        <span class="p">)</span>
+        
+        <span class="n">df_clusters</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>             
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_clustered_families</span><span class="p">(</span><span class="n">df_clusters</span><span class="p">)</span>     
+        <span class="k">return</span> <span class="n">df_clusters</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">entry</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">io</span><span class="o">.</span><span class="n">Entry</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Validate a CSD entry against filter criteria.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        identifier : str</span>
+<span class="sd">            CSD refcode.</span>
+<span class="sd">        filters : Dict[str, Any]</span>
+<span class="sd">            Validation criteria.</span>
+<span class="sd">        entry : io.Entry, optional</span>
+<span class="sd">            Preloaded CSD entry. If None, loaded internally.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True if the structure is valid, False otherwise.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        Exception</span>
+<span class="sd">            If validation fails unexpectedly.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">entry</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reader</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="n">identifier</span><span class="p">)</span>
+        <span class="n">validator</span> <span class="o">=</span> <span class="n">StructureValidator</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">validator</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">is_valid</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save_clustered_families</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save clustered families DataFrame to CSV.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df : pd.DataFrame</span>
+<span class="sd">            Must include [&#39;family_id&#39;, &#39;refcode&#39;, &#39;cluster_id&#39;].</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        OSError</span>
+<span class="sd">            If file writing fails.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">output_file</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data_directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_prefix</span><span class="si">}</span><span class="s2">_refcode_families_clustered.csv&quot;</span>
+        <span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Saved clustered families to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+<div class="viewcode-block" id="CSDOperations.get_unique_structures">
+<a class="viewcode-back" href="../api_reference/generated/csd_operations.CSDOperations.html#csd_operations.CSDOperations.get_unique_structures">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_unique_structures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;vdWFV&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>  <span class="c1"># noqa: D401</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Select one representative per cluster using the vdWFV metric.</span>
+
+<span class="sd">        Workflow</span>
+<span class="sd">        --------</span>
+<span class="sd">        1. Load clustered families CSV.</span>
+<span class="sd">        2. Group by [&#39;family_id&#39;, &#39;cluster_id&#39;].</span>
+<span class="sd">        3. Compute vdWFV for each refcode; select the minimum.</span>
+<span class="sd">        4. Save unique representatives to CSV.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filters : Dict[str, Any]</span>
+<span class="sd">            Placeholder for revalidation filters.</span>
+<span class="sd">        method : str, default=&quot;vdWFV&quot;</span>
+<span class="sd">            Only &#39;vdWFV&#39; is supported.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            DataFrame with columns [&#39;family_id&#39;, &#39;refcode&#39;].</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        FileNotFoundError</span>
+<span class="sd">            If clustered CSV is missing.</span>
+<span class="sd">        NotImplementedError</span>
+<span class="sd">            If method is not &#39;vdWFV&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">method</span> <span class="o">!=</span> <span class="s2">&quot;vdWFV&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Only vdWFV method is supported.&quot;</span><span class="p">)</span>
+
+        <span class="n">csv_clusters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_prefix</span><span class="si">}</span><span class="s2">_refcode_families_clustered.csv&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">csv_clusters</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="n">csv_clusters</span><span class="p">)</span>
+        <span class="n">df_clusters</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_clusters</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&quot;cluster_id&quot;</span> <span class="ow">in</span> <span class="n">df_clusters</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+            <span class="n">group_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;family_id&quot;</span><span class="p">,</span> <span class="s2">&quot;cluster_id&quot;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># fall‑back – treat each family as single cluster</span>
+            <span class="n">group_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;family_id&quot;</span><span class="p">]</span>
+            <span class="n">df_clusters</span><span class="p">[</span><span class="s2">&quot;cluster_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># dummy column for grouping</span>
+
+        <span class="c1"># build argument list for executor</span>
+        <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">fam_id</span><span class="p">,</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;refcode&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">fam_id</span><span class="p">,</span> <span class="n">_</span><span class="p">),</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">df_clusters</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">group_cols</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="n">reps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">max_workers</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">4</span> <span class="ow">or</span> <span class="mi">4</span>
+        <span class="k">with</span> <span class="n">ProcessPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">)</span> <span class="k">as</span> <span class="n">exe</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">fam_id</span><span class="p">,</span> <span class="n">rep_rc</span> <span class="ow">in</span> <span class="n">exe</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">_representative_for_cluster</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+                <span class="n">reps</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">fam_id</span><span class="p">,</span> <span class="n">rep_rc</span><span class="p">))</span>
+
+        <span class="n">df_unique</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">reps</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;family_id&quot;</span><span class="p">,</span> <span class="s2">&quot;refcode&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_save_unique_structures</span><span class="p">(</span><span class="n">df_unique</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">df_unique</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_save_unique_structures</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># unchanged except docstring tweak</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Save unique structure representatives to CSV.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df : pd.DataFrame</span>
+<span class="sd">            DataFrame with columns [&#39;family_id&#39;, &#39;refcode&#39;].</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        OSError</span>
+<span class="sd">            If file writing fails.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_directory</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">data_prefix</span><span class="si">}</span><span class="s2">_refcode_families_unique.csv&quot;</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Saved unique structures to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span></div>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_process_single_family</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate and cluster a single refcode family by packing similarity.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    args : Tuple[str, List[str], Dict[str, Any]]</span>
+<span class="sd">        - family_id : str</span>
+<span class="sd">        - structures : List[str]</span>
+<span class="sd">        - filters : Dict of validation criteria</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tuple[str, List[List[str]]]</span>
+<span class="sd">        family_id and list of clusters (each a list of refcodes).</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    Exception</span>
+<span class="sd">        If any error occurs during processing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">family_id</span><span class="p">,</span> <span class="n">structures</span><span class="p">,</span> <span class="n">filters</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">EntryReader</span><span class="p">(</span><span class="s2">&quot;CSD&quot;</span><span class="p">)</span>
+    <span class="n">validator</span> <span class="o">=</span> <span class="n">StructureValidator</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+    <span class="n">valid</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">identifier</span> <span class="ow">in</span> <span class="n">structures</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="n">identifier</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">validator</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">molecule</span><span class="p">)</span><span class="o">.</span><span class="n">is_valid</span><span class="p">:</span>
+                <span class="n">valid</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">identifier</span><span class="p">,</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">PackingSimilarity</span><span class="p">()</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    <span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">refcode</span> <span class="k">for</span> <span class="n">refcode</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">valid</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">ref1</span><span class="p">,</span> <span class="n">cry1</span><span class="p">),</span> <span class="p">(</span><span class="n">ref2</span><span class="p">,</span> <span class="n">cry2</span><span class="p">)</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">valid</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">compare</span><span class="p">(</span><span class="n">cry1</span><span class="p">,</span> <span class="n">cry2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">result</span> <span class="ow">and</span> <span class="n">result</span><span class="o">.</span><span class="n">nmatched_molecules</span> <span class="o">==</span> <span class="n">sim</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">packing_shell_size</span> <span class="ow">and</span> <span class="n">result</span><span class="o">.</span><span class="n">rmsd</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+                <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">ref1</span><span class="p">,</span> <span class="n">ref2</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+    <span class="k">return</span> <span class="n">family_id</span><span class="p">,</span> <span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">group</span><span class="p">)</span> <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">connected_components</span><span class="p">(</span><span class="n">G</span><span class="p">)]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_vdwfv_for_refcode</span><span class="p">(</span><span class="n">refcode</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute the vdWFV metric (1 − packing coefficient) for a refcode.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    refcode : str</span>
+<span class="sd">        CSD refcode.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        vdWFV value.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    Exception</span>
+<span class="sd">        If entry reading or coefficient retrieval fails.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">EntryReader</span><span class="p">(</span><span class="s2">&quot;CSD&quot;</span><span class="p">)</span>
+    <span class="n">cry</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="n">refcode</span><span class="p">)</span><span class="o">.</span><span class="n">crystal</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">cry</span><span class="o">.</span><span class="n">packing_coefficient</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_representative_for_cluster</span><span class="p">(</span><span class="n">args</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Select the refcode with minimal vdWFV in a cluster.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    args : Tuple[str, List[str]]</span>
+<span class="sd">        - family_id : str</span>
+<span class="sd">        - cluster : List[str]</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tuple[str, str]</span>
+<span class="sd">        family_id and representative refcode.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    Exception</span>
+<span class="sd">        If any lookup fails.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">family_id</span><span class="p">,</span> <span class="n">cluster</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="n">vdw_vals</span> <span class="o">=</span> <span class="p">{</span><span class="n">rc</span><span class="p">:</span> <span class="n">_vdwfv_for_refcode</span><span class="p">(</span><span class="n">rc</span><span class="p">)</span> <span class="k">for</span> <span class="n">rc</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">}</span>
+    <span class="n">lowest</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">vdw_vals</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+    <span class="n">rep</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">([</span><span class="n">rc</span> <span class="k">for</span> <span class="n">rc</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vdw_vals</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="n">lowest</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">family_id</span><span class="p">,</span> <span class="n">rep</span>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jun 30, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

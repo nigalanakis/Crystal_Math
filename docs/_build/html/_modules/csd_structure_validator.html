@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>csd_structure_validator &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=9f22d18c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/custom.js?v=398222f2"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Crystal Structure Analysis (CSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#required-licenses">Required Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/pipeline_overview.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#analysis-workflows">Analysis Workflows</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#next-steps">Next Steps</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#type-hints-and-documentation">Type Hints and Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Crystal Structure Analysis (CSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">csd_structure_validator</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for csd_structure_validator</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module: structure_validator.py</span>
+
+<span class="sd">High-level validation of CSD crystal structures and molecules against filter criteria.</span>
+
+<span class="sd">This module defines:</span>
+<span class="sd">- StructureValidationResult: Container for validation outcomes.</span>
+<span class="sd">- StructureValidator: Applies a sequence of checks to CCDC Crystal and Molecule objects.</span>
+
+<span class="sd">Dependencies</span>
+<span class="sd">------------</span>
+<span class="sd">ccdc</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Set</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ccdc.molecule</span><span class="w"> </span><span class="kn">import</span> <span class="n">Molecule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ccdc.crystal</span><span class="w"> </span><span class="kn">import</span> <span class="n">Crystal</span>
+
+<div class="viewcode-block" id="StructureValidationResult">
+<a class="viewcode-back" href="../api_reference/generated/csd_structure_validator.StructureValidationResult.html#csd_structure_validator.StructureValidationResult">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StructureValidationResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Result of validating a CSD Crystal and Molecule pair.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    is_valid : bool</span>
+<span class="sd">        True if all checks pass; False otherwise.</span>
+<span class="sd">    failure_reason : Optional[str]</span>
+<span class="sd">        Reason for failure when `is_valid` is False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">is_valid</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">failure_reason</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StructureValidator</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate a CSD Crystal and Molecule against specified criteria.</span>
+
+<span class="sd">    This class executes a pipeline of validation steps:</span>
+<span class="sd">    - Zʹ value check</span>
+<span class="sd">    - Space group check</span>
+<span class="sd">    - Molecule preprocessing (bonds, hydrogens, charges)</span>
+<span class="sd">    - Atom existence and coordinate validation</span>
+<span class="sd">    - Crystal type determination</span>
+<span class="sd">    - Molecular properties validation (charge, weight)</span>
+<span class="sd">    - Species inclusion check</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filters : dict</span>
+<span class="sd">        Mapping of filter criteria. Supported keys:</span>
+<span class="sd">        - target_z_prime_values : List[int]</span>
+<span class="sd">        - target_space_groups : List[str]</span>
+<span class="sd">        - crystal_type : List[str]</span>
+<span class="sd">        - molecule_formal_charges : List[int]</span>
+<span class="sd">        - molecule_weight_limit : float</span>
+<span class="sd">        - target_species : List[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filters</span> <span class="o">=</span> <span class="n">filters</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crystal</span><span class="p">:</span> <span class="n">Crystal</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Molecule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StructureValidationResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Run full validation pipeline on a crystal and molecule pair.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        crystal : Crystal</span>
+<span class="sd">            CCDC Crystal object to validate.</span>
+<span class="sd">        molecule : Molecule</span>
+<span class="sd">            CCDC Molecule object to validate.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        StructureValidationResult</span>
+<span class="sd">            Outcome of the validation, with `failure_reason` set when invalid.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Z prime check</span>
+        <span class="k">if</span> <span class="n">crystal</span><span class="o">.</span><span class="n">z_prime</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;target_z_prime_values&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Invalid Z prime value&quot;</span><span class="p">)</span>
+            
+        <span class="c1"># Space group check</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;target_space_groups&#39;</span><span class="p">]</span> <span class="ow">and</span> 
+            <span class="n">crystal</span><span class="o">.</span><span class="n">spacegroup_symbol</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;target_space_groups&#39;</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Invalid space group&quot;</span><span class="p">)</span>
+            
+        <span class="c1"># Process molecule</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_molecule</span><span class="p">(</span><span class="n">molecule</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Failed to process molecule&quot;</span><span class="p">)</span>
+            
+        <span class="c1"># Validate atoms</span>
+        <span class="n">atoms_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_atoms</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">atoms_result</span><span class="o">.</span><span class="n">is_valid</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">atoms_result</span>
+            
+        <span class="c1"># Crystal type validation</span>
+        <span class="n">crystal_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_crystal_type</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">crystal_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;crystal_type&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Invalid crystal type: </span><span class="si">{</span><span class="n">crystal_type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="c1"># Molecular properties validation</span>
+        <span class="n">mol_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_molecular_properties</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="n">crystal_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">mol_result</span><span class="o">.</span><span class="n">is_valid</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mol_result</span>
+            
+        <span class="c1"># Species validation</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_species</span><span class="p">(</span><span class="n">crystal</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Invalid chemical species&quot;</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Molecule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Assign bond types, add hydrogens, and compute partial charges.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        molecule : Molecule</span>
+<span class="sd">            CCDC Molecule to process.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True if processing succeeds; False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">molecule</span><span class="o">.</span><span class="n">assign_bond_types</span><span class="p">()</span>
+            <span class="n">molecule</span><span class="o">.</span><span class="n">add_hydrogens</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;missing&#39;</span><span class="p">)</span>
+            <span class="n">molecule</span><span class="o">.</span><span class="n">assign_partial_charges</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+            
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Molecule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StructureValidationResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Ensure the molecule has atoms and each atom has coordinates.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        molecule : Molecule</span>
+<span class="sd">            CCDC Molecule to check.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        StructureValidationResult</span>
+<span class="sd">            is_valid=False if no atoms or missing coordinates; otherwise True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">atoms</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">atoms</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">atoms</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;No atoms found&quot;</span><span class="p">)</span>
+                
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">at</span><span class="o">.</span><span class="n">coordinates</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Missing atomic coordinates&quot;</span><span class="p">)</span>
+                
+            <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Failed to access atomic data&quot;</span><span class="p">)</span>
+            
+    <span class="k">def</span><span class="w"> </span><span class="nf">_determine_crystal_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Molecule</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Classify a molecule as &#39;homomolecular&#39;, &#39;hydrate&#39;, or &#39;co-crystal&#39;.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        molecule : Molecule</span>
+<span class="sd">            CCDC Molecule containing one or more components.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        str</span>
+<span class="sd">            One of {&#39;homomolecular&#39;, &#39;hydrate&#39;, &#39;co-crystal&#39;}.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - &#39;homomolecular&#39; if all component formulas are identical.</span>
+<span class="sd">        - &#39;hydrate&#39; if any component formula equals &#39;H2 O1&#39;.</span>
+<span class="sd">        - &#39;co-crystal&#39; otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">components</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">formula</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">components</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">item</span> <span class="o">==</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">components</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s1">&#39;homomolecular&#39;</span>
+            
+        <span class="k">return</span> <span class="s1">&#39;hydrate&#39;</span> <span class="k">if</span> <span class="s1">&#39;H2 O1&#39;</span> <span class="ow">in</span> <span class="n">components</span> <span class="k">else</span> <span class="s1">&#39;co-crystal&#39;</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_molecular_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">Molecule</span><span class="p">,</span> <span class="n">crystal_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StructureValidationResult</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enforce formal charge and molecular weight limits for each component.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        molecule : Molecule</span>
+<span class="sd">            CCDC Molecule containing components.</span>
+<span class="sd">        crystal_type : str</span>
+<span class="sd">            Classification from `_determine_crystal_type`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        StructureValidationResult</span>
+<span class="sd">            is_valid=False if any component violates charge or weight limits; otherwise True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Formal charge check for homomolecular crystals</span>
+        <span class="k">if</span> <span class="n">crystal_type</span> <span class="o">==</span> <span class="s1">&#39;homomolecular&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">formal_charge</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;molecule_formal_charges&#39;</span><span class="p">]</span> 
+                  <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">components</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Invalid formal charge&quot;</span><span class="p">)</span>
+                
+        <span class="c1"># Molecular weight check</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">molecular_weight</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;molecule_weight_limit&#39;</span><span class="p">]</span> 
+              <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">molecule</span><span class="o">.</span><span class="n">components</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;Molecular weight exceeds limit&quot;</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">StructureValidationResult</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_species</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crystal</span><span class="p">:</span> <span class="n">Crystal</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check that all unique atomic species in the crystal formula are allowed.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        crystal : Crystal</span>
+<span class="sd">            CCDC Crystal object to check.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">            True if all species are in `filters[&#39;target_species&#39;]` or if that list is empty.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;target_species&#39;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+            
+        <span class="n">species</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_unique_species</span><span class="p">(</span><span class="n">crystal</span><span class="o">.</span><span class="n">formula</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">filters</span><span class="p">[</span><span class="s1">&#39;target_species&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">species</span><span class="p">)</span>
+        
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_unique_species</span><span class="p">(</span><span class="n">formula</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse a chemical formula into unique element symbols.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        formula : str</span>
+<span class="sd">            Chemical formula string (e.g., &quot;C6H12O6&quot;).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Set[str]</span>
+<span class="sd">            Unique element symbols extracted from the formula.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        - Element symbols start with an uppercase letter, optionally followed by lowercase letters.</span>
+<span class="sd">        - Numeric characters are ignored.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">species</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">formula</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">char</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+                    <span class="n">species</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="n">char</span>
+            <span class="k">elif</span> <span class="n">char</span><span class="o">.</span><span class="n">islower</span><span class="p">():</span>
+                <span class="n">current</span> <span class="o">+=</span> <span class="n">char</span>
+            <span class="k">elif</span> <span class="n">current</span><span class="p">:</span>
+                <span class="n">species</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+                <span class="n">current</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                
+        <span class="k">if</span> <span class="n">current</span><span class="p">:</span>
+            <span class="n">species</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current</span><span class="p">)</span>
+            
+        <span class="k">return</span> <span class="n">species</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jun 30, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,899 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutorials &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=51b770b3"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=9f22d18c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/custom.js?v=398222f2"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="../examples/index.html" />
+    <link rel="prev" title="Basic Analysis" href="../user_guide/basic_analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Crystal Structure Analysis (CSA)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#essential-next-steps">Essential Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#common-workflows-after-setup">Common Workflows After Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#required-parameters">Required Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#pipeline-control">Pipeline Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#csd-filtering">CSD Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#performance-settings">Performance Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#example-configurations">Example Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#required-licenses">Required Licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#required-parameters">Required Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#data-directory">data_directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#data-prefix">data_prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#pipeline-control">Pipeline Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#actions">actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#csd-filtering">CSD Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#filters">filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#structure-selection">Structure Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#chemical-filters">Chemical Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#performance-settings">Performance Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#batch-sizes">Batch Sizes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#example-configurations">Example Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#basic-organic-analysis">Basic Organic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#pharmaceutical-analysis">Pharmaceutical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#high-throughput-screening">High-Throughput Screening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#local-cif-file-analysis">Local CIF File Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#schema-validation">Schema Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#common-validation-errors">Common Validation Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#configuration-inheritance">Configuration Inheritance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#default-configuration">Default Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#minimal-configuration">Minimal Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#configuration-issues">Configuration Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-tutorials">Getting Started Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#domain-specific-tutorials">Domain-Specific Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-analysis-tutorials">Advanced Analysis Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#specialized-workflows">Specialized Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-structure">Tutorial Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start-recommendations">Quick Start Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-downloads">Tutorial Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-support">Tutorial Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contributing-tutorials">Contributing Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#learning-paths">Learning Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#feedback-and-improvement">Feedback and Improvement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#quick-start-examples">Quick Start Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#data-access-examples">Data Access Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#analysis-examples">Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#visualization-examples">Visualization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#integration-examples">Integration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#performance-examples">Performance Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#example-categories">Example Categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#basic-data-operations">Basic Data Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#advanced-workflows">Advanced Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#common-configuration-patterns">Common Configuration Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#commonly-used-helper-functions">Commonly Used Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#interactive-examples">Interactive Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#jupyter-notebook-examples">Jupyter Notebook Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#command-line-examples">Command Line Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#troubleshooting-examples">Troubleshooting Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#example-downloads">Example Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#browse-examples-by-category">Browse Examples by Category</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html">crystal_analyzer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extraction_config"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extraction_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.csd_ops"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.csd_ops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extractor"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extractor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.data_dir"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.data_dir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.__init__"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extract_data"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extract_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystalanalyzer-class">CrystalAnalyzer Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#id0"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#extract-data">extract_data()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#private-methods">Private Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#private-attributes">Private Attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#configuration-dependencies">Configuration Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#type-hints-and-documentation">Type Hints and Documentation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html">Performance Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#data-storage-design">Data Storage Design</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#hdf5-schema-architecture">HDF5 Schema Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#algorithm-details">Algorithm Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#similarity-clustering-algorithm">Similarity Clustering Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#geometric-calculation-algorithms">Geometric Calculation Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#fragment-analysis-algorithms">Fragment Analysis Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#contact-detection-algorithms">Contact Detection Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#performance-optimization-details">Performance Optimization Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#gpu-memory-management">GPU Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#testing-and-validation">Testing and Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#unit-testing-framework">Unit Testing Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#documentation-and-maintenance">Documentation and Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#code-documentation-standards">Code Documentation Standards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#algorithms-and-methods">Algorithms and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#system-architecture">System Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#high-level-design">High-Level Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#core-components">Core Components</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Crystal Structure Analysis (CSA)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/your-org/crystal-structure-analysis/blob/main/docs/source/tutorials/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tutorials">
+<h1>Tutorials<a class="headerlink" href="#tutorials" title="Link to this heading"></a></h1>
+<p>Step-by-step tutorials for common CSA analysis workflows. These hands-on guides walk you through complete analysis scenarios, from data extraction to publication-ready results.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All tutorials include downloadable configuration files and example datasets. Follow along with real data to master CSA workflows.</p>
+</div>
+<section id="getting-started-tutorials">
+<h2>Getting Started Tutorials<a class="headerlink" href="#getting-started-tutorials" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🚀 Your First Analysis</div>
+<p class="sd-card-text">Complete walkthrough of the five-stage CSA pipeline with a small organic dataset.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">first_analysis</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+⚙️ Configuration Mastery</div>
+<p class="sd-card-text">Learn to optimize configurations for different research scenarios and hardware.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">configuration_tutorial</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+📊 Data Exploration</div>
+<p class="sd-card-text">Master the art of exploring and understanding CSA datasets.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">data_exploration</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔍 Quality Control</div>
+<p class="sd-card-text">Ensure reliable results through systematic data validation and filtering.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">quality_control</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="domain-specific-tutorials">
+<h2>Domain-Specific Tutorials<a class="headerlink" href="#domain-specific-tutorials" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+💊 Pharmaceutical Analysis</div>
+<p class="sd-card-text">Analyze drug polymorphs, co-crystals, and pharmaceutical relevant crystal packings.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">pharmaceutical_analysis</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🧪 Organic Chemistry</div>
+<p class="sd-card-text">Study molecular conformations, intermolecular interactions, and packing preferences.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">organic_chemistry</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🏗️ Materials Science</div>
+<p class="sd-card-text">Investigate porous materials, metal-organic frameworks, and solid-state properties.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">materials_science</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔬 Polymorphism Studies</div>
+<p class="sd-card-text">Comprehensive polymorphism analysis including energy landscapes and packing similarity.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">polymorphism_studies</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="advanced-analysis-tutorials">
+<h2>Advanced Analysis Tutorials<a class="headerlink" href="#advanced-analysis-tutorials" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🤖 Machine Learning</div>
+<p class="sd-card-text">Apply ML techniques to crystal structure data for property prediction and clustering.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">machine_learning</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+📈 Statistical Analysis</div>
+<p class="sd-card-text">Advanced statistical methods for crystal structure datasets and hypothesis testing.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">statistical_analysis</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🌐 Comparative Studies</div>
+<p class="sd-card-text">Compare crystal structures across different chemical families and conditions.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">comparative_studies</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+📋 Custom Analysis</div>
+<p class="sd-card-text">Develop your own analysis workflows and integrate with external tools.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">custom_analysis</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+⚡ High-Performance Computing</div>
+<p class="sd-card-text">Scale CSA analyses to HPC clusters and optimize for large datasets.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">hpc_workflows</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="specialized-workflows">
+<h2>Specialized Workflows<a class="headerlink" href="#specialized-workflows" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🎯 Fragment Analysis</div>
+<p class="sd-card-text">Deep dive into molecular fragment properties and rigid body analysis.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">fragment_analysis</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔗 Hydrogen Bonding</div>
+<p class="sd-card-text">Comprehensive analysis of hydrogen bonding patterns and networks.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">hydrogen_bonding</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+📏 Geometric Descriptors</div>
+<p class="sd-card-text">Compute and interpret geometric and topological molecular descriptors.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">geometric_descriptors</span></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🧮 Contact Analysis</div>
+<p class="sd-card-text">Analyze intermolecular contacts, packing arrangements, and crystal engineering.</p>
+</div>
+<span class="sd-stretched-link sd-hide-link-text">contact_analysis</span></div>
+</div>
+</div>
+</div>
+</section>
+<section id="tutorial-structure">
+<h2>Tutorial Structure<a class="headerlink" href="#tutorial-structure" title="Link to this heading"></a></h2>
+<p>Each tutorial follows a consistent structure for maximum learning efficiency:</p>
+<dl class="simple">
+<dt><strong>Learning Objectives</strong></dt><dd><p>Clear goals for what you’ll achieve and learn</p>
+</dd>
+<dt><strong>Prerequisites</strong></dt><dd><p>Required knowledge and software setup</p>
+</dd>
+<dt><strong>Dataset Description</strong></dt><dd><p>Information about the example dataset used</p>
+</dd>
+<dt><strong>Step-by-Step Instructions</strong></dt><dd><p>Detailed walkthrough with explanations</p>
+</dd>
+<dt><strong>Code Examples</strong></dt><dd><p>Complete, runnable code snippets</p>
+</dd>
+<dt><strong>Results Interpretation</strong></dt><dd><p>How to understand and validate your results</p>
+</dd>
+<dt><strong>Extensions</strong></dt><dd><p>Ideas for further exploration and customization</p>
+</dd>
+<dt><strong>Troubleshooting</strong></dt><dd><p>Common issues and solutions</p>
+</dd>
+</dl>
+</section>
+<section id="quick-start-recommendations">
+<h2>Quick Start Recommendations<a class="headerlink" href="#quick-start-recommendations" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>New to CSA?</strong></dt><dd><p>Start with <span class="xref std std-doc">first_analysis</span> to understand the basic workflow</p>
+</dd>
+<dt><strong>Specific Research Goal?</strong></dt><dd><p>Jump to the relevant domain-specific tutorial</p>
+</dd>
+<dt><strong>Performance Issues?</strong></dt><dd><p>Check <span class="xref std std-doc">hpc_workflows</span> for optimization strategies</p>
+</dd>
+<dt><strong>Custom Requirements?</strong></dt><dd><p>Begin with <span class="xref std std-doc">custom_analysis</span> for workflow development</p>
+</dd>
+</dl>
+</section>
+<section id="tutorial-downloads">
+<h2>Tutorial Downloads<a class="headerlink" href="#tutorial-downloads" title="Link to this heading"></a></h2>
+<p>All tutorials include downloadable resources:</p>
+<dl class="simple">
+<dt><strong>Configuration Files</strong></dt><dd><p>Pre-configured JSON files for each tutorial scenario</p>
+</dd>
+<dt><strong>Example Datasets</strong></dt><dd><p>Small datasets for following along with examples</p>
+</dd>
+<dt><strong>Analysis Scripts</strong></dt><dd><p>Complete Python scripts for tutorial workflows</p>
+</dd>
+<dt><strong>Expected Results</strong></dt><dd><p>Reference outputs for validation</p>
+</dd>
+</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download tutorial resources</span>
+wget<span class="w"> </span>https://csa-tutorials.readthedocs.io/downloads/tutorial_resources.zip
+unzip<span class="w"> </span>tutorial_resources.zip
+
+<span class="c1"># Or clone from repository</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-org/csa-tutorials.git
+<span class="nb">cd</span><span class="w"> </span>csa-tutorials
+</pre></div>
+</div>
+</section>
+<section id="tutorial-support">
+<h2>Tutorial Support<a class="headerlink" href="#tutorial-support" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Community Forum</strong></dt><dd><p>Ask questions and share insights with other users</p>
+</dd>
+<dt><strong>GitHub Issues</strong></dt><dd><p>Report tutorial problems and suggest improvements</p>
+</dd>
+<dt><strong>Documentation Updates</strong></dt><dd><p>Tutorials are regularly updated with new features and best practices</p>
+</dd>
+<dt><strong>Video Walkthroughs</strong></dt><dd><p>Selected tutorials include video demonstrations</p>
+</dd>
+</dl>
+</section>
+<section id="contributing-tutorials">
+<h2>Contributing Tutorials<a class="headerlink" href="#contributing-tutorials" title="Link to this heading"></a></h2>
+<p>Help expand the tutorial collection:</p>
+<dl class="simple">
+<dt><strong>Share Your Workflows</strong></dt><dd><p>Submit successful analysis workflows as new tutorials</p>
+</dd>
+<dt><strong>Improve Existing Content</strong></dt><dd><p>Suggest improvements and corrections via pull requests</p>
+</dd>
+<dt><strong>Domain Expertise</strong></dt><dd><p>Contribute specialized tutorials for your research area</p>
+</dd>
+<dt><strong>Teaching Experience</strong></dt><dd><p>Help improve tutorial pedagogy and clarity</p>
+</dd>
+</dl>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Contribute a new tutorial</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-org/csa-documentation.git
+<span class="nb">cd</span><span class="w"> </span>csa-documentation/docs/source/tutorials
+
+<span class="c1"># Create new tutorial file</span>
+cp<span class="w"> </span>template_tutorial.rst<span class="w"> </span>my_tutorial.rst
+
+<span class="c1"># Edit and submit via pull request</span>
+</pre></div>
+</div>
+</section>
+<section id="learning-paths">
+<h2>Learning Paths<a class="headerlink" href="#learning-paths" title="Link to this heading"></a></h2>
+<p>Structured learning sequences for different goals:</p>
+<dl class="simple">
+<dt><strong>Research Scientist Path</strong></dt><dd><ol class="arabic simple">
+<li><p><span class="xref std std-doc">first_analysis</span></p></li>
+<li><p><span class="xref std std-doc">data_exploration</span></p></li>
+<li><p>Domain-specific tutorial (pharmaceutical/organic/materials)</p></li>
+<li><p><span class="xref std std-doc">statistical_analysis</span></p></li>
+<li><p><span class="xref std std-doc">comparative_studies</span></p></li>
+</ol>
+</dd>
+<dt><strong>Computational Crystallographer Path</strong></dt><dd><ol class="arabic simple">
+<li><p><span class="xref std std-doc">first_analysis</span></p></li>
+<li><p><span class="xref std std-doc">configuration_tutorial</span></p></li>
+<li><p><span class="xref std std-doc">geometric_descriptors</span></p></li>
+<li><p><span class="xref std std-doc">fragment_analysis</span></p></li>
+<li><p><span class="xref std std-doc">custom_analysis</span></p></li>
+</ol>
+</dd>
+<dt><strong>Data Scientist Path</strong></dt><dd><ol class="arabic simple">
+<li><p><span class="xref std std-doc">first_analysis</span></p></li>
+<li><p><span class="xref std std-doc">data_exploration</span></p></li>
+<li><p><span class="xref std std-doc">machine_learning</span></p></li>
+<li><p><span class="xref std std-doc">statistical_analysis</span></p></li>
+<li><p><span class="xref std std-doc">hpc_workflows</span></p></li>
+</ol>
+</dd>
+<dt><strong>Software Developer Path</strong></dt><dd><ol class="arabic simple">
+<li><p><span class="xref std std-doc">configuration_tutorial</span></p></li>
+<li><p><span class="xref std std-doc">custom_analysis</span></p></li>
+<li><p><span class="xref std std-doc">hpc_workflows</span></p></li>
+<li><p>API reference sections</p></li>
+<li><p>Contributing guidelines</p></li>
+</ol>
+</dd>
+</dl>
+</section>
+<section id="advanced-topics">
+<h2>Advanced Topics<a class="headerlink" href="#advanced-topics" title="Link to this heading"></a></h2>
+<p>Beyond basic tutorials, explore advanced capabilities:</p>
+<dl class="simple">
+<dt><strong>Integration Workflows</strong></dt><dd><ul class="simple">
+<li><p>Combining CSA with external crystallographic software</p></li>
+<li><p>Database integration and automated workflows</p></li>
+<li><p>Cloud computing and containerization</p></li>
+</ul>
+</dd>
+<dt><strong>Method Development</strong></dt><dd><ul class="simple">
+<li><p>Implementing new analysis algorithms</p></li>
+<li><p>Custom descriptor development</p></li>
+<li><p>Performance optimization techniques</p></li>
+</ul>
+</dd>
+<dt><strong>Educational Applications</strong></dt><dd><ul class="simple">
+<li><p>Classroom exercises and assignments</p></li>
+<li><p>Interactive notebooks and demonstrations</p></li>
+<li><p>Assessment and evaluation methods</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="feedback-and-improvement">
+<h2>Feedback and Improvement<a class="headerlink" href="#feedback-and-improvement" title="Link to this heading"></a></h2>
+<p>Tutorial quality depends on user feedback:</p>
+<dl class="simple">
+<dt><strong>Rate Tutorials</strong></dt><dd><p>Help others find the most useful content</p>
+</dd>
+<dt><strong>Suggest Improvements</strong></dt><dd><p>Identify unclear explanations or missing steps</p>
+</dd>
+<dt><strong>Request New Topics</strong></dt><dd><p>Propose tutorials for your specific needs</p>
+</dd>
+<dt><strong>Share Success Stories</strong></dt><dd><p>Let us know how tutorials helped your research</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Feedback form example</span>
+<span class="n">tutorial_feedback</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;tutorial_name&quot;</span><span class="p">:</span> <span class="s2">&quot;first_analysis&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;difficulty_rating&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>  <span class="c1"># 1-5 scale</span>
+    <span class="s2">&quot;clarity_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;usefulness_rating&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;suggestions&quot;</span><span class="p">:</span> <span class="s2">&quot;Include more visualization examples&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;would_recommend&quot;</span><span class="p">:</span> <span class="kc">True</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<p>If you encounter issues with tutorials:</p>
+<ol class="arabic simple">
+<li><p><strong>Check Prerequisites</strong>: Ensure all software requirements are met</p></li>
+<li><p><strong>Verify Data</strong>: Confirm tutorial datasets are correctly downloaded</p></li>
+<li><p><strong>Review Error Messages</strong>: Check CSA logs for specific error details</p></li>
+<li><p><strong>Search Documentation</strong>: Look for solutions in troubleshooting sections</p></li>
+<li><p><strong>Ask the Community</strong>: Post questions in forums or issue trackers</p></li>
+<li><p><strong>Contact Support</strong>: Reach out for direct assistance when needed</p></li>
+</ol>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../user_guide/basic_analysis.html" class="btn btn-neutral float-left" title="Basic Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jul 01, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

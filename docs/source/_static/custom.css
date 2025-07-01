@@ -1,0 +1,415 @@
+/* Custom CSS for Crystal Structure Analysis Documentation */
+
+/* ============================================================================
+   Brand Colors and Variables
+   ============================================================================ */
+:root {
+    --csa-primary: #2980B9;
+    --csa-secondary: #3498DB;
+    --csa-accent: #E74C3C;
+    --csa-success: #27AE60;
+    --csa-warning: #F39C12;
+    --csa-info: #17A2B8;
+    --csa-light: #ECF0F1;
+    --csa-dark: #2C3E50;
+    --csa-code-bg: #F8F9FA;
+    --csa-border: #BDC3C7;
+}
+
+/* ============================================================================
+   Custom Admonitions
+   ============================================================================ */
+
+/* Performance Notes */
+.admonition.performance-note {
+    border-left: 4px solid var(--csa-warning);
+    background-color: #FFF9E6;
+    border-radius: 4px;
+    margin: 1em 0;
+    padding: 0.5em 1em;
+}
+
+.admonition.performance-note .admonition-title {
+    background-color: var(--csa-warning);
+    color: white;
+    font-weight: bold;
+    margin: -0.5em -1em 0.5em -1em;
+    padding: 0.5em 1em;
+    border-radius: 4px 4px 0 0;
+}
+
+.admonition.performance-note .admonition-title:before {
+    content: "⚡ ";
+}
+
+/* GPU Notes */
+.admonition.gpu-note {
+    border-left: 4px solid var(--csa-success);
+    background-color: #E8F5E8;
+    border-radius: 4px;
+    margin: 1em 0;
+    padding: 0.5em 1em;
+}
+
+.admonition.gpu-note .admonition-title {
+    background-color: var(--csa-success);
+    color: white;
+    font-weight: bold;
+    margin: -0.5em -1em 0.5em -1em;
+    padding: 0.5em 1em;
+    border-radius: 4px 4px 0 0;
+}
+
+.admonition.gpu-note .admonition-title:before {
+    content: "🚀 ";
+}
+
+/* Configuration Notes */
+.admonition.config-note {
+    border-left: 4px solid var(--csa-info);
+    background-color: #E6F7FF;
+    border-radius: 4px;
+    margin: 1em 0;
+    padding: 0.5em 1em;
+}
+
+.admonition.config-note .admonition-title {
+    background-color: var(--csa-info);
+    color: white;
+    font-weight: bold;
+    margin: -0.5em -1em 0.5em -1em;
+    padding: 0.5em 1em;
+    border-radius: 4px 4px 0 0;
+}
+
+.admonition.config-note .admonition-title:before {
+    content: "⚙️ ";
+}
+
+/* ============================================================================
+   Code Blocks and Syntax Highlighting
+   ============================================================================ */
+
+/* Improve code block appearance */
+.highlight {
+    background-color: var(--csa-code-bg);
+    border: 1px solid var(--csa-border);
+    border-radius: 6px;
+    margin: 1em 0;
+}
+
+.highlight pre {
+    padding: 1em;
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.4;
+    overflow-x: auto;
+}
+
+/* Inline code styling */
+code.literal {
+    background-color: var(--csa-code-bg);
+    color: var(--csa-dark);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    border: 1px solid var(--csa-border);
+}
+
+/* ============================================================================
+   Tables
+   ============================================================================ */
+
+/* Improve table styling */
+.wy-table-responsive table td,
+.wy-table-responsive table th {
+    white-space: normal;
+    border-color: var(--csa-border);
+}
+
+.wy-table-responsive table th {
+    background-color: var(--csa-light);
+    font-weight: bold;
+}
+
+.wy-table-responsive table tr:nth-child(even) {
+    background-color: #F9F9F9;
+}
+
+/* Parameter tables in API docs */
+.field-list th {
+    background-color: var(--csa-light);
+    border-color: var(--csa-border);
+    font-weight: bold;
+    width: 20%;
+}
+
+.field-list td {
+    border-color: var(--csa-border);
+}
+
+/* ============================================================================
+   Navigation and Headers
+   ============================================================================ */
+
+/* Customize navigation background */
+.wy-nav-side {
+    background: linear-gradient(180deg, var(--csa-dark) 0%, #34495E 100%);
+}
+
+/* Section headers */
+.rst-content h1,
+.rst-content h2,
+.rst-content h3,
+.rst-content h4,
+.rst-content h5,
+.rst-content h6 {
+    color: var(--csa-dark);
+}
+
+.rst-content h1 {
+    border-bottom: 3px solid var(--csa-primary);
+    padding-bottom: 0.5em;
+}
+
+.rst-content h2 {
+    border-bottom: 2px solid var(--csa-secondary);
+    padding-bottom: 0.3em;
+}
+
+/* ============================================================================
+   API Documentation
+   ============================================================================ */
+
+/* Class and function signatures */
+.sig-name {
+    color: var(--csa-primary);
+    font-weight: bold;
+}
+
+.sig-param {
+    color: var(--csa-dark);
+}
+
+.sig-param-name {
+    font-style: italic;
+}
+
+/* Method documentation */
+.method {
+    border-left: 3px solid var(--csa-secondary);
+    padding-left: 1em;
+    margin: 1em 0;
+}
+
+.attribute {
+    border-left: 3px solid var(--csa-success);
+    padding-left: 1em;
+    margin: 1em 0;
+}
+
+/* ============================================================================
+   Sidebar Improvements
+   ============================================================================ */
+
+/* Search box styling */
+.wy-side-nav-search {
+    background-color: var(--csa-primary);
+}
+
+.wy-side-nav-search input[type=text] {
+    border-radius: 20px;
+    border: none;
+    padding: 0.5em 1em;
+}
+
+/* Sidebar links */
+.wy-menu-vertical a {
+    transition: all 0.2s ease;
+}
+
+.wy-menu-vertical a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.wy-menu-vertical li.current a {
+    background-color: var(--csa-secondary);
+    border-right: 3px solid var(--csa-accent);
+}
+
+/* ============================================================================
+   Grid and Cards (sphinx-design)
+   ============================================================================ */
+
+/* Custom grid styling */
+.sd-card {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--csa-border);
+}
+
+.sd-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.sd-card-title {
+    color: var(--csa-primary);
+    font-weight: bold;
+}
+
+.sd-card-text {
+    color: var(--csa-dark);
+}
+
+/* ============================================================================
+   Badges and Labels
+   ============================================================================ */
+
+/* Custom badges */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 0.75em;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    border-radius: 0.375rem;
+    margin: 0.125em;
+}
+
+.badge-gpu {
+    background-color: var(--csa-success);
+    color: white;
+}
+
+.badge-performance {
+    background-color: var(--csa-warning);
+    color: white;
+}
+
+.badge-api {
+    background-color: var(--csa-info);
+    color: white;
+}
+
+.badge-new {
+    background-color: var(--csa-accent);
+    color: white;
+}
+
+/* ============================================================================
+   Copy Button Customization
+   ============================================================================ */
+
+/* Style the copy button */
+.copybtn {
+    background-color: var(--csa-secondary);
+    border: none;
+    border-radius: 0 6px 0 0;
+    color: white;
+    padding: 0.3em 0.5em;
+    font-size: 0.8em;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+}
+
+.copybtn:hover {
+    background-color: var(--csa-primary);
+    opacity: 1;
+}
+
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
+
+/* Mobile improvements */
+@media screen and (max-width: 768px) {
+    .wy-table-responsive table {
+        font-size: 0.9em;
+    }
+    
+    .rst-content .highlight {
+        margin: 0.5em 0;
+    }
+    
+    .rst-content .highlight pre {
+        padding: 0.5em;
+        font-size: 0.8em;
+    }
+}
+
+/* ============================================================================
+   Print Styles
+   ============================================================================ */
+
+@media print {
+    .wy-nav-side,
+    .wy-nav-content-wrap .wy-nav-top,
+    .rst-versions {
+        display: none;
+    }
+    
+    .wy-nav-content {
+        margin-left: 0;
+    }
+    
+    .rst-content .highlight {
+        border: 1px solid #000;
+    }
+}
+
+/* ============================================================================
+   Miscellaneous Improvements
+   ============================================================================ */
+
+/* Better link styling */
+.rst-content a.reference.external:after {
+    content: " 🔗";
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+
+/* Improve footnote styling */
+.rst-content .footnote {
+    border-top: 1px solid var(--csa-border);
+    padding-top: 0.5em;
+    margin-top: 1em;
+    font-size: 0.9em;
+}
+
+/* Better version selector */
+.rst-versions .rst-current-version {
+    background-color: var(--csa-dark);
+    color: white;
+}
+
+/* Improve search results */
+.search li {
+    border-bottom: 1px solid var(--csa-border);
+    padding: 0.5em 0;
+}
+
+.search li:last-child {
+    border-bottom: none;
+}
+
+/* Custom scrollbar (webkit browsers) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--csa-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--csa-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--csa-primary);
+}

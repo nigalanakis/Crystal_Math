@@ -6,13 +6,13 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Installation &mdash; CrystalMath Structure Analysis (CSA) 2.0.0 documentation</title>
+  <title>Installation &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -21,12 +21,13 @@
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../_static/copybutton.js?v=30646c52"></script>
+      <script src="../_static/copybutton.js?v=9f22d18c"></script>
       <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/custom.js?v=398222f2"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Quickstart" href="quickstart.html" />
+    <link rel="next" title="Quickstart Guide" href="quickstart.html" />
     <link rel="prev" title="Getting Started" href="index.html" /> 
 </head>
 
@@ -39,7 +40,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CrystalMath Structure Analysis (CSA)
+            Crystal Structure Analysis (CSA)
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -52,24 +53,176 @@
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#quick-install">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#getting-help">Getting Help</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#next-steps">Next Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#basic-example">Basic Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#quick-install">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#required-licenses">Required Licenses</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-example">Basic Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#method-2-development-installation">Method 2: Development Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/pipeline_overview.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#analysis-workflows">Analysis Workflows</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#next-steps">Next Steps</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#most-common-classes">Most Common Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#key-functions">Key Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-structures">Data Structures</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#type-hints-and-documentation">Type Hints and Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -80,7 +233,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CrystalMath Structure Analysis (CSA)</a>
+          <a href="../index.html">Crystal Structure Analysis (CSA)</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -91,7 +244,7 @@
           <li class="breadcrumb-item"><a href="index.html">Getting Started</a></li>
       <li class="breadcrumb-item active">Installation</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/getting_started/installation.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/your-org/crystal-structure-analysis/blob/main/docs/source/getting_started/installation.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -101,28 +254,324 @@
              
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<p>This guide will help you install the Crystal Structure Analysis (CSA) framework and its dependencies.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <section id="system-requirements">
-<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<h3>System Requirements<a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h3>
 <ul class="simple">
-<li><p>Python 3.8 or newer</p></li>
-<li><p>CCDC Software (CSD Python API)</p></li>
-<li><p>PyTorch (for GPU acceleration)</p></li>
+<li><p><strong>Python</strong>: 3.8 or higher</p></li>
+<li><p><strong>Operating System</strong>: Linux (recommended), macOS, or Windows</p></li>
+<li><p><strong>Memory</strong>: 16 GB RAM minimum, 32 GB+ recommended for large datasets</p></li>
+<li><p><strong>GPU</strong>: CUDA-compatible GPU recommended for optimal performance</p></li>
+<li><p><strong>Storage</strong>: SSD recommended for HDF5 file operations</p></li>
 </ul>
 </section>
-<section id="quick-install">
-<h2>Quick Install<a class="headerlink" href="#quick-install" title="Link to this heading"></a></h2>
+<section id="required-licenses">
+<h3>Required Licenses<a class="headerlink" href="#required-licenses" title="Link to this heading"></a></h3>
+<p>CSA requires access to the Cambridge Structural Database (CSD):</p>
+<ul class="simple">
+<li><p><strong>CCDC License</strong>: Valid license for CCDC software and Python API</p></li>
+<li><p><strong>CSD Database</strong>: Access to the Cambridge Structural Database</p></li>
+</ul>
+<p>Contact the <a class="reference external" href="https://www.ccdc.cam.ac.uk/">Cambridge Crystallographic Data Centre</a> for licensing information.</p>
+</section>
+</section>
+<section id="installation-methods">
+<h2>Installation Methods<a class="headerlink" href="#installation-methods" title="Link to this heading"></a></h2>
+<section id="method-1-standard-installation-recommended">
+<h3>Method 1: Standard Installation (Recommended)<a class="headerlink" href="#method-1-standard-installation-recommended" title="Link to this heading"></a></h3>
 <ol class="arabic">
-<li><p>Install the package:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+<li><p><strong>Clone the repository</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">org</span><span class="o">/</span><span class="n">crystal</span><span class="o">-</span><span class="n">structure</span><span class="o">-</span><span class="n">analysis</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">crystal</span><span class="o">-</span><span class="n">structure</span><span class="o">-</span><span class="n">analysis</span>
 </pre></div>
 </div>
 </li>
-<li><p>Verify installation:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import crystal_analyzer; print(&#39;Success!&#39;)&quot;</span>
+<li><p><strong>Create a virtual environment</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">csa_env</span>
+<span class="n">source</span> <span class="n">csa_env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>  <span class="c1"># On Windows: csa_env\Scripts\activate</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install dependencies</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
 </li>
 </ol>
+</section>
+<section id="method-2-development-installation">
+<h3>Method 2: Development Installation<a class="headerlink" href="#method-2-development-installation" title="Link to this heading"></a></h3>
+<p>For contributors and developers:</p>
+<ol class="arabic">
+<li><p><strong>Clone with development dependencies</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">your</span><span class="o">-</span><span class="n">org</span><span class="o">/</span><span class="n">crystal</span><span class="o">-</span><span class="n">structure</span><span class="o">-</span><span class="n">analysis</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">crystal</span><span class="o">-</span><span class="n">structure</span><span class="o">-</span><span class="n">analysis</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install in development mode</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading"></a></h2>
+<section id="core-dependencies">
+<h3>Core Dependencies<a class="headerlink" href="#core-dependencies" title="Link to this heading"></a></h3>
+<p>CSA relies on several key packages:</p>
+<dl class="simple">
+<dt><strong>Scientific Computing</strong></dt><dd><ul class="simple">
+<li><p><strong>PyTorch</strong> (≥1.12.0): GPU-accelerated tensor operations</p></li>
+<li><p><strong>NumPy</strong> (≥1.21.0): Numerical computations</p></li>
+<li><p><strong>SciPy</strong> (≥1.7.0): Scientific algorithms</p></li>
+</ul>
+</dd>
+<dt><strong>Data Management</strong></dt><dd><ul class="simple">
+<li><p><strong>HDF5</strong> (≥1.12.0): High-performance data storage</p></li>
+<li><p><strong>h5py</strong> (≥3.6.0): Python interface to HDF5</p></li>
+<li><p><strong>pandas</strong> (≥1.3.0): Data manipulation and analysis</p></li>
+</ul>
+</dd>
+<dt><strong>Crystallography</strong></dt><dd><ul class="simple">
+<li><p><strong>CCDC Python API</strong>: Cambridge Structural Database access</p></li>
+<li><p><strong>NetworkX</strong> (≥2.6): Graph operations for molecular networks</p></li>
+</ul>
+</dd>
+<dt><strong>Parallel Processing</strong></dt><dd><ul class="simple">
+<li><p><strong>multiprocessing</strong>: Built-in Python parallel processing</p></li>
+<li><p><strong>concurrent.futures</strong>: Asynchronous execution</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="optional-dependencies">
+<h3>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><strong>Visualization</strong></dt><dd><ul class="simple">
+<li><p><strong>matplotlib</strong> (≥3.5.0): Plotting and visualization</p></li>
+<li><p><strong>plotly</strong> (≥5.0.0): Interactive plots</p></li>
+</ul>
+</dd>
+<dt><strong>Development Tools</strong></dt><dd><ul class="simple">
+<li><p><strong>pytest</strong> (≥6.0.0): Testing framework</p></li>
+<li><p><strong>black</strong>: Code formatting</p></li>
+<li><p><strong>flake8</strong>: Code linting</p></li>
+<li><p><strong>sphinx</strong>: Documentation generation</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="ccdc-software-setup">
+<h2>CCDC Software Setup<a class="headerlink" href="#ccdc-software-setup" title="Link to this heading"></a></h2>
+<section id="installing-ccdc-python-api">
+<h3>Installing CCDC Python API<a class="headerlink" href="#installing-ccdc-python-api" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Download CCDC Software</strong>: Obtain the CCDC software suite from the CCDC website</p></li>
+<li><p><strong>Install CSD Python API</strong>: Follow CCDC’s installation instructions for your platform</p></li>
+<li><p><strong>Verify Installation</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;from ccdc import io; print(&#39;CCDC API successfully imported&#39;)&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="database-configuration">
+<h3>Database Configuration<a class="headerlink" href="#database-configuration" title="Link to this heading"></a></h3>
+<p>Configure your CSD database path:</p>
+<ol class="arabic">
+<li><p><strong>Set Environment Variables</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">CCDC_CSD_DIRECTORY</span><span class="o">=</span><span class="s2">&quot;/path/to/your/csd/database&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify Database Access</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;from ccdc import io; reader = io.EntryReader(&#39;CSD&#39;); print(f&#39;CSD contains {len(reader)} entries&#39;)&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="gpu-setup-optional-but-recommended">
+<h2>GPU Setup (Optional but Recommended)<a class="headerlink" href="#gpu-setup-optional-but-recommended" title="Link to this heading"></a></h2>
+<section id="cuda-installation">
+<h3>CUDA Installation<a class="headerlink" href="#cuda-installation" title="Link to this heading"></a></h3>
+<p>For GPU acceleration:</p>
+<ol class="arabic">
+<li><p><strong>Install CUDA Toolkit</strong> (≥11.6):</p>
+<ul class="simple">
+<li><p>Download from <a class="reference external" href="https://developer.nvidia.com/cuda-toolkit">NVIDIA CUDA</a></p></li>
+<li><p>Follow platform-specific installation instructions</p></li>
+</ul>
+</li>
+<li><p><strong>Install PyTorch with CUDA</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">torch</span> <span class="n">torchvision</span> <span class="n">torchaudio</span> <span class="o">--</span><span class="n">index</span><span class="o">-</span><span class="n">url</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">download</span><span class="o">.</span><span class="n">pytorch</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">whl</span><span class="o">/</span><span class="n">cu118</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Verify GPU Setup</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import torch; print(f&#39;CUDA available: {torch.cuda.is_available()}&#39;); print(f&#39;GPU count: {torch.cuda.device_count()}&#39;)&quot;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
+<section id="quick-installation-test">
+<h3>Quick Installation Test<a class="headerlink" href="#quick-installation-test" title="Link to this heading"></a></h3>
+<p>Run this script to verify your installation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;Installation verification script for CSA.&quot;&quot;&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_imports</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test all critical imports.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Core scientific libraries</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ Core scientific libraries imported successfully&quot;</span><span class="p">)</span>
+
+        <span class="c1"># CCDC API</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ccdc</span><span class="w"> </span><span class="kn">import</span> <span class="n">io</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ CCDC API imported successfully&quot;</span><span class="p">)</span>
+
+        <span class="c1"># CSA modules</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">)</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">csa_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_config</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">crystal_analyzer</span><span class="w"> </span><span class="kn">import</span> <span class="n">CrystalAnalyzer</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✓ CSA modules imported successfully&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✗ Import error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_gpu</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test GPU availability.&quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">get_device_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ GPU available: </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;! GPU not available (CPU-only mode)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_csd_access</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test CSD database access.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">ccdc</span><span class="w"> </span><span class="kn">import</span> <span class="n">io</span>
+        <span class="n">reader</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">EntryReader</span><span class="p">(</span><span class="s1">&#39;CSD&#39;</span><span class="p">)</span>
+        <span class="n">entry_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">reader</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✓ CSD database accessible (</span><span class="si">{</span><span class="n">entry_count</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> entries)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✗ CSD access error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CSA Installation Verification&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+
+    <span class="n">success</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">success</span> <span class="o">&amp;=</span> <span class="n">test_imports</span><span class="p">()</span>
+    <span class="n">success</span> <span class="o">&amp;=</span> <span class="n">test_gpu</span><span class="p">()</span>
+    <span class="n">success</span> <span class="o">&amp;=</span> <span class="n">test_csd_access</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">40</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">success</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;🎉 Installation verification successful!&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❌ Installation issues detected. Check error messages above.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Save this as <code class="docutils literal notranslate"><span class="pre">verify_installation.py</span></code> and run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">verify_installation</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<section id="common-issues">
+<h3>Common Issues<a class="headerlink" href="#common-issues" title="Link to this heading"></a></h3>
+<p><strong>CCDC API Not Found</strong></p>
+<p><em>Problem</em>: <code class="docutils literal notranslate"><span class="pre">ImportError:</span> <span class="pre">No</span> <span class="pre">module</span> <span class="pre">named</span> <span class="pre">'ccdc'</span></code></p>
+<dl class="simple">
+<dt><em>Solutions</em>:</dt><dd><ol class="arabic simple">
+<li><p>Ensure CCDC software is properly installed</p></li>
+<li><p>Check that the CCDC Python API is in your Python path</p></li>
+<li><p>Verify your CCDC license is valid</p></li>
+</ol>
+</dd>
+</dl>
+<p><strong>CUDA Not Available</strong></p>
+<p><em>Problem</em>: <code class="docutils literal notranslate"><span class="pre">torch.cuda.is_available()</span></code> returns <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+<dl class="simple">
+<dt><em>Solutions</em>:</dt><dd><ol class="arabic simple">
+<li><p>Install NVIDIA GPU drivers</p></li>
+<li><p>Install CUDA toolkit</p></li>
+<li><p>Reinstall PyTorch with CUDA support</p></li>
+<li><p>Check GPU compatibility</p></li>
+</ol>
+</dd>
+</dl>
+<p><strong>HDF5 Library Issues</strong></p>
+<p><em>Problem</em>: HDF5 library errors during h5py operations</p>
+<dl class="simple">
+<dt><em>Solutions</em>:</dt><dd><ol class="arabic simple">
+<li><p>Update h5py: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">h5py</span></code></p></li>
+<li><p>Install HDF5 development libraries (Linux): <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">libhdf5-dev</span></code></p></li>
+<li><p>Use conda for HDF5 management: <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">h5py</span></code></p></li>
+</ol>
+</dd>
+</dl>
+<p><strong>Memory Issues</strong></p>
+<p><em>Problem</em>: Out of memory errors during processing</p>
+<dl class="simple">
+<dt><em>Solutions</em>:</dt><dd><ol class="arabic simple">
+<li><p>Reduce batch sizes in configuration</p></li>
+<li><p>Enable memory-mapped HDF5 datasets</p></li>
+<li><p>Use CPU processing for large datasets</p></li>
+<li><p>Monitor memory usage with system tools</p></li>
+</ol>
+</dd>
+</dl>
+</section>
+<section id="getting-help">
+<h3>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h3>
+<p>If you encounter issues:</p>
+<ol class="arabic simple">
+<li><p><strong>Check the logs</strong>: CSA provides detailed logging information</p></li>
+<li><p><strong>Review configuration</strong>: Ensure your config files are properly formatted</p></li>
+<li><p><strong>Test with small datasets</strong>: Verify functionality with minimal examples</p></li>
+<li><p><strong>Consult documentation</strong>: Check the troubleshooting section</p></li>
+<li><p><strong>Report issues</strong>: Submit bug reports with full error traces</p></li>
+</ol>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>After successful installation:</p>
+<ol class="arabic simple">
+<li><p><strong>Configure CSA</strong>: Set up your configuration files</p></li>
+<li><p><strong>Run quickstart</strong>: Follow the quickstart tutorial</p></li>
+<li><p><strong>Explore examples</strong>: Try the provided example workflows</p></li>
+<li><p><strong>Read the user guide</strong>: Learn about CSA’s capabilities</p></li>
+</ol>
+<p>Continue to the <a class="reference internal" href="quickstart.html"><span class="doc">Quickstart Guide</span></a> to set up your first CSA project.</p>
 </section>
 </section>
 
@@ -131,13 +580,15 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quickstart Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Nikolaos Galanakis.</p>
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jun 30, 2025.
+      </span></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

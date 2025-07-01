@@ -6,13 +6,13 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started &mdash; CrystalMath Structure Analysis (CSA) 2.0.0 documentation</title>
+  <title>Getting Started &mdash; Crystal Structure Analysis (CSA) 2.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
       <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=d6d662bc" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -21,8 +21,9 @@
       <script src="../_static/doctools.js?v=9bcbadda"></script>
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
-      <script src="../_static/copybutton.js?v=30646c52"></script>
+      <script src="../_static/copybutton.js?v=9f22d18c"></script>
       <script src="../_static/design-tabs.js?v=f930bc37"></script>
+      <script src="../_static/custom.js?v=398222f2"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -39,7 +40,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            CrystalMath Structure Analysis (CSA)
+            Crystal Structure Analysis (CSA)
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -52,26 +53,659 @@
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
-<li class="toctree-l3"><a class="reference internal" href="installation.html#quick-install">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-you-ll-learn">What You’ll Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quick-start-path">Quick Start Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-learning-path">Detailed Learning Path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#choose-your-starting-point">Choose Your Starting Point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#essential-next-steps">Essential Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-workflows-after-setup">Common Workflows After Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#installation-methods">Installation Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#dependencies">Dependencies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#ccdc-software-setup">CCDC Software Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#verification">Verification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#basic-example">Basic Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#required-parameters">Required Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#pipeline-control">Pipeline Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#csd-filtering">CSD Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#performance-settings">Performance Settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#example-configurations">Example Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#quick-install">Quick Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#required-licenses">Required Licenses</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-example">Basic Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-methods">Installation Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#method-1-standard-installation-recommended">Method 1: Standard Installation (Recommended)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#method-2-development-installation">Method 2: Development Installation</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependencies">Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#core-dependencies">Core Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#optional-dependencies">Optional Dependencies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#ccdc-software-setup">CCDC Software Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#installing-ccdc-python-api">Installing CCDC Python API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#database-configuration">Database Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#gpu-setup-optional-but-recommended">GPU Setup (Optional but Recommended)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#cuda-installation">CUDA Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#verification">Verification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#quick-installation-test">Quick Installation Test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#common-issues">Common Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-1-configuration-setup">Step 1: Configuration Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#create-configuration-file">Create Configuration File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#configuration-explained">Configuration Explained</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-2-run-your-first-analysis">Step 2: Run Your First Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#basic-execution">Basic Execution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#with-custom-logging">With Custom Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#expected-output">Expected Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-3-explore-your-results">Step 3: Explore Your Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#generated-files">Generated Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#quick-data-inspection">Quick Data Inspection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#sample-analysis">Sample Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#step-4-access-advanced-features">Step 4: Access Advanced Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#explore-fragment-properties">Explore Fragment Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#analyze-intermolecular-contacts">Analyze Intermolecular Contacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#common-issues-and-solutions">Common Issues and Solutions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#issue-no-structures-found">Issue: “No structures found”</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#issue-gpu-out-of-memory">Issue: GPU out of memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#issue-very-slow-processing">Issue: Very slow processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#issue-hdf5-file-corruption">Issue: HDF5 file corruption</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-structure">Configuration Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#required-parameters">Required Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#data-directory">data_directory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#data-prefix">data_prefix</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#pipeline-control">Pipeline Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#actions">actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#csd-filtering">CSD Filtering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#filters">filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#structure-selection">Structure Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#chemical-filters">Chemical Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#performance-settings">Performance Settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#batch-sizes">Batch Sizes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#example-configurations">Example Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-organic-analysis">Basic Organic Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#pharmaceutical-analysis">Pharmaceutical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#high-throughput-screening">High-Throughput Screening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#local-cif-file-analysis">Local CIF File Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#schema-validation">Schema Validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#common-validation-errors">Common Validation Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-inheritance">Configuration Inheritance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#default-configuration">Default Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#minimal-configuration">Minimal Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#configuration-issues">Configuration Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#performance-issues">Performance Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/index.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/index.html#next-steps">Next Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html">User Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#core-concepts">Core Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#analysis-workflows">Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#data-management">Data Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-and-optimization">Performance and Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/pipeline_overview.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/pipeline_overview.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#core-concepts">Core Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#essential-concepts">Essential Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#key-features-at-a-glance">Key Features at a Glance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-workflows">Common Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#understanding-csa-s-approach">Understanding CSA’s Approach</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#scientific-foundation">Scientific Foundation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#technical-architecture">Technical Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#analysis-workflows">Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#data-management">Data Management</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-and-optimization">Performance and Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#getting-the-most-from-csa">Getting the Most from CSA</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#best-practices">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#performance-tips">Performance Tips</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/pipeline_overview.html#common-pitfalls">Common Pitfalls</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/pipeline_overview.html#next-steps">Next Steps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#research-driven-configuration">Research-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#performance-driven-configuration">Performance-Driven Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#workflow-specific-configurations">Workflow-Specific Configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#advanced-filter-strategies">Advanced Filter Strategies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-templates">Configuration Templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-validation">Configuration Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#configuration-management">Configuration Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/configuration.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/data_model.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#research-driven-configuration">Research-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#configuring-for-specific-research-questions">Configuring for Specific Research Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#performance-driven-configuration">Performance-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#hardware-optimized-settings">Hardware-Optimized Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#workflow-specific-configurations">Workflow-Specific Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#iterative-development">Iterative Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#production-workflows">Production Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#advanced-filter-strategies">Advanced Filter Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#chemical-space-sampling">Chemical Space Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#quality-control-filters">Quality Control Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#template-library">Template Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#custom-template-creation">Custom Template Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#pre-flight-checks">Pre-Flight Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#version-control">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#environment-specific-configs">Environment-Specific Configs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#configuration-organization">Configuration Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/data_model.html#common-configuration-issues">Common Configuration Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/data_model.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/configuration.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#research-driven-configuration">Research-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#configuring-for-specific-research-questions">Configuring for Specific Research Questions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#performance-driven-configuration">Performance-Driven Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#hardware-optimized-settings">Hardware-Optimized Settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#workflow-specific-configurations">Workflow-Specific Configurations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#iterative-development">Iterative Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#production-workflows">Production Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#advanced-filter-strategies">Advanced Filter Strategies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#chemical-space-sampling">Chemical Space Sampling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#quality-control-filters">Quality Control Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#template-library">Template Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#custom-template-creation">Custom Template Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#configuration-validation">Configuration Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#pre-flight-checks">Pre-Flight Checks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#version-control">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#environment-specific-configs">Environment-Specific Configs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#best-practices">Best Practices</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#configuration-organization">Configuration Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#reproducibility">Reproducibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/configuration.html#common-configuration-issues">Common Configuration Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/configuration.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../user_guide/basic_analysis.html">Basic Analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#complete-pipeline-workflow">Complete Pipeline Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#running-the-five-stage-pipeline">Running the Five-Stage Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#understanding-pipeline-stages">Understanding Pipeline Stages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#accessing-and-exploring-results">Accessing and Exploring Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#loading-processed-data">Loading Processed Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#basic-data-exploration">Basic Data Exploration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#common-analysis-patterns">Common Analysis Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#statistical-analysis">Statistical Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#geometric-analysis">Geometric Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#advanced-analysis-workflows">Advanced Analysis Workflows</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#comparative-studies">Comparative Studies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#exporting-results">Exporting Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#data-export-formats">Data Export Formats</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#performance-monitoring">Performance Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/basic_analysis.html#tracking-analysis-performance">Tracking Analysis Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#next-steps">Next Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/basic_analysis.html#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-started-tutorials">Getting Started Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#domain-specific-tutorials">Domain-Specific Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-analysis-tutorials">Advanced Analysis Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#specialized-workflows">Specialized Workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-structure">Tutorial Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#quick-start-recommendations">Quick Start Recommendations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-downloads">Tutorial Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#tutorial-support">Tutorial Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#contributing-tutorials">Contributing Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#learning-paths">Learning Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#quick-start-examples">Quick Start Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#data-access-examples">Data Access Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#analysis-examples">Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#visualization-examples">Visualization Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#integration-examples">Integration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#performance-examples">Performance Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#example-categories">Example Categories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#basic-data-operations">Basic Data Operations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#advanced-workflows">Advanced Workflows</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#configuration-templates">Configuration Templates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#common-configuration-patterns">Common Configuration Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#commonly-used-helper-functions">Commonly Used Helper Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#interactive-examples">Interactive Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#jupyter-notebook-examples">Jupyter Notebook Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#command-line-examples">Command Line Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#troubleshooting-examples">Troubleshooting Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/index.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#example-downloads">Example Downloads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#browse-examples-by-category">Browse Examples by Category</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_reference/index.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html">crystal_analyzer module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extraction_config"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extraction_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.csd_ops"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.csd_ops</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extractor"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extractor</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.data_dir"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.data_dir</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.__init__"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystal_analyzer.CrystalAnalyzer.extract_data"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer.extract_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#crystalanalyzer-class">CrystalAnalyzer Class</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#id0"><code class="docutils literal notranslate"><span class="pre">CrystalAnalyzer</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#extract-data">extract_data()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#private-methods">Private Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#private-attributes">Private Attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#error-handling">Error Handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#configuration-dependencies">Configuration Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/core/crystal_analyzer.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#module-overview">Module Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#core-modules">Core Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#extraction-pipeline">Extraction Pipeline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#processing-utilities">Processing Utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#input-output">Input/Output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#validation">Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#quick-reference">Quick Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#most-common-classes">Most Common Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/crystal_analyzer.CrystalAnalyzer.html">crystal_analyzer.CrystalAnalyzer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.ExtractionConfig.html">csa_config.ExtractionConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_operations.CSDOperations.html">csd_operations.CSDOperations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_data_extractor.StructureDataExtractor.html">structure_data_extractor.StructureDataExtractor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.StructurePostExtractionProcessor.html">structure_post_extraction_processor.StructurePostExtractionProcessor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#key-functions">Key Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csa_config.load_config.html">csa_config.load_config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/geometry_utils.compute_bond_angles_batch.html">geometry_utils.compute_bond_angles_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/fragment_utils.identify_rigid_fragments_batch.html">fragment_utils.identify_rigid_fragments_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/contact_utils.compute_symmetric_contacts_batch.html">contact_utils.compute_symmetric_contacts_batch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/cell_utils.compute_cell_matrix_batch.html">cell_utils.compute_cell_matrix_batch</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-structures">Data Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/csd_structure_validator.StructureValidationResult.html">csd_structure_validator.StructureValidationResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.CrystalParams.html">structure_post_extraction_processor.CrystalParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.AtomParams.html">structure_post_extraction_processor.AtomParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reference/generated/structure_post_extraction_processor.BondParams.html">structure_post_extraction_processor.BondParams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#usage-patterns">Usage Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#basic-pipeline-setup">Basic Pipeline Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#custom-processing">Custom Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#batch-geometric-calculations">Batch Geometric Calculations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#data-access">Data Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference/index.html#configuration-management">Configuration Management</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference/index.html#type-hints-and-documentation">Type Hints and Documentation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Technical Details</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html">Performance Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#data-storage-design">Data Storage Design</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#hdf5-schema-architecture">HDF5 Schema Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#algorithm-details">Algorithm Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#similarity-clustering-algorithm">Similarity Clustering Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#geometric-calculation-algorithms">Geometric Calculation Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#fragment-analysis-algorithms">Fragment Analysis Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#contact-detection-algorithms">Contact Detection Algorithms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#performance-optimization-details">Performance Optimization Details</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#gpu-memory-management">GPU Memory Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#testing-and-validation">Testing and Validation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#unit-testing-framework">Unit Testing Framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#documentation-and-maintenance">Documentation and Maintenance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#code-documentation-standards">Code Documentation Standards</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#algorithms-and-methods">Algorithms and Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../technical_details/index.html#system-architecture">System Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#high-level-design">High-Level Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../technical_details/index.html#core-components">Core Components</a></li>
 </ul>
 
         </div>
@@ -80,7 +714,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">CrystalMath Structure Analysis (CSA)</a>
+          <a href="../index.html">Crystal Structure Analysis (CSA)</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -90,7 +724,7 @@
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Getting Started</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/getting_started/index.rst.txt" rel="nofollow"> View page source</a>
+              <a href="https://github.com/your-org/crystal-structure-analysis/blob/main/docs/source/getting_started/index.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -100,20 +734,186 @@
              
   <section id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
-<p>Welcome to Crystal Structure Analysis!</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation.html#quick-install">Quick Install</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-example">Basic Example</a></li>
-</ul>
-</li>
-</ul>
+<p>Welcome to Crystal Structure Analysis (CSA)! This section will help you get up and running with CSA quickly and efficiently.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>CSA is a powerful framework for analyzing molecular crystal structures from the Cambridge Structural Database (CSD). Whether you’re studying polymorphism, intermolecular interactions, or crystal packing patterns, CSA provides the tools you need for comprehensive structural analysis.</p>
+</section>
+<section id="what-you-ll-learn">
+<h2>What You’ll Learn<a class="headerlink" href="#what-you-ll-learn" title="Link to this heading"></a></h2>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+📦 Installation</div>
+<p class="sd-card-text">Complete setup instructions for CSA and all dependencies, including CCDC software configuration.</p>
 </div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="installation.html"><span class="doc">Installation</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🚀 Quickstart</div>
+<p class="sd-card-text">Run your first analysis in under 15 minutes with step-by-step instructions.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="quickstart.html"><span class="doc">Quickstart Guide</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+⚙️ Configuration</div>
+<p class="sd-card-text">Master CSA’s configuration system from basic setups to advanced optimizations.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="configuration.html"><span class="doc">Configuration</span></a></div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold docutils">
+🔍 Data Exploration</div>
+<p class="sd-card-text">Learn to explore and analyze your first CSA dataset with practical examples.</p>
+</div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="../user_guide/basic_analysis.html"><span class="doc">Basic Analysis</span></a></div>
+</div>
+</div>
+</div>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Before starting with CSA, you should have:</p>
+<dl class="simple">
+<dt><strong>Technical Requirements</strong></dt><dd><ul class="simple">
+<li><p>Python 3.8 or higher</p></li>
+<li><p>Basic familiarity with Python and command-line interfaces</p></li>
+<li><p>Access to a computer with sufficient memory (16+ GB recommended)</p></li>
+</ul>
+</dd>
+<dt><strong>Crystallographic Background</strong></dt><dd><ul class="simple">
+<li><p>Understanding of crystal structures and space groups</p></li>
+<li><p>Familiarity with crystallographic databases</p></li>
+<li><p>Basic knowledge of intermolecular interactions</p></li>
+</ul>
+</dd>
+<dt><strong>Software Licenses</strong></dt><dd><ul class="simple">
+<li><p>Valid CCDC license for CSD access</p></li>
+<li><p>Cambridge Structural Database installation</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="quick-start-path">
+<h2>Quick Start Path<a class="headerlink" href="#quick-start-path" title="Link to this heading"></a></h2>
+<p>For the fastest route to your first analysis:</p>
+<ol class="arabic simple">
+<li><p><strong>Install CSA</strong> (<a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>) - Set up software and dependencies (~15 minutes)</p></li>
+<li><p><strong>Run Quickstart</strong> (<a class="reference internal" href="quickstart.html"><span class="doc">Quickstart Guide</span></a>) - Process your first dataset (~15 minutes)</p></li>
+<li><p><strong>Configure Analysis</strong> (<a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a>) - Optimize settings for your needs (~10 minutes)</p></li>
+<li><p><strong>Explore Results</strong> (<a class="reference internal" href="../user_guide/basic_analysis.html"><span class="doc">Basic Analysis</span></a>) - Examine output files and generated features (~15 minutes)</p></li>
+</ol>
+<p>This 55-minute path will give you a complete understanding of CSA’s capabilities and how to customize them for your research.</p>
+</section>
+<section id="detailed-learning-path">
+<h2>Detailed Learning Path<a class="headerlink" href="#detailed-learning-path" title="Link to this heading"></a></h2>
+<p>For comprehensive understanding:</p>
+<ol class="arabic simple">
+<li><p><strong>Complete Installation</strong> (<a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>) - Full setup with optimization</p></li>
+<li><p><strong>Learn Configuration</strong> (<a class="reference internal" href="configuration.html"><span class="doc">Configuration</span></a>) - Understand all analysis options and performance tuning</p></li>
+<li><p><strong>Master Basic Analysis</strong> (<a class="reference internal" href="../user_guide/basic_analysis.html"><span class="doc">Basic Analysis</span></a>) - Complete workflow walkthrough</p></li>
+<li><p><strong>Understand Data Model</strong> (<a class="reference internal" href="../user_guide/data_model.html"><span class="doc">Configuration</span></a>) - How CSA organizes crystal structure data</p></li>
+<li><p><strong>Study User Guide</strong> (<a class="reference internal" href="../user_guide/index.html"><span class="doc">User Guide</span></a>) - Core concepts and advanced workflows</p></li>
+<li><p><strong>Try Tutorials</strong> (<a class="reference internal" href="../tutorials/index.html"><span class="doc">Tutorials</span></a>) - Domain-specific examples and best practices</p></li>
+</ol>
+</section>
+<section id="choose-your-starting-point">
+<h2>Choose Your Starting Point<a class="headerlink" href="#choose-your-starting-point" title="Link to this heading"></a></h2>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-0">
+I’m New to Crystal Analysis</label><div class="sd-tab-content docutils">
+<p>Start with the <strong>Installation Guide</strong> to set up your environment, then follow the <strong>Quickstart</strong> for a gentle introduction to CSA’s capabilities.</p>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-1">
+I’m Familiar with Crystallography</label><div class="sd-tab-content docutils">
+<p>Jump to the <strong>Quickstart</strong> to see CSA in action, then explore the <strong>Configuration Guide</strong> to customize analyses for your research.</p>
+</div>
+<input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-2">
+I’m Ready for Advanced Usage</label><div class="sd-tab-content docutils">
+<p>Review the <strong>Installation Guide</strong> for optimization tips, then dive into the <strong>Configuration Guide</strong> and <strong>User Guide</strong> for comprehensive workflow documentation.</p>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-3">
+I Have Specific Research Goals</label><div class="sd-tab-content docutils">
+<p>Check the <strong>Configuration Guide</strong> for research-driven setups, then explore the <strong>Tutorials</strong> section for domain-specific examples.</p>
+</div>
+</div>
+</section>
+<section id="essential-next-steps">
+<h2>Essential Next Steps<a class="headerlink" href="#essential-next-steps" title="Link to this heading"></a></h2>
+<p>After completing the Getting Started section:</p>
+<dl class="simple">
+<dt><strong>For Basic Users</strong></dt><dd><ul class="simple">
+<li><p>Review <a class="reference internal" href="../user_guide/pipeline_overview.html"><span class="doc">User Guide</span></a> to understand CSA’s workflow</p></li>
+<li><p>Try <a class="reference internal" href="../tutorials/index.html"><span class="doc">Tutorials</span></a> for step-by-step analysis examples</p></li>
+<li><p>Explore <a class="reference internal" href="../examples/index.html"><span class="doc">Examples</span></a> for ready-to-run code</p></li>
+</ul>
+</dd>
+<dt><strong>For Advanced Users</strong></dt><dd><ul class="simple">
+<li><p>Study <a class="reference internal" href="../user_guide/configuration.html"><span class="doc">Configuration</span></a> for advanced parameter tuning</p></li>
+<li><p>Check <span class="xref std std-doc">../technical_details/performance</span> for optimization strategies</p></li>
+<li><p>Review <a class="reference internal" href="../api_reference/index.html"><span class="doc">API Reference</span></a> for detailed API documentation</p></li>
+</ul>
+</dd>
+<dt><strong>For Developers</strong></dt><dd><ul class="simple">
+<li><p>Examine <span class="xref std std-doc">../technical_details/architecture</span> for system design</p></li>
+<li><p>Read <span class="xref std std-doc">../technical_details/algorithms</span> for implementation details</p></li>
+<li><p>Consult contributing guidelines for extending CSA</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="common-workflows-after-setup">
+<h2>Common Workflows After Setup<a class="headerlink" href="#common-workflows-after-setup" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Pharmaceutical Research</strong></dt><dd><ul class="simple">
+<li><p>Configure for drug-like molecules with specific elements</p></li>
+<li><p>Use clustering to identify polymorphs</p></li>
+<li><p>Analyze hydrogen bonding patterns</p></li>
+</ul>
+</dd>
+<dt><strong>Materials Science</strong></dt><dd><ul class="simple">
+<li><p>Include metal atoms in target species</p></li>
+<li><p>Focus on coordination geometries</p></li>
+<li><p>Study porous framework structures</p></li>
+</ul>
+</dd>
+<dt><strong>Organic Chemistry</strong></dt><dd><ul class="simple">
+<li><p>Analyze conformational preferences</p></li>
+<li><p>Study intermolecular π-π interactions</p></li>
+<li><p>Compare packing motifs across chemical families</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="getting-help">
+<h2>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h2>
+<p>If you encounter issues during setup or your first analysis:</p>
+<ul class="simple">
+<li><p><strong>Check the troubleshooting sections</strong> in each guide</p></li>
+<li><p><strong>Review the Configuration Guide</strong> for parameter optimization</p></li>
+<li><p><strong>Consult the examples</strong> for working code snippets</p></li>
+<li><p><strong>Try the tutorials</strong> for step-by-step guidance</p></li>
+<li><p><strong>Report issues</strong> on GitHub with detailed error information</p></li>
+</ul>
+<p>The CSA community is here to help you succeed with your crystal structure analysis projects!</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
 </section>
 
 
@@ -127,7 +927,9 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2024, Nikolaos Galanakis.</p>
+    <p>&#169; Copyright 2025, Nikolaos Galanakis .
+      <span class="lastupdated">Last updated on Jul 01, 2025.
+      </span></p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
