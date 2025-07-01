@@ -1,3 +1,4 @@
+# .readthedocs.yml
 version: 2
 
 build:
@@ -5,14 +6,15 @@ build:
   tools:
     python: "3.11"
 
+# Build documentation in the docs/ directory with Sphinx
 sphinx:
   configuration: docs/source/conf.py
-  fail_on_warning: false
 
+# Disable PDF and EPUB builds
+formats: 
+  - htmlzip
+
+# Install Python dependencies
 python:
   install:
     - requirements: docs/requirements.txt
-
-formats:
-  - pdf
-  - epub
