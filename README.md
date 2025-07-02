@@ -50,7 +50,7 @@ CSA transforms raw crystallographic data into analysis-ready datasets through a 
 
 ## 📋 Requirements
 
-- Python 3.8+
+- Python 3.9 (Required for CSD Python API)
 - PyTorch (GPU recommended)
 - Valid CCDC license for CSD access
 - HDF5 and related dependencies
