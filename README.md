@@ -1,7 +1,7 @@
 # Crystal Structure Analysis (CSA)
 
 [![Documentation Status](https://readthedocs.org/projects/crystal-math/badge/?version=latest)](https://crystal-math.readthedocs.io/en/latest/?badge=latest)
-[![Python 3.9](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.9](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-GPU%20Accelerated-orange.svg)](https://pytorch.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
