@@ -1,228 +1,42 @@
 Configuration
 =============
 
-CSA uses JSON configuration files to control all aspects of the analysis pipeline. This guide covers the complete configuration system, from basic setups to advanced customizations.
+CSA uses JSON configuration files to control all aspects of the analysis pipeline. This guide covers the essential configuration concepts you need to get started quickly.
 
 .. note::
    
-   Configuration files are validated at startup. Invalid configurations will cause CSA to exit with detailed error messages.
+   This guide covers basic configuration for getting started. For advanced research-driven configurations, see :doc:`../user_guide/configuration`.
 
-Configuration Structure
------------------------
+Quick Start Configuration
+-------------------------
 
-All CSA configurations follow this top-level structure:
+Minimal Configuration
+~~~~~~~~~~~~~~~~~~~~~
+
+The simplest CSA configuration requires only two parameters:
 
 .. code-block:: json
 
     {
       "extraction": {
-        "data_directory": "./output",
-        "data_prefix": "analysis_name",
-        "actions": { ... },
-        "filters": { ... },
-        "extraction_batch_size": 32,
-        "post_extraction_batch_size": 16
+        "data_directory": "./my_analysis",
+        "data_prefix": "my_first_run"
       }
     }
 
-The ``extraction`` section contains all pipeline settings. Other top-level sections may be added in future versions.
+This will use default settings for all other parameters.
 
-Required Parameters
--------------------
+Complete Basic Configuration
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-data_directory
-~~~~~~~~~~~~~~
-
-**Type**: ``string``  
-**Description**: Output directory for all generated files  
-**Example**: ``"./csa_output"``  
-
-This directory will be created if it doesn't exist. All intermediate and final output files will be stored here:
-
-- ``csv/`` - Family extractions and clustering results
-- ``structures/`` - HDF5 datasets with raw and processed data
-- ``logs/`` - Detailed execution logs
-
-data_prefix  
-~~~~~~~~~~~
-
-**Type**: ``string``  
-**Description**: Prefix for all output filenames  
-**Example**: ``"polymer_analysis"``
-
-Results in files like:
-- ``polymer_analysis_refcode_families.csv``
-- ``polymer_analysis_structures.h5``
-- ``polymer_analysis_structures_processed.h5``
-
-Pipeline Control
-----------------
-
-actions
-~~~~~~~
-
-Controls which stages of the five-stage pipeline to execute:
-
-.. code-block:: json
-
-    "actions": {
-      "get_refcode_families": true,
-      "cluster_refcode_families": true, 
-      "get_unique_structures": true,
-      "get_structure_data": true,
-      "post_extraction_process": true
-    }
-
-.. list-table:: Pipeline Actions
-   :widths: 30 50 20
-   :header-rows: 1
-
-   * - Action
-     - Description
-     - Default
-   * - ``get_refcode_families``
-     - Query CSD and extract refcode families
-     - ``true``
-   * - ``cluster_refcode_families``
-     - Group similar crystal packings
-     - ``true``
-   * - ``get_unique_structures``
-     - Select representative structures
-     - ``true``  
-   * - ``get_structure_data``
-     - Extract atomic coordinates and bonds
-     - ``true``
-   * - ``post_extraction_process``
-     - Compute advanced features and descriptors
-     - ``true``
-
-CSD Filtering
--------------
-
-filters
-~~~~~~~
-
-The ``filters`` object controls which structures are included from the CSD:
-
-.. code-block:: json
-
-    "filters": {
-      "target_z_prime_values": [1],
-      "target_space_groups": [],
-      "crystal_type": ["homomolecular"],
-      "molecule_formal_charges": [0],
-      "molecule_weight_limit": 1000.0,
-      "target_species": ["C", "H", "N", "O"],
-      "structure_list": ["csd-unique"]
-    }
-
-Structure Selection
-~~~~~~~~~~~~~~~~~~~
-
-.. list-table:: Structure Filters
-   :widths: 25 35 20 20
-   :header-rows: 1
-
-   * - Filter
-     - Description
-     - Type
-     - Default
-   * - ``target_z_prime_values``
-     - Number of molecules per asymmetric unit
-     - ``array[int]``
-     - ``[1]``
-   * - ``target_space_groups``
-     - Allowed crystallographic space groups
-     - ``array[string]``
-     - ``[]`` (all)
-   * - ``crystal_type``
-     - Crystal composition type
-     - ``array[string]``
-     - ``["homomolecular"]``
-   * - ``structure_list``
-     - Source database/collection
-     - ``array[string]``
-     - ``["csd-unique"]``
-
-Chemical Filters
-~~~~~~~~~~~~~~~~
-
-.. list-table:: Chemical Filters  
-   :widths: 25 35 20 20
-   :header-rows: 1
-
-   * - Filter
-     - Description
-     - Type
-     - Default
-   * - ``molecule_formal_charges``
-     - Allowed molecular charges
-     - ``array[int]``
-     - ``[0]``
-   * - ``molecule_weight_limit``
-     - Maximum molecular weight (Da)
-     - ``float``
-     - ``1000.0``
-   * - ``target_species``
-     - Required chemical elements
-     - ``array[string]``
-     - ``[]`` (all)
-
-Performance Settings
---------------------
-
-Batch Sizes
-~~~~~~~~~~~
-
-Control memory usage and processing speed:
-
-.. code-block:: json
-
-    "extraction_batch_size": 32,
-    "post_extraction_batch_size": 16
-
-.. list-table:: Batch Size Guidelines
-   :widths: 30 25 25 20
-   :header-rows: 1
-
-   * - Hardware
-     - Extraction Batch
-     - Post-Processing Batch
-     - Notes
-   * - CPU only
-     - 8-16
-     - 4-8
-     - Conservative settings
-   * - GPU (8GB)
-     - 32-64
-     - 16-32
-     - Standard configuration
-   * - GPU (16GB+)
-     - 64-128
-     - 32-64
-     - High-performance setup
-   * - GPU (24GB+)
-     - 128-256
-     - 64-128
-     - Maximum throughput
-
-.. warning::
-   Batch sizes that are too large will cause out-of-memory errors. Start with smaller values and increase gradually.
-
-Example Configurations
-----------------------
-
-Basic Organic Analysis
-~~~~~~~~~~~~~~~~~~~~~~
-
-Small organic molecules with standard elements:
+For your first analysis, use this template:
 
 .. code-block:: json
 
     {
       "extraction": {
-        "data_directory": "./organic_analysis",
-        "data_prefix": "organics",
+        "data_directory": "./csa_output",
+        "data_prefix": "organic_analysis",
         "actions": {
           "get_refcode_families": true,
           "cluster_refcode_families": true,
@@ -242,266 +56,300 @@ Small organic molecules with standard elements:
       }
     }
 
-Pharmaceutical Analysis
-~~~~~~~~~~~~~~~~~~~~~~~
+Essential Parameters
+-------------------
 
-Drug-like molecules including halogens and sulfur:
+Required Settings
+~~~~~~~~~~~~~~~~
+
+**data_directory**
+  Where CSA will save all output files
+  
+  Example: ``"./my_analysis_output"``
+
+**data_prefix**
+  Prefix for all generated filenames
+  
+  Example: ``"pharma_study"`` → ``pharma_study_structures.h5``
+
+Pipeline Control
+~~~~~~~~~~~~~~~
+
+**actions** - Controls which pipeline stages to run:
 
 .. code-block:: json
 
-    {
-      "extraction": {
-        "data_directory": "./pharma_analysis", 
-        "data_prefix": "pharmaceuticals",
-        "filters": {
-          "target_z_prime_values": [1, 2],
-          "crystal_type": ["homomolecular"],
-          "molecule_formal_charges": [0, 1, -1],
-          "molecule_weight_limit": 800.0,
-          "target_species": ["C", "H", "N", "O", "S", "F", "Cl", "Br"]
-        },
-        "extraction_batch_size": 64,
-        "post_extraction_batch_size": 32
-      }
+    "actions": {
+      "get_refcode_families": true,      // Query CSD for structures
+      "cluster_refcode_families": true,  // Group similar packings
+      "get_unique_structures": true,     // Select representatives
+      "get_structure_data": true,        // Extract coordinates
+      "post_extraction_process": true    // Compute features
     }
 
-High-Throughput Screening
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Set any action to ``false`` to skip that stage.
 
-Maximum performance for large datasets:
+Basic Filters
+~~~~~~~~~~~~~
+
+**target_z_prime_values**
+  Number of molecules per asymmetric unit
+  
+  Common values: ``[1]`` (most structures), ``[1, 2]`` (include Z'=2)
+
+**crystal_type**
+  Type of crystal structures to include
+  
+  Options: ``["homomolecular"]``, ``["co-crystal"]``, ``["organometallic"]``
+
+**molecule_formal_charges**
+  Allowed molecular charges
+  
+  Typical: ``[0]`` (neutral), ``[0, 1, -1]`` (include ions)
+
+**molecule_weight_limit**
+  Maximum molecular weight in Daltons
+  
+  Examples: ``300.0`` (small molecules), ``800.0`` (larger molecules)
+
+**target_species**
+  Required chemical elements
+  
+  Examples:
+  - ``["C", "H", "N", "O"]`` - Basic organics
+  - ``["C", "H", "N", "O", "S", "F", "Cl"]`` - Pharmaceuticals
+  - ``[]`` - All elements (empty array)
+
+Performance Settings
+-------------------
+
+Batch Sizes
+~~~~~~~~~~~
+
+Control memory usage and speed:
+
+**extraction_batch_size**
+  Structures processed together during data extraction
+  
+  - Start with: ``32``
+  - If you have lots of RAM/GPU memory: ``64`` or ``128``
+  - If you get memory errors: ``16`` or ``8``
+
+**post_extraction_batch_size**
+  Structures processed together during feature computation
+  
+  - Start with: ``16``
+  - If you have lots of RAM/GPU memory: ``32`` or ``64``
+  - If you get memory errors: ``8`` or ``4``
+
+Common Configurations
+--------------------
+
+Small Organic Molecules
+~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: json
 
     {
       "extraction": {
-        "data_directory": "./hts_analysis",
-        "data_prefix": "high_throughput", 
+        "data_directory": "./small_organics",
+        "data_prefix": "small_molecules",
         "filters": {
           "target_z_prime_values": [1],
           "crystal_type": ["homomolecular"],
-          "molecule_weight_limit": 600.0
-        },
-        "extraction_batch_size": 128,
-        "post_extraction_batch_size": 64
-      }
-    }
-
-Local CIF File Analysis
-~~~~~~~~~~~~~~~~~~~~~~~
-
-Analyze your own CIF files instead of querying the CSD:
-
-.. code-block:: json
-
-    {
-      "extraction": {
-        "data_directory": "./local_cif_analysis",
-        "data_prefix": "my_structures",
-        "actions": {
-          "get_refcode_families": false,
-          "cluster_refcode_families": false,
-          "get_unique_structures": false,
-          "get_structure_data": true,
-          "post_extraction_process": true
-        },
-        "filters": {
-          "structure_list": ["cif", "/path/to/your/cif/files"]
+          "molecule_formal_charges": [0],
+          "molecule_weight_limit": 300.0,
+          "target_species": ["C", "H", "N", "O"]
         },
         "extraction_batch_size": 32,
         "post_extraction_batch_size": 16
       }
     }
 
-Configuration Validation
--------------------------
-
-CSA performs comprehensive validation of configuration files at startup:
-
-Schema Validation
-~~~~~~~~~~~~~~~~~
-
-All parameters are checked for:
-- **Type correctness** (string, number, array, boolean)
-- **Required fields** presence  
-- **Value ranges** for numeric parameters
-- **Valid options** for enumerated fields
-
-Common Validation Errors
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Invalid JSON Syntax**
-
-.. code-block:: text
-
-    ERROR: Invalid JSON in config file: Expecting ',' delimiter: line 15 column 5
-
-*Solution*: Check for missing commas, quotes, or brackets
-
-**Missing Required Fields**
-
-.. code-block:: text
-
-    ERROR: Missing required field 'data_directory' in extraction config
-
-*Solution*: Add all required parameters to your configuration
-
-**Invalid Parameter Values**
-
-.. code-block:: text
-
-    ERROR: extraction_batch_size must be between 1 and 256, got 512
-
-*Solution*: Use values within the specified ranges
-
-**Invalid File Paths**
-
-.. code-block:: text
-
-    ERROR: CIF directory '/nonexistent/path' not found
-
-*Solution*: Ensure all file paths exist and are accessible
-
-Configuration Inheritance
---------------------------
-
-Default Configuration
-~~~~~~~~~~~~~~~~~~~~~
-
-CSA includes built-in defaults for all optional parameters:
-
-.. code-block:: python
-
-    DEFAULT_CONFIG = {
-        "extraction": {
-            "actions": {
-                "get_refcode_families": True,
-                "cluster_refcode_families": True,
-                "get_unique_structures": True,
-                "get_structure_data": True,
-                "post_extraction_process": True
-            },
-            "filters": {
-                "target_z_prime_values": [1],
-                "target_space_groups": [],
-                "crystal_type": ["homomolecular"],
-                "molecule_formal_charges": [0],
-                "molecule_weight_limit": 1000.0,
-                "target_species": [],
-                "structure_list": ["csd-unique"]
-            },
-            "extraction_batch_size": 32,
-            "post_extraction_batch_size": 16
-        }
-    }
-
-Minimal Configuration
-~~~~~~~~~~~~~~~~~~~~~
-
-The smallest valid configuration requires only the essential parameters:
+Drug-Like Molecules
+~~~~~~~~~~~~~~~~~~
 
 .. code-block:: json
 
     {
       "extraction": {
-        "data_directory": "./output",
-        "data_prefix": "analysis"
+        "data_directory": "./pharmaceuticals",
+        "data_prefix": "drug_molecules",
+        "filters": {
+          "target_z_prime_values": [1, 2],
+          "crystal_type": ["homomolecular"],
+          "molecule_formal_charges": [0, 1, -1],
+          "molecule_weight_limit": 600.0,
+          "target_species": ["C", "H", "N", "O", "S", "F", "Cl", "Br"]
+        },
+        "extraction_batch_size": 32,
+        "post_extraction_batch_size": 16
       }
     }
 
-All other parameters will use their default values.
+Quick Test Run
+~~~~~~~~~~~~~
 
-Environment Variables
+For testing CSA quickly with a small dataset:
+
+.. code-block:: json
+
+    {
+      "extraction": {
+        "data_directory": "./test_run",
+        "data_prefix": "quick_test",
+        "filters": {
+          "target_z_prime_values": [1],
+          "crystal_type": ["homomolecular"],
+          "molecule_formal_charges": [0],
+          "molecule_weight_limit": 200.0,
+          "target_species": ["C", "H", "N", "O"],
+          "max_structures": 100
+        },
+        "extraction_batch_size": 16,
+        "post_extraction_batch_size": 8
+      }
+    }
+
+Note: ``max_structures`` limits the total number of structures processed.
+
+Creating Your Configuration
+---------------------------
+
+Step-by-Step Process
+~~~~~~~~~~~~~~~~~~~
+
+1. **Copy a template** from the examples above
+2. **Modify the basics**:
+   - Change ``data_directory`` to your desired output location
+   - Set ``data_prefix`` to describe your analysis
+3. **Adjust filters** for your research:
+   - Set appropriate molecular weight limit
+   - Choose relevant chemical elements
+   - Decide on charge states and Z' values
+4. **Set batch sizes** based on your hardware:
+   - Start with the defaults (32, 16)
+   - Reduce if you get memory errors
+   - Increase if you have powerful hardware
+5. **Save as a .json file**
+
+Validation and Testing
 ---------------------
 
-Some configuration values can be overridden using environment variables:
-
-**CSD Database Path**
-
-.. code-block:: bash
-
-    export CCDC_CSD_DIRECTORY="/path/to/csd/database"
-
-**GPU Device Selection**
-
-.. code-block:: bash
-
-    export CUDA_VISIBLE_DEVICES="0,1"  # Use GPUs 0 and 1
-
-**Memory Optimization**
-
-.. code-block:: bash
-
-    export PYTORCH_CUDA_ALLOC_CONF="max_split_size_mb:512"
-
-Best Practices
---------------
-
-Configuration Management
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-1. **Use descriptive prefixes**: Include date, target, or purpose in data_prefix
-2. **Version your configs**: Keep configurations with your analysis results  
-3. **Document modifications**: Use comments to explain non-standard settings
-4. **Test with small datasets**: Validate configurations with restricted filters first
-
-Performance Optimization
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-1. **Start conservative**: Begin with small batch sizes and increase gradually
-2. **Monitor resources**: Watch GPU memory and system RAM usage during runs
-3. **Profile your system**: Different hardware configurations require different settings
-4. **Use appropriate filters**: More restrictive filters reduce processing time
-
-Reproducibility
+Check Your JSON
 ~~~~~~~~~~~~~~~
 
-1. **Save complete configs**: Store the exact configuration used for each analysis
-2. **Record software versions**: Document CSA, PyTorch, and CCDC versions
-3. **Timestamp analyses**: Include analysis dates in output directories
-4. **Validate inputs**: Ensure CSD versions and filter criteria are documented
+Before running CSA, validate your JSON syntax:
 
-Troubleshooting
----------------
+1. **Use an online JSON validator** (search "JSON validator")
+2. **Check for common errors**:
+   - Missing commas between items
+   - Missing quotes around strings
+   - Mismatched brackets or braces
 
-Configuration Issues
-~~~~~~~~~~~~~~~~~~~~
+Test with Small Dataset
+~~~~~~~~~~~~~~~~~~~~~~
 
-**Problem**: ``FileNotFoundError: Config file not found``
+Always test new configurations with a small dataset first:
 
-*Solution*: Check file path and ensure the configuration file exists
+.. code-block:: json
 
-**Problem**: ``JSON decode error``
+    "filters": {
+      "max_structures": 50,
+      // ... your other filters
+    }
 
-*Solution*: Validate JSON syntax using an online JSON validator
+This limits processing to 50 structures, making testing fast.
 
-**Problem**: ``Invalid extraction configuration``
+Common Beginner Mistakes
+------------------------
 
-*Solution*: Compare against the examples in this guide and check for typos
-
-Performance Issues
+JSON Syntax Errors
 ~~~~~~~~~~~~~~~~~~
 
-**Problem**: Out of GPU memory during processing
+**Missing Commas**
 
-*Solution*: Reduce batch sizes in the configuration
+❌ Wrong:
+.. code-block:: json
 
-**Problem**: Very slow processing on CPU
+    {
+      "data_directory": "./output"
+      "data_prefix": "analysis"
+    }
 
-*Solution*: Install GPU-enabled PyTorch and reduce batch sizes
+✅ Correct:
+.. code-block:: json
 
-**Problem**: Disk space errors
+    {
+      "data_directory": "./output",
+      "data_prefix": "analysis"
+    }
 
-*Solution*: Ensure sufficient space in the data directory
+**Quotes Around Strings**
+
+❌ Wrong:
+.. code-block:: json
+
+    {
+      "target_species": [C, H, N, O]
+    }
+
+✅ Correct:
+.. code-block:: json
+
+    {
+      "target_species": ["C", "H", "N", "O"]
+    }
+
+Configuration Issues
+~~~~~~~~~~~~~~~~~~~
+
+**Too Restrictive Filters**
+
+If CSA finds no structures, your filters might be too strict:
+- Increase ``molecule_weight_limit``
+- Add more elements to ``target_species``
+- Include more charge states or Z' values
+
+**Memory Problems**
+
+If you get "out of memory" errors:
+- Reduce ``extraction_batch_size`` to 16 or 8
+- Reduce ``post_extraction_batch_size`` to 8 or 4
+- Use fewer structures for testing
+
+**Very Slow Processing**
+
+If CSA runs very slowly:
+- Check that you have GPU acceleration enabled
+- Reduce the dataset size for initial testing
+- Consider using a more powerful computer
+
+Getting Help
+-----------
+
+When Things Go Wrong
+~~~~~~~~~~~~~~~~~~~
+
+1. **Check the error message** - CSA provides detailed error information
+2. **Validate your JSON** - Use an online JSON validator
+3. **Try a simpler configuration** - Start with the minimal example and add complexity
+4. **Test with fewer structures** - Add ``"max_structures": 50`` to your filters
+5. **Check the examples** - Compare your configuration to the working examples above
 
 Next Steps
 ----------
 
-With your configuration ready:
+Once you have a working configuration:
 
-1. **Validate syntax**: Test your JSON using online validators
-2. **Start small**: Run with restrictive filters first  
-3. **Monitor performance**: Watch resource usage during initial runs
-4. **Scale up gradually**: Increase dataset size and batch sizes as appropriate
-5. **Document settings**: Keep records of successful configurations
+1. **Run your first analysis** - Follow the :doc:`quickstart` guide
+2. **Explore the results** - Learn what CSA produces
+3. **Try different filters** - Experiment with different molecular systems
+4. **Learn advanced configuration** - Check :doc:`../user_guide/configuration` for research-specific setups
 
-Continue to :doc:`quickstart` to run your first analysis, or explore :doc:`../user_guide/basic_analysis` for detailed workflow examples.
+See Also
+--------
+
+:doc:`quickstart` : Run your first analysis with your configuration
+:doc:`../user_guide/configuration` : Advanced configuration strategies
+:doc:`../user_guide/basic_analysis` : Understanding and analyzing your results

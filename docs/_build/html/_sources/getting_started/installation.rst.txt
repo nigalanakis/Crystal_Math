@@ -1,294 +1,410 @@
 Installation
 ============
 
-This guide will help you install the Crystal Structure Analysis (CSA) framework and its dependencies.
-
-Prerequisites
--------------
+This guide will help you install the Crystal Structure Analysis (CSA) framework and its dependencies step by step.
 
 System Requirements
-~~~~~~~~~~~~~~~~~~~
+------------------
 
-- **Python**: 3.8 or higher
-- **Operating System**: Linux (recommended), macOS, or Windows
-- **Memory**: 16 GB RAM minimum, 32 GB+ recommended for large datasets
-- **GPU**: CUDA-compatible GPU recommended for optimal performance
-- **Storage**: SSD recommended for HDF5 file operations
+**Minimum Requirements**
+  * **Python**: 3.9 (required for CSD Python API)
+  * **Operating System**: Windows 10+, macOS 10.15+, or Linux (Ubuntu 18.04+)
+  * **Memory**: 16 GB RAM minimum
+  * **Storage**: 10 GB free space (more for large analyses)
 
-Required Licenses
-~~~~~~~~~~~~~~~~~~
+**Recommended Requirements**
+  * **Memory**: 32+ GB RAM for large datasets
+  * **GPU**: CUDA-compatible GPU for optimal performance
+  * **Storage**: SSD for HDF5 file operations
 
-CSA requires access to the Cambridge Structural Database (CSD):
+**Required Licenses**
+  * **CCDC License**: Valid license for CCDC software and Python API
+  * **CSD Database**: Access to the Cambridge Structural Database
 
-- **CCDC License**: Valid license for CCDC software and Python API
-- **CSD Database**: Access to the Cambridge Structural Database
+.. note::
+   Contact the `Cambridge Crystallographic Data Centre <https://www.ccdc.cam.ac.uk/>`_ for licensing information.
 
-Contact the `Cambridge Crystallographic Data Centre <https://www.ccdc.cam.ac.uk/>`_ for licensing information.
+Step 1: Install Python and Prerequisites
+----------------------------------------
 
-Installation Methods
---------------------
+Python 3.9 Installation
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Method 1: Standard Installation (Recommended)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Windows:**
 
-1. **Clone the repository**::
+1. Download Python 3.9 from `python.org <https://www.python.org/downloads/>`_
+2. Run the installer and check "Add Python to PATH"
+3. Verify installation:
 
-    git clone https://github.com/your-org/crystal-structure-analysis.git
-    cd crystal-structure-analysis
+.. code-block:: bash
 
-2. **Create a virtual environment**::
+   python --version
+   # Should output: Python 3.9.x
 
-    python -m venv csa_env
-    source csa_env/bin/activate  # On Windows: csa_env\Scripts\activate
+**macOS:**
 
-3. **Install dependencies**::
+.. code-block:: bash
 
-    pip install -r requirements.txt
+   # Using Homebrew (recommended)
+   brew install python@3.9
+   
+   # Or download from python.org
 
-Method 2: Development Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Linux (Ubuntu/Debian):**
 
-For contributors and developers:
+.. code-block:: bash
 
-1. **Clone with development dependencies**::
+   sudo apt update
+   sudo apt install python3.9 python3.9-venv python3.9-pip
 
-    git clone https://github.com/your-org/crystal-structure-analysis.git
-    cd crystal-structure-analysis
+Step 2: Install CCDC Software
+-----------------------------
 
-2. **Install in development mode**::
-
-    pip install -e .
-    pip install -r requirements-dev.txt
-
-Dependencies
-------------
-
-Core Dependencies
+CSD Software Suite
 ~~~~~~~~~~~~~~~~~
 
-CSA relies on several key packages:
+1. **Download CCDC Software**:
+   - Log into your CCDC account
+   - Download the CSD System for your platform
+   - Follow CCDC's installation instructions
 
-**Scientific Computing**
-  - **PyTorch** (≥1.12.0): GPU-accelerated tensor operations
-  - **NumPy** (≥1.21.0): Numerical computations
-  - **SciPy** (≥1.7.0): Scientific algorithms
+2. **Install CSD Python API**:
+   - Typically included with CSD installation
+   - May require separate activation
 
-**Data Management**
-  - **HDF5** (≥1.12.0): High-performance data storage
-  - **h5py** (≥3.6.0): Python interface to HDF5
-  - **pandas** (≥1.3.0): Data manipulation and analysis
+3. **Verify CCDC Installation**:
 
-**Crystallography**
-  - **CCDC Python API**: Cambridge Structural Database access
-  - **NetworkX** (≥2.6): Graph operations for molecular networks
+.. code-block:: bash
 
-**Parallel Processing**
-  - **multiprocessing**: Built-in Python parallel processing
-  - **concurrent.futures**: Asynchronous execution
+   python -c "from ccdc import io; print('CCDC API successfully imported')"
 
-Optional Dependencies
-~~~~~~~~~~~~~~~~~~~~~
+.. note::
+   If you encounter import errors, ensure the CCDC Python API is in your Python path. Check CCDC documentation for platform-specific setup.
 
-**Visualization**
-  - **matplotlib** (≥3.5.0): Plotting and visualization
-  - **plotly** (≥5.0.0): Interactive plots
-
-**Development Tools**
-  - **pytest** (≥6.0.0): Testing framework
-  - **black**: Code formatting
-  - **flake8**: Code linting
-  - **sphinx**: Documentation generation
-
-CCDC Software Setup
+Step 3: Install CSA
 -------------------
 
-Installing CCDC Python API
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Download CSA
+~~~~~~~~~~~
 
-1. **Download CCDC Software**: Obtain the CCDC software suite from the CCDC website
-2. **Install CSD Python API**: Follow CCDC's installation instructions for your platform
-3. **Verify Installation**::
+.. code-block:: bash
 
-    python -c "from ccdc import io; print('CCDC API successfully imported')"
+   # Clone the repository
+   git clone https://github.com/your-org/crystal-structure-analysis.git
+   cd crystal-structure-analysis
 
-Database Configuration
-~~~~~~~~~~~~~~~~~~~~~~
+Create Virtual Environment
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Configure your CSD database path:
+.. code-block:: bash
 
-1. **Set Environment Variables**::
+   # Create virtual environment
+   python -m venv csa_env
+   
+   # Activate environment
+   # Windows:
+   csa_env\Scripts\activate
+   
+   # macOS/Linux:
+   source csa_env/bin/activate
 
-    export CCDC_CSD_DIRECTORY="/path/to/your/csd/database"
+Install Dependencies
+~~~~~~~~~~~~~~~~~~~
 
-2. **Verify Database Access**::
+.. code-block:: bash
 
-    python -c "from ccdc import io; reader = io.EntryReader('CSD'); print(f'CSD contains {len(reader)} entries')"
+   # Upgrade pip
+   pip install --upgrade pip
+   
+   # Install CSA dependencies
+   pip install -r requirements.txt
 
-GPU Setup (Optional but Recommended)
--------------------------------------
+.. note::
+   If you encounter compilation errors during installation, you may need to install development tools for your platform.
+
+Step 4: Configure CSA
+---------------------
+
+Set Environment Variables
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**CSD Database Path:**
+
+.. code-block:: bash
+
+   # Windows (Command Prompt):
+   set CCDC_CSD_DIRECTORY=C:\path\to\your\csd\database
+   
+   # Windows (PowerShell):
+   $env:CCDC_CSD_DIRECTORY="C:\path\to\your\csd\database"
+   
+   # macOS/Linux:
+   export CCDC_CSD_DIRECTORY="/path/to/your/csd/database"
+
+**Make Environment Variables Permanent:**
+
+**Windows:**
+- Search for "Environment Variables" in Start Menu
+- Add ``CCDC_CSD_DIRECTORY`` as a system variable
+
+**macOS/Linux:**
+Add to your shell configuration file (``~/.bashrc``, ``~/.zshrc``, etc.):
+
+.. code-block:: bash
+
+   echo 'export CCDC_CSD_DIRECTORY="/path/to/your/csd/database"' >> ~/.bashrc
+
+Step 5: GPU Setup (Optional but Recommended)
+--------------------------------------------
 
 CUDA Installation
 ~~~~~~~~~~~~~~~~~
 
 For GPU acceleration:
 
-1. **Install CUDA Toolkit** (≥11.6):
-   
+1. **Check GPU Compatibility**:
+
+.. code-block:: bash
+
+   nvidia-smi  # Should show your GPU info
+
+2. **Install CUDA Toolkit** (version 11.6 or later):
    - Download from `NVIDIA CUDA <https://developer.nvidia.com/cuda-toolkit>`_
    - Follow platform-specific installation instructions
 
-2. **Install PyTorch with CUDA**::
+3. **Install PyTorch with CUDA**:
 
-    pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+.. code-block:: bash
 
-3. **Verify GPU Setup**::
+   pip uninstall torch torchvision torchaudio  # Remove CPU version if installed
+   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
-    python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}'); print(f'GPU count: {torch.cuda.device_count()}')"
+4. **Verify GPU Setup**:
 
-Verification
-------------
+.. code-block:: bash
 
-Quick Installation Test
-~~~~~~~~~~~~~~~~~~~~~~~
+   python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}'); print(f'GPU count: {torch.cuda.device_count()}')"
 
-Run this script to verify your installation:
+Step 6: Verify Installation
+---------------------------
+
+Quick Verification Script
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Save this script as ``verify_installation.py``:
 
 .. code-block:: python
 
-    #!/usr/bin/env python3
-    """Installation verification script for CSA."""
+   #!/usr/bin/env python3
+   """Quick installation verification for CSA."""
 
-    def test_imports():
-        """Test all critical imports."""
-        try:
-            # Core scientific libraries
-            import numpy as np
-            import torch
-            import h5py
-            import pandas as pd
-            print("✓ Core scientific libraries imported successfully")
-            
-            # CCDC API
-            from ccdc import io
-            print("✓ CCDC API imported successfully")
-            
-            # CSA modules
-            import sys
-            sys.path.append('src')
-            from csa_config import load_config
-            from crystal_analyzer import CrystalAnalyzer
-            print("✓ CSA modules imported successfully")
-            
-            return True
-        except ImportError as e:
-            print(f"✗ Import error: {e}")
-            return False
+   def test_core_imports():
+       """Test essential Python libraries."""
+       try:
+           import numpy
+           import torch
+           import h5py
+           import pandas
+           print("✓ Core scientific libraries installed")
+           return True
+       except ImportError as e:
+           print(f"✗ Missing library: {e}")
+           return False
 
-    def test_gpu():
-        """Test GPU availability."""
-        import torch
-        if torch.cuda.is_available():
-            device = torch.cuda.get_device_name(0)
-            print(f"✓ GPU available: {device}")
-            return True
-        else:
-            print("! GPU not available (CPU-only mode)")
-            return False
+   def test_ccdc_api():
+       """Test CCDC API access."""
+       try:
+           from ccdc import io
+           print("✓ CCDC API accessible")
+           return True
+       except ImportError:
+           print("✗ CCDC API not found - check CCDC installation")
+           return False
 
-    def test_csd_access():
-        """Test CSD database access."""
-        try:
-            from ccdc import io
-            reader = io.EntryReader('CSD')
-            entry_count = len(reader)
-            print(f"✓ CSD database accessible ({entry_count:,} entries)")
-            return True
-        except Exception as e:
-            print(f"✗ CSD access error: {e}")
-            return False
+   def test_csd_database():
+       """Test CSD database connection."""
+       try:
+           from ccdc import io
+           reader = io.EntryReader('CSD')
+           count = len(reader)
+           print(f"✓ CSD database accessible ({count:,} entries)")
+           return True
+       except Exception as e:
+           print(f"✗ CSD database error: {e}")
+           return False
 
-    if __name__ == "__main__":
-        print("CSA Installation Verification")
-        print("=" * 40)
-        
-        success = True
-        success &= test_imports()
-        success &= test_gpu()
-        success &= test_csd_access()
-        
-        print("=" * 40)
-        if success:
-            print("🎉 Installation verification successful!")
-        else:
-            print("❌ Installation issues detected. Check error messages above.")
+   def test_gpu():
+       """Test GPU availability."""
+       try:
+           import torch
+           if torch.cuda.is_available():
+               device = torch.cuda.get_device_name(0)
+               print(f"✓ GPU available: {device}")
+           else:
+               print("! No GPU available (CPU-only mode)")
+           return True
+       except Exception as e:
+           print(f"✗ GPU test error: {e}")
+           return False
 
-Save this as ``verify_installation.py`` and run::
+   def test_csa_modules():
+       """Test CSA module imports."""
+       try:
+           import sys
+           import os
+           
+           # Add CSA source directory to path
+           csa_src = os.path.join(os.path.dirname(__file__), 'src')
+           if os.path.exists(csa_src):
+               sys.path.insert(0, csa_src)
+           
+           from csa_config import ExtractionConfig
+           from crystal_analyzer import CrystalAnalyzer
+           print("✓ CSA modules importable")
+           return True
+       except ImportError as e:
+           print(f"✗ CSA module error: {e}")
+           return False
 
-    python verify_installation.py
+   if __name__ == "__main__":
+       print("CSA Installation Verification")
+       print("=" * 40)
+       
+       all_tests = [
+           test_core_imports,
+           test_ccdc_api,
+           test_csd_database,
+           test_gpu,
+           test_csa_modules
+       ]
+       
+       passed = 0
+       for test in all_tests:
+           if test():
+               passed += 1
+           print()
+       
+       print("=" * 40)
+       print(f"Tests passed: {passed}/{len(all_tests)}")
+       
+       if passed == len(all_tests):
+           print("🎉 Installation verification successful!")
+           print("Ready to run CSA analyses!")
+       elif passed >= 3:  # Core functionality works
+           print("⚠️ Partial success - core functionality available")
+           print("Some features may not work optimally")
+       else:
+           print("❌ Installation issues detected")
+           print("Please review error messages above")
+
+Run the verification:
+
+.. code-block:: bash
+
+   python verify_installation.py
+
+Expected Output
+~~~~~~~~~~~~~~
+
+Successful installation should show:
+
+.. code-block:: text
+
+   CSA Installation Verification
+   ========================================
+   ✓ Core scientific libraries installed
+   
+   ✓ CCDC API accessible
+   
+   ✓ CSD database accessible (1,234,567 entries)
+   
+   ✓ GPU available: NVIDIA GeForce RTX 3080
+   
+   ✓ CSA modules importable
+   
+   ========================================
+   Tests passed: 5/5
+   🎉 Installation verification successful!
+   Ready to run CSA analyses!
 
 Troubleshooting
 ---------------
 
-Common Issues
-~~~~~~~~~~~~~
+Common Installation Issues
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**CCDC API Not Found**
+**CCDC API Import Error**
 
-*Problem*: ``ImportError: No module named 'ccdc'``
+.. code-block:: text
 
-*Solutions*:
-  1. Ensure CCDC software is properly installed
-  2. Check that the CCDC Python API is in your Python path
-  3. Verify your CCDC license is valid
+   ImportError: No module named 'ccdc'
 
-**CUDA Not Available**
+**Solutions:**
+1. Verify CCDC software is installed
+2. Check CCDC Python API installation
+3. Ensure Python path includes CCDC modules
+4. Verify CCDC license is active
 
-*Problem*: ``torch.cuda.is_available()`` returns ``False``
+**CUDA/GPU Issues**
 
-*Solutions*:
-  1. Install NVIDIA GPU drivers
-  2. Install CUDA toolkit
-  3. Reinstall PyTorch with CUDA support
-  4. Check GPU compatibility
+.. code-block:: text
 
-**HDF5 Library Issues**
+   RuntimeError: CUDA not available
 
-*Problem*: HDF5 library errors during h5py operations
+**Solutions:**
+1. Install NVIDIA GPU drivers
+2. Install CUDA toolkit (11.6+)
+3. Reinstall PyTorch with CUDA support
+4. Check GPU compatibility with CUDA
 
-*Solutions*:
-  1. Update h5py: ``pip install --upgrade h5py``
-  2. Install HDF5 development libraries (Linux): ``sudo apt-get install libhdf5-dev``
-  3. Use conda for HDF5 management: ``conda install h5py``
+**CSD Database Access**
 
-**Memory Issues**
+.. code-block:: text
 
-*Problem*: Out of memory errors during processing
+   CSDError: Cannot open database
 
-*Solutions*:
-  1. Reduce batch sizes in configuration
-  2. Enable memory-mapped HDF5 datasets
-  3. Use CPU processing for large datasets
-  4. Monitor memory usage with system tools
+**Solutions:**
+1. Check ``CCDC_CSD_DIRECTORY`` environment variable
+2. Verify database files exist and are readable
+3. Ensure proper file permissions
+4. Check CCDC license status
 
-Getting Help
-~~~~~~~~~~~~
+**Memory/Performance Issues**
 
-If you encounter issues:
+**If you encounter memory problems:**
+1. Close other applications
+2. Use smaller batch sizes in configurations
+3. Consider upgrading system memory
+4. Enable virtual memory/swap if needed
 
-1. **Check the logs**: CSA provides detailed logging information
-2. **Review configuration**: Ensure your config files are properly formatted
-3. **Test with small datasets**: Verify functionality with minimal examples
-4. **Consult documentation**: Check the troubleshooting section
-5. **Report issues**: Submit bug reports with full error traces
+Getting Additional Help
+~~~~~~~~~~~~~~~~~~~~~~
+
+If installation problems persist:
+
+1. **Check system requirements** - Ensure your system meets minimum requirements
+2. **Review error messages** - Look for specific error codes or messages
+3. **Consult CCDC documentation** - For CCDC-specific issues
+4. **Try minimal installation** - Install only essential dependencies first
+5. **Report installation issues** - Submit detailed bug reports with system information
 
 Next Steps
 ----------
 
 After successful installation:
 
-1. **Configure CSA**: Set up your configuration files
-2. **Run quickstart**: Follow the quickstart tutorial
-3. **Explore examples**: Try the provided example workflows
-4. **Read the user guide**: Learn about CSA's capabilities
+1. **Test with quickstart** - Run your first analysis (:doc:`quickstart`)
+2. **Learn configuration** - Understand CSA settings (:doc:`configuration`)
+3. **Explore examples** - Try provided example workflows
+4. **Join the community** - Get help and share experiences
 
-Continue to the :doc:`quickstart` to set up your first CSA project.
+.. note::
+   Keep your virtual environment activated whenever using CSA:
+   
+   .. code-block:: bash
+   
+      # Activate before each CSA session
+      source csa_env/bin/activate  # macOS/Linux
+      csa_env\Scripts\activate     # Windows
+
+Continue to :doc:`quickstart` to run your first CSA analysis!

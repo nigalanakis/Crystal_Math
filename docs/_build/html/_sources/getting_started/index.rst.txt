@@ -30,7 +30,7 @@ What You'll Learn
       :link: configuration
       :link-type: doc
 
-      Master CSA's configuration system from basic setups to advanced optimizations.
+      Master CSA's basic configuration system to get your first analysis running.
 
    .. grid-item-card:: 🔍 Data Exploration
       :link: ../user_guide/basic_analysis
@@ -44,7 +44,7 @@ Prerequisites
 Before starting with CSA, you should have:
 
 **Technical Requirements**
-  * Python 3.8 or higher
+  * Python 3.9 (Required for CSD Python API)
   * Basic familiarity with Python and command-line interfaces
   * Access to a computer with sufficient memory (16+ GB recommended)
 
@@ -57,14 +57,14 @@ Before starting with CSA, you should have:
   * Valid CCDC license for CSD access
   * Cambridge Structural Database installation
 
-Quick Start Path
-----------------
+Quick Start Path (55 minutes)
+-----------------------------
 
 For the fastest route to your first analysis:
 
 1. **Install CSA** (:doc:`installation`) - Set up software and dependencies (~15 minutes)
 2. **Run Quickstart** (:doc:`quickstart`) - Process your first dataset (~15 minutes)  
-3. **Configure Analysis** (:doc:`configuration`) - Optimize settings for your needs (~10 minutes)
+3. **Configure Analysis** (:doc:`configuration`) - Understand basic settings (~10 minutes)
 4. **Explore Results** (:doc:`../user_guide/basic_analysis`) - Examine output files and generated features (~15 minutes)
 
 This 55-minute path will give you a complete understanding of CSA's capabilities and how to customize them for your research.
@@ -75,11 +75,12 @@ Detailed Learning Path
 For comprehensive understanding:
 
 1. **Complete Installation** (:doc:`installation`) - Full setup with optimization
-2. **Learn Configuration** (:doc:`configuration`) - Understand all analysis options and performance tuning
-3. **Master Basic Analysis** (:doc:`../user_guide/basic_analysis`) - Complete workflow walkthrough
-4. **Understand Data Model** (:doc:`../user_guide/data_model`) - How CSA organizes crystal structure data
-5. **Study User Guide** (:doc:`../user_guide/index`) - Core concepts and advanced workflows
-6. **Try Tutorials** (:doc:`../tutorials/index`) - Domain-specific examples and best practices
+2. **Learn Basic Configuration** (:doc:`configuration`) - Essential settings and common patterns
+3. **Master Quickstart Workflow** (:doc:`quickstart`) - Complete first analysis walkthrough
+4. **Understand Your Results** (:doc:`../user_guide/basic_analysis`) - Analyze and interpret CSA output
+5. **Learn the Data Model** (:doc:`../user_guide/data_model`) - How CSA organizes crystal structure data
+6. **Explore Advanced Configuration** (:doc:`../user_guide/configuration`) - Research-driven setups
+7. **Try Domain-Specific Tutorials** (:doc:`../tutorials/index`) - Examples for your research area
 
 Choose Your Starting Point
 ---------------------------
@@ -92,15 +93,47 @@ Choose Your Starting Point
 
    .. tab-item:: I'm Familiar with Crystallography
 
-      Jump to the **Quickstart** to see CSA in action, then explore the **Configuration Guide** to customize analyses for your research.
+      Jump to the **Quickstart** to see CSA in action, then review the **Configuration Guide** to understand the key settings.
 
    .. tab-item:: I'm Ready for Advanced Usage
 
-      Review the **Installation Guide** for optimization tips, then dive into the **Configuration Guide** and **User Guide** for comprehensive workflow documentation.
+      Complete the **Installation** and **Quickstart**, then dive into the **User Guide** for comprehensive workflow documentation.
 
    .. tab-item:: I Have Specific Research Goals
 
-      Check the **Configuration Guide** for research-driven setups, then explore the **Tutorials** section for domain-specific examples.
+      Follow the **Quick Start Path**, then explore the **Tutorials** section for domain-specific examples.
+
+What You'll Accomplish
+----------------------
+
+After completing the Getting Started section, you'll be able to:
+
+✅ **Install and configure CSA** on your system
+✅ **Run complete analyses** from CSD query to final results
+✅ **Create configuration files** for your specific research needs
+✅ **Access and explore CSA output** data files
+✅ **Troubleshoot common issues** and optimize performance
+✅ **Understand CSA's workflow** and capabilities
+
+Common Research Applications
+---------------------------
+
+After setup, you'll be ready to tackle research questions like:
+
+**Pharmaceutical Research**
+  * Configure for drug-like molecules with specific elements
+  * Use clustering to identify polymorphs
+  * Analyze hydrogen bonding patterns
+
+**Materials Science**
+  * Include metal atoms in target species
+  * Focus on coordination geometries
+  * Study porous framework structures
+
+**Organic Chemistry**
+  * Analyze conformational preferences
+  * Study intermolecular π-π interactions
+  * Compare packing motifs across chemical families
 
 Essential Next Steps
 -------------------
@@ -122,24 +155,6 @@ After completing the Getting Started section:
   * Read :doc:`../technical_details/algorithms` for implementation details
   * Consult contributing guidelines for extending CSA
 
-Common Workflows After Setup
-----------------------------
-
-**Pharmaceutical Research**
-  * Configure for drug-like molecules with specific elements
-  * Use clustering to identify polymorphs
-  * Analyze hydrogen bonding patterns
-
-**Materials Science**
-  * Include metal atoms in target species
-  * Focus on coordination geometries
-  * Study porous framework structures
-
-**Organic Chemistry**
-  * Analyze conformational preferences
-  * Study intermolecular π-π interactions
-  * Compare packing motifs across chemical families
-
 Getting Help
 ------------
 
@@ -147,11 +162,20 @@ If you encounter issues during setup or your first analysis:
 
 * **Check the troubleshooting sections** in each guide
 * **Review the Configuration Guide** for parameter optimization
-* **Consult the examples** for working code snippets
+* **Consult the quickstart examples** for working configurations
 * **Try the tutorials** for step-by-step guidance
 * **Report issues** on GitHub with detailed error information
 
 The CSA community is here to help you succeed with your crystal structure analysis projects!
+
+Ready to Begin?
+--------------
+
+Start your CSA journey:
+
+1. **New to CSA?** → Begin with :doc:`installation`
+2. **Already installed?** → Jump to :doc:`quickstart`
+3. **Need configuration help?** → Check :doc:`configuration`
 
 .. toctree::
    :hidden:

@@ -168,19 +168,33 @@ Technical Architecture
 
 **Validation Framework**: Every stage includes comprehensive validation to ensure data quality and catch potential issues early in the pipeline.
 
-Analysis Workflows
-------------------
+User Guide Sections
+-------------------
+
+Core Workflows
+~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 2
 
+   pipeline_overview
+   data_model
+   configuration
+   filtering
    basic_analysis
+
+Advanced Techniques
+~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 2
+
    advanced_features
    batch_processing
    custom_workflows
 
 Data Management
----------------
+~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 2
@@ -190,8 +204,8 @@ Data Management
    data_storage
    data_export
 
-Performance and Optimization
------------------------------
+Performance Optimization
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 2

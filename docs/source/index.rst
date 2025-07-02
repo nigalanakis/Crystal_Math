@@ -1,7 +1,7 @@
 Crystal Structure Analysis (CSA) Documentation
 ==============================================
 
-.. image:: https://img.shields.io/badge/python-3.8%2B-blue
+.. image:: https://img.shields.io/badge/python-3.9%2B-blue
    :alt: Python Version
 
 .. image:: https://img.shields.io/badge/pytorch-GPU%20Accelerated-orange
