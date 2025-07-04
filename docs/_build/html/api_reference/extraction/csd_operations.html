@@ -199,6 +199,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#pipeline-control">Pipeline Control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#basic-filters">Basic Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#element-species-filtering">Element Species Filtering</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#performance-settings">Performance Settings</a><ul>
@@ -208,7 +209,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#common-configurations">Common Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#small-organic-molecules">Small Organic Molecules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#drug-like-molecules">Drug-Like Molecules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#quick-test-run">Quick Test Run</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#creating-your-configuration">Creating Your Configuration</a><ul>
@@ -217,7 +217,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#validation-and-testing">Validation and Testing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#check-your-json">Check Your JSON</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../getting_started/configuration.html#test-with-small-dataset">Test with Small Dataset</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/configuration.html#common-beginner-mistakes">Common Beginner Mistakes</a><ul>
@@ -293,7 +292,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#learning-paths">Learning Paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/first_analysis.html">Your First Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#tutorial-overview">Tutorial Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#understanding-the-csa-pipeline">Understanding the CSA Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#step-1-setup-and-configuration">Step 1: Setup and Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#step-2-pipeline-execution">Step 2: Pipeline Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#step-3-exploring-the-results">Step 3: Exploring the Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#step-4-basic-data-analysis">Step 4: Basic Data Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorials/first_analysis.html#step-5-validation-and-quality-control">Step 5: Validation and Quality Control</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -475,8 +486,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#csd_operations._representative_for_cluster"><code class="docutils literal notranslate"><span class="pre">_representative_for_cluster()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#performance-optimization">Performance Optimization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#see-also">See Also</a></li>
 </ul>
 </li>
@@ -1775,11 +1784,13 @@ data_directory / f”{data_prefix}_refcode_families.csv”.</p></li>
 </dl>
 <p><strong>Example Output:</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id    refcode
-FAM001       ABINIK
-FAM001       ABINIK01
-FAM001       ABINIK02
-FAM002       ACETAC
-FAM002       ACETAC01
+ACSALA       ACSALA
+ACSALA       ACSALA01
+ACSALA       ACSALA02
+...
+BENZEN       BENZEN
+BENZEN       BENZEN01
+BENZEN       BENZEN02
 ...
 </pre></div>
 </div>
@@ -1816,9 +1827,11 @@ data_directory / f”{data_prefix}_refcode_families.csv”.</p></li>
 </div>
 <p><strong>CSV Format:</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id,refcode
-FAM001,ABINIK
-FAM001,ABINIK01
-FAM002,ACETAC
+ACSALA,ACSALA
+ACSALA,ACSALA01
+...
+BENZEN,BENZEN
+BENZEN,BENZEN01
 ...
 </pre></div>
 </div>
@@ -1946,11 +1959,24 @@ FAM002,ACETAC
 </div>
 <p><strong>Cluster Output:</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id    refcode     cluster_id
-FAM001       ABINIK      1
-FAM001       ABINIK01    1
-FAM001       ABINIK02    2
-FAM002       ACETAC      1
-FAM002       ACETAC01    1
+ACSALA       ACSALA      1
+ACSALA       ACSALA01    1
+ACSALA       ACSALA02    1
+...
+ACSALA       ACSALA13    2
+ACSALA       ACSALA15    2
+ACSALA       ACSALA17    2
+...
+ACSALA       ACSALA23    3
+ACSALA       ACSALA24    3
+...
+BENZEN       BENZEN      1
+BENZEN       BENZEN01    1
+BENZEN       BENZEN02    1
+...
+BENZEN       BENZEN03    2
+BENZEN       BENZEN04    2
+BENZEN       BENZEN16    2
 ...
 </pre></div>
 </div>
@@ -2008,10 +2034,7 @@ FAM002       ACETAC01    1
 </dl>
 <p><strong>Validation Categories:</strong></p>
 <p><strong>Quality Filters:</strong>
-* <strong>Resolution limits</strong> - X-ray diffraction quality
-* <strong>R-factor thresholds</strong> - Refinement quality indicators
-* <strong>Completeness requirements</strong> - Data collection completeness
-* <strong>Temperature ranges</strong> - Experimental condition constraints</p>
+* <strong>Completeness requirements</strong> - Data collection completeness</p>
 <p><strong>Chemical Filters:</strong>
 * <strong>Element restrictions</strong> - Allowed atomic species
 * <strong>Molecular weight limits</strong> - Size constraints
@@ -2019,18 +2042,17 @@ FAM002       ACETAC01    1
 * <strong>Crystal type requirements</strong> - Homomolecular vs. solvated</p>
 <p><strong>Structural Filters:</strong>
 * <strong>Disorder exclusion</strong> - Remove disordered structures
-* <strong>Polymer exclusion</strong> - Exclude polymeric materials
-* <strong>Solvate handling</strong> - Include/exclude solvated structures</p>
+* <strong>Polymer exclusion</strong> - Exclude polymeric materials</p>
 <p><strong>Example Filter Configuration:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;min_resolution&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>           <span class="c1"># Å</span>
-    <span class="s2">&quot;max_r_factor&quot;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span>            <span class="c1"># 5% max R-factor</span>
-    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">],</span> <span class="c1"># Organic only</span>
-    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span>   <span class="c1"># 500 Da limit</span>
-    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>     <span class="c1"># Z&#39; = 1 only</span>
-    <span class="s2">&quot;exclude_disorder&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No disorder</span>
-    <span class="s2">&quot;exclude_polymers&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No polymers</span>
-    <span class="s2">&quot;exclude_solvates&quot;</span><span class="p">:</span> <span class="kc">True</span>          <span class="c1"># No solvates</span>
+    <span class="s2">&quot;structure_list&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;csd-unique&quot;</span><span class="p">],</span>     <span class="c1"># Use unique structures in CSD</span>
+    <span class="s2">&quot;crystal_type&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>    <span class="c1"># Homomolecular structures only</span>
+    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">],</span>         <span class="c1"># Hydrocarbons only</span>
+    <span class="s2">&quot;target_space_groups&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span> <span class="s2">&quot;P-1&quot;</span><span class="p">],</span> <span class="c1"># Triclinic structures only</span>
+    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>         <span class="c1"># Z&#39; = 1 only</span>
+    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">300.0</span><span class="p">,</span>       <span class="c1"># Small molecules</span>
+    <span class="s2">&quot;molecule_formal_charges&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>       <span class="c1"># Neutral molecules</span>
+    <span class="s2">&quot;unique_structures_clustering_method&quot;</span><span class="p">:</span> <span class="s2">&quot;vdWFV&quot;</span><span class="p">,</span> <span class="c1"># Use van der Waals free volume to select unique structures from a cluster</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -2084,28 +2106,10 @@ FAM002       ACETAC01    1
 <p><strong>Select Representative Structures from Clusters</strong></p>
 <p>Chooses one optimal representative structure from each cluster using the vdWFV (van der Waals Fit Volume) metric.</p>
 <p><strong>Selection Algorithm:</strong></p>
-<p>The vdWFV method selects the structure with the most typical packing density within each cluster:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For each cluster, compute vdWFV for all members</span>
-<span class="n">vdwfv_values</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">cluster</span><span class="p">:</span>
-    <span class="n">entry</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">entry</span><span class="p">(</span><span class="n">refcode</span><span class="p">)</span>
-    <span class="n">vdwfv_values</span><span class="p">[</span><span class="n">refcode</span><span class="p">]</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">crystal</span><span class="o">.</span><span class="n">vdw_fit_volume</span>
-
-<span class="c1"># Select structure closest to cluster median</span>
-<span class="n">median_vdwfv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">vdwfv_values</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-<span class="n">representative</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">vdwfv_values</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
-                    <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">median_vdwfv</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
+<p>The vdWFV method selects the structure with the most typical packing density within each cluster</p>
 <dl class="simple">
 <dt><strong>Parameters:</strong></dt><dd><ul class="simple">
 <li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) - Selection method (“vdWFV” only supported)</p></li>
-</ul>
-</dd>
-<dt><strong>Selection Criteria:</strong></dt><dd><ul class="simple">
-<li><p><strong>Typicality</strong> - Representative of cluster packing behavior</p></li>
-<li><p><strong>Quality</strong> - Prefers high-quality experimental data</p></li>
-<li><p><strong>Completeness</strong> - Avoids structures with missing data</p></li>
 </ul>
 </dd>
 <dt><strong>Output Files:</strong></dt><dd><ul class="simple">
@@ -2148,9 +2152,11 @@ FAM002       ACETAC01    1
 </dl>
 <p><strong>Output Format:</strong></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>family_id,refcode
-FAM001,ABINIK01
-FAM002,ACETAC
-FAM003,BENZAC02
+ACSALA,ACSALA13
+ACSALA,ACSALA24
+ACSALA,ACSALA35
+BENZEN,BENZEN22
+BENZEN,BENZEN24
 ...
 </pre></div>
 </div>
@@ -2246,164 +2252,6 @@ FAM003,BENZAC02
 </dd></dl>
 
 </section>
-<section id="usage-examples">
-<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
-<p><strong>Basic CSD Operations Workflow</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">csd_operations</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSDOperations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-
-<span class="c1"># Initialize CSD operations</span>
-<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span>
-    <span class="n">data_directory</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./analysis_output&quot;</span><span class="p">),</span>
-    <span class="n">data_prefix</span><span class="o">=</span><span class="s2">&quot;my_analysis&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># Step 1: Extract refcode families</span>
-<span class="n">families_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">get_refcode_families_df</span><span class="p">()</span>
-<span class="n">csd_ops</span><span class="o">.</span><span class="n">save_refcode_families_csv</span><span class="p">(</span><span class="n">families_df</span><span class="p">)</span>
-
-<span class="c1"># Step 2: Filter by family size</span>
-<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">filter_families_by_size</span><span class="p">(</span><span class="n">families_df</span><span class="p">,</span> <span class="n">min_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-
-<span class="c1"># Step 3: Cluster families by similarity</span>
-<span class="n">filters</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span>
-    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;H&quot;</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">]</span>
-<span class="p">}</span>
-<span class="n">clustered_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">cluster_families</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
-
-<span class="c1"># Step 4: Select unique representatives</span>
-<span class="n">unique_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">get_unique_structures</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">&quot;vdWFV&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>Custom Similarity Settings</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">csd_operations</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimilaritySettings</span><span class="p">,</span> <span class="n">CSDOperations</span>
-
-<span class="c1"># Configure custom similarity parameters</span>
-<span class="n">strict_settings</span> <span class="o">=</span> <span class="n">SimilaritySettings</span><span class="p">(</span>
-    <span class="n">distance_tolerance</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>     <span class="c1"># Stricter distance matching</span>
-    <span class="n">angle_tolerance</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span>       <span class="c1"># Stricter angle matching</span>
-    <span class="n">packing_shell_size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>      <span class="c1"># Larger comparison shell</span>
-    <span class="n">ignore_hydrogen_positions</span><span class="o">=</span><span class="kc">False</span>  <span class="c1"># Include H positions</span>
-<span class="p">)</span>
-
-<span class="c1"># Initialize with custom settings</span>
-<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span>
-    <span class="n">data_directory</span><span class="o">=</span><span class="s2">&quot;./output&quot;</span><span class="p">,</span>
-    <span class="n">data_prefix</span><span class="o">=</span><span class="s2">&quot;strict_analysis&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># Apply custom settings to similarity engine</span>
-<span class="n">csd_ops</span><span class="o">.</span><span class="n">similarity_engine</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">strict_settings</span>
-</pre></div>
-</div>
-<p><strong>High-Throughput Processing</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mp</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">csd_operations</span><span class="w"> </span><span class="kn">import</span> <span class="n">CSDOperations</span>
-
-<span class="c1"># Configure for maximum parallelization</span>
-<span class="n">n_cores</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span>  <span class="c1"># Leave 2 cores free</span>
-
-<span class="c1"># Process large datasets efficiently</span>
-<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span><span class="s2">&quot;./large_analysis&quot;</span><span class="p">,</span> <span class="s2">&quot;high_throughput&quot;</span><span class="p">)</span>
-
-<span class="c1"># Use relaxed filters for speed</span>
-<span class="n">fast_filters</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;target_z_prime_values&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
-    <span class="s2">&quot;molecule_weight_limit&quot;</span><span class="p">:</span> <span class="mf">1000.0</span><span class="p">,</span>
-    <span class="s2">&quot;min_resolution&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>  <span class="c1"># Relaxed resolution</span>
-    <span class="s2">&quot;max_r_factor&quot;</span><span class="p">:</span> <span class="mf">0.10</span>    <span class="c1"># Relaxed R-factor</span>
-<span class="p">}</span>
-
-<span class="c1"># Execute clustering with optimized settings</span>
-<span class="n">clustered</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">cluster_families</span><span class="p">(</span><span class="n">fast_filters</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>Quality Control and Validation</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Implement comprehensive quality control</span>
-<span class="n">quality_filters</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;min_resolution&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>           <span class="c1"># High resolution only</span>
-    <span class="s2">&quot;max_r_factor&quot;</span><span class="p">:</span> <span class="mf">0.03</span><span class="p">,</span>            <span class="c1"># Strict R-factor</span>
-    <span class="s2">&quot;min_completeness&quot;</span><span class="p">:</span> <span class="mf">0.95</span><span class="p">,</span>        <span class="c1"># 95% data completeness</span>
-    <span class="s2">&quot;exclude_disorder&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No disorder</span>
-    <span class="s2">&quot;exclude_polymers&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No polymers</span>
-    <span class="s2">&quot;exclude_solvates&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>         <span class="c1"># No solvates</span>
-    <span class="s2">&quot;temperature_range&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">120</span><span class="p">],</span>   <span class="c1"># Low-temperature data</span>
-    <span class="s2">&quot;target_species&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">,</span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="s2">&quot;Cl&quot;</span><span class="p">,</span><span class="s2">&quot;F&quot;</span><span class="p">]</span>  <span class="c1"># Common elements</span>
-<span class="p">}</span>
-
-<span class="c1"># Validate structures before clustering</span>
-<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span><span class="s2">&quot;./quality_analysis&quot;</span><span class="p">,</span> <span class="s2">&quot;high_quality&quot;</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">family_id</span><span class="p">,</span> <span class="n">refcodes</span> <span class="ow">in</span> <span class="n">families</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">valid_structures</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">refcode</span> <span class="ow">in</span> <span class="n">refcodes</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">_check_structure</span><span class="p">(</span><span class="n">refcode</span><span class="p">,</span> <span class="n">quality_filters</span><span class="p">):</span>
-            <span class="n">valid_structures</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">refcode</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_structures</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Family </span><span class="si">{</span><span class="n">family_id</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">valid_structures</span><span class="p">)</span><span class="si">}</span><span class="s2"> valid structures&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="performance-optimization">
-<h2>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h2>
-<p><strong>Memory Management</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Configure for large datasets</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">gc</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">memory_efficient_clustering</span><span class="p">(</span><span class="n">csd_ops</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Process families in memory-efficient batches.&quot;&quot;&quot;</span>
-
-    <span class="n">families_df</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">get_refcode_families_df</span><span class="p">()</span>
-    <span class="n">family_groups</span> <span class="o">=</span> <span class="n">families_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;family_id&#39;</span><span class="p">)</span>
-
-    <span class="n">all_results</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">family_id</span><span class="p">,</span> <span class="n">group</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">family_groups</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">batch_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>  <span class="c1"># Periodic garbage collection</span>
-
-        <span class="c1"># Process single family</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">csd_ops</span><span class="o">.</span><span class="n">_process_single_family</span><span class="p">(</span>
-            <span class="p">(</span><span class="n">family_id</span><span class="p">,</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;refcode&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">filters</span><span class="p">)</span>
-        <span class="p">)</span>
-        <span class="n">all_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">all_results</span>
-</pre></div>
-</div>
-<p><strong>Parallel Processing Tuning</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">concurrent.futures</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProcessPoolExecutor</span>
-
-<span class="c1"># Optimize worker count based on system resources</span>
-<span class="n">optimal_workers</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span>        <span class="c1"># Leave CPU headroom</span>
-    <span class="mi">32</span><span class="p">,</span>                        <span class="c1"># Reasonable upper limit</span>
-    <span class="nb">len</span><span class="p">(</span><span class="n">family_groups</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span>    <span class="c1"># At least 4 families per worker</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="n">optimal_workers</span><span class="si">}</span><span class="s2"> parallel workers&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>Disk I/O Optimization</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use SSD storage for temporary files</span>
-<span class="n">fast_storage</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;/tmp/csd_analysis&quot;</span><span class="p">)</span>  <span class="c1"># RAM disk or SSD</span>
-<span class="n">fast_storage</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">csd_ops</span> <span class="o">=</span> <span class="n">CSDOperations</span><span class="p">(</span>
-    <span class="n">data_directory</span><span class="o">=</span><span class="n">fast_storage</span><span class="p">,</span>
-    <span class="n">data_prefix</span><span class="o">=</span><span class="s2">&quot;temp_analysis&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># Move final results to permanent storage</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
-<span class="n">final_location</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;./permanent_storage&quot;</span><span class="p">)</span>
-<span class="n">shutil</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">fast_storage</span><span class="p">,</span> <span class="n">final_location</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
 <p><a class="reference internal" href="../core/crystal_analyzer.html"><span class="doc">crystal_analyzer module</span></a> : Pipeline orchestration
@@ -2425,7 +2273,7 @@ FAM003,BENZAC02
 
   <div role="contentinfo">
     <p>&#169; Copyright 2025, Nikolaos Galanakis .
-      <span class="lastupdated">Last updated on Jul 01, 2025.
+      <span class="lastupdated">Last updated on Jul 03, 2025.
       </span></p>
   </div>
 

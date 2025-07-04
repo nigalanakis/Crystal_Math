@@ -27,7 +27,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Examples" href="../examples/index.html" />
+    <link rel="next" title="Your First Analysis" href="first_analysis.html" />
     <link rel="prev" title="Basic Analysis" href="../user_guide/basic_analysis.html" /> 
 </head>
 
@@ -199,6 +199,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#pipeline-control">Pipeline Control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#basic-filters">Basic Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#element-species-filtering">Element Species Filtering</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#performance-settings">Performance Settings</a><ul>
@@ -208,7 +209,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#common-configurations">Common Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#small-organic-molecules">Small Organic Molecules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#drug-like-molecules">Drug-Like Molecules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#quick-test-run">Quick Test Run</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#creating-your-configuration">Creating Your Configuration</a><ul>
@@ -217,7 +217,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#validation-and-testing">Validation and Testing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#check-your-json">Check Your JSON</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#test-with-small-dataset">Test with Small Dataset</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#common-beginner-mistakes">Common Beginner Mistakes</a><ul>
@@ -293,7 +292,22 @@
 <li class="toctree-l2"><a class="reference internal" href="#learning-paths">Learning Paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-topics">Advanced Topics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#feedback-and-improvement">Feedback and Improvement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="first_analysis.html">Your First Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#tutorial-overview">Tutorial Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#understanding-the-csa-pipeline">Understanding the CSA Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#step-1-setup-and-configuration">Step 1: Setup and Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#step-2-pipeline-execution">Step 2: Pipeline Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#step-3-exploring-the-results">Step 3: Exploring the Results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="first_analysis.html#congratulations">Congratulations!</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#what-you-ve-accomplished">What You’ve Accomplished</a></li>
+<li class="toctree-l4"><a class="reference internal" href="first_analysis.html#next-steps-analyzing-your-data">Next Steps: Analyzing Your Data</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -475,8 +489,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#csd_operations._representative_for_cluster"><code class="docutils literal notranslate"><span class="pre">_representative_for_cluster()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#usage-examples">Usage Examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#performance-optimization">Performance Optimization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#see-also">See Also</a></li>
 </ul>
 </li>
@@ -1089,7 +1101,7 @@
 🚀 Your First Analysis</div>
 <p class="sd-card-text">Complete walkthrough of the five-stage CSA pipeline with a small organic dataset.</p>
 </div>
-<span class="sd-stretched-link sd-hide-link-text">first_analysis</span></div>
+<a class="sd-stretched-link sd-hide-link-text reference internal" href="first_analysis.html"><span class="doc">Your First Analysis</span></a></div>
 </div>
 <div class="sd-col sd-d-flex-row docutils">
 <div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm sd-card-hover docutils">
@@ -1284,7 +1296,7 @@
 <section id="quick-start-recommendations">
 <h2>Quick Start Recommendations<a class="headerlink" href="#quick-start-recommendations" title="Link to this heading"></a></h2>
 <dl class="simple">
-<dt><strong>New to CSA?</strong></dt><dd><p>Start with <span class="xref std std-doc">first_analysis</span> to understand the basic workflow</p>
+<dt><strong>New to CSA?</strong></dt><dd><p>Start with <a class="reference internal" href="first_analysis.html"><span class="doc">Your First Analysis</span></a> to understand the basic workflow</p>
 </dd>
 <dt><strong>Specific Research Goal?</strong></dt><dd><p>Jump to the relevant domain-specific tutorial</p>
 </dd>
@@ -1359,7 +1371,7 @@ cp<span class="w"> </span>template_tutorial.rst<span class="w"> </span>my_tutori
 <p>Structured learning sequences for different goals:</p>
 <dl class="simple">
 <dt><strong>Research Scientist Path</strong></dt><dd><ol class="arabic simple">
-<li><p><span class="xref std std-doc">first_analysis</span></p></li>
+<li><p><a class="reference internal" href="first_analysis.html"><span class="doc">Your First Analysis</span></a></p></li>
 <li><p><span class="xref std std-doc">data_exploration</span></p></li>
 <li><p>Domain-specific tutorial (pharmaceutical/organic/materials)</p></li>
 <li><p><span class="xref std std-doc">statistical_analysis</span></p></li>
@@ -1367,7 +1379,7 @@ cp<span class="w"> </span>template_tutorial.rst<span class="w"> </span>my_tutori
 </ol>
 </dd>
 <dt><strong>Computational Crystallographer Path</strong></dt><dd><ol class="arabic simple">
-<li><p><span class="xref std std-doc">first_analysis</span></p></li>
+<li><p><a class="reference internal" href="first_analysis.html"><span class="doc">Your First Analysis</span></a></p></li>
 <li><p><span class="xref std std-doc">configuration_tutorial</span></p></li>
 <li><p><span class="xref std std-doc">geometric_descriptors</span></p></li>
 <li><p><span class="xref std std-doc">fragment_analysis</span></p></li>
@@ -1375,7 +1387,7 @@ cp<span class="w"> </span>template_tutorial.rst<span class="w"> </span>my_tutori
 </ol>
 </dd>
 <dt><strong>Data Scientist Path</strong></dt><dd><ol class="arabic simple">
-<li><p><span class="xref std std-doc">first_analysis</span></p></li>
+<li><p><a class="reference internal" href="first_analysis.html"><span class="doc">Your First Analysis</span></a></p></li>
 <li><p><span class="xref std std-doc">data_exploration</span></p></li>
 <li><p><span class="xref std std-doc">machine_learning</span></p></li>
 <li><p><span class="xref std std-doc">statistical_analysis</span></p></li>
@@ -1468,14 +1480,14 @@ cp<span class="w"> </span>template_tutorial.rst<span class="w"> </span>my_tutori
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../user_guide/basic_analysis.html" class="btn btn-neutral float-left" title="Basic Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="first_analysis.html" class="btn btn-neutral float-right" title="Your First Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2025, Nikolaos Galanakis .
-      <span class="lastupdated">Last updated on Jul 01, 2025.
+      <span class="lastupdated">Last updated on Jul 04, 2025.
       </span></p>
   </div>
 

@@ -199,6 +199,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pipeline-control">Pipeline Control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#basic-filters">Basic Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#element-species-filtering">Element Species Filtering</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#performance-settings">Performance Settings</a><ul>
@@ -208,7 +209,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#common-configurations">Common Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#small-organic-molecules">Small Organic Molecules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drug-like-molecules">Drug-Like Molecules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#quick-test-run">Quick Test Run</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-your-configuration">Creating Your Configuration</a><ul>
@@ -217,7 +217,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#validation-and-testing">Validation and Testing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#check-your-json">Check Your JSON</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test-with-small-dataset">Test with Small Dataset</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#common-beginner-mistakes">Common Beginner Mistakes</a><ul>
@@ -293,7 +292,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#learning-paths">Learning Paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/first_analysis.html">Your First Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#tutorial-overview">Tutorial Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#understanding-the-csa-pipeline">Understanding the CSA Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-1-setup-and-configuration">Step 1: Setup and Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-2-pipeline-execution">Step 2: Pipeline Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-3-exploring-the-results">Step 3: Exploring the Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-4-basic-data-analysis">Step 4: Basic Data Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-5-validation-and-quality-control">Step 5: Validation and Quality Control</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1109,14 +1120,17 @@
 <span class="w">      </span><span class="nt">&quot;post_extraction_process&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;structure_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;csd-unique&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_space_groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2/m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P2/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21212&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P212121&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pca21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pna21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pbcn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pbca&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pnma&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;R-3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;I41/a&quot;</span><span class="p">],,</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;unique_structures_clustering_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vdWFV&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -1153,25 +1167,49 @@
 <section id="basic-filters">
 <h3>Basic Filters<a class="headerlink" href="#basic-filters" title="Link to this heading"></a></h3>
 <dl>
-<dt><strong>target_z_prime_values</strong></dt><dd><p>Number of molecules per asymmetric unit</p>
-<p>Common values: <code class="docutils literal notranslate"><span class="pre">[1]</span></code> (most structures), <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span></code> (include Z’=2)</p>
+<dt><strong>structure_list</strong></dt><dd><p>Structure database that will be used</p>
+<p>Options: <code class="docutils literal notranslate"><span class="pre">[&quot;csd-unique&quot;,&quot;all&quot;]</span></code>, <code class="docutils literal notranslate"><span class="pre">[&quot;cif&quot;,&quot;path-to-cif-files&quot;]</span></code></p>
 </dd>
 <dt><strong>crystal_type</strong></dt><dd><p>Type of crystal structures to include</p>
 <p>Options: <code class="docutils literal notranslate"><span class="pre">[&quot;homomolecular&quot;]</span></code>, <code class="docutils literal notranslate"><span class="pre">[&quot;co-crystal&quot;]</span></code>, <code class="docutils literal notranslate"><span class="pre">[&quot;organometallic&quot;]</span></code></p>
 </dd>
-<dt><strong>molecule_formal_charges</strong></dt><dd><p>Allowed molecular charges</p>
-<p>Typical: <code class="docutils literal notranslate"><span class="pre">[0]</span></code> (neutral), <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">-1]</span></code> (include ions)</p>
-</dd>
-<dt><strong>molecule_weight_limit</strong></dt><dd><p>Maximum molecular weight in Daltons</p>
-<p>Examples: <code class="docutils literal notranslate"><span class="pre">300.0</span></code> (small molecules), <code class="docutils literal notranslate"><span class="pre">800.0</span></code> (larger molecules)</p>
-</dd>
 <dt><strong>target_species</strong></dt><dd><p>Required chemical elements</p>
 <p>Examples:
 - <code class="docutils literal notranslate"><span class="pre">[&quot;C&quot;,</span> <span class="pre">&quot;H&quot;,</span> <span class="pre">&quot;N&quot;,</span> <span class="pre">&quot;O&quot;]</span></code> - Basic organics
-- <code class="docutils literal notranslate"><span class="pre">[&quot;C&quot;,</span> <span class="pre">&quot;H&quot;,</span> <span class="pre">&quot;N&quot;,</span> <span class="pre">&quot;O&quot;,</span> <span class="pre">&quot;S&quot;,</span> <span class="pre">&quot;F&quot;,</span> <span class="pre">&quot;Cl&quot;]</span></code> - Pharmaceuticals
-- <code class="docutils literal notranslate"><span class="pre">[]</span></code> - All elements (empty array)</p>
+- <code class="docutils literal notranslate"><span class="pre">[&quot;C&quot;,</span> <span class="pre">&quot;H&quot;,</span> <span class="pre">&quot;N&quot;,</span> <span class="pre">&quot;O&quot;,</span> <span class="pre">&quot;S&quot;,</span> <span class="pre">&quot;F&quot;,</span> <span class="pre">&quot;Cl&quot;]</span></code> - Pharmaceuticals</p>
+</dd>
+<dt><strong>target_space_groups</strong></dt><dd><p>Required space groups</p>
+<p>Examples:
+- <code class="docutils literal notranslate"><span class="pre">[&quot;P-1&quot;,</span> <span class="pre">&quot;P21/c&quot;,</span> <span class="pre">&quot;P212121&quot;,</span> <span class="pre">&quot;C2/c&quot;,</span> <span class="pre">&quot;P21&quot;]</span></code> - ive most common space groups
+- <code class="docutils literal notranslate"><span class="pre">[&quot;P-1&quot;,</span> <span class="pre">&quot;P1&quot;]</span></code> - Triclinic space groups</p>
+</dd>
+<dt><strong>target_z_prime_values</strong></dt><dd><p>Number of molecules per asymmetric unit</p>
+<p>Common values: <code class="docutils literal notranslate"><span class="pre">[1]</span></code> (most structures), <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span></code> (include Z’=2)</p>
+</dd>
+<dt><strong>molecule_weight_limit</strong></dt><dd><p>Maximum molecular weight in Daltons</p>
+<p>Examples: <code class="docutils literal notranslate"><span class="pre">300.0</span></code> (small molecules), <code class="docutils literal notranslate"><span class="pre">500.0</span></code> (larger molecules)</p>
+</dd>
+<dt><strong>molecule_formal_charges</strong></dt><dd><p>Allowed molecular charges</p>
+<p>Typical: <code class="docutils literal notranslate"><span class="pre">[0]</span></code> (neutral), <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">-1]</span></code> (include ions)</p>
+</dd>
+<dt><strong>unique_structures_clustering_method</strong></dt><dd><p>Clustering method to determine unique structures in a cluster</p>
+<p>Options: <code class="docutils literal notranslate"><span class="pre">vdWFV</span></code></p>
 </dd>
 </dl>
+</section>
+<section id="element-species-filtering">
+<h3>Element Species Filtering<a class="headerlink" href="#element-species-filtering" title="Link to this heading"></a></h3>
+<p><strong>Automatic Isotope Handling</strong></p>
+<p>CSA automatically normalizes isotopes for structural analysis:</p>
+<ul class="simple">
+<li><p><strong>Deuterium (D) → Hydrogen (H)</strong>: All deuterium atoms are treated as hydrogen</p></li>
+<li><p><strong>Chemical equivalence</strong>: For crystal packing analysis, isotopic differences are negligible</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">]</span><span class="w">  </span><span class="c1">// Accepts both H and D atoms</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="performance-settings">
@@ -1203,15 +1241,18 @@
 <h3>Small Organic Molecules<a class="headerlink" href="#small-organic-molecules" title="Link to this heading"></a></h3>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./small_organics&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../small_organics&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;small_molecules&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;structure_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;csd-unique&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_space_groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2/m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P2/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21212&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P212121&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pca21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pna21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pbcn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pbca&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pnma&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;R-3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;I41/a&quot;</span><span class="p">],,</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;unique_structures_clustering_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vdWFV&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span>
 <span class="w">  </span><span class="p">}</span>
@@ -1223,44 +1264,24 @@
 <h3>Drug-Like Molecules<a class="headerlink" href="#drug-like-molecules" title="Link to this heading"></a></h3>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./pharmaceuticals&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../pharmaceuticals&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;drug_molecules&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;structure_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;csd-unique&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">600.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Br&quot;</span><span class="p">]</span>
-<span class="w">    </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;S&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Br&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_space_groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;P1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P-1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cc&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2/m&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P2/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21/n&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;C2/c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P21212&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;P212121&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pca21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pna21&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pbcn&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pbca&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Pnma&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;R-3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;I41/a&quot;</span><span class="p">],,</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;unique_structures_clustering_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vdWFV&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="quick-test-run">
-<h3>Quick Test Run<a class="headerlink" href="#quick-test-run" title="Link to this heading"></a></h3>
-<p>For testing CSA quickly with a small dataset:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./test_run&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;quick_test&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">200.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;max_structures&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Note: <code class="docutils literal notranslate"><span class="pre">max_structures</span></code> limits the total number of structures processed.</p>
 </section>
 </section>
 <section id="creating-your-configuration">
@@ -1296,17 +1317,6 @@
 - Missing quotes around strings
 - Mismatched brackets or braces</p></li>
 </ol>
-</section>
-<section id="test-with-small-dataset">
-<h3>Test with Small Dataset<a class="headerlink" href="#test-with-small-dataset" title="Link to this heading"></a></h3>
-<p>Always test new configurations with a small dataset first:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;max_structures&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span>
-<span class="w">  </span><span class="c1">// ... your other filters</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>This limits processing to 50 structures, making testing fast.</p>
 </section>
 </section>
 <section id="common-beginner-mistakes">
@@ -1416,7 +1426,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2025, Nikolaos Galanakis .
-      <span class="lastupdated">Last updated on Jul 01, 2025.
+      <span class="lastupdated">Last updated on Jul 03, 2025.
       </span></p>
   </div>
 

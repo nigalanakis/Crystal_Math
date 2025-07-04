@@ -45,14 +45,17 @@ For your first analysis, use this template:
           "post_extraction_process": true
         },
         "filters": {
-          "target_z_prime_values": [1],
+          "structure_list": ["csd-unique"],
           "crystal_type": ["homomolecular"],
+          "target_species": ["C", "H", "N", "O"],
+          "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],,
+          "target_z_prime_values": [1],
+          "molecule_weight_limit": 300.0,
           "molecule_formal_charges": [0],
-          "molecule_weight_limit": 500.0,
-          "target_species": ["C", "H", "N", "O"]
-        },
+          "unique_structures_clustering_method": "vdWFV",
+       },
         "extraction_batch_size": 32,
-        "post_extraction_batch_size": 16
+        "post_extraction_batch_size": 32
       }
     }
 
@@ -92,33 +95,66 @@ Set any action to ``false`` to skip that stage.
 Basic Filters
 ~~~~~~~~~~~~~
 
-**target_z_prime_values**
-  Number of molecules per asymmetric unit
+**structure_list**
+  Structure database that will be used 
   
-  Common values: ``[1]`` (most structures), ``[1, 2]`` (include Z'=2)
+  Options: ``["csd-unique","all"]``, ``["cif","path-to-cif-files"]`` 
 
 **crystal_type**
   Type of crystal structures to include
   
   Options: ``["homomolecular"]``, ``["co-crystal"]``, ``["organometallic"]``
-
-**molecule_formal_charges**
-  Allowed molecular charges
   
-  Typical: ``[0]`` (neutral), ``[0, 1, -1]`` (include ions)
-
-**molecule_weight_limit**
-  Maximum molecular weight in Daltons
-  
-  Examples: ``300.0`` (small molecules), ``800.0`` (larger molecules)
-
 **target_species**
   Required chemical elements
   
   Examples:
   - ``["C", "H", "N", "O"]`` - Basic organics
   - ``["C", "H", "N", "O", "S", "F", "Cl"]`` - Pharmaceuticals
-  - ``[]`` - All elements (empty array)
+  
+**target_space_groups**
+  Required space groups
+  
+  Examples:
+  - ``["P-1", "P21/c", "P212121", "C2/c", "P21"]`` - ive most common space groups
+  - ``["P-1", "P1"]`` - Triclinic space groups
+  
+**target_z_prime_values**
+  Number of molecules per asymmetric unit
+  
+  Common values: ``[1]`` (most structures), ``[1, 2]`` (include Z'=2)
+
+**molecule_weight_limit**
+  Maximum molecular weight in Daltons
+  
+  Examples: ``300.0`` (small molecules), ``500.0`` (larger molecules)
+
+**molecule_formal_charges**
+  Allowed molecular charges
+  
+  Typical: ``[0]`` (neutral), ``[0, 1, -1]`` (include ions)
+
+**unique_structures_clustering_method**
+  Clustering method to determine unique structures in a cluster
+  
+  Options: ``vdWFV``
+  
+Element Species Filtering
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Automatic Isotope Handling**
+
+CSA automatically normalizes isotopes for structural analysis:
+
+* **Deuterium (D) → Hydrogen (H)**: All deuterium atoms are treated as hydrogen
+* **Chemical equivalence**: For crystal packing analysis, isotopic differences are negligible
+
+.. code-block:: json
+
+   "filters": {
+     "target_species": ["C", "H"]  // Accepts both H and D atoms
+   }
+
 
 Performance Settings
 -------------------
@@ -152,15 +188,18 @@ Small Organic Molecules
 
     {
       "extraction": {
-        "data_directory": "./small_organics",
+        "data_directory": "../small_organics",
         "data_prefix": "small_molecules",
         "filters": {
-          "target_z_prime_values": [1],
+          "structure_list": ["csd-unique"],
           "crystal_type": ["homomolecular"],
-          "molecule_formal_charges": [0],
+          "target_species": ["C", "H", "N", "O"],
+          "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],,
+          "target_z_prime_values": [1],
           "molecule_weight_limit": 300.0,
-          "target_species": ["C", "H", "N", "O"]
-        },
+          "molecule_formal_charges": [0],
+          "unique_structures_clustering_method": "vdWFV",
+       },
         "extraction_batch_size": 32,
         "post_extraction_batch_size": 16
       }
@@ -173,45 +212,22 @@ Drug-Like Molecules
 
     {
       "extraction": {
-        "data_directory": "./pharmaceuticals",
+        "data_directory": "../pharmaceuticals",
         "data_prefix": "drug_molecules",
         "filters": {
-          "target_z_prime_values": [1, 2],
+          "structure_list": ["csd-unique"],
           "crystal_type": ["homomolecular"],
-          "molecule_formal_charges": [0, 1, -1],
-          "molecule_weight_limit": 600.0,
-          "target_species": ["C", "H", "N", "O", "S", "F", "Cl", "Br"]
-        },
+          "target_species": ["C", "H", "N", "O", "S", "F", "Cl", "Br"],
+          "target_space_groups": ["P1", "P-1", "P21", "C2", "Pc", "Cc", "P21/m", "C2/m", "P2/c", "P21/c", "P21/n", "C2/c", "P21212", "P212121", "Pca21", "Pna21", "Pbcn", "Pbca", "Pnma", "R-3", "I41/a"],,
+          "target_z_prime_values": [1],
+          "molecule_weight_limit": 300.0,
+          "molecule_formal_charges": [0],
+          "unique_structures_clustering_method": "vdWFV",
+       },
         "extraction_batch_size": 32,
         "post_extraction_batch_size": 16
       }
     }
-
-Quick Test Run
-~~~~~~~~~~~~~
-
-For testing CSA quickly with a small dataset:
-
-.. code-block:: json
-
-    {
-      "extraction": {
-        "data_directory": "./test_run",
-        "data_prefix": "quick_test",
-        "filters": {
-          "target_z_prime_values": [1],
-          "crystal_type": ["homomolecular"],
-          "molecule_formal_charges": [0],
-          "molecule_weight_limit": 200.0,
-          "target_species": ["C", "H", "N", "O"],
-          "max_structures": 100
-        },
-        "extraction_batch_size": 16,
-        "post_extraction_batch_size": 8
-      }
-    }
-
-Note: ``max_structures`` limits the total number of structures processed.
 
 Creating Your Configuration
 ---------------------------
@@ -246,20 +262,6 @@ Before running CSA, validate your JSON syntax:
    - Missing commas between items
    - Missing quotes around strings
    - Mismatched brackets or braces
-
-Test with Small Dataset
-~~~~~~~~~~~~~~~~~~~~~~
-
-Always test new configurations with a small dataset first:
-
-.. code-block:: json
-
-    "filters": {
-      "max_structures": 50,
-      // ... your other filters
-    }
-
-This limits processing to 50 structures, making testing fast.
 
 Common Beginner Mistakes
 ------------------------

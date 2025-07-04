@@ -10,14 +10,7 @@ CSA transforms raw crystallographic data from the Cambridge Structural Database 
 The Five-Stage Pipeline
 ------------------------
 
-CSA's pipeline processes crystal structures through five sequential stages, each building upon the previous to create increasingly refined datasets:
-
-.. figure:: /images/pipeline_flow_diagram.png
-   :alt: CSA Pipeline Flow Diagram
-   :align: center
-   :width: 100%
-
-   *CSA's five-stage pipeline transforms raw CSD queries into analysis-ready datasets*
+CSA's pipeline processes crystal structures through five sequential stages, each building upon the previous to create increasingly refined datasets.
 
 Stage 1: Family Extraction
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

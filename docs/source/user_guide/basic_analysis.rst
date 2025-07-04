@@ -19,28 +19,31 @@ The CSA pipeline transforms raw CSD queries into analysis-ready datasets through
 
 .. code-block:: json
 
-    {
-      "extraction": {
-        "data_directory": "./basic_analysis_output",
-        "data_prefix": "my_first_analysis",
-        "actions": {
-          "get_refcode_families": true,
-          "cluster_refcode_families": true,
-          "get_unique_structures": true,
-          "get_structure_data": true,
-          "post_extraction_process": true
-        },
-        "filters": {
-          "target_z_prime_values": [1],
-          "crystal_type": ["homomolecular"],
-          "molecule_formal_charges": [0],
-          "molecule_weight_limit": 500.0,
-          "target_species": ["C", "H", "N", "O"]
-        },
-        "extraction_batch_size": 32,
-        "post_extraction_batch_size": 16
-      }
-    }
+   {
+     "extraction": {
+       "data_directory": "../my_first_csa_run/",
+       "data_prefix": "small_hydrocarbons",
+       "actions": {
+         "get_refcode_families": true,
+         "cluster_refcode_families": true,
+         "get_unique_structures": true,
+         "get_structure_data": true,
+         "post_extraction_process": true
+       },
+       "filters": {
+         "structure_list": ["csd-unique"],
+         "crystal_type": ["homomolecular"],
+         "target_species": ["C", "H"],
+         "target_space_groups": ["P21/c","P-1"],
+         "target_z_prime_values": [1.0],
+         "molecule_weight_limit": 300.0,
+         "molecule_formal_charges": [0],
+         "unique_structures_clustering_method": "vdWFV"
+       },
+       "extraction_batch_size": 32,
+       "post_extraction_batch_size": 32
+     }
+   }
 
 **Step 2: Execute Pipeline**
 
@@ -50,10 +53,7 @@ The CSA pipeline transforms raw CSD queries into analysis-ready datasets through
     cd /path/to/crystal-structure-analysis
     
     # Run complete pipeline
-    python src/csa_main.py --config basic_analysis.json
-    
-    # Monitor progress
-    tail -f basic_analysis_output/logs/csa_extraction.log
+    python src/csa_main.py --config my_first_csa_run.json
 
 **Step 3: Verify Output**
 
@@ -61,36 +61,31 @@ After successful completion, you should see these files:
 
 .. code-block:: text
 
-    basic_analysis_output/
-    ├── csv/
-    │   ├── my_first_analysis_refcode_families.csv
-    │   ├── my_first_analysis_clustered_families.csv
-    │   └── my_first_analysis_unique_structures.csv
-    ├── structures/
-    │   ├── my_first_analysis_structures.h5
-    │   └── my_first_analysis_structures_processed.h5
-    └── logs/
-        ├── csa_extraction.log
-        └── performance_metrics.log
-
+    my_first_csa_run/
+    ├── small_hydrocarbons_refcode_families.csv
+    ├── small_hydrocarbons_clustered_families.csv
+    ├── small_hydrocarbons_unique_structures.csv
+    ├── small_hydrocarbons.h5
+    └── small_hydrocarbons_processed.h5
+    
 Understanding Pipeline Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Each stage creates specific outputs that feed into subsequent analyses:
 
-**Stage 1: Family Extraction** → ``refcode_families.csv``
+**Stage 1: Family Extraction** → ``small_hydrocarbons_refcode_families.csv``
    Groups structures into chemical families
 
-**Stage 2: Similarity Clustering** → ``clustered_families.csv``
+**Stage 2: Similarity Clustering** → ``small_hydrocarbons_clustered_families.csv``
    Groups similar crystal packings within families
 
-**Stage 3: Representative Selection** → ``unique_structures.csv``
+**Stage 3: Representative Selection** → ``small_hydrocarbons_unique_structures.csv``
    Selects one representative per cluster
 
-**Stage 4: Structure Data Extraction** → ``structures.h5``
+**Stage 4: Structure Data Extraction** → ``small_hydrocarbons_structures.h5``
    Raw structural data with coordinates and properties
 
-**Stage 5: Feature Engineering** → ``structures_processed.h5``
+**Stage 5: Feature Engineering** → ``small_hydrocarbons_structures_processed.h5``
    Analysis-ready data with computed features
 
 Quick validation of your results:
@@ -101,11 +96,11 @@ Quick validation of your results:
     import h5py
     
     # Check family extraction results
-    families = pd.read_csv('basic_analysis_output/csv/my_first_analysis_refcode_families.csv')
+    families = pd.read_csv('../my_first_csa_run/small_hydrocarbons_refcode_families.csv')
     print(f"Found {len(families)} structures across {families['family'].nunique()} families")
     
     # Check processed data
-    with h5py.File('basic_analysis_output/structures/my_first_analysis_structures_processed.h5', 'r') as f:
+    with h5py.File('../my_first_csa_run/small_hydrocarbons_processed.h5', 'r') as f:
         n_structures = len(f['refcode_list'])
         print(f"Successfully processed {n_structures} representative structures")
 
@@ -135,15 +130,15 @@ CSA stores results in HDF5 format for efficient access. Here's how to load and e
                 'z_prime': f['z_prime'][...],
                 'cell_volume': f['cell_volume'][...],
                 'cell_density': f['cell_density'][...],
+                'packing_coefficient': f['packing_coefficient'][...],
                 'n_atoms': f['n_atoms'][...],
-                'n_fragments': f['n_fragments'][...],
-                'temperature': f['temperature'][...]
+                'n_fragments': f['n_fragments'][...]
             }
         
         return pd.DataFrame(data)
 
     # Load your data
-    crystal_df = load_crystal_data('basic_analysis_output/structures/my_first_analysis_structures_processed.h5')
+    crystal_df = load_crystal_data('../my_first_csa_run/small_hydrocarbons_processed.h5')
     print(crystal_df.head())
 
 **Data Summary and Statistics**
@@ -159,7 +154,6 @@ CSA stores results in HDF5 format for efficient access. Here's how to load and e
         
         print(f"Total structures: {len(crystal_df)}")
         print(f"Unique space groups: {crystal_df['space_group'].nunique()}")
-        print(f"Temperature range: {crystal_df['temperature'].min():.0f} - {crystal_df['temperature'].max():.0f} K")
         
         print("\nMolecular size distribution:")
         print(crystal_df['n_atoms'].describe())
@@ -196,7 +190,7 @@ Crystal Property Analysis
         
         # Cell volume distribution
         axes[0].hist(crystal_df['cell_volume'], bins=50, alpha=0.7, color='skyblue')
-        axes[0].set_xlabel('Cell Volume (ų)')
+        axes[0].set_xlabel('Cell Volume (Å³)')
         axes[0].set_ylabel('Frequency')
         axes[0].set_title('Cell Volume Distribution')
         
@@ -206,31 +200,31 @@ Crystal Property Analysis
         axes[1].set_ylabel('Frequency')
         axes[1].set_title('Crystal Density Distribution')
         
+        # Packing coefficient distribution
+        axes[2].hist(crystal_df['packing_coefficient'], bins=50, alpha=0.7, color='orange')
+        axes[2].set_xlabel('Packing coefficient (%)')
+        axes[2].set_ylabel('Frequency')
+        axes[2].set_title('Packing Coefficient Distribution')
+        
         # Z' distribution
         z_counts = crystal_df['z_prime'].value_counts().sort_index()
-        axes[2].bar(z_counts.index, z_counts.values, color='coral')
-        axes[2].set_xlabel("Z'")
-        axes[2].set_ylabel('Count')
-        axes[2].set_title("Z' Distribution")
+        axes[3].bar(z_counts.index, z_counts.values, color='coral')
+        axes[3].set_xlabel("Z'")
+        axes[3].set_ylabel('Count')
+        axes[3].set_title("Z' Distribution")
         
         # Molecular size
-        axes[3].hist(crystal_df['n_atoms'], bins=50, alpha=0.7, color='gold')
-        axes[3].set_xlabel('Number of Atoms')
-        axes[3].set_ylabel('Frequency')
-        axes[3].set_title('Molecular Size Distribution')
+        axes[4].hist(crystal_df['n_atoms'], bins=50, alpha=0.7, color='gold')
+        axes[4].set_xlabel('Number of Atoms')
+        axes[4].set_ylabel('Frequency')
+        axes[4].set_title('Molecular Size Distribution')
         
         # Fragment count
-        axes[4].hist(crystal_df['n_fragments'], bins=max(crystal_df['n_fragments'])+1, 
+        axes[5].hist(crystal_df['n_fragments'], bins=max(crystal_df['n_fragments'])+1, 
                     alpha=0.7, color='mediumpurple')
-        axes[4].set_xlabel('Number of Fragments')
-        axes[4].set_ylabel('Frequency')
-        axes[4].set_title('Fragment Count Distribution')
-        
-        # Temperature distribution
-        axes[5].hist(crystal_df['temperature'], bins=50, alpha=0.7, color='lightcoral')
-        axes[5].set_xlabel('Temperature (K)')
+        axes[5].set_xlabel('Number of Fragments')
         axes[5].set_ylabel('Frequency')
-        axes[5].set_title('Measurement Temperature')
+        axes[5].set_title('Fragment Count Distribution')
         
         plt.tight_layout()
         plt.savefig('crystal_property_distributions.png', dpi=300, bbox_inches='tight')
@@ -246,8 +240,8 @@ Crystal Property Analysis
         """Analyze correlations between crystal properties."""
         
         # Select numeric properties for correlation analysis
-        numeric_cols = ['z_prime', 'cell_volume', 'cell_density', 'n_atoms', 
-                       'n_fragments', 'temperature']
+        numeric_cols = ['z_prime', 'cell_volume', 'cell_density', 'packing_coefficient',  
+                       'n_atoms', 'n_fragments']
         
         corr_data = crystal_df[numeric_cols]
         correlation_matrix = corr_data.corr()
@@ -328,7 +322,7 @@ Fragment Analysis
         return pd.DataFrame(fragment_data)
 
     # Analyze fragments
-    fragment_df = analyze_molecular_fragments('basic_analysis_output/structures/my_first_analysis_structures_processed.h5')
+    fragment_df = analyze_molecular_fragments('../my_first_csa_run/small_hydrocarbons_processed.h5')
     print(f"Analyzed {len(fragment_df)} fragments")
     print("\nMost common fragment formulas:")
     print(fragment_df['formula'].value_counts().head(10))
@@ -403,11 +397,12 @@ Intermolecular Contact Analysis
             for i in range(n_structures):
                 refcode = f['refcode_list'][i].decode()
                 n_contacts = f['inter_cc_n_contacts'][i]
+                atom_symbols = f['atom_symbol'][i].astype(str)
                 
                 if n_contacts > 0:
                     # Contact information
-                    central_atoms = f['inter_cc_central_atom'][i].astype(str)
-                    contact_atoms = f['inter_cc_contact_atom'][i].astype(str)
+                    central_atoms = atom_symbols[f['inter_cc_central_atom_symbol'][i]]
+                    contact_atoms = atom_symbols[f['inter_cc_contact_atom_symbol'][i]]
                     lengths = f['inter_cc_length'][i]
                     is_hbond = f['inter_cc_is_hbond'][i]
                     
@@ -423,7 +418,7 @@ Intermolecular Contact Analysis
         return pd.DataFrame(contact_data)
 
     # Analyze contacts
-    contact_df = analyze_intermolecular_contacts('basic_analysis_output/structures/my_first_analysis_structures_processed.h5')
+    contact_df = analyze_intermolecular_contacts('../my_first_csa_run/small_hydrocarbons_processed.h5')
     print(f"Found {len(contact_df)} intermolecular contacts")
     print(f"Hydrogen bonds: {contact_df['is_hbond'].sum()} ({contact_df['is_hbond'].mean()*100:.1f}%)")
 
@@ -537,7 +532,7 @@ Comparative Studies
         for sg in top_sgs:
             sg_subset = sg_data[sg_data['space_group'] == sg]
             print(f"\n{sg} (n={len(sg_subset)}):")
-            print(f"  Volume: {sg_subset['cell_volume'].mean():.1f} ± {sg_subset['cell_volume'].std():.1f} ų")
+            print(f"  Volume: {sg_subset['cell_volume'].mean():.1f} ± {sg_subset['cell_volume'].std():.1f} Å³")
             print(f"  Density: {sg_subset['cell_density'].mean():.2f} ± {sg_subset['cell_density'].std():.2f} g/cm³")
             print(f"  Z': {sg_subset['z_prime'].mode()[0] if len(sg_subset['z_prime'].mode()) > 0 else 'N/A'} (mode)")
         
@@ -688,7 +683,7 @@ Export Results
         for file in os.listdir(output_dir):
             print(f"  - {file}")
 
-    export_analysis_results(crystal_df, fragment_df, contact_df)
+    export_analysis_results(crystal_df, fragment_df, contact_df, output_dir='../my_first_csa_run/analysis_exports/')
 
 **Create Analysis Report**
 
@@ -713,7 +708,7 @@ Export Results
             # Crystal properties
             f.write("CRYSTAL PROPERTIES\n")
             f.write("-" * 20 + "\n")
-            f.write(f"Average cell volume: {crystal_df['cell_volume'].mean():.1f} ± {crystal_df['cell_volume'].std():.1f} ų\n")
+            f.write(f"Average cell volume: {crystal_df['cell_volume'].mean():.1f} ± {crystal_df['cell_volume'].std():.1f} Å³\n")
             f.write(f"Average density: {crystal_df['cell_density'].mean():.2f} ± {crystal_df['cell_density'].std():.2f} g/cm³\n")
             f.write(f"Average molecular size: {crystal_df['n_atoms'].mean():.1f} ± {crystal_df['n_atoms'].std():.1f} atoms\n\n")
             
@@ -751,7 +746,7 @@ Export Results
         
         print(f"Analysis report saved to {output_file}")
 
-    generate_analysis_report(crystal_df, fragment_df, contact_df)
+    generate_analysis_report(crystal_df, fragment_df, contact_df, output_file='../my_first_csa_run/analysis_exports/analysis_report.txt')
 
 Troubleshooting and Optimization
 --------------------------------
@@ -791,7 +786,7 @@ Performance Monitoring
 
     # Example usage
     crystal_df = monitor_analysis_performance(load_crystal_data, 
-                 'basic_analysis_output/structures/my_first_analysis_structures_processed.h5')
+                 '../my_first_csa_run/small_hydrocarbons_processed.h5')
 
 Common Issues and Solutions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -828,7 +823,7 @@ Common Issues and Solutions
             return False
 
     # Validate your data file
-    validate_data_file('basic_analysis_output/structures/my_first_analysis_structures_processed.h5')
+    validate_data_file('../my_first_csa_run/small_hydrocarbons_processed.h5')
 
 **Memory Issues with Large Datasets**
 

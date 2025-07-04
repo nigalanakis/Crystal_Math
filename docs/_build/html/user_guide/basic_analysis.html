@@ -199,6 +199,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#pipeline-control">Pipeline Control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#basic-filters">Basic Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#element-species-filtering">Element Species Filtering</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#performance-settings">Performance Settings</a><ul>
@@ -208,7 +209,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#common-configurations">Common Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#small-organic-molecules">Small Organic Molecules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#drug-like-molecules">Drug-Like Molecules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#quick-test-run">Quick Test Run</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#creating-your-configuration">Creating Your Configuration</a><ul>
@@ -217,7 +217,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#validation-and-testing">Validation and Testing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#check-your-json">Check Your JSON</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../getting_started/configuration.html#test-with-small-dataset">Test with Small Dataset</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/configuration.html#common-beginner-mistakes">Common Beginner Mistakes</a><ul>
@@ -293,7 +292,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#learning-paths">Learning Paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/first_analysis.html">Your First Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#tutorial-overview">Tutorial Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#understanding-the-csa-pipeline">Understanding the CSA Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-1-setup-and-configuration">Step 1: Setup and Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-2-pipeline-execution">Step 2: Pipeline Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-3-exploring-the-results">Step 3: Exploring the Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-4-basic-data-analysis">Step 4: Basic Data Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-5-validation-and-quality-control">Step 5: Validation and Quality Control</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -475,8 +486,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#csd_operations._representative_for_cluster"><code class="docutils literal notranslate"><span class="pre">_representative_for_cluster()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#usage-examples">Usage Examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#performance-optimization">Performance Optimization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#see-also">See Also</a></li>
 </ul>
 </li>
@@ -1087,8 +1096,8 @@
 <p><strong>Step 1: Create Configuration</strong></p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./basic_analysis_output&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;my_first_analysis&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../my_first_csa_run/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;small_hydrocarbons&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="nt">&quot;get_refcode_families&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;cluster_refcode_families&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
@@ -1097,14 +1106,17 @@
 <span class="w">      </span><span class="nt">&quot;post_extraction_process&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;structure_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;csd-unique&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_space_groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;P21/c&quot;</span><span class="p">,</span><span class="s2">&quot;P-1&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1.0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">500.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">]</span>
+<span class="w">      </span><span class="nt">&quot;unique_structures_clustering_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vdWFV&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -1114,25 +1126,17 @@
 <span class="nb">cd</span><span class="w"> </span>/path/to/crystal-structure-analysis
 
 <span class="c1"># Run complete pipeline</span>
-python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<span class="w"> </span>basic_analysis.json
-
-<span class="c1"># Monitor progress</span>
-tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs/csa_extraction.log
+python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<span class="w"> </span>my_first_csa_run.json
 </pre></div>
 </div>
 <p><strong>Step 3: Verify Output</strong></p>
 <p>After successful completion, you should see these files:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>basic_analysis_output/
-├── csv/
-│   ├── my_first_analysis_refcode_families.csv
-│   ├── my_first_analysis_clustered_families.csv
-│   └── my_first_analysis_unique_structures.csv
-├── structures/
-│   ├── my_first_analysis_structures.h5
-│   └── my_first_analysis_structures_processed.h5
-└── logs/
-    ├── csa_extraction.log
-    └── performance_metrics.log
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>my_first_csa_run/
+├── small_hydrocarbons_refcode_families.csv
+├── small_hydrocarbons_clustered_families.csv
+├── small_hydrocarbons_unique_structures.csv
+├── small_hydrocarbons.h5
+└── small_hydrocarbons_processed.h5
 </pre></div>
 </div>
 </section>
@@ -1140,15 +1144,15 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
 <h3>Understanding Pipeline Output<a class="headerlink" href="#understanding-pipeline-output" title="Link to this heading"></a></h3>
 <p>Each stage creates specific outputs that feed into subsequent analyses:</p>
 <dl class="simple">
-<dt><strong>Stage 1: Family Extraction</strong> → <code class="docutils literal notranslate"><span class="pre">refcode_families.csv</span></code></dt><dd><p>Groups structures into chemical families</p>
+<dt><strong>Stage 1: Family Extraction</strong> → <code class="docutils literal notranslate"><span class="pre">small_hydrocarbons_refcode_families.csv</span></code></dt><dd><p>Groups structures into chemical families</p>
 </dd>
-<dt><strong>Stage 2: Similarity Clustering</strong> → <code class="docutils literal notranslate"><span class="pre">clustered_families.csv</span></code></dt><dd><p>Groups similar crystal packings within families</p>
+<dt><strong>Stage 2: Similarity Clustering</strong> → <code class="docutils literal notranslate"><span class="pre">small_hydrocarbons_clustered_families.csv</span></code></dt><dd><p>Groups similar crystal packings within families</p>
 </dd>
-<dt><strong>Stage 3: Representative Selection</strong> → <code class="docutils literal notranslate"><span class="pre">unique_structures.csv</span></code></dt><dd><p>Selects one representative per cluster</p>
+<dt><strong>Stage 3: Representative Selection</strong> → <code class="docutils literal notranslate"><span class="pre">small_hydrocarbons_unique_structures.csv</span></code></dt><dd><p>Selects one representative per cluster</p>
 </dd>
-<dt><strong>Stage 4: Structure Data Extraction</strong> → <code class="docutils literal notranslate"><span class="pre">structures.h5</span></code></dt><dd><p>Raw structural data with coordinates and properties</p>
+<dt><strong>Stage 4: Structure Data Extraction</strong> → <code class="docutils literal notranslate"><span class="pre">small_hydrocarbons_structures.h5</span></code></dt><dd><p>Raw structural data with coordinates and properties</p>
 </dd>
-<dt><strong>Stage 5: Feature Engineering</strong> → <code class="docutils literal notranslate"><span class="pre">structures_processed.h5</span></code></dt><dd><p>Analysis-ready data with computed features</p>
+<dt><strong>Stage 5: Feature Engineering</strong> → <code class="docutils literal notranslate"><span class="pre">small_hydrocarbons_structures_processed.h5</span></code></dt><dd><p>Analysis-ready data with computed features</p>
 </dd>
 </dl>
 <p>Quick validation of your results:</p>
@@ -1156,11 +1160,11 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
 <span class="kn">import</span><span class="w"> </span><span class="nn">h5py</span>
 
 <span class="c1"># Check family extraction results</span>
-<span class="n">families</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;basic_analysis_output/csv/my_first_analysis_refcode_families.csv&#39;</span><span class="p">)</span>
+<span class="n">families</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_refcode_families.csv&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">families</span><span class="p">)</span><span class="si">}</span><span class="s2"> structures across </span><span class="si">{</span><span class="n">families</span><span class="p">[</span><span class="s1">&#39;family&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2"> families&quot;</span><span class="p">)</span>
 
 <span class="c1"># Check processed data</span>
-<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;basic_analysis_output/structures/my_first_analysis_structures_processed.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">n_structures</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">])</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully processed </span><span class="si">{</span><span class="n">n_structures</span><span class="si">}</span><span class="s2"> representative structures&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1187,15 +1191,15 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
             <span class="s1">&#39;z_prime&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;z_prime&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">],</span>
             <span class="s1">&#39;cell_volume&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">],</span>
             <span class="s1">&#39;cell_density&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;cell_density&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">],</span>
+            <span class="s1">&#39;packing_coefficient&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;packing_coefficient&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">],</span>
             <span class="s1">&#39;n_atoms&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">],</span>
-            <span class="s1">&#39;n_fragments&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">],</span>
-            <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
+            <span class="s1">&#39;n_fragments&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
         <span class="p">}</span>
 
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="c1"># Load your data</span>
-<span class="n">crystal_df</span> <span class="o">=</span> <span class="n">load_crystal_data</span><span class="p">(</span><span class="s1">&#39;basic_analysis_output/structures/my_first_analysis_structures_processed.h5&#39;</span><span class="p">)</span>
+<span class="n">crystal_df</span> <span class="o">=</span> <span class="n">load_crystal_data</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">crystal_df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -1209,7 +1213,6 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
 
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total structures: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unique space groups: </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;space_group&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Temperature range: </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> K&quot;</span><span class="p">)</span>
 
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Molecular size distribution:&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
@@ -1244,7 +1247,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
 
     <span class="c1"># Cell volume distribution</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Cell Volume (ų)&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Cell Volume (Å³)&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Cell Volume Distribution&#39;</span><span class="p">)</span>
 
@@ -1254,31 +1257,31 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Crystal Density Distribution&#39;</span><span class="p">)</span>
 
+    <span class="c1"># Packing coefficient distribution</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;packing_coefficient&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Packing coefficient (%)&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Packing Coefficient Distribution&#39;</span><span class="p">)</span>
+
     <span class="c1"># Z&#39; distribution</span>
     <span class="n">z_counts</span> <span class="o">=</span> <span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;z_prime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">z_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">z_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Z&#39;&quot;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Z&#39; Distribution&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">z_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">z_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;coral&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Z&#39;&quot;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Count&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Z&#39; Distribution&quot;</span><span class="p">)</span>
 
     <span class="c1"># Molecular size</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Atoms&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Molecular Size Distribution&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Atoms&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Molecular Size Distribution&#39;</span><span class="p">)</span>
 
     <span class="c1"># Fragment count</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">])</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span>
                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;mediumpurple&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Fragments&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fragment Count Distribution&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Temperature distribution</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightcoral&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Number of Fragments&#39;</span><span class="p">)</span>
     <span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Frequency&#39;</span><span class="p">)</span>
-    <span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Measurement Temperature&#39;</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fragment Count Distribution&#39;</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;crystal_property_distributions.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
@@ -1292,8 +1295,8 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Analyze correlations between crystal properties.&quot;&quot;&quot;</span>
 
     <span class="c1"># Select numeric properties for correlation analysis</span>
-    <span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;z_prime&#39;</span><span class="p">,</span> <span class="s1">&#39;cell_volume&#39;</span><span class="p">,</span> <span class="s1">&#39;cell_density&#39;</span><span class="p">,</span> <span class="s1">&#39;n_atoms&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;n_fragments&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">]</span>
+    <span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;z_prime&#39;</span><span class="p">,</span> <span class="s1">&#39;cell_volume&#39;</span><span class="p">,</span> <span class="s1">&#39;cell_density&#39;</span><span class="p">,</span> <span class="s1">&#39;packing_coefficient&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;n_atoms&#39;</span><span class="p">,</span> <span class="s1">&#39;n_fragments&#39;</span><span class="p">]</span>
 
     <span class="n">corr_data</span> <span class="o">=</span> <span class="n">crystal_df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span>
     <span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">corr_data</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
@@ -1372,7 +1375,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">fragment_data</span><span class="p">)</span>
 
 <span class="c1"># Analyze fragments</span>
-<span class="n">fragment_df</span> <span class="o">=</span> <span class="n">analyze_molecular_fragments</span><span class="p">(</span><span class="s1">&#39;basic_analysis_output/structures/my_first_analysis_structures_processed.h5&#39;</span><span class="p">)</span>
+<span class="n">fragment_df</span> <span class="o">=</span> <span class="n">analyze_molecular_fragments</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Analyzed </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">fragment_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> fragments&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Most common fragment formulas:&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fragment_df</span><span class="p">[</span><span class="s1">&#39;formula&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
@@ -1443,11 +1446,12 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_structures</span><span class="p">):</span>
             <span class="n">refcode</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
             <span class="n">n_contacts</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;inter_cc_n_contacts&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">atom_symbols</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;atom_symbol&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">n_contacts</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="c1"># Contact information</span>
-                <span class="n">central_atoms</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;inter_cc_central_atom&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-                <span class="n">contact_atoms</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;inter_cc_contact_atom&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+                <span class="n">central_atoms</span> <span class="o">=</span> <span class="n">atom_symbols</span><span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;inter_cc_central_atom_symbol&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span>
+                <span class="n">contact_atoms</span> <span class="o">=</span> <span class="n">atom_symbols</span><span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;inter_cc_contact_atom_symbol&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span>
                 <span class="n">lengths</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;inter_cc_length&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
                 <span class="n">is_hbond</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;inter_cc_is_hbond&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
 
@@ -1463,7 +1467,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
     <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">contact_data</span><span class="p">)</span>
 
 <span class="c1"># Analyze contacts</span>
-<span class="n">contact_df</span> <span class="o">=</span> <span class="n">analyze_intermolecular_contacts</span><span class="p">(</span><span class="s1">&#39;basic_analysis_output/structures/my_first_analysis_structures_processed.h5&#39;</span><span class="p">)</span>
+<span class="n">contact_df</span> <span class="o">=</span> <span class="n">analyze_intermolecular_contacts</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">contact_df</span><span class="p">)</span><span class="si">}</span><span class="s2"> intermolecular contacts&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hydrogen bonds: </span><span class="si">{</span><span class="n">contact_df</span><span class="p">[</span><span class="s1">&#39;is_hbond&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">contact_df</span><span class="p">[</span><span class="s1">&#39;is_hbond&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1573,7 +1577,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
     <span class="k">for</span> <span class="n">sg</span> <span class="ow">in</span> <span class="n">top_sgs</span><span class="p">:</span>
         <span class="n">sg_subset</span> <span class="o">=</span> <span class="n">sg_data</span><span class="p">[</span><span class="n">sg_data</span><span class="p">[</span><span class="s1">&#39;space_group&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">sg</span><span class="p">]</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">sg</span><span class="si">}</span><span class="s2"> (n=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">sg_subset</span><span class="p">)</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Volume: </span><span class="si">{</span><span class="n">sg_subset</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sg_subset</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ų&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Volume: </span><span class="si">{</span><span class="n">sg_subset</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sg_subset</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> Å³&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Density: </span><span class="si">{</span><span class="n">sg_subset</span><span class="p">[</span><span class="s1">&#39;cell_density&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">sg_subset</span><span class="p">[</span><span class="s1">&#39;cell_density&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> g/cm³&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Z&#39;: </span><span class="si">{</span><span class="n">sg_subset</span><span class="p">[</span><span class="s1">&#39;z_prime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="n">sg_subset</span><span class="p">[</span><span class="s1">&#39;z_prime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">())</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;N/A&#39;</span><span class="si">}</span><span class="s2"> (mode)&quot;</span><span class="p">)</span>
 
@@ -1720,7 +1724,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
     <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  - </span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="n">export_analysis_results</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">,</span> <span class="n">fragment_df</span><span class="p">,</span> <span class="n">contact_df</span><span class="p">)</span>
+<span class="n">export_analysis_results</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">,</span> <span class="n">fragment_df</span><span class="p">,</span> <span class="n">contact_df</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;../my_first_csa_run/analysis_exports/&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Create Analysis Report</strong></p>
@@ -1743,7 +1747,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
         <span class="c1"># Crystal properties</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;CRYSTAL PROPERTIES</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">20</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average cell volume: </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ų</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average cell volume: </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> Å³</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average density: </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;cell_density&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;cell_density&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> g/cm³</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average molecular size: </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">crystal_df</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> atoms</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -1781,7 +1785,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
 
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Analysis report saved to </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="n">generate_analysis_report</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">,</span> <span class="n">fragment_df</span><span class="p">,</span> <span class="n">contact_df</span><span class="p">)</span>
+<span class="n">generate_analysis_report</span><span class="p">(</span><span class="n">crystal_df</span><span class="p">,</span> <span class="n">fragment_df</span><span class="p">,</span> <span class="n">contact_df</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="s1">&#39;../my_first_csa_run/analysis_exports/analysis_report.txt&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1820,7 +1824,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
 
 <span class="c1"># Example usage</span>
 <span class="n">crystal_df</span> <span class="o">=</span> <span class="n">monitor_analysis_performance</span><span class="p">(</span><span class="n">load_crystal_data</span><span class="p">,</span>
-             <span class="s1">&#39;basic_analysis_output/structures/my_first_analysis_structures_processed.h5&#39;</span><span class="p">)</span>
+             <span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1855,7 +1859,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
         <span class="k">return</span> <span class="kc">False</span>
 
 <span class="c1"># Validate your data file</span>
-<span class="n">validate_data_file</span><span class="p">(</span><span class="s1">&#39;basic_analysis_output/structures/my_first_analysis_structures_processed.h5&#39;</span><span class="p">)</span>
+<span class="n">validate_data_file</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>Memory Issues with Large Datasets</strong></p>
@@ -1930,7 +1934,7 @@ tail<span class="w"> </span>-f<span class="w"> </span>basic_analysis_output/logs
 
   <div role="contentinfo">
     <p>&#169; Copyright 2025, Nikolaos Galanakis .
-      <span class="lastupdated">Last updated on Jul 01, 2025.
+      <span class="lastupdated">Last updated on Jul 04, 2025.
       </span></p>
   </div>
 

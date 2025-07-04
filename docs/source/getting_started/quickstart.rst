@@ -41,21 +41,31 @@ Create a file named ``my_first_analysis.json``:
 
 .. code-block:: json
 
-    {
-      "extraction": {
-        "data_directory": "./my_first_csa_run",
-        "data_prefix": "organic_crystals",
-        "filters": {
-          "target_z_prime_values": [1],
-          "crystal_type": ["homomolecular"],
-          "molecule_formal_charges": [0],
-          "molecule_weight_limit": 400.0,
-          "target_species": ["C", "H", "N", "O"]
-        },
-        "extraction_batch_size": 32,
-        "post_extraction_batch_size": 16
-      }
-    }
+   {
+     "extraction": {
+       "data_directory": "../my_first_csa_run/",
+       "data_prefix": "small_hydrocarbons",
+       "actions": {
+         "get_refcode_families": true,
+         "cluster_refcode_families": true,
+         "get_unique_structures": true,
+         "get_structure_data": true,
+         "post_extraction_process": true
+       },
+       "filters": {
+         "structure_list": ["csd-unique"],
+         "crystal_type": ["homomolecular"],
+         "target_species": ["C", "H"],
+         "target_space_groups": ["P21/c","P-1"],
+         "target_z_prime_values": [1.0],
+         "molecule_weight_limit": 300.0,
+         "molecule_formal_charges": [0],
+         "unique_structures_clustering_method": "vdWFV"
+       },
+       "extraction_batch_size": 32,
+       "post_extraction_batch_size": 32
+     }
+   }
 
 Configuration Explained
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -69,22 +79,31 @@ Configuration Explained
      - Why this value?
    * - ``data_directory``
      - Where CSA saves all output files
-     - Keep results organized
+     - Keep results organized	 
    * - ``data_prefix``
      - Prefix for all generated filenames
      - Identify this analysis
-   * - ``target_z_prime_values: [1]``
-     - Only structures with 1 molecule/asymmetric unit
-     - Simplest, most common case
+	* - ``structure_list: ["csd_unique","all]``
+     - Use unique structures from the CSD database
+     - Avoid duplicate structures
    * - ``crystal_type: ["homomolecular"]``
      - Only single-component crystals
      - Avoid complex multi-component systems
-   * - ``molecule_weight_limit: 400.0``
+   * - ``target_species: ["C", "H"]``
+     - Only carbon and hydrogen atoms
+     - Hydrocarbons do not contain other elements
+   * - ``target_space_groups: ["P21/c","P-1"]``
+     - Only structures in the 2 most common space groups
+     - Cover most common structural mottifs
+   * - ``target_z_prime_values: [1]``
+     - Only structures with 1 molecule/asymmetric unit
+     - Simplest, most common case
+   * - ``molecule_weight_limit: 300.0``
      - Maximum molecular weight in Daltons
      - Focus on small-medium molecules
-   * - ``target_species: ["C", "H", "N", "O"]``
-     - Only basic organic elements
-     - Common pharmaceutical/organic elements
+   * - ``molecule_formal_charges: [0]``
+     - Only neutral structures
+     - Avoid using ions
    * - ``extraction_batch_size: 32``
      - Process 32 structures at once
      - Good balance of speed vs memory
@@ -109,29 +128,47 @@ You'll see output like this:
 
 .. code-block:: text
 
-   2024-07-01 10:30:15 - INFO - Starting CSA pipeline...
-   2024-07-01 10:30:16 - INFO - Stage 1: Extracting refcode families from CSD...
-   2024-07-01 10:30:45 - INFO - Found 15,234 structures across 8,567 families
-   2024-07-01 10:31:15 - INFO - Stage 2: Clustering similar crystal packings...
-   2024-07-01 10:35:30 - INFO - Created 6,123 packing clusters
-   2024-07-01 10:35:45 - INFO - Stage 3: Selecting representative structures...
-   2024-07-01 10:36:12 - INFO - Selected 6,123 unique structures
-   2024-07-01 10:36:15 - INFO - Stage 4: Extracting structure data...
-   2024-07-01 10:36:20 - INFO - Processing batch 1/192 (structures 1-32)
-   ...
-   2024-07-01 11:45:30 - INFO - Stage 5: Computing molecular features...
-   2024-07-01 12:30:45 - INFO - Pipeline completed successfully!
+   2025-05-03 20:02:39,843 - root - INFO - Loading configuration from csa_config.json 
+   2025-05-03 20:02:39,846 - root - INFO - Starting extraction step...
+   2025-05-03 20:02:39,846 - crystal_analyzer - INFO - Starting data extraction pipeline...
+   2025-05-03 20:02:39,846 - crystal_analyzer - INFO - Extracting refcode families into DataFrame...
+   2025-05-03 20:20:04,663 - crystal_analyzer - INFO - Extracted 1284316 structures across 1151944 families
+   2025-05-03 20:20:04,717 - crystal_analyzer - INFO - Clustering refcode families...
+   2025-05-03 20:47:49,881 - csd_operations - INFO - Saved clustered families to ..\my_first_csa_run\small_hydrocarbons_refcode_families_clustered.csv
+   2025-05-03 20:47:50,014 - crystal_analyzer - INFO - Refcode families clustered into 407 groups.
+   2025-05-03 20:47:50,023 - crystal_analyzer - INFO - Selecting unique structures …
+   2025-05-03 20:47:58,430 - csd_operations - INFO - Saved unique structures to ..\my_first_csa_run\small_hydrocarbons_refcode_families_unique.csv
+   2025-05-03 20:47:58,431 - crystal_analyzer - INFO - Unique structures selected: 310 structures across 309 families
+   2025-05-03 20:47:58,431 - crystal_analyzer - INFO - Extracting detailed structure data into ..\my_first_csa_run\small_hydrocarbons.h5 …
+   2025-05-03 20:47:58,439 - structure_data_extractor - INFO - 310 structures to extract (batch size 1024)
+   2025-05-03 20:47:58,441 - structure_data_extractor - INFO - Extracting batch 1 (size 310)
+   2025-05-03 20:48:27,091 - structure_data_extractor - INFO - Raw data extraction complete; HDF5 file closed.
+   2025-05-03 20:48:27,091 - crystal_analyzer - INFO - Detailed structure data extracted and saved to ..\my_first_csa_run\small_hydrocarbons.h5
+   2025-05-03 20:48:27,236 - structure_post_extraction_processor - INFO - Found 310 structures to process.
+   2025-05-03 20:48:27,236 - structure_post_extraction_processor - INFO - Processing structures 1 to 310
+   2025-05-03 20:48:49,495 - structure_post_extraction_processor - INFO - Post-extraction fast processing complete.
+   2025-05-03 20:48:49,495 - crystal_analyzer - INFO - Data extraction completed in 0:46:09.649176
+   2025-05-03 20:48:49,581 - root - INFO - Data extraction completed successfully.
 
-**Total time**: Typically 1-2 hours for this configuration.
+**Total time**: Typically less than 1 hour for this configuration.
 
 Understanding the Stages
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Stage 1 (5-15 minutes)**: Queries the CSD database using your filters
-**Stage 2 (10-30 minutes)**: Groups structures with similar crystal packing
-**Stage 3 (1-2 minutes)**: Picks the best representative from each cluster
-**Stage 4 (30-60 minutes)**: Extracts atomic coordinates and basic properties  
-**Stage 5 (30-90 minutes)**: Computes advanced molecular descriptors
+**Stage 1 (~5 minutes)**
+    Queries the CSD database using your filters
+
+**Stage 2 (~30 minutes)**
+    Groups structures with similar crystal packing
+
+**Stage 3 (~10 minutes)**
+    Picks the best representative from each cluster
+
+**Stage 4 (~2 minutes)**
+    Extracts atomic coordinates and basic properties
+
+**Stage 5 (~2 minutes)**
+    Computes advanced molecular descriptors
 
 Step 3: Explore Your Results
 ----------------------------
@@ -150,16 +187,12 @@ You should see:
 .. code-block:: text
 
    my_first_csa_run/
-   ├── csv/
-   │   ├── organic_crystals_refcode_families.csv      # Stage 1 output
-   │   ├── organic_crystals_clustered_families.csv    # Stage 2 output
-   │   └── organic_crystals_unique_structures.csv     # Stage 3 output
-   ├── structures/
-   │   ├── organic_crystals_structures.h5             # Stage 4 output
-   │   └── organic_crystals_structures_processed.h5   # Stage 5 output
-   └── logs/
-       └── csa_extraction.log                         # Detailed logs
-
+   ├── small_hydrocarbons_refcode_families.csv      # Stage 1 output
+   ├── small_hydrocarbons_clustered_families.csv    # Stage 2 output
+   ├── small_hydrocarbons_unique_structures.csv     # Stage 3 output
+   ├── small_hydrocarbons.h5                        # Stage 4 output
+   └── small_hydrocarbons_processed.h5              # Stage 5 output
+   
 Quick Data Overview
 ~~~~~~~~~~~~~~~~~~
 
@@ -172,7 +205,7 @@ Use this Python script to inspect your results:
    import numpy as np
 
    # Basic dataset information
-   with h5py.File('my_first_csa_run/structures/organic_crystals_structures_processed.h5', 'r') as f:
+   with h5py.File('../my_first_csa_run/small_hydrocarbons_processed.h5', 'r') as f:
        refcodes = f['refcode_list'][...].astype(str)
        n_structures = len(refcodes)
        
@@ -185,7 +218,7 @@ Use this Python script to inspect your results:
        print(f"🔬 Found {len(unique_sgs)} different space groups")
        
        cell_volumes = f['cell_volume'][...]
-       print(f"📏 Cell volume range: {cell_volumes.min():.1f} - {cell_volumes.max():.1f} Ų")
+       print(f"📏 Cell volume range: {cell_volumes.min():.1f} - {cell_volumes.max():.1f} ")
        
        n_atoms = f['n_atoms'][...]
        print(f"⚛️  Molecular size: {n_atoms.min()}-{n_atoms.max()} atoms (avg: {n_atoms.mean():.1f})")
@@ -209,13 +242,13 @@ Expected output:
 
 .. code-block:: text
 
-   🎉 Successfully processed 6,123 crystal structures!
-   📝 First 5 refcodes: ['AABHTZ', 'AABHTZ01', 'AACBDE', 'AACCEF', 'AADDGH']
-   🔬 Found 47 different space groups
-   📏 Cell volume range: 234.5 - 2,847.3 Ų
-   ⚛️ Molecular size: 8-32 atoms (avg: 18.4)
-   🧩 Fragments per molecule: 1-3 (avg: 1.2)
-   🤝 5,891 structures have intermolecular contacts (96.2%)
+   🎉 Successfully processed 310 crystal structures!
+   📝 First 5 refcodes: ['ACAMAT', 'ANANTH01', 'ANNULE10', 'ANOKUM', 'ATAKOV']
+   🔬 Found 2 different space groups
+   📏 Cell volume range: 252.6 - 1944.4 
+   ⚛️ Molecular size: 9-104 atoms (avg: 40.0)
+   🧩 Fragments per molecule: 1-14 (avg: 2.2)
+   🤝 310 structures have intermolecular contacts (100.0%)
 
 Step 4: Your First Analysis
 ---------------------------
@@ -233,7 +266,7 @@ Let's analyze the crystal properties you just extracted:
    import pandas as pd
 
    # Load data
-   with h5py.File('my_first_csa_run/structures/organic_crystals_structures_processed.h5', 'r') as f:
+   with h5py.File('../my_first_csa_run/small_hydrocarbons_processed.h5', 'r') as f:
        data = {
            'refcode': f['refcode_list'][...].astype(str),
            'space_group': [f['space_group'][i].decode() for i in range(len(f['refcode_list']))],
@@ -304,7 +337,7 @@ Explore molecular fragment shapes:
    # Load fragment data
    fragment_data = []
    
-   with h5py.File('my_first_csa_run/structures/organic_crystals_structures_processed.h5', 'r') as f:
+   with h5py.File('../my_first_csa_run/small_hydrocarbons_processed.h5', 'r') as f:
        for i in range(min(1000, len(f['refcode_list']))):  # First 1000 structures
            refcode = f['refcode_list'][i].decode()
            n_frags = f['n_fragments'][i]
@@ -371,7 +404,7 @@ What You've Created
 
 Your CSA analysis has generated:
 
-1. **Structure Database**: 6,000+ carefully selected, non-redundant crystal structures
+1. **Structure Database**: 310 carefully selected, non-redundant crystal structures
 2. **Molecular Properties**: Comprehensive geometric and chemical descriptors
 3. **Fragment Analysis**: Rigid molecular fragment identification and characterization
 4. **Contact Networks**: Detailed intermolecular interaction data

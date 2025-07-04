@@ -140,11 +140,13 @@ Family Extraction Methods
    .. code-block:: text
 
       family_id    refcode
-      FAM001       ABINIK
-      FAM001       ABINIK01  
-      FAM001       ABINIK02
-      FAM002       ACETAC
-      FAM002       ACETAC01
+      ACSALA       ACSALA
+      ACSALA       ACSALA01  
+      ACSALA       ACSALA02
+      ...
+      BENZEN       BENZEN
+      BENZEN       BENZEN01
+      BENZEN       BENZEN02
       ...
 
 .. automethod:: csd_operations.CSDOperations.save_refcode_families_csv
@@ -168,9 +170,11 @@ Family Extraction Methods
    .. code-block:: text
 
       family_id,refcode
-      FAM001,ABINIK
-      FAM001,ABINIK01
-      FAM002,ACETAC
+      ACSALA,ACSALA
+      ACSALA,ACSALA01
+      ...
+      BENZEN,BENZEN
+      BENZEN,BENZEN01
       ...
 
 .. automethod:: csd_operations.CSDOperations.filter_families_by_size
@@ -246,11 +250,24 @@ Clustering Methods
    .. code-block:: text
 
       family_id    refcode     cluster_id
-      FAM001       ABINIK      1
-      FAM001       ABINIK01    1  
-      FAM001       ABINIK02    2
-      FAM002       ACETAC      1
-      FAM002       ACETAC01    1
+      ACSALA       ACSALA      1
+      ACSALA       ACSALA01    1
+      ACSALA       ACSALA02    1
+      ...
+      ACSALA       ACSALA13    2
+      ACSALA       ACSALA15    2
+      ACSALA       ACSALA17    2  
+      ...
+      ACSALA       ACSALA23    3  
+      ACSALA       ACSALA24    3
+      ...
+      BENZEN       BENZEN      1
+      BENZEN       BENZEN01    1
+      BENZEN       BENZEN02    1
+      ...
+      BENZEN       BENZEN03    2
+      BENZEN       BENZEN04    2
+      BENZEN       BENZEN16    2
       ...
 
    **Performance Characteristics:**
@@ -279,10 +296,7 @@ Clustering Methods
    **Validation Categories:**
 
    **Quality Filters:**
-   * **Resolution limits** - X-ray diffraction quality
-   * **R-factor thresholds** - Refinement quality indicators
    * **Completeness requirements** - Data collection completeness
-   * **Temperature ranges** - Experimental condition constraints
 
    **Chemical Filters:**
    * **Element restrictions** - Allowed atomic species
@@ -293,21 +307,20 @@ Clustering Methods
    **Structural Filters:**
    * **Disorder exclusion** - Remove disordered structures
    * **Polymer exclusion** - Exclude polymeric materials
-   * **Solvate handling** - Include/exclude solvated structures
 
    **Example Filter Configuration:**
 
    .. code-block:: python
 
       filters = {
-          "min_resolution": 1.5,           # Å
-          "max_r_factor": 0.05,            # 5% max R-factor
-          "target_species": ["C","H","N","O"], # Organic only
-          "molecule_weight_limit": 500.0,   # 500 Da limit
-          "target_z_prime_values": [1],     # Z' = 1 only
-          "exclude_disorder": True,         # No disorder
-          "exclude_polymers": True,         # No polymers
-          "exclude_solvates": True          # No solvates
+          "structure_list": ["csd-unique"],     # Use unique structures in CSD
+          "crystal_type": ["homomolecular"],    # Homomolecular structures only
+          "target_species": ["C", "H"],         # Hydrocarbons only
+          "target_space_groups": ["P1", "P-1"], # Triclinic structures only
+          "target_z_prime_values": [1],         # Z' = 1 only
+          "molecule_weight_limit": 300.0,       # Small molecules
+          "molecule_formal_charges": [0],       # Neutral molecules
+          "unique_structures_clustering_method": "vdWFV", # Use van der Waals free volume to select unique structures from a cluster
       }
 
    **Returns:**
@@ -324,28 +337,10 @@ Representative Selection Methods
 
    **Selection Algorithm:**
 
-   The vdWFV method selects the structure with the most typical packing density within each cluster:
-
-   .. code-block:: python
-
-      # For each cluster, compute vdWFV for all members
-      vdwfv_values = {}
-      for refcode in cluster:
-          entry = reader.entry(refcode)
-          vdwfv_values[refcode] = entry.crystal.vdw_fit_volume
-      
-      # Select structure closest to cluster median
-      median_vdwfv = np.median(list(vdwfv_values.values()))
-      representative = min(vdwfv_values.items(), 
-                          key=lambda x: abs(x[1] - median_vdwfv))[0]
+   The vdWFV method selects the structure with the most typical packing density within each cluster
 
    **Parameters:**
       * **method** (:obj:`str`) - Selection method ("vdWFV" only supported)
-
-   **Selection Criteria:**
-      * **Typicality** - Representative of cluster packing behavior
-      * **Quality** - Prefers high-quality experimental data
-      * **Completeness** - Avoids structures with missing data
 
    **Output Files:**
       * **CSV** - ``{prefix}_refcode_families_unique.csv``
@@ -372,9 +367,11 @@ Representative Selection Methods
    .. code-block:: text
 
       family_id,refcode
-      FAM001,ABINIK01
-      FAM002,ACETAC
-      FAM003,BENZAC02
+      ACSALA,ACSALA13
+      ACSALA,ACSALA24
+      ACSALA,ACSALA35
+      BENZEN,BENZEN22
+      BENZEN,BENZEN24
       ...
 
    **File Location:**
@@ -423,178 +420,6 @@ Utility Functions
 
    **Returns:**
       :obj:`Tuple[str, str]` - (family_id, representative_refcode)
-
-Usage Examples
---------------
-
-**Basic CSD Operations Workflow**
-
-.. code-block:: python
-
-   from csd_operations import CSDOperations
-   from pathlib import Path
-
-   # Initialize CSD operations
-   csd_ops = CSDOperations(
-       data_directory=Path("./analysis_output"),
-       data_prefix="my_analysis"
-   )
-
-   # Step 1: Extract refcode families
-   families_df = csd_ops.get_refcode_families_df()
-   csd_ops.save_refcode_families_csv(families_df)
-
-   # Step 2: Filter by family size  
-   filtered_df = csd_ops.filter_families_by_size(families_df, min_size=3)
-
-   # Step 3: Cluster families by similarity
-   filters = {
-       "target_z_prime_values": [1],
-       "molecule_weight_limit": 500.0,
-       "target_species": ["C", "H", "N", "O"]
-   }
-   clustered_df = csd_ops.cluster_families(filters)
-
-   # Step 4: Select unique representatives
-   unique_df = csd_ops.get_unique_structures(method="vdWFV")
-
-**Custom Similarity Settings**
-
-.. code-block:: python
-
-   from csd_operations import SimilaritySettings, CSDOperations
-
-   # Configure custom similarity parameters
-   strict_settings = SimilaritySettings(
-       distance_tolerance=0.1,     # Stricter distance matching
-       angle_tolerance=10.0,       # Stricter angle matching
-       packing_shell_size=20,      # Larger comparison shell
-       ignore_hydrogen_positions=False  # Include H positions
-   )
-
-   # Initialize with custom settings
-   csd_ops = CSDOperations(
-       data_directory="./output",
-       data_prefix="strict_analysis"
-   )
-   
-   # Apply custom settings to similarity engine
-   csd_ops.similarity_engine.settings = strict_settings
-
-**High-Throughput Processing**
-
-.. code-block:: python
-
-   import multiprocessing as mp
-   from csd_operations import CSDOperations
-
-   # Configure for maximum parallelization
-   n_cores = mp.cpu_count() - 2  # Leave 2 cores free
-   
-   # Process large datasets efficiently
-   csd_ops = CSDOperations("./large_analysis", "high_throughput")
-   
-   # Use relaxed filters for speed
-   fast_filters = {
-       "target_z_prime_values": [1, 2],
-       "molecule_weight_limit": 1000.0,
-       "min_resolution": 2.0,  # Relaxed resolution
-       "max_r_factor": 0.10    # Relaxed R-factor
-   }
-   
-   # Execute clustering with optimized settings
-   clustered = csd_ops.cluster_families(fast_filters)
-
-**Quality Control and Validation**
-
-.. code-block:: python
-
-   # Implement comprehensive quality control
-   quality_filters = {
-       "min_resolution": 1.0,           # High resolution only
-       "max_r_factor": 0.03,            # Strict R-factor
-       "min_completeness": 0.95,        # 95% data completeness
-       "exclude_disorder": True,         # No disorder
-       "exclude_polymers": True,         # No polymers
-       "exclude_solvates": True,         # No solvates
-       "temperature_range": [90, 120],   # Low-temperature data
-       "target_species": ["C","H","N","O","S","Cl","F"]  # Common elements
-   }
-
-   # Validate structures before clustering
-   csd_ops = CSDOperations("./quality_analysis", "high_quality")
-   
-   for family_id, refcodes in families.items():
-       valid_structures = []
-       for refcode in refcodes:
-           if csd_ops._check_structure(refcode, quality_filters):
-               valid_structures.append(refcode)
-       
-       if len(valid_structures) >= 2:
-           print(f"Family {family_id}: {len(valid_structures)} valid structures")
-
-Performance Optimization
-------------------------
-
-**Memory Management**
-
-.. code-block:: python
-
-   # Configure for large datasets
-   import gc
-   
-   def memory_efficient_clustering(csd_ops, filters, batch_size=100):
-       """Process families in memory-efficient batches."""
-       
-       families_df = csd_ops.get_refcode_families_df()
-       family_groups = families_df.groupby('family_id')
-       
-       all_results = []
-       for i, (family_id, group) in enumerate(family_groups):
-           if i % batch_size == 0:
-               gc.collect()  # Periodic garbage collection
-           
-           # Process single family
-           result = csd_ops._process_single_family(
-               (family_id, group['refcode'].tolist(), filters)
-           )
-           all_results.append(result)
-       
-       return all_results
-
-**Parallel Processing Tuning**
-
-.. code-block:: python
-
-   import os
-   from concurrent.futures import ProcessPoolExecutor
-
-   # Optimize worker count based on system resources
-   optimal_workers = min(
-       os.cpu_count() - 2,        # Leave CPU headroom
-       32,                        # Reasonable upper limit
-       len(family_groups) // 4    # At least 4 families per worker
-   )
-
-   print(f"Using {optimal_workers} parallel workers")
-
-**Disk I/O Optimization**
-
-.. code-block:: python
-
-   # Use SSD storage for temporary files
-   fast_storage = Path("/tmp/csd_analysis")  # RAM disk or SSD
-   fast_storage.mkdir(exist_ok=True)
-   
-   csd_ops = CSDOperations(
-       data_directory=fast_storage,
-       data_prefix="temp_analysis"
-   )
-   
-   # Move final results to permanent storage
-   import shutil
-   final_location = Path("./permanent_storage")
-   shutil.move(fast_storage, final_location)
 
 See Also
 --------

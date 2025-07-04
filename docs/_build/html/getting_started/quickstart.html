@@ -199,6 +199,7 @@
 <li class="toctree-l3"><a class="reference internal" href="configuration.html#required-settings">Required Settings</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration.html#pipeline-control">Pipeline Control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-filters">Basic Filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#element-species-filtering">Element Species Filtering</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#performance-settings">Performance Settings</a><ul>
@@ -208,7 +209,6 @@
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#common-configurations">Common Configurations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="configuration.html#small-organic-molecules">Small Organic Molecules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration.html#drug-like-molecules">Drug-Like Molecules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configuration.html#quick-test-run">Quick Test Run</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#creating-your-configuration">Creating Your Configuration</a><ul>
@@ -217,7 +217,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#validation-and-testing">Validation and Testing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="configuration.html#check-your-json">Check Your JSON</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configuration.html#test-with-small-dataset">Test with Small Dataset</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="configuration.html#common-beginner-mistakes">Common Beginner Mistakes</a><ul>
@@ -293,7 +292,19 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#learning-paths">Learning Paths</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#advanced-topics">Advanced Topics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#feedback-and-improvement">Feedback and Improvement</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/index.html#getting-help">Getting Help</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/first_analysis.html">Your First Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#tutorial-overview">Tutorial Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#understanding-the-csa-pipeline">Understanding the CSA Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-1-setup-and-configuration">Step 1: Setup and Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-2-pipeline-execution">Step 2: Pipeline Execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-3-exploring-the-results">Step 3: Exploring the Results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-4-basic-data-analysis">Step 4: Basic Data Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutorials/first_analysis.html#step-5-validation-and-quality-control">Step 5: Validation and Quality Control</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -475,8 +486,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#csd_operations._representative_for_cluster"><code class="docutils literal notranslate"><span class="pre">_representative_for_cluster()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#usage-examples">Usage Examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#performance-optimization">Performance Optimization</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_reference/extraction/csd_operations.html#see-also">See Also</a></li>
 </ul>
 </li>
@@ -1108,17 +1117,27 @@ csa_env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span cl
 <p>Create a file named <code class="docutils literal notranslate"><span class="pre">my_first_analysis.json</span></code>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;extraction&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./my_first_csa_run&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;organic_crystals&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_directory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;../my_first_csa_run/&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;data_prefix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;small_hydrocarbons&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;actions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;get_refcode_families&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;cluster_refcode_families&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;get_unique_structures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;get_structure_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;post_extraction_process&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;filters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;structure_list&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;csd-unique&quot;</span><span class="p">],</span>
 <span class="w">      </span><span class="nt">&quot;crystal_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;homomolecular&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_space_groups&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;P21/c&quot;</span><span class="p">,</span><span class="s2">&quot;P-1&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;target_z_prime_values&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">1.0</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">300.0</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;molecule_formal_charges&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;molecule_weight_limit&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">400.0</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;target_species&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;O&quot;</span><span class="p">]</span>
+<span class="w">      </span><span class="nt">&quot;unique_structures_clustering_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vdWFV&quot;</span>
 <span class="w">    </span><span class="p">},</span>
 <span class="w">    </span><span class="nt">&quot;extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span>
+<span class="w">    </span><span class="nt">&quot;post_extraction_batch_size&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -1126,49 +1145,6 @@ csa_env<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span cl
 </section>
 <section id="configuration-explained">
 <h3>Configuration Explained<a class="headerlink" href="#configuration-explained" title="Link to this heading"></a></h3>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 30.0%" />
-<col style="width: 50.0%" />
-<col style="width: 20.0%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Setting</p></th>
-<th class="head"><p>What it does</p></th>
-<th class="head"><p>Why this value?</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_directory</span></code></p></td>
-<td><p>Where CSA saves all output files</p></td>
-<td><p>Keep results organized</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_prefix</span></code></p></td>
-<td><p>Prefix for all generated filenames</p></td>
-<td><p>Identify this analysis</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">target_z_prime_values:</span> <span class="pre">[1]</span></code></p></td>
-<td><p>Only structures with 1 molecule/asymmetric unit</p></td>
-<td><p>Simplest, most common case</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">crystal_type:</span> <span class="pre">[&quot;homomolecular&quot;]</span></code></p></td>
-<td><p>Only single-component crystals</p></td>
-<td><p>Avoid complex multi-component systems</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">molecule_weight_limit:</span> <span class="pre">400.0</span></code></p></td>
-<td><p>Maximum molecular weight in Daltons</p></td>
-<td><p>Focus on small-medium molecules</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">target_species:</span> <span class="pre">[&quot;C&quot;,</span> <span class="pre">&quot;H&quot;,</span> <span class="pre">&quot;N&quot;,</span> <span class="pre">&quot;O&quot;]</span></code></p></td>
-<td><p>Only basic organic elements</p></td>
-<td><p>Common pharmaceutical/organic elements</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">extraction_batch_size:</span> <span class="pre">32</span></code></p></td>
-<td><p>Process 32 structures at once</p></td>
-<td><p>Good balance of speed vs memory</p></td>
-</tr>
-</tbody>
-</table>
 </section>
 </section>
 <section id="step-2-run-your-first-analysis">
@@ -1184,29 +1160,45 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
 <section id="monitor-progress">
 <h3>Monitor Progress<a class="headerlink" href="#monitor-progress" title="Link to this heading"></a></h3>
 <p>You’ll see output like this:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2024-07-01 10:30:15 - INFO - Starting CSA pipeline...
-2024-07-01 10:30:16 - INFO - Stage 1: Extracting refcode families from CSD...
-2024-07-01 10:30:45 - INFO - Found 15,234 structures across 8,567 families
-2024-07-01 10:31:15 - INFO - Stage 2: Clustering similar crystal packings...
-2024-07-01 10:35:30 - INFO - Created 6,123 packing clusters
-2024-07-01 10:35:45 - INFO - Stage 3: Selecting representative structures...
-2024-07-01 10:36:12 - INFO - Selected 6,123 unique structures
-2024-07-01 10:36:15 - INFO - Stage 4: Extracting structure data...
-2024-07-01 10:36:20 - INFO - Processing batch 1/192 (structures 1-32)
-...
-2024-07-01 11:45:30 - INFO - Stage 5: Computing molecular features...
-2024-07-01 12:30:45 - INFO - Pipeline completed successfully!
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>2025-05-03 20:02:39,843 - root - INFO - Loading configuration from csa_config.json
+2025-05-03 20:02:39,846 - root - INFO - Starting extraction step...
+2025-05-03 20:02:39,846 - crystal_analyzer - INFO - Starting data extraction pipeline...
+2025-05-03 20:02:39,846 - crystal_analyzer - INFO - Extracting refcode families into DataFrame...
+2025-05-03 20:20:04,663 - crystal_analyzer - INFO - Extracted 1284316 structures across 1151944 families
+2025-05-03 20:20:04,717 - crystal_analyzer - INFO - Clustering refcode families...
+2025-05-03 20:47:49,881 - csd_operations - INFO - Saved clustered families to ..\my_first_csa_run\small_hydrocarbons_refcode_families_clustered.csv
+2025-05-03 20:47:50,014 - crystal_analyzer - INFO - Refcode families clustered into 407 groups.
+2025-05-03 20:47:50,023 - crystal_analyzer - INFO - Selecting unique structures …
+2025-05-03 20:47:58,430 - csd_operations - INFO - Saved unique structures to ..\my_first_csa_run\small_hydrocarbons_refcode_families_unique.csv
+2025-05-03 20:47:58,431 - crystal_analyzer - INFO - Unique structures selected: 310 structures across 309 families
+2025-05-03 20:47:58,431 - crystal_analyzer - INFO - Extracting detailed structure data into ..\my_first_csa_run\small_hydrocarbons.h5 …
+2025-05-03 20:47:58,439 - structure_data_extractor - INFO - 310 structures to extract (batch size 1024)
+2025-05-03 20:47:58,441 - structure_data_extractor - INFO - Extracting batch 1 (size 310)
+2025-05-03 20:48:27,091 - structure_data_extractor - INFO - Raw data extraction complete; HDF5 file closed.
+2025-05-03 20:48:27,091 - crystal_analyzer - INFO - Detailed structure data extracted and saved to ..\my_first_csa_run\small_hydrocarbons.h5
+2025-05-03 20:48:27,236 - structure_post_extraction_processor - INFO - Found 310 structures to process.
+2025-05-03 20:48:27,236 - structure_post_extraction_processor - INFO - Processing structures 1 to 310
+2025-05-03 20:48:49,495 - structure_post_extraction_processor - INFO - Post-extraction fast processing complete.
+2025-05-03 20:48:49,495 - crystal_analyzer - INFO - Data extraction completed in 0:46:09.649176
+2025-05-03 20:48:49,581 - root - INFO - Data extraction completed successfully.
 </pre></div>
 </div>
-<p><strong>Total time</strong>: Typically 1-2 hours for this configuration.</p>
+<p><strong>Total time</strong>: Typically less than 1 hour for this configuration.</p>
 </section>
 <section id="understanding-the-stages">
 <h3>Understanding the Stages<a class="headerlink" href="#understanding-the-stages" title="Link to this heading"></a></h3>
-<p><strong>Stage 1 (5-15 minutes)</strong>: Queries the CSD database using your filters
-<strong>Stage 2 (10-30 minutes)</strong>: Groups structures with similar crystal packing
-<strong>Stage 3 (1-2 minutes)</strong>: Picks the best representative from each cluster
-<strong>Stage 4 (30-60 minutes)</strong>: Extracts atomic coordinates and basic properties
-<strong>Stage 5 (30-90 minutes)</strong>: Computes advanced molecular descriptors</p>
+<dl class="simple">
+<dt><strong>Stage 1 (~5 minutes)</strong></dt><dd><p>Queries the CSD database using your filters</p>
+</dd>
+<dt><strong>Stage 2 (~30 minutes)</strong></dt><dd><p>Groups structures with similar crystal packing</p>
+</dd>
+<dt><strong>Stage 3 (~10 minutes)</strong></dt><dd><p>Picks the best representative from each cluster</p>
+</dd>
+<dt><strong>Stage 4 (~2 minutes)</strong></dt><dd><p>Extracts atomic coordinates and basic properties</p>
+</dd>
+<dt><strong>Stage 5 (~2 minutes)</strong></dt><dd><p>Computes advanced molecular descriptors</p>
+</dd>
+</dl>
 </section>
 </section>
 <section id="step-3-explore-your-results">
@@ -1219,15 +1211,11 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
 </div>
 <p>You should see:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>my_first_csa_run/
-├── csv/
-│   ├── organic_crystals_refcode_families.csv      # Stage 1 output
-│   ├── organic_crystals_clustered_families.csv    # Stage 2 output
-│   └── organic_crystals_unique_structures.csv     # Stage 3 output
-├── structures/
-│   ├── organic_crystals_structures.h5             # Stage 4 output
-│   └── organic_crystals_structures_processed.h5   # Stage 5 output
-└── logs/
-    └── csa_extraction.log                         # Detailed logs
+├── small_hydrocarbons_refcode_families.csv      # Stage 1 output
+├── small_hydrocarbons_clustered_families.csv    # Stage 2 output
+├── small_hydrocarbons_unique_structures.csv     # Stage 3 output
+├── small_hydrocarbons.h5                        # Stage 4 output
+└── small_hydrocarbons_processed.h5              # Stage 5 output
 </pre></div>
 </div>
 </section>
@@ -1239,7 +1227,7 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Basic dataset information</span>
-<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;my_first_csa_run/structures/organic_crystals_structures_processed.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">refcodes</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
     <span class="n">n_structures</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">refcodes</span><span class="p">)</span>
 
@@ -1252,7 +1240,7 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;🔬 Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_sgs</span><span class="p">)</span><span class="si">}</span><span class="s2"> different space groups&quot;</span><span class="p">)</span>
 
     <span class="n">cell_volumes</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;cell_volume&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📏 Cell volume range: </span><span class="si">{</span><span class="n">cell_volumes</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">cell_volumes</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> Ų&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;📏 Cell volume range: </span><span class="si">{</span><span class="n">cell_volumes</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">cell_volumes</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> &quot;</span><span class="p">)</span>
 
     <span class="n">n_atoms</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;n_atoms&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⚛️  Molecular size: </span><span class="si">{</span><span class="n">n_atoms</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">n_atoms</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2"> atoms (avg: </span><span class="si">{</span><span class="n">n_atoms</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
@@ -1272,13 +1260,13 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
 </pre></div>
 </div>
 <p>Expected output:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>🎉 Successfully processed 6,123 crystal structures!
-📝 First 5 refcodes: [&#39;AABHTZ&#39;, &#39;AABHTZ01&#39;, &#39;AACBDE&#39;, &#39;AACCEF&#39;, &#39;AADDGH&#39;]
-🔬 Found 47 different space groups
-📏 Cell volume range: 234.5 - 2,847.3 Ų
-⚛️ Molecular size: 8-32 atoms (avg: 18.4)
-🧩 Fragments per molecule: 1-3 (avg: 1.2)
-🤝 5,891 structures have intermolecular contacts (96.2%)
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>🎉 Successfully processed 310 crystal structures!
+📝 First 5 refcodes: [&#39;ACAMAT&#39;, &#39;ANANTH01&#39;, &#39;ANNULE10&#39;, &#39;ANOKUM&#39;, &#39;ATAKOV&#39;]
+🔬 Found 2 different space groups
+📏 Cell volume range: 252.6 - 1944.4
+⚛️ Molecular size: 9-104 atoms (avg: 40.0)
+🧩 Fragments per molecule: 1-14 (avg: 2.2)
+🤝 310 structures have intermolecular contacts (100.0%)
 </pre></div>
 </div>
 </section>
@@ -1294,7 +1282,7 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># Load data</span>
-<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;my_first_csa_run/structures/organic_crystals_structures_processed.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;refcode&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">][</span><span class="o">...</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">),</span>
         <span class="s1">&#39;space_group&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;space_group&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">]))],</span>
@@ -1363,7 +1351,7 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
 <span class="c1"># Load fragment data</span>
 <span class="n">fragment_data</span> <span class="o">=</span> <span class="p">[]</span>
 
-<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;my_first_csa_run/structures/organic_crystals_structures_processed.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="s1">&#39;../my_first_csa_run/small_hydrocarbons_processed.h5&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">]))):</span>  <span class="c1"># First 1000 structures</span>
         <span class="n">refcode</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;refcode_list&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
         <span class="n">n_frags</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="s1">&#39;n_fragments&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
@@ -1431,7 +1419,7 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
 <h3>What You’ve Created<a class="headerlink" href="#what-you-ve-created" title="Link to this heading"></a></h3>
 <p>Your CSA analysis has generated:</p>
 <ol class="arabic simple">
-<li><p><strong>Structure Database</strong>: 6,000+ carefully selected, non-redundant crystal structures</p></li>
+<li><p><strong>Structure Database</strong>: 310 carefully selected, non-redundant crystal structures</p></li>
 <li><p><strong>Molecular Properties</strong>: Comprehensive geometric and chemical descriptors</p></li>
 <li><p><strong>Fragment Analysis</strong>: Rigid molecular fragment identification and characterization</p></li>
 <li><p><strong>Contact Networks</strong>: Detailed intermolecular interaction data</p></li>
@@ -1554,7 +1542,7 @@ python<span class="w"> </span>src/csa_main.py<span class="w"> </span>--config<sp
 
   <div role="contentinfo">
     <p>&#169; Copyright 2025, Nikolaos Galanakis .
-      <span class="lastupdated">Last updated on Jul 01, 2025.
+      <span class="lastupdated">Last updated on Jul 03, 2025.
       </span></p>
   </div>
 
