@@ -4,7 +4,7 @@ Your First Analysis
 .. note::
    **Duration**: ~45 minutes | **Prerequisites**: CSA installation complete
    
-   **Downloads**: :download:`benzene_tutorial.json </_downloads/benzene_tutorial.json>` | :download:`benzene_tutorial_families.csv </_downloads/benzene_tutorial_families.csv>` | :download:`tutorial_validation.py </_downloads/tutorial_validation.py>`
+   **Downloads**: :download:`benzene_tutorial.json </_downloads/benzene_tutorial.json>` | :download:`benzene_tutorial_families.csv </_downloads/benzene_tutorial_families.csv>`
 
 Welcome to your first hands-on experience with Crystal Structure Analysis (CSA)! This tutorial will guide you through the complete five-stage CSA pipeline using a focused dataset of benzene structures from the CSD.
 
