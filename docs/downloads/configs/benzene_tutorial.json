@@ -1,0 +1,25 @@
+{
+  "extraction": {
+    "data_directory": "../benzene_tutorial/",
+    "data_prefix": "benzene_tutorial",
+    "actions": {
+      "get_refcode_families": false,
+      "cluster_refcode_families": true,
+      "get_unique_structures": true,
+      "get_structure_data": true,
+      "post_extraction_process": true
+    },
+    "filters": {
+      "unique_structures_clustering_method": "vdWFV",
+      "structure_list": ["csd-unique","all"],
+      "crystal_type": ["homomolecular"],
+      "target_species": ["C", "H"],
+      "target_space_groups": ["P21/c","Pbca"],
+      "target_z_prime_values": [0.5, 1, 2, 3, 4, 5],
+      "molecule_weight_limit": 500.0,
+      "molecule_formal_charges": [0]
+    },
+    "extraction_batch_size": 1000,
+    "post_extraction_batch_size": 1000
+  }
+}
