@@ -1,0 +1,25 @@
+{
+  "extraction": {
+    "data_directory": "../my_first_csa_run/",
+    "data_prefix": "small_hydrocarbons",
+    "actions": {
+      "get_refcode_families": true,
+      "cluster_refcode_families": true,
+      "get_unique_structures": true,
+      "get_structure_data": true,
+      "post_extraction_process": true
+    },
+    "filters": {
+      "structure_list": ["csd-unique"],
+      "crystal_type": ["homomolecular"],
+      "target_species": ["C", "H"],
+      "target_space_groups": ["P21/c","P-1"],
+      "target_z_prime_values": [1.0],
+      "molecule_weight_limit": 300.0,
+      "molecule_formal_charges": [0],
+      "unique_structures_clustering_method": "vdWFV",
+    },
+    "extraction_batch_size": 32,
+    "post_extraction_batch_size": 32
+  }
+}
